@@ -8,15 +8,25 @@ import { COROS_CASE_STUDIES, COROS_HUB_HREF } from "@/lib/coros";
 
 /*
  * Hero sky: each cloud gets a resting position (its `left`/`top`) — the
- * scattered sky users with reduced motion see — plus a long drift loop
- * staggered with negative delays so the sky is populated on first paint.
+ * scattered sky users with reduced motion see — plus a long drift loop.
+ * cloud-drift sweeps translateX from `from` to `to`, set per-cloud (via
+ * --cloud-drift-from/-to) so every cloud clears the viewport by a fixed
+ * 16vw margin on both sides regardless of its anchor — otherwise a cloud
+ * anchored away from the edges (e.g. left: 38%) would wrap mid-air onto
+ * a still-on-screen position instead of drifting back in from off-screen.
+ * The negative delay is chosen so each cloud's transform lands at ~0 at
+ * t=0 — i.e. right at its resting `left` — so the full sky is already
+ * populated on first paint instead of drifting into view over the course
+ * of the ~65-120s loop.
  */
+const DRIFT_MARGIN_VW = 16;
+
 const HERO_CLOUDS = [
-  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: "4%", opacity: 0.6, drift: "cloud-drift-slow", delay: "-18s" },
-  { shape: "cumulus", variant: "pink", size: 140, top: "20%", left: "38%", opacity: 0.8, drift: "cloud-drift-mid", delay: "-52s" },
-  { shape: "puff", variant: "lavender", size: 88, top: "58%", left: "14%", opacity: 0.7, drift: "cloud-drift-fast", delay: "-8s" },
-  { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: "62%", opacity: 0.55, drift: "cloud-drift-slow", delay: "-84s" },
-  { shape: "wisp", variant: "pink", size: 150, top: "38%", left: "76%", opacity: 0.5, drift: "cloud-drift-mid", delay: "-30s" },
+  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 4, opacity: 0.6, drift: "cloud-drift-slow", delay: "-30s" },
+  { shape: "cumulus", variant: "pink", size: 140, top: "20%", left: 38, opacity: 0.8, drift: "cloud-drift-mid", delay: "-63s" },
+  { shape: "puff", variant: "lavender", size: 88, top: "44%", left: 14, opacity: 0.7, drift: "cloud-drift-fast", delay: "-26s" },
+  { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: 62, opacity: 0.55, drift: "cloud-drift-slow", delay: "-118s" },
+  { shape: "wisp", variant: "pink", size: 150, top: "38%", left: 76, opacity: 0.5, drift: "cloud-drift-mid", delay: "-108s" },
 ] as const;
 
 function CorosCover() {
@@ -72,10 +82,12 @@ export default function Home() {
               className={`absolute ${cloud.drift}`}
               style={{
                 top: cloud.top,
-                left: cloud.left,
+                left: `${cloud.left}%`,
                 opacity: cloud.opacity,
                 animationDelay: cloud.delay,
-              }}
+                "--cloud-drift-from": `${-(cloud.left + DRIFT_MARGIN_VW)}vw`,
+                "--cloud-drift-to": `${100 - cloud.left + DRIFT_MARGIN_VW}vw`,
+              } as React.CSSProperties}
             />
           ))}
         </div>
@@ -97,11 +109,14 @@ export default function Home() {
             <span className="text-accent-deep">evolves humans</span>.
           </h1>
           <p className="mt-8 flex max-w-3xl flex-wrap items-center gap-x-3 gap-y-1 text-body-lg text-ink-muted">
-            <span>Leading AI Design @ COROS AI</span>
+            <span>
+              Currently leading AI Design @{" "}
+              <Link href={COROS_HUB_HREF} className="text-accent underline-offset-4 hover:underline">
+                COROS AI
+              </Link>
+            </span>
             <span aria-hidden="true" className="text-accent">·</span>
-            <span>Human Centered Design &amp; Engineering @ UW Seattle</span>
-            <span aria-hidden="true" className="text-accent">·</span>
-            <span>2nd place, RESNA Accessible Design Challenge</span>
+            <span>Human Centered Design and Engineering at the University of Washington 2025</span>
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#selected-work">See my work ↓</Button>
