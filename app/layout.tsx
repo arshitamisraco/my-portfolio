@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["SOFT", "opsz"],
+  variable: "--font-playfair-display",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +36,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${playfairDisplay.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"

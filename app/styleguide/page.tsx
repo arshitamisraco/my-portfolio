@@ -46,14 +46,14 @@ const PASTEL_PAIRS = [
 ];
 
 const TYPE_SCALE = [
-  { name: "display / Fraunces", cls: "font-display text-display font-semibold" },
-  { name: "h1 / Fraunces", cls: "font-display text-h1 font-semibold" },
-  { name: "h2 / Fraunces", cls: "font-display text-h2 font-semibold" },
-  { name: "h3 / DM Sans", cls: "text-h3 font-semibold" },
-  { name: "h4 / DM Sans", cls: "text-h4 font-semibold" },
-  { name: "body-lg / DM Sans", cls: "text-body-lg" },
-  { name: "body / DM Sans", cls: "text-body" },
-  { name: "caption / DM Sans", cls: "text-caption text-ink-muted" },
+  { name: "display / Playfair Display", cls: "font-display text-display font-semibold" },
+  { name: "h1 / Playfair Display", cls: "font-display text-h1 font-semibold" },
+  { name: "h2 / Playfair Display", cls: "font-display text-h2 font-semibold" },
+  { name: "h3 / Inter", cls: "text-h3 font-semibold" },
+  { name: "h4 / Inter", cls: "text-h4 font-semibold" },
+  { name: "body-lg / Inter", cls: "text-body-lg" },
+  { name: "body / Inter", cls: "text-body" },
+  { name: "caption / Inter", cls: "text-caption text-ink-muted" },
 ];
 
 const RADII = [
@@ -134,7 +134,7 @@ export default function Styleguide() {
               </div>
             ))}
             <div>
-              <p className="text-caption text-ink-muted">eyebrow / DM Sans</p>
+              <p className="text-caption text-ink-muted">eyebrow / Inter</p>
               <p className="text-style-eyebrow text-accent-deep">Selected Work</p>
             </div>
           </div>
