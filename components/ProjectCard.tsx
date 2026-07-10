@@ -45,7 +45,7 @@ export default function ProjectCard({
         </div>
         <span
           aria-hidden="true"
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill border border-line bg-surface text-accent-deep transition-all duration-300 group-hover:bg-accent-soft group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill border border-line bg-surface text-accent-deep transition-all duration-300 hover:bg-accent-soft hover:translate-x-1 motion-reduce:hover:translate-x-0"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path
