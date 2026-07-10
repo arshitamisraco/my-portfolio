@@ -243,10 +243,10 @@
 
 @keyframes cloud-drift {
   from {
-    transform: translateX(-12vw);
+    transform: translateX(var(--cloud-drift-from, -12vw));
   }
   to {
-    transform: translateX(112vw);
+    transform: translateX(var(--cloud-drift-to, 112vw));
   }
 }
 
@@ -269,13 +269,13 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .cloud-drift-slow {
-    animation: cloud-drift 120s linear infinite;
+    animation: cloud-drift 200s linear infinite;
   }
   .cloud-drift-mid {
-    animation: cloud-drift 90s linear infinite;
+    animation: cloud-drift 155s linear infinite;
   }
   .cloud-drift-fast {
-    animation: cloud-drift 65s linear infinite;
+    animation: cloud-drift 115s linear infinite;
   }
   .cloud-bob {
     animation: cloud-bob 5s ease-in-out infinite;
