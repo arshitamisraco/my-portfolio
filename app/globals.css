@@ -127,6 +127,14 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
+
+  /* Inline links default to an AA-passing accent (>=4.5:1 on --color-bg).
+     Never use --color-accent (pink-400) for link/body text — it is a
+     decorative tint that fails contrast. Use accent-strong/accent-deep. */
+  a {
+    color: var(--color-accent-strong);
+    text-underline-offset: 4px;
+  }
 }
 
 /* ============================================================
@@ -260,10 +268,23 @@
   }
 }
 
+/* Scroll cue: a gentle downward float so a resting cloud reads as
+   "keep going down". Off under reduced motion — it simply sits still. */
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
 .cloud-drift-slow,
 .cloud-drift-mid,
 .cloud-drift-fast,
-.cloud-bob {
+.cloud-bob,
+.scroll-hint {
   animation: none;
 }
 
@@ -279,5 +300,8 @@
   }
   .cloud-bob {
     animation: cloud-bob 5s ease-in-out infinite;
+  }
+  .scroll-hint {
+    animation: scroll-hint 2.4s ease-in-out infinite;
   }
 }

@@ -24,10 +24,36 @@ const DRIFT_MARGIN_VW = 16;
 const HERO_CLOUDS = [
   { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 4, opacity: 0.6, drift: "cloud-drift-slow", delay: "-30s" },
   { shape: "cumulus", variant: "pink", size: 140, top: "20%", left: 38, opacity: 0.8, drift: "cloud-drift-mid", delay: "-63s" },
-  { shape: "puff", variant: "lavender", size: 88, top: "44%", left: 14, opacity: 0.7, drift: "cloud-drift-fast", delay: "-26s" },
+  { shape: "puff", variant: "lavender", size: 88, top: "50%", left: 14, opacity: 0.7, drift: "cloud-drift-fast", delay: "-26s" },
   { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: 62, opacity: 0.55, drift: "cloud-drift-slow", delay: "-118s" },
   { shape: "wisp", variant: "pink", size: 150, top: "38%", left: 76, opacity: 0.5, drift: "cloud-drift-mid", delay: "-108s" },
 ] as const;
+
+function CloudI({ variant }: { variant: "lavender" | "sky" }) {
+  /*
+   * A dotless "i" (U+0131) with our own tittle, so the real font dot never
+   * shows. At rest the custom dot reads as a normal i-dot; on hovering the name
+   * it fades out and a tiny cloud fades in its place (no sway — the cloud is
+   * static). The cloud is sized in `em` (via w-[0.32em], overriding
+   * PixelCloud's px width/height attributes) so it scales with the fluid
+   * heading and stays dot-sized over the tittle.
+   */
+  return (
+    <span className="relative inline-block">
+      {"ı"}
+      <span
+        aria-hidden="true"
+        className="absolute left-1/2 top-[0.16em] h-[0.12em] w-[0.12em] -translate-x-1/2 rounded-[1px] bg-ink transition-opacity duration-300 group-hover/name:opacity-0 motion-reduce:transition-none"
+      />
+      <PixelCloud
+        shape="puff"
+        variant={variant}
+        size={24}
+        className="absolute left-1/2 top-[0.05em] h-auto w-[0.32em] -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover/name:opacity-100 motion-reduce:transition-none"
+      />
+    </span>
+  );
+}
 
 function CorosCover() {
   /*
@@ -93,31 +119,28 @@ export default function Home() {
         </div>
 
         <div className="container-site relative z-10 flex min-h-[78vh] flex-col justify-center py-section">
-          <p className="text-style-eyebrow text-accent-deep">What I offer ↓</p>
-          <h1 className="mt-6 max-w-4xl font-display text-display font-semibold text-ink">
-            Hey, I&rsquo;m{" "}
+          <p className="text-style-eyebrow text-accent-deep">Hey, I&rsquo;m</p>
+          <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.5rem,9vw+1rem,7rem)] font-semibold leading-[1.05] text-ink">
             <span className="group/name relative inline-block">
-              Arshita
-              <PixelCloud
-                shape="puff"
-                variant="pink"
-                size={36}
-                className="cloud-bob absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover/name:opacity-100"
-              />
-            </span>{" "}
-            — a product designer crafting technology that{" "}
-            <span className="text-accent-deep">evolves humans</span>.
-          </h1>
-          <p className="mt-8 flex max-w-3xl flex-wrap items-center gap-x-3 gap-y-1 text-body-lg text-ink-muted">
-            <span>
-              Currently leading AI Design @{" "}
-              <Link href={COROS_HUB_HREF} className="text-accent underline-offset-4 hover:underline">
-                COROS AI
-              </Link>
+              <span className="sr-only">Arshita Misra</span>
+              <span aria-hidden="true">
+                Arsh<CloudI variant="lavender" />ta M<CloudI variant="sky" />sra
+              </span>
             </span>
-            <span aria-hidden="true" className="text-accent">·</span>
-            <span>Human Centered Design and Engineering at the University of Washington 2025</span>
+          </h1>
+          <p className="mt-6 max-w-5xl text-balance font-display text-h1 font-medium text-ink">
+            A <span className="text-accent-deep">Product designer who engineers</span>,{" "}
+            crafting technology that evolves humans.
           </p>
+          <div className="mt-8 flex max-w-3xl flex-col gap-y-1 text-body-lg text-ink-muted">
+            <p>
+              Currently leading{" "}
+              <Link href={COROS_HUB_HREF} className="text-accent-strong underline-offset-4 hover:underline">
+                AI Design @ COROS AI
+              </Link>
+            </p>
+            <p>Human Centered Design and Engineering at the University of Washington 2025</p>
+          </div>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#selected-work">See my work ↓</Button>
             <Button href="/about" variant="secondary">
@@ -125,6 +148,20 @@ export default function Home() {
             </Button>
           </div>
         </div>
+
+        {/* Cloud-themed scroll cue, floating at the base of the hero */}
+        <Link
+          href="#selected-work"
+          aria-label="Scroll to selected work"
+          className="group absolute bottom-0 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center opacity-80 transition-opacity duration-300 hover:opacity-100"
+        >
+          <span className="scroll-hint relative flex flex-col items-center">
+            <PixelCloud shape="puff" variant="sky" size={40} />
+            <span aria-hidden="true" className="-mt-1 text-accent-deep">
+              ↓
+            </span>
+          </span>
+        </Link>
       </section>
 
       {/* ================= Selected Work ================= */}
