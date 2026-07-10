@@ -57,8 +57,8 @@
   --color-cloud-sky-edge: #b7d3ec;
 
   /* ---- Typography ---- */
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --text-display: clamp(2.5rem, 5.5vw + 1rem, 4.25rem);
   --text-display--line-height: 1.08;
