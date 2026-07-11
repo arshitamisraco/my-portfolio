@@ -10,3 +10,9 @@
 9 verbose logfile logs-max:10 dir:/Users/arshitamisra/Desktop/my-portfolio/.npm-cache/_logs/2026-07-11T06_01_03_115Z-
 10 verbose logfile /Users/arshitamisra/Desktop/my-portfolio/.npm-cache/_logs/2026-07-11T06_01_03_115Z-debug-0.log
 11 silly logfile done cleaning log files
+12 verbose cwd /Users/arshitamisra/Desktop/my-portfolio
+13 verbose os Darwin 23.3.0
+14 verbose node v20.18.0
+15 verbose npm  v10.8.2
+16 verbose exit 0
+17 info ok

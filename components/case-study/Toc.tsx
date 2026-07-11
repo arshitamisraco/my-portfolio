@@ -68,7 +68,7 @@ export default function Toc({ items }: { items: TocItem[] }) {
       {/* Desktop: sticky rail */}
       <nav
         aria-label="Table of contents"
-        className="sticky top-24 hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block"
+        className="hidden max-h-[calc(100vh-14rem)] overflow-y-auto lg:block"
       >
         <p className="text-style-eyebrow mb-4 text-accent-deep">On this page</p>
         {list}
