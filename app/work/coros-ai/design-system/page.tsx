@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import CaseVideo from "@/components/CaseVideo";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
-import VideoFrame from "@/components/VideoFrame";
 
 export const metadata: Metadata = {
   title: "Rebuilding COROS AI — From MUI Defaults to a Token-Driven Design System",
@@ -129,13 +129,6 @@ export default function DesignSystem() {
           mirrored the code&rsquo;s token architecture one-to-one, and a redesign of
           every base surface on top of it.
         </p>
-        <ImageFrame
-          alt="Before and after: the dark-only MUI-era product next to the redesigned token-driven light theme"
-          plannedSrc="/images/design-system/before-after.png"
-          aspect="wide"
-          tone="sky"
-          caption="From stock Material defaults to a system that carries the brand."
-        />
       </CaseSection>
 
       <CaseSection id="tokens" eyebrow="Design system" title="Three layers, zero shortcuts">
@@ -191,13 +184,44 @@ export default function DesignSystem() {
           variable grouping and naming conventions agreed upon with the second designer
           before either of us pushed pixels.
         </p>
-        <ImageFrame
-          alt="The token architecture in Figma: raw primitive scales resolving through the brand layer into light- and dark-mode semantic tokens"
-          plannedSrc="/images/design-system/token-architecture.png"
-          aspect="wide"
-          tone="lavender"
-          caption="Three layers: primitives → brand → semantics, mapped across light and dark modes."
-        />
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:items-center sm:gap-4">
+            <ImageFrame
+              src="/images/design-system/figma/tokens-semantic-colors.png"
+              width={1882}
+              height={1890}
+              alt="Figma variables editor showing the semantic colors collection with a shadcn (light) column and a shadcn-dark column, each token resolving to a brand-neutrals, brand-shades, coros-green, or coros-red reference."
+              size="full"
+              tone="lavender"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/figma/tokens-typography.png"
+              width={1489}
+              height={1890}
+              alt="Figma variables editor showing the typography collection: font definitions for sans, serif, headings, body, and monospace, plus heading scales with weight, size, line-height, and letter-spacing tokens."
+              size="full"
+              tone="mint"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/figma/tokens-semantic-spacing.png"
+              width={1889}
+              height={1890}
+              alt="Figma variables editor showing the semantic spacing collection with separate sm (mobile) and lg (desktop) columns for padding, layout, and gap tokens."
+              size="full"
+              tone="sky"
+              flush
+            />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            The variable library at a glance — semantic colors holding a value per token
+            for both the shadcn (light) and shadcn-dark modes, typography resolving
+            through shared font definitions, and spacing carrying separate sm (mobile)
+            and lg (desktop) values. Every color resolves through a brand reference,
+            never a raw hex.
+          </p>
+        </div>
       </CaseSection>
 
       <CaseSection
@@ -245,12 +269,6 @@ export default function DesignSystem() {
           in 32×32 ghost hit areas, <code>rounded-md</code> — benchmarked against
           production values from leading AI chat products rather than invented.
         </p>
-        <VideoFrame
-          title="Component states without variant explosion"
-          description="The chat input bar handling default, focused, with-text, and multiline states across breakpoints — one variant axis, properties for everything else."
-          src="/videos/design-system/chat-input-states.mp4"
-          tone="sky"
-        />
       </CaseSection>
 
       <CaseSection id="surfaces" eyebrow="Surfaces" title="Redesigning the base surfaces">
@@ -273,12 +291,55 @@ export default function DesignSystem() {
           decision, but it set the working pattern for the project: disagreements get
           prototyped, not argued.
         </p>
-        <VideoFrame
-          title="The redesigned chat surface"
-          description="The chat state inventory in motion: empty state, typing indicator vs. streaming text, message actions, and scroll behavior in both themes."
-          src="/videos/design-system/chat-redesign.mp4"
-          tone="pink"
+        <CaseVideo
+          src="/videos/design-system/chat-web-dark.mp4"
+          poster="/images/design-system/posters/chat-web-dark.jpg"
+          width={1440}
+          height={936}
+          title="The chat surface on web, dark theme"
+          description="A coaching exchange on web in dark mode: the COROS greeting, a user message, a streamed response, and the read-aloud and flag actions revealed beneath it."
+          size="lg"
+          tone="sky"
+          caption="Chat in motion on web (dark theme) — the greeting, a streamed reply, and the message-level actions beneath each COROS response."
         />
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <ImageFrame
+              src="/images/design-system/mobile/chat-conversation.png"
+              width={1206}
+              height={2622}
+              alt="Mobile chat in light mode showing date dividers and read-aloud and flag actions beneath a COROS message."
+              size="mobile"
+              tone="pink"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/chat-tone-switch.png"
+              width={1206}
+              height={2622}
+              alt="Mobile chat with an inline tone quick-switch popover offering Supportive, Provocative, and More Personalization."
+              size="mobile"
+              tone="lavender"
+              flush
+            />
+            <CaseVideo
+              src="/videos/design-system/chat-mobile-light.mp4"
+              poster="/images/design-system/posters/chat-mobile-light.jpg"
+              width={640}
+              height={1392}
+              title="Composing a message on mobile, light theme"
+              description="Typing and sending a message in the mobile chat in light mode."
+              size="mobile"
+              tone="sky"
+              flush
+            />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            The same surface on mobile (light theme): date-grouped history with message
+            actions, the inline tone quick-switch, and composing a message — one component
+            system, both themes.
+          </p>
+        </div>
 
         <h3>Onboarding</h3>
         <p>
@@ -303,12 +364,55 @@ export default function DesignSystem() {
           at least one dimension selected). Every screen was designed for web desktop,
           web tablet, iOS, and Android simultaneously.
         </p>
-        <VideoFrame
-          title="The six-screen onboarding"
-          description="Welcome through Loading: the rotating nine-language greeting, the tone-selection cards with their breathing and flickering orbs, and the gated navigation bar."
-          src="/videos/design-system/onboarding-flow.mp4"
+        <CaseVideo
+          src="/videos/design-system/onboarding-web-dark.mp4"
+          poster="/images/design-system/posters/onboarding-web-dark.jpg"
+          width={1440}
+          height={936}
+          title="The six-screen onboarding on web, dark theme"
+          description="The full onboarding on web in dark mode: the rotating multilingual welcome, name, dimensions, influences, tone selection with its animated orbs, and the loading hand-off into chat."
+          size="lg"
           tone="lavender"
+          caption="Welcome through Loading on web (dark theme): the rotating multilingual greeting, gated navigation, and the tone cards whose orbs animate per personality."
         />
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <CaseVideo
+              src="/videos/design-system/onboarding-mobile-light.mp4"
+              poster="/images/design-system/posters/onboarding-mobile-light.jpg"
+              width={640}
+              height={1392}
+              title="Onboarding on mobile, light theme"
+              description="The onboarding welcome on mobile in light mode, greeting rotating through languages."
+              size="mobile"
+              tone="pink"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/personalization-tone.png"
+              width={1206}
+              height={2622}
+              alt="Mobile tone selection with Supportive and Provocative cards, each carrying an animated orb."
+              size="mobile"
+              tone="sky"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/personalization-dimensions.png"
+              width={1206}
+              height={2622}
+              alt="Mobile dimensions selection with seven pill options, several selected."
+              size="mobile"
+              tone="lavender"
+              flush
+            />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            The same flow on mobile (light theme) — the multilingual welcome, tone cards, and
+            dimension pills. Every screen was designed for web desktop, web tablet, iOS, and
+            Android at once, so the token system is what keeps them identical.
+          </p>
+        </div>
 
         <h3>Sidebar &amp; settings</h3>
         <p>
@@ -322,13 +426,98 @@ export default function DesignSystem() {
           — so switching themes never requires navigating anywhere. Three zones, three
           separators, self-explanatory hierarchy.
         </p>
-        <ImageFrame
-          alt="The settings modal shell with its persistent left nav, and the sidebar flyout with the Appearance toggle as a utility row"
-          plannedSrc="/images/design-system/settings-sidebar.png"
-          aspect="wide"
+        <CaseVideo
+          src="/videos/design-system/settings-web-light.mp4"
+          poster="/images/design-system/posters/settings-web-light.jpg"
+          width={1440}
+          height={936}
+          title="Account and Data control settings on web, light theme"
+          description="The settings modal on web in light mode, navigating between Account and Data control with its persistent left nav."
+          size="lg"
           tone="mint"
-          caption="Three zones, three separators: nav links, the Appearance utility row, and Log out."
+          caption="The settings modal shell on web (light theme) — a persistent left nav that never jumps between tabs."
         />
+        <CaseVideo
+          src="/videos/design-system/personalization-web-light.mp4"
+          poster="/images/design-system/posters/personalization-web-light.jpg"
+          width={1440}
+          height={936}
+          title="Personalization settings on web, light theme"
+          description="The Personalization tab on web in light mode: tone, dimensions, and influences, with the tone orbs animating."
+          size="lg"
+          tone="butter"
+          caption="Personalization on web (light theme) — tone, dimensions, and influences share the same modal shell as settings."
+        />
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <ImageFrame
+              src="/images/design-system/mobile/sidebar-flyout.png"
+              width={1206}
+              height={2622}
+              alt="Mobile sidebar flyout with search chats, send feedback, and the user profile pinned at the bottom."
+              size="mobile"
+              tone="pink"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/settings-account.png"
+              width={1206}
+              height={2622}
+              alt="Mobile settings modal showing the profile header and the Account group."
+              size="mobile"
+              tone="mint"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/settings-connected-accounts.png"
+              width={1206}
+              height={2622}
+              alt="Mobile settings with Connected accounts expanded inline, listing Google, LinkedIn, Microsoft, and Apple."
+              size="mobile"
+              tone="sky"
+              flush
+            />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            The settings shell on mobile: the sidebar flyout, the profile and Account group,
+            and Connected accounts expanding inline rather than pushing to a new screen.
+          </p>
+        </div>
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <ImageFrame
+              src="/images/design-system/mobile/personalization-influences-search.png"
+              width={1206}
+              height={2622}
+              alt="Mobile influences search with a live results dropdown of historical and cultural figures."
+              size="mobile"
+              tone="lavender"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/personalization-influences-selected.png"
+              width={1206}
+              height={2622}
+              alt="Mobile influences with selected chips: Martin Heidegger, Barbie Doll, and Brené Brown."
+              size="mobile"
+              tone="sky"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/settings-delete-confirm.png"
+              width={1206}
+              height={2622}
+              alt="Mobile delete-account confirmation dialog requiring the user to type delete, its confirm button on the destructive token."
+              size="mobile"
+              tone="peach"
+              flush
+            />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            States, not just screens: searching influences, the selected chips, and the
+            type-to-confirm delete dialog rendered on its own destructive token.
+          </p>
+        </div>
       </CaseSection>
 
       <CaseSection
@@ -386,13 +575,6 @@ export default function DesignSystem() {
           switch when it should have?&rdquo; (the session-change probability) and
           &ldquo;why did it retrieve <em>that</em> session?&rdquo; (the score breakdown).
         </p>
-        <ImageFrame
-          alt="The Retrieved Context panel showing memory config scores, retrieved sessions, and chunk results for a single coaching turn"
-          plannedSrc="/images/design-system/retrieved-context-panel.png"
-          aspect="wide"
-          tone="butter"
-          caption="Engineering telemetry on consumer-product tokens: scores as inline metadata, sessions as accordions."
-        />
         <p>
           This feature quietly changed how the team works: prompt regressions that used
           to be argued from vibes are now diagnosed from the panel.
