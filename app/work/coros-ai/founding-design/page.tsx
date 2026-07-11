@@ -3,8 +3,8 @@ import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import QuoteCard from "@/components/case-study/QuoteCard";
 import TodoNote from "@/components/case-study/TodoNote";
+import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
-import VideoFrame from "@/components/VideoFrame";
 
 export const metadata: Metadata = {
   title: "Founding AI Designer at COROS AI",
@@ -23,6 +23,7 @@ const TOC = [
   { id: "final-designs", label: "Final designs" },
   { id: "design-system", label: "Design system" },
   { id: "brand", label: "Logo & brand" },
+  { id: "pitch-deck", label: "Investment pitch deck" },
   { id: "reflection", label: "Reflection" },
 ];
 
@@ -79,6 +80,57 @@ export default function FoundingDesign() {
             <strong>Visual identity</strong> — logo, brand, and design system
           </li>
         </ul>
+        <p>
+          The product itself is a conversation: users bring a real moment, and COROS coaches
+          through it — on desktop and mobile.
+        </p>
+        <ImageFrame
+          src="/images/founding-design/chat/web-chat.png"
+          width={1520}
+          height={953}
+          alt="COROS AI desktop chat: the coach challenges a user's avoidance in a candid, provocative tone, referencing their Self and Belonging life dimensions."
+          caption="The COROS AI chat on desktop — coaching that references a user's life dimensions in real time."
+          size="lg"
+          tone="lavender"
+        />
+        <div className="my-8 grid grid-cols-3 gap-3 sm:gap-4">
+          <ImageFrame
+            src="/images/founding-design/chat/mobile-1-home.png"
+            width={401}
+            height={860}
+            alt="COROS AI mobile home screen: 'What's on your mind?' with a message being typed into the composer."
+            caption="1 · Home"
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/chat/mobile-2-user-message.png"
+            width={401}
+            height={860}
+            alt="COROS AI mobile chat: the user has sent a message about working overtime and feeling stuck, and the coach is preparing a reply."
+            caption="2 · The user opens up"
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/chat/mobile-3-ai-response.png"
+            width={401}
+            height={860}
+            alt="COROS AI mobile chat: the coach reflects the user's exhaustion back and asks clarifying questions to understand before advising."
+            caption="3 · The coach responds"
+            flush
+            tone="sky"
+          />
+        </div>
+        <ImageFrame
+          src="/images/founding-design/chat/input-box.png"
+          width={842}
+          height={192}
+          alt="The COROS AI chat composer: a 'What's on your mind?' prompt above an input field with a send button."
+          caption="The chat composer — the front door to every coaching conversation."
+          size="sm"
+          tone="pink"
+        />
       </CaseSection>
 
       <CaseSection
@@ -135,6 +187,15 @@ export default function FoundingDesign() {
             as users&rsquo; situations evolve.
           </li>
         </ul>
+        <ImageFrame
+          src="/images/founding-design/research/competitive-analysis.png"
+          width={1472}
+          height={754}
+          alt="A competitive-analysis board comparing the onboarding flows of Pi, Duolingo, Headspace, Clementine, and Claude, screen by screen."
+          caption="Auditing how Pi, Duolingo, Headspace, Clementine, and Claude gather context during onboarding."
+          size="full"
+          tone="sky"
+        />
       </CaseSection>
 
       <CaseSection
@@ -167,11 +228,34 @@ export default function FoundingDesign() {
           how challenges map across their life and track growth in specific areas over
           time.
         </p>
-        <VideoFrame
-          title="Updating dimensions after onboarding"
-          description="Screen recording of the personalization settings, showing a user revisiting and updating their seven life dimensions after onboarding."
-          src="/videos/founding-design/dimensions-settings.mp4"
-          tone="pink"
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/dimensions/dimensions-hexagons.png"
+            width={737}
+            height={669}
+            alt="Early Dimensions concept: a honeycomb of seven colour-coded hexagons (Work, Belonging, Health, Self, World, Family, Meaning) with short descriptions."
+            caption="Before — the first concept leaned on colour to distinguish dimensions."
+            flush
+            tone="pink"
+          />
+          <ImageFrame
+            src="/images/founding-design/dimensions/dimensions-iterated.png"
+            width={737}
+            height={839}
+            alt="Iterated Dimensions screen: uniform grey hexagons with a single selected dimension highlighted, a clear prompt, and a Continue button."
+            caption="After — a calmer, selectable grid with a single highlight state."
+            flush
+            tone="lavender"
+          />
+        </div>
+        <ImageFrame
+          src="/images/founding-design/dimensions/dimensions-in-settings.png"
+          width={640}
+          height={267}
+          alt="Personalization settings: 'Dimensions of Life' shown as selectable pills, with Self and Belonging chosen."
+          caption="Post-onboarding, dimensions stay editable in settings as a user's priorities shift."
+          size="md"
+          tone="sky"
         />
       </CaseSection>
 
@@ -186,6 +270,35 @@ export default function FoundingDesign() {
           The AI references them sparingly and strategically — only when a specific quote
           or teaching would significantly deepen a key coaching point.
         </p>
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/influences/influences-chosen.png"
+            width={822}
+            height={306}
+            alt="Influences step with selections: chips for Christianity and Simon Sinek in the field, and an active Continue button."
+            caption="Chosen — with influences added, the step advances."
+            flush
+            tone="lavender"
+          />
+          <ImageFrame
+            src="/images/founding-design/influences/influences-unselected.png"
+            width={758}
+            height={328}
+            alt="Influences step with nothing selected: an empty search field and a 'Skip for now' button, since influences are optional."
+            caption="Unselected — influences are optional, so the step can be skipped."
+            flush
+            tone="pink"
+          />
+        </div>
+        <ImageFrame
+          src="/images/founding-design/influences/influences-dropdown.png"
+          width={822}
+          height={323}
+          alt="Influences field with the suggestion dropdown open, listing Christianity, Simon Sinek, Brené Brown, Buddhism, and Mahatma Gandhi."
+          caption="Typeahead suggestions span thinkers, belief systems, and cultural figures."
+          size="md"
+          tone="sky"
+        />
       </CaseSection>
 
       <CaseSection
@@ -218,6 +331,36 @@ export default function FoundingDesign() {
             here?&rdquo;
           </li>
         </ul>
+        <div className="my-8 grid gap-4 sm:grid-cols-3">
+          <ImageFrame
+            src="/images/founding-design/personality/slider-supportive.png"
+            width={401}
+            height={177}
+            alt="Personality slider set to Supportive, described as Calm · Gentle · Patient."
+            caption="Supportive"
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/personality/slider-balanced.png"
+            width={401}
+            height={177}
+            alt="Personality slider set to Balanced, described as Grounded · Curious · Discerning."
+            caption="Balanced"
+            flush
+            tone="butter"
+          />
+          <ImageFrame
+            src="/images/founding-design/personality/slider-provocative.png"
+            width={401}
+            height={177}
+            alt="Personality slider set to Provocative, described as Candid · Bold · Perturbing."
+            caption="Provocative"
+            flush
+            tone="peach"
+          />
+        </div>
+        <p>The original design: a three-position slider spanning the three coaching modes.</p>
         <h3>Iteration #1 — Supportive mode had to go</h3>
         <p>
           I initially designed three modes (Supportive, Balanced, Provocative), but
@@ -226,6 +369,30 @@ export default function FoundingDesign() {
           framework, which requires challenging limiting beliefs to drive growth.
         </p>
         <h3>Iteration #2 — the slider wasn&rsquo;t a slider</h3>
+        <p>
+          With Supportive removed, only two modes remained — but the control still looked
+          like a slider, sliding between just two end states:
+        </p>
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/personality/slider-two-mode-supportive.png"
+            width={462}
+            height={140}
+            alt="Two-mode personality slider with the handle at the Supportive end, between Supportive and Provocative labels."
+            caption="Handle left — toward Supportive."
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/personality/slider-two-mode-provocative.png"
+            width={462}
+            height={140}
+            alt="Two-mode personality slider with the handle at the Provocative end, between Supportive and Provocative labels."
+            caption="Handle right — toward Provocative."
+            flush
+            tone="peach"
+          />
+        </div>
         <p>Alpha user testing revealed a confusion:</p>
         <div className="my-8 grid gap-4 sm:grid-cols-2">
           <QuoteCard attribution="User A" tone="lavender">
@@ -240,54 +407,180 @@ export default function FoundingDesign() {
         <p>
           <strong>Result:</strong> the slider was redesigned as a Personality Toggle.
         </p>
-        <VideoFrame
-          title="The redesigned personality toggle"
-          description="Interaction recording of the final two-mode personality toggle, replacing the original three-mode slider."
-          src="/videos/founding-design/personality-toggle.mp4"
-          tone="lavender"
-        />
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/personality/toggle-balanced.png"
+            width={401}
+            height={150}
+            alt="Redesigned personality toggle set toward Supportive, described as Grounded · Curious · Discerning."
+            caption="The toggle removes any illusion of a continuous scale."
+            flush
+            tone="lavender"
+          />
+          <ImageFrame
+            src="/images/founding-design/personality/toggle-provocative.png"
+            width={401}
+            height={150}
+            alt="Redesigned personality toggle set to Provocative, described as Candid · Bold · Perturbing."
+            caption="Two clear states, one deliberate choice."
+            flush
+            tone="peach"
+          />
+        </div>
       </CaseSection>
 
       <CaseSection id="final-designs" eyebrow="Outcome" title="Final onboarding designs">
-        <VideoFrame
-          title="Final onboarding, end to end"
-          description="Full walkthrough of the shipped onboarding flow — dimensions, influences, and personality selection working together as one context-gathering system."
-          src="/videos/founding-design/onboarding-end-to-end.mp4"
-          tone="pink"
-        />
+        <p>
+          The shipped onboarding, end to end — welcome, a light warm-up, then the three
+          context-gathering features (dimensions, influences, personality) working together
+          as one system.
+        </p>
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/onboarding/01-welcome-signup.png"
+            width={1520}
+            height={826}
+            alt="COROS AI welcome screen: Google sign-up with an 18-or-older confirmation, beside a 'Manage Moments of Crisis' example conversation."
+            caption="1 · Welcome & sign-up"
+            flush
+            tone="lavender"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/02-intro.png"
+            width={1520}
+            height={826}
+            alt="Onboarding intro: 'Hi, I'm COROS!' introducing the AI coach, with a 'Let's begin' button."
+            caption="2 · Intro"
+            flush
+            tone="lavender"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/03-name.png"
+            width={1520}
+            height={826}
+            alt="Onboarding name step: 'What would you like me to call you?' with a name field and Back / Continue buttons."
+            caption="3 · Name"
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/04-transition.png"
+            width={1520}
+            height={826}
+            alt="Starfield transition screen: 'Great, Arshita. Let's take a moment to look at what matters to you most right now.'"
+            caption="4 · Transition"
+            flush
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/05-dimensions.png"
+            width={1520}
+            height={826}
+            alt="Seven-dimensions selection: hexagons for Work, Belonging, Health, Self, World, Family, and Meaning, with World selected."
+            caption="5 · Dimensions"
+            flush
+            tone="pink"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/06-influences.png"
+            width={1520}
+            height={826}
+            alt="Influences step: 'choose any voices that influence your thinking,' with Simon Sinek added as a chip."
+            caption="6 · Influences"
+            flush
+            tone="pink"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/07-personality.png"
+            width={1520}
+            height={826}
+            alt="Tone step: a Supportive–Provocative toggle set to Provocative (Candid · Bold · Perturbing)."
+            caption="7 · Personality"
+            flush
+            tone="peach"
+          />
+          <ImageFrame
+            src="/images/founding-design/onboarding/08-configuring.png"
+            width={1520}
+            height={826}
+            alt="Completion screen: 'Configuring COROS AI around what matters to you,' with the COROS mark."
+            caption="8 · Configuring"
+            flush
+            tone="peach"
+          />
+        </div>
       </CaseSection>
 
       <CaseSection id="design-system" eyebrow="Craft" title="Design system snippets">
         <p>
           Alongside the flagship features, I built out the component language the product
-          ships with — settings surfaces, buttons, inputs, and responsive behavior.
+          ships with — settings surfaces plus a full set of buttons, inputs, and action
+          buttons specified across every size, intent, and state.
         </p>
-        <VideoFrame
-          title="Settings snippets"
-          description="A tour through the settings surfaces built on the design system."
-          src="/videos/founding-design/settings-snippets.mp4"
-          tone="sky"
-        />
-        <div className="grid gap-6 md:grid-cols-2">
-          <VideoFrame
-            title="Buttons"
-            description="Button variants and interactive states."
-            src="/videos/founding-design/buttons.mp4"
-            tone="pink"
+        <h3>Settings surfaces</h3>
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          <ImageFrame
+            src="/images/founding-design/settings/personalization.png"
+            width={921}
+            height={736}
+            alt="Personalization settings: AI response tone toggle, editable Dimensions of Life pills, and an Influences field."
+            caption="Personalization — tone, dimensions, and influences all editable in one place."
+            flush
+            tone="sky"
           />
-          <VideoFrame
-            title="Inputs"
-            description="Input components and their states."
-            src="/videos/founding-design/inputs.mp4"
+          <ImageFrame
+            src="/images/founding-design/settings/subscription.png"
+            width={921}
+            height={736}
+            alt="Subscription settings: a $100-per-month plan with next billing date, and Cancel / Update subscription buttons."
+            caption="Subscription — plan, billing, and account actions."
+            flush
             tone="lavender"
           />
         </div>
-        <VideoFrame
-          title="Responsive UI snippets"
-          description="Core surfaces adapting across desktop, tablet, and mobile breakpoints."
-          src="/videos/founding-design/responsive-ui.mp4"
-          tone="sky"
+        <ImageFrame
+          src="/images/founding-design/settings/personalization-influences-open.png"
+          width={921}
+          height={736}
+          alt="Personalization settings with the Influences dropdown open, showing selected chips and a suggestion list."
+          caption="The same surface with the influences typeahead open."
+          size="md"
+          tone="pink"
         />
+        <h3>Component specimens</h3>
+        <p>
+          Every component is specified as a full matrix — variants, intents, sizes, and
+          interaction states — so engineering can build from a single source of truth.
+        </p>
+        <ImageFrame
+          src="/images/founding-design/system/buttons.png"
+          width={3398}
+          height={1399}
+          alt="A button specimen sheet: contained, outlined, and text variants across Primary, Secondary, Error, Warning, Info, Success, and Inherit intents, in large, medium, and small sizes with enabled, hovered, focused, pressed, and disabled states."
+          caption="Buttons — every variant × intent × size × state on one sheet."
+          size="full"
+          tone="pink"
+        />
+        <div className="my-8 grid gap-4 sm:grid-cols-2 sm:items-start">
+          <ImageFrame
+            src="/images/founding-design/system/input-boxes.png"
+            width={1284}
+            height={1656}
+            alt="An input-field specimen sheet: standard, filled, and outlined inputs in medium and small sizes, across enabled, hovered, focused, disabled, and error states, with and without a value."
+            caption="Inputs — with/without value, across sizes and states."
+            flush
+            tone="lavender"
+          />
+          <ImageFrame
+            src="/images/founding-design/system/fab-buttons.png"
+            width={1552}
+            height={3116}
+            alt="A floating-action-button specimen sheet: extended and round FABs across default, primary, secondary, and inherit styles, in large, medium, and small sizes and every interaction state, with and without an icon."
+            caption="Action buttons — extended and round FABs, fully specified."
+            flush
+            tone="sky"
+          />
+        </div>
       </CaseSection>
 
       <CaseSection id="brand" eyebrow="Visual identity" title="Designing a brand">
@@ -297,15 +590,82 @@ export default function FoundingDesign() {
           the logo direction, color system, and brand language to reflect COROS&rsquo;s
           core stance: seriousness, care, and long-term commitment.
         </p>
-        <VideoFrame
-          title="The final COROS logo"
-          description="The finished logo and its construction — how the mark reflects the brand's stance of seriousness, care, and long-term commitment."
-          src="/videos/founding-design/final-logo.mp4"
+        <ImageFrame
+          src="/images/founding-design/research/brand-moodboard.png"
+          width={2820}
+          height={3620}
+          alt="A brand-research moodboard collecting circular, portal, and swirl logo references and 'Hello I'm COROS' framing explorations."
+          caption="Brand research — collecting references around a circular, portal-like mark."
+          size="md"
+          tone="lavender"
+        />
+        <ImageFrame
+          src="/images/founding-design/research/logo-ideation.png"
+          width={11382}
+          height={6640}
+          alt="A wide logo-ideation board with dozens of exploratory sketches — circles, orbits, atoms, and gradient orbs."
+          caption="Ideation — exploring dozens of directions for the mark."
+          size="full"
+          tone="sky"
+        />
+        <ImageFrame
+          src="/images/founding-design/research/logo-iterations.png"
+          width={4192}
+          height={3762}
+          alt="A grid iterating the chosen crescent-and-droplet mark across construction guides and colour gradients on light and dark backgrounds."
+          caption="Iteration — refining the chosen mark and its colour treatment."
+          size="full"
           tone="pink"
+        />
+        <ImageFrame
+          src="/images/founding-design/research/final-logos.png"
+          width={3362}
+          height={3159}
+          alt="Final COROS AI logo lockups: the crescent mark with the COROS AI wordmark in blue, black, and white on light and dark backgrounds."
+          caption="The final COROS AI lockups, tuned for light and dark surfaces."
+          size="lg"
+          tone="lavender"
         />
         <p>
           <TodoNote>link the complete Figma brand guide embed here</TodoNote>
         </p>
+      </CaseSection>
+
+      <CaseSection
+        id="pitch-deck"
+        eyebrow="Fundraising"
+        title="Investment pitch deck"
+      >
+        <p>
+          I also designed the company&rsquo;s investment pitch deck, extending the brand into
+          fundraising materials.
+        </p>
+        <ImageFrame
+          src="/images/founding-design/investment-pitch-deck/cover.png"
+          width={1920}
+          height={1080}
+          alt="The COROS AI investment presentation cover slide."
+          caption="The cover, carrying the COROS brand into the raise."
+          size="lg"
+          tone="lavender"
+        />
+        <div className="my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 10 }, (_, i) => {
+            const n = String(i + 1).padStart(2, "0");
+            return (
+              <ImageFrame
+                key={n}
+                src={`/images/founding-design/investment-pitch-deck/slide-${n}.png`}
+                width={1920}
+                height={1080}
+                alt={`Investment pitch deck, slide ${i + 1}.`}
+                caption={`Slide ${i + 1}`}
+                flush
+                tone="sky"
+              />
+            );
+          })}
+        </div>
       </CaseSection>
 
       <CaseSection id="reflection" eyebrow="Reflection" title="What I learned">
