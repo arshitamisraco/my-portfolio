@@ -6,12 +6,20 @@ interface ImageFrameProps {
   src?: string;
   alt: string;
   caption?: string;
+  /** Intrinsic pixel dimensions of the real image — required with `src` so it renders uncropped. */
+  width?: number;
+  height?: number;
   /**
    * For placeholders: where the final asset should be dropped,
    * e.g. "/images/about/cofounders.jpg" (under public/).
    */
   plannedSrc?: string;
+  /** Placeholder-only: forced aspect box. Ignored when a real `src`/`width`/`height` is given. */
   aspect?: "wide" | "photo" | "square";
+  /** Real-image max-width. `full` fills the prose column; others cap and center. */
+  size?: "mobile" | "sm" | "md" | "lg" | "full";
+  /** Drop the outer vertical margin — use when nested in a grid that provides spacing. */
+  flush?: boolean;
   tone?: "pink" | "lavender" | "sky" | "mint" | "butter" | "peach";
 }
 
@@ -19,6 +27,14 @@ const ASPECTS = {
   wide: "aspect-video",
   photo: "aspect-[4/3]",
   square: "aspect-square",
+};
+
+const SIZES = {
+  mobile: "max-w-[320px]",
+  sm: "max-w-[420px]",
+  md: "max-w-[520px]",
+  lg: "max-w-[600px]",
+  full: "max-w-full",
 };
 
 const TONES = {
@@ -31,22 +47,33 @@ const TONES = {
 };
 
 /**
- * Image slot. With `src`, a framed next/image; without, a deliberate
- * pastel placeholder that names the photo that belongs there.
+ * Image slot. With `src`, a framed next/image rendered at its natural aspect (no crop);
+ * without, a deliberate pastel placeholder that names the photo that belongs there.
  */
 export default function ImageFrame({
   src,
   alt,
   caption,
+  width,
+  height,
   plannedSrc,
   aspect = "photo",
+  size = "full",
+  flush = false,
   tone = "pink",
 }: ImageFrameProps) {
   return (
-    <figure className="my-8">
+    <figure className={`${flush ? "" : "my-8"} ${SIZES[size]} ${size === "full" ? "" : "mx-auto"}`}>
       {src ? (
-        <div className={`relative overflow-hidden rounded-frame border border-line ${ASPECTS[aspect]}`}>
-          <Image src={src} alt={alt} fill className="object-cover" sizes="(min-width: 1024px) 720px, 100vw" />
+        <div className={`overflow-hidden rounded-frame border border-line p-2 sm:p-3 ${TONES[tone]}`}>
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="h-auto w-full rounded-[10px]"
+            sizes="(min-width: 1024px) 660px, 100vw"
+          />
         </div>
       ) : (
         <div
