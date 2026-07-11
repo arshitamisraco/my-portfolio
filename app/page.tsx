@@ -49,7 +49,7 @@ function CloudI({ variant }: { variant: "lavender" | "sky" }) {
         shape="puff"
         variant={variant}
         size={24}
-        className="absolute left-1/2 top-[0.05em] h-auto w-[0.32em] -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover/name:opacity-100 motion-reduce:transition-none"
+        className="absolute left-1/2 top-[0.10em] h-auto w-[0.32em] -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover/name:opacity-100 motion-reduce:transition-none"
       />
     </span>
   );
