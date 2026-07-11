@@ -93,7 +93,7 @@ export default function CaseStudyLayout({
       {/* ================= Body ================= */}
       <div className="container-site grid gap-10 py-14 lg:grid-cols-12 lg:gap-14 md:py-20">
         <aside className="lg:col-span-3 lg:order-2">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)]">
             <Toc items={toc} />
             <Link
               href={COROS_HUB_HREF}

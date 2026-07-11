@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import QuoteCard from "@/components/case-study/QuoteCard";
-import TodoNote from "@/components/case-study/TodoNote";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
@@ -626,9 +625,40 @@ export default function FoundingDesign() {
           size="lg"
           tone="lavender"
         />
+        <h3>Brand guide</h3>
         <p>
-          <TodoNote>link the complete Figma brand guide embed here</TodoNote>
+          These decisions were collected into a complete brand guide documenting the logo
+          system, colour, and typography.
         </p>
+        <div className="my-8 grid gap-4 sm:grid-cols-2">
+          {[
+            "Logo section divider from the COROS brand guide.",
+            "Full gradient logo — the hero crescent mark in blue-to-orange gradient, with use cases for homepage, splash, and video openers.",
+            "Flat duo-tone logo — a two-tone dark-blue and electric-blue mark, with use cases for decks, packaging, and UI.",
+            "Solid fill logo, dark mode — the white crescent mark on black, with print, embossing, and watermark use cases.",
+            "Solid fill logo, light mode — the black crescent mark on white, with print, embossing, and watermark use cases.",
+            "Colors section divider from the COROS brand guide.",
+            "Colour system: primary (#03054A, #0822E6, #EA4A00), gradient (#05066C, #7DF9FF), and utility (#000000, #FFFFFF, #7A7A7A) swatches with roles.",
+            "Gradients section divider from the COROS brand guide.",
+            "Four brand gradient swatches — deep blue washes with warm red accents.",
+            "Typography section divider from the COROS brand guide.",
+            "Logo font: Clash Display Bold, shown across COROS wordmark lockups in blue, black, and white.",
+            "DM Sans heading scale — Heading XL Black 80pt down to Heading S.",
+          ].map((alt, i) => {
+            const n = String(i + 1).padStart(2, "0");
+            return (
+              <ImageFrame
+                key={n}
+                src={`/images/founding-design/brand-guide/page-${n}.png`}
+                width={1920}
+                height={1080}
+                alt={alt}
+                flush
+                tone="lavender"
+              />
+            );
+          })}
+        </div>
       </CaseSection>
 
       <CaseSection
