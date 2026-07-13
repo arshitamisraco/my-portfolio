@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CaseVideo from "@/components/CaseVideo";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
+import HeroMontage from "@/components/case-study/HeroMontage";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
@@ -87,6 +88,64 @@ export default function DesignSystem() {
           compressed design-to-review cycles from days to hours.
         </p>
       </CaseSection>
+
+      <HeroMontage
+        label="The redesign, at a glance"
+        portrait={[
+          {
+            src: "/videos/design-system/onboarding-mobile-light.mp4",
+            poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
+            width: 640,
+            height: 1392,
+            tone: "pink",
+            title: "Onboarding on mobile, light theme",
+            description:
+              "The redesigned onboarding flow on mobile in light mode, from the rotating multilingual welcome onward.",
+          },
+          {
+            src: "/videos/design-system/chat-mobile-light.mp4",
+            poster: "/images/design-system/posters/chat-mobile-light.jpg",
+            width: 640,
+            height: 1392,
+            tone: "sky",
+            title: "Chat on mobile, light theme",
+            description:
+              "Composing and sending a message in the mobile chat, with COROS thinking and replying.",
+          },
+          {
+            src: "/videos/design-system/influences-mobile-light.mp4",
+            poster: "/images/design-system/posters/influences-mobile-light.jpg",
+            width: 640,
+            height: 1392,
+            tone: "lavender",
+            title: "Choosing influences on mobile, light theme",
+            description:
+              "Searching influences on mobile with live results and selected chips filling the field.",
+          },
+        ]}
+        landscape={[
+          {
+            src: "/videos/design-system/landing-web-light.mp4",
+            poster: "/images/design-system/posters/landing-web-light.jpg",
+            width: 1440,
+            height: 936,
+            tone: "mint",
+            title: "First open on web, light theme",
+            description:
+              "The personalized COROS greeting streaming into the empty chat on web in light mode.",
+          },
+          {
+            src: "/videos/design-system/dictation-web-light.mp4",
+            poster: "/images/design-system/posters/dictation-web-light.jpg",
+            width: 1440,
+            height: 936,
+            tone: "butter",
+            title: "Dictation on web, light theme",
+            description:
+              "Dictating a message in the web chat, the live waveform running in the input bar.",
+          },
+        ]}
+      />
 
       <CaseSection id="context" eyebrow="Context" title="Why the redesign happened">
         <p>
@@ -562,6 +621,17 @@ export default function DesignSystem() {
             the model sees it, plus session history summaries.
           </li>
         </ul>
+        <CaseVideo
+          src="/videos/design-system/retrieved-context-web-light.mp4"
+          poster="/images/design-system/posters/retrieved-context-web-light.jpg"
+          width={1440}
+          height={936}
+          title="The Retrieved Context panel on web, light theme"
+          description="Navigating the Retrieved Context panel: the Associated Query pair, then Memory Config with the session-change probability, expandable short-term memory turns, past-session retrieval, and the think block."
+          size="lg"
+          tone="peach"
+          caption="The panel in use — from the Associated Query pair into Memory Config: session-change probability, turn-by-turn short-term memory, and the model's think block, one tab away."
+        />
         <p>
           The design challenge was tonal: this is engineering telemetry living inside a
           warm consumer product. I kept it on the same design system — same tokens, same
@@ -575,6 +645,17 @@ export default function DesignSystem() {
           switch when it should have?&rdquo; (the session-change probability) and
           &ldquo;why did it retrieve <em>that</em> session?&rdquo; (the score breakdown).
         </p>
+        <CaseVideo
+          src="/videos/design-system/my-memories-web-light.mp4"
+          poster="/images/design-system/posters/my-memories-web-light.jpg"
+          width={1440}
+          height={936}
+          title="The team-only My Memories tab on web, light theme"
+          description="Scrolling the team-only My Memories tab in settings: the biographical memory accordion, then dated session summaries with dimension, entry and exit mood, and breakthrough fields."
+          size="lg"
+          tone="lavender"
+          caption="My Memories (team-only) — biographical memory and dated session summaries, living in the same settings shell as every user-facing tab."
+        />
         <p>
           This feature quietly changed how the team works: prompt regressions that used
           to be argued from vibes are now diagnosed from the panel.
