@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PROJECTS_HREF } from "@/lib/coros";
 
 const LINKS = [
-  { label: "Work", href: "/work/coros-ai" },
+  { label: "Projects", href: PROJECTS_HREF },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/contact" },
