@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroStills from "@/components/case-study/HeroStills";
-import TodoNote from "@/components/case-study/TodoNote";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
@@ -342,8 +341,7 @@ export default function MyWorld() {
           My method: run a batch of ~20 sessions, then check every output field against
           the prompt&rsquo;s own rules. A recent run surfaced five must-fix issues: each
           traced to a specific missing clause and fixed with a surgical insert, not a
-          rewrite.{" "}
-          <TodoNote>optional: add hit-rate / accuracy numbers you&rsquo;re comfortable publishing</TodoNote>
+          rewrite.
         </p>
       </CaseSection>
 
@@ -354,18 +352,15 @@ export default function MyWorld() {
       >
         <p>
           Midway through, I stopped ending my work at the Figma handoff. Using{" "}
-          <strong>Claude Code</strong>, I began implementing widgets on localhost,{" "}
-          <TodoNote>confirm stack detail: e.g., React + Tailwind on the shadcn-based Obra design system</TodoNote>{" "}
-          and shipping working builds to engineers for review{" "}
-          <TodoNote>confirm detail: PRs / branch handoff to Maaz and Zain</TodoNote>.
+          <strong>Claude Code</strong>, I began implementing widgets on localhost and
+          shipping working builds to engineers for review.
         </p>
         <p>
           The technique that made it work: I write{" "}
           <strong>implementation prompts the way I write design specs.</strong> The
           combined breakthrough widget went to code as a complete state machine, with every
           assumption flagged as a one-line toggle if wrong. Engineers now review a working
-          reference instead of interpreting a static frame.{" "}
-          <TodoNote>metric if usable: &ldquo;reduced design-to-review cycles from days to hours&rdquo;</TodoNote>
+          reference instead of interpreting a static frame.
         </p>
       </CaseSection>
 
@@ -373,8 +368,7 @@ export default function MyWorld() {
         <p>
           My World is <strong>live in development</strong>: the featured band, Reminders
           widget, and topic surfaces are implemented; the invitation prompt and mood
-          taxonomy integration are in progress.{" "}
-          <TodoNote>add outcome metrics here if available, e.g., retention movement, sessions processed</TodoNote>
+          taxonomy integration are in progress.
         </p>
       </CaseSection>
 
