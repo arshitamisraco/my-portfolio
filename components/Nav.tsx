@@ -9,7 +9,6 @@ const LINKS = [
   { label: "Projects", href: PROJECTS_HREF },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/resume" },
-  { label: "Contact", href: "/contact" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/arshita-misra/", external: true },
 ];
 
