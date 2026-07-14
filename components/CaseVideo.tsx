@@ -55,6 +55,11 @@ interface CaseVideoProps {
    * "click": poster with a play button — use for longer clips that shouldn't run unasked.
    */
   mode?: "autoplay" | "click";
+  /**
+   * Autoplay clips must start muted (browsers block sound-on autoplay). When true, a
+   * sound on/off toggle renders below the frame so the clip can have audio on demand.
+   */
+  allowAudio?: boolean;
 }
 
 /**
@@ -76,10 +81,22 @@ export default function CaseVideo({
   size = "full",
   flush = false,
   mode = "autoplay",
+  allowAudio = false,
 }: CaseVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [active, setActive] = useState(false);
+  const [muted, setMuted] = useState(true);
+
+  // Keep the element's muted state in sync — React's `muted` attribute alone isn't
+  // reliably applied, so drive it imperatively too.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) video.muted = muted;
+  }, [muted]);
+
+  const showAudioToggle =
+    allowAudio && !reducedMotion && mode === "autoplay";
 
   useEffect(() => {
     const mq = window.matchMedia(REDUCED_MOTION_QUERY);
@@ -133,7 +150,7 @@ export default function CaseVideo({
               ref={videoRef}
               src={src}
               poster={poster}
-              muted
+              muted={muted}
               loop
               playsInline
               preload="none"
@@ -181,6 +198,39 @@ export default function CaseVideo({
           )}
         </div>
       </div>
+      {showAudioToggle && (
+        <button
+          type="button"
+          onClick={() => setMuted((m) => !m)}
+          aria-pressed={!muted}
+          aria-label={muted ? "Hear me speak" : "Turn sound off"}
+          className="mt-3 inline-flex items-center gap-2 rounded-pill border border-line bg-surface-raised px-3 py-1.5 text-caption font-medium text-ink transition-colors hover:bg-surface"
+        >
+          <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true">
+            <path
+              d="M3 6.5h2.5L9 3.5v11L5.5 11.5H3v-5z"
+              fill="var(--color-accent-strong)"
+            />
+            {muted ? (
+              <path
+                d="M12 6l4 6M16 6l-4 6"
+                stroke="var(--color-accent-strong)"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+            ) : (
+              <path
+                d="M12 6a4 4 0 010 6M14 4.5a6.5 6.5 0 010 9"
+                stroke="var(--color-accent-strong)"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                fill="none"
+              />
+            )}
+          </svg>
+          {muted ? "Hear me speak" : "Sound off"}
+        </button>
+      )}
       {caption && (
         <figcaption className="mt-3 text-caption text-ink-muted">{caption}</figcaption>
       )}

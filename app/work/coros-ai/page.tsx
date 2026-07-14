@@ -35,12 +35,31 @@ export default function CorosHub() {
             </ol>
           </nav>
 
-          <p className="text-style-eyebrow mt-10 text-accent-deep">
-            Founding AI Designer · June 2025 – Present
-          </p>
-          <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            COROS AI: an AI coach that transforms people in conversation.
-          </h1>
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-10">
+            <div>
+              <p className="text-style-eyebrow mt-10 text-accent-deep">
+                Founding AI Designer · June 2025 – Present
+              </p>
+              <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
+                COROS AI: an AI coach that transforms people in conversation.
+              </h1>
+            </div>
+
+            <a
+              href="https://app.coros.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-10 inline-flex shrink-0 items-center gap-2 rounded-frame border border-line px-4 py-2 text-caption font-medium text-accent-deep transition-all duration-300 hover:border-accent hover:bg-surface-raised"
+            >
+              Try what I built
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
+              >
+                →
+              </span>
+            </a>
+          </div>
 
           <div className="case-prose mt-8">
             <p>
@@ -61,7 +80,8 @@ export default function CorosHub() {
               <strong>
                 product design, UX, prompt engineering, user research, and brand
               </strong>
-              .
+              &nbsp;— with onboarding and interaction redesigns that increased user
+              retention <strong>2.5×</strong>.
             </p>
           </div>
         </div>
@@ -84,11 +104,22 @@ export default function CorosHub() {
                   href={study.href}
                   className="group flex h-full flex-col rounded-frame border border-line bg-surface-raised p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent motion-reduce:hover:translate-y-0"
                 >
-                  <PixelCloud
-                    shape="puff"
-                    variant={study.tone === "lavender" ? "lavender" : study.tone === "sky" ? "sky" : "pink"}
-                    size={44}
-                  />
+                  <div className="flex items-start justify-between gap-3">
+                    <PixelCloud
+                      shape="puff"
+                      variant={study.tone === "lavender" ? "lavender" : study.tone === "sky" ? "sky" : "pink"}
+                      size={44}
+                    />
+                    {study.inProgress && (
+                      <span className="inline-flex items-center gap-1.5 rounded-pill bg-mint-soft px-3 py-1 text-caption font-medium text-mint-deep">
+                        <span
+                          aria-hidden="true"
+                          className="h-1.5 w-1.5 rounded-pill bg-mint-deep motion-safe:animate-pulse"
+                        />
+                        Current project
+                      </span>
+                    )}
+                  </div>
                   <h3 className="mt-5 font-display text-h3 font-semibold text-ink group-hover:text-accent-deep">
                     {study.title}
                   </h3>

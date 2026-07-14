@@ -15,8 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  // TODO: update to the final production domain before launch
-  metadataBase: new URL("https://arshitamisra.vercel.app"),
+  metadataBase: new URL("https://arshita.co"),
   title: {
     default: "Arshita Misra — Product Designer",
     template: "%s — Arshita Misra",
