@@ -7,9 +7,9 @@ export default function Footer() {
     <footer className="border-t border-line bg-surface">
       <div className="container-site py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-sm">
+          <div className="max-w-sm md:max-w-none">
             <p className="font-display text-h3 font-semibold text-ink">Arshita Misra</p>
-            <p className="mt-2 text-body text-ink-muted">
+            <p className="mt-2 text-body text-ink-muted md:whitespace-nowrap">
               Product designer crafting technology that evolves humans.
             </p>
             <PixelCloud shape="puff" variant="pink" size={40} className="mt-6" />

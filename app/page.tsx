@@ -199,12 +199,19 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="flex flex-wrap gap-4">
-              <Button href="https://www.linkedin.com/in/arshita-misra/" external>
+            <div className="flex flex-wrap gap-4 md:flex-nowrap">
+              <Button
+                href="https://www.linkedin.com/in/arshita-misra/"
+                external
+                className="shrink-0 whitespace-nowrap"
+              >
                 Say hi on LinkedIn
               </Button>
-              <Button href="/about" variant="secondary">
+              <Button href="/about" variant="secondary" className="shrink-0 whitespace-nowrap">
                 More about me
+              </Button>
+              <Button href="/contact" variant="secondary" className="shrink-0 whitespace-nowrap">
+                Get in touch
               </Button>
             </div>
           </Reveal>
