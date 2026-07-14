@@ -8,7 +8,6 @@ import PixelCloud from "@/components/PixelCloud";
 import PrincipleCard from "@/components/PrincipleCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { RESUME_PDF_URL } from "@/lib/resume";
 
 export const metadata: Metadata = {
   title: "About",
@@ -389,7 +388,7 @@ export default function About() {
               >
                 LinkedIn
               </Button>
-              <Button href={RESUME_PDF_URL} variant="ghost" external>
+              <Button href="/resume" variant="ghost">
                 Resume
               </Button>
             </div>
