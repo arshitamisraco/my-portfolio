@@ -80,7 +80,6 @@ There's also a live style guide at the `/styleguide` page (`app/styleguide/page.
 Per the last working session, these are intentionally unfinished so the site could still look complete while waiting on real assets:
 
 - **Videos & photos** — placeholder frames exist; real files go in `public/videos/...` and `public/images/...` (see above)
-- **Resume link** — currently points nowhere (`href="#"`) in the Nav, Footer, and About page
 - **Email address** — placeholder in the Footer
 - **Production domain** — placeholder URL (`https://arshitamisra.vercel.app`) used in a few SEO-related files
 - **A few in-page notes** — small "TODO" chips inside the My World case study and a Figma brand-guide link in the Founding Design case study, marking specific facts/metrics/links to fill in later
