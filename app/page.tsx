@@ -93,7 +93,15 @@ export default function Home() {
             <span className="group/name relative inline-block">
               <span className="sr-only">Arshita Misra</span>
               <span aria-hidden="true">
-                Arsh<CloudI variant="lavender" />ta M<CloudI variant="sky" />sra
+                {/* Each name is nowrap so it never splits mid-word; the space
+                    between them is the only break point, keeping "Arshita" and
+                    "Misra" whole on tight aspect ratios (e.g. iPhone SE). */}
+                <span className="whitespace-nowrap">
+                  Arsh<CloudI variant="lavender" />ta
+                </span>{" "}
+                <span className="whitespace-nowrap">
+                  M<CloudI variant="sky" />sra
+                </span>
               </span>
             </span>
           </h1>
