@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "@/components/Button";
+import CorosCarousel from "@/components/CorosCarousel";
 import PixelCloud from "@/components/PixelCloud";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
@@ -52,44 +53,6 @@ function CloudI({ variant }: { variant: "lavender" | "sky" }) {
         className="absolute left-1/2 top-[0.10em] h-auto w-[0.32em] -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover/name:opacity-100 motion-reduce:transition-none"
       />
     </span>
-  );
-}
-
-function CorosCover() {
-  /*
-   * Composed cover graphic for the featured card: pastel sky + pixel clouds
-   * + an abstract, token-styled chat vignette. Swap this element for a real
-   * product image or video via ProjectCard's `cover` slot when ready.
-   */
-  return (
-    <div
-      aria-hidden="true"
-      className="relative flex aspect-[2/1] items-center justify-center overflow-hidden bg-gradient-to-br from-accent-soft via-surface to-sky-soft md:aspect-[5/2]"
-    >
-      <PixelCloud shape="cumulus" variant="pink" size={130} className="absolute left-[6%] top-[14%] opacity-80" />
-      <PixelCloud shape="puff" variant="sky" size={70} className="absolute right-[10%] top-[20%] opacity-70" />
-      <PixelCloud shape="wisp" variant="lavender" size={150} className="absolute bottom-[12%] left-[16%] opacity-60" />
-
-      {/* Abstract chat-UI vignette built from tokens */}
-      <div className="relative w-[68%] max-w-md rounded-frame border border-line bg-surface-raised/90 p-4 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1 motion-reduce:group-hover:translate-y-0 md:p-5">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-pill bg-accent" />
-          <span className="h-2 w-16 rounded-pill bg-line" />
-        </div>
-        <div className="mt-4 space-y-3">
-          <div className="max-w-[75%] space-y-1.5 rounded-card rounded-bl-[4px] bg-surface p-3">
-            <span className="block h-2 w-4/5 rounded-pill bg-accent-soft" />
-            <span className="block h-2 w-3/5 rounded-pill bg-accent-soft" />
-          </div>
-          <div className="ml-auto max-w-[60%] space-y-1.5 rounded-card rounded-br-[4px] bg-lavender-soft p-3">
-            <span className="block h-2 w-full rounded-pill bg-surface-raised/80" />
-          </div>
-          <div className="max-w-[70%] space-y-1.5 rounded-card rounded-bl-[4px] bg-surface p-3">
-            <span className="block h-2 w-3/4 rounded-pill bg-accent-soft" />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -177,7 +140,7 @@ export default function Home() {
                 href={COROS_HUB_HREF}
                 title="COROS AI: an AI coaching platform"
                 subtitle="Founding AI Designer"
-                description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand."
+                description="Designing an AI coaching platform end to end: product, AI behavior, design system, and brand."
                 tags={[
                   { label: "Product Design", tone: "pink" },
                   { label: "AI/UX", tone: "lavender" },
@@ -185,7 +148,7 @@ export default function Home() {
                   { label: "Design Systems", tone: "mint" },
                   { label: "0→1", tone: "butter" },
                 ]}
-                cover={<CorosCover />}
+                cover={<CorosCarousel />}
               />
             </div>
           </Reveal>

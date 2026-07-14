@@ -305,3 +305,27 @@
     animation: scroll-hint 2.4s ease-in-out infinite;
   }
 }
+
+/* COROS card marquee: a continuous, linear left-drift of framed clips.
+   Content is duplicated 2× and the track slides exactly one copy width
+   (-50%), so the loop is seamless. Off by default (reduced motion / no-JS);
+   only enabled under no-preference. JS toggles animation-play-state to pause
+   on hover and when the card is off-screen. */
+@keyframes coros-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.coros-marquee-track {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .coros-marquee-track {
+    animation: coros-marquee var(--coros-marquee-duration, 46s) linear infinite;
+  }
+}

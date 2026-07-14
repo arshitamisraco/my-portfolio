@@ -44,7 +44,7 @@ export default function FoundingDesign() {
       <CaseSection id="context" eyebrow="Context" title="Founding designer, many hats">
         <p>
           COROS AI is an ontological coaching platform that helps professionals navigate
-          moods, repair relationships, and take action when they&rsquo;re stuck — built on
+          moods, repair relationships, and take action when they&rsquo;re stuck, built on
           the thesis that the transformation of human beings is the transformation of our
           language.
         </p>
@@ -61,34 +61,34 @@ export default function FoundingDesign() {
         </p>
         <ul>
           <li>
-            <strong>Product design</strong> — three flagship features (Dimensions,
+            <strong>Product design</strong>: three flagship features (Dimensions,
             Influences, Personality Slider)
           </li>
           <li>
-            <strong>UX design</strong> — end-to-end UX/UI (onboarding, chat interface,
+            <strong>UX design</strong>: end-to-end UX/UI (onboarding, chat interface,
             settings)
           </li>
           <li>
-            <strong>AI</strong> — prompt engineering, memory algorithm design, RAG
+            <strong>AI</strong>: prompt engineering, memory algorithm design, RAG
             optimization
           </li>
           <li>
-            <strong>User research</strong> — user interviews, user testing
+            <strong>User research</strong>: user interviews, user testing
           </li>
           <li>
-            <strong>Visual identity</strong> — logo, brand, and design system
+            <strong>Visual identity</strong>: logo, brand, and design system
           </li>
         </ul>
         <p>
           The product itself is a conversation: users bring a real moment, and COROS coaches
-          through it — on desktop and mobile.
+          through it, on desktop and mobile.
         </p>
         <ImageFrame
           src="/images/founding-design/chat/web-chat.png"
           width={1520}
           height={953}
           alt="COROS AI desktop chat: the coach challenges a user's avoidance in a candid, provocative tone, referencing their Self and Belonging life dimensions."
-          caption="The COROS AI chat on desktop — coaching that references a user's life dimensions in real time."
+          caption="The COROS AI chat on desktop: coaching that references a user's life dimensions in real time."
           size="lg"
           tone="lavender"
         />
@@ -126,7 +126,7 @@ export default function FoundingDesign() {
           width={842}
           height={192}
           alt="The COROS AI chat composer: a 'What's on your mind?' prompt above an input field with a send button."
-          caption="The chat composer — the front door to every coaching conversation."
+          caption="The chat composer: the front door to every coaching conversation."
           size="sm"
           tone="pink"
         />
@@ -161,7 +161,7 @@ export default function FoundingDesign() {
           </QuoteCard>
         </div>
         <p className="border-l-4 border-accent pl-4 font-medium">
-          The problem: the AI coached before understanding users — guidance felt rushed,
+          The problem: the AI coached before understanding users, so guidance felt rushed,
           generic, and misaligned with emotional readiness.
         </p>
       </CaseSection>
@@ -203,7 +203,7 @@ export default function FoundingDesign() {
         title="Designing the interface and the AI together"
       >
         <p>
-          The solution wasn&rsquo;t just introducing an onboarding flow — it was designing
+          The solution wasn&rsquo;t just introducing an onboarding flow; it was designing
           how the AI gathers and uses context to coach effectively. I created three core
           features that let users define their context upfront, then prompt engineered
           the AI to reference this information throughout coaching conversations.
@@ -222,7 +222,7 @@ export default function FoundingDesign() {
         <p>
           <strong>How it works:</strong> users select their focus areas during
           onboarding. Throughout coaching conversations, the AI references these
-          dimensions to anchor guidance in what&rsquo;s personally relevant — while also
+          dimensions to anchor guidance in what&rsquo;s personally relevant, while also
           identifying which dimension a current struggle relates to, helping users see
           how challenges map across their life and track growth in specific areas over
           time.
@@ -233,7 +233,7 @@ export default function FoundingDesign() {
             width={737}
             height={669}
             alt="Early Dimensions concept: a honeycomb of seven colour-coded hexagons (Work, Belonging, Health, Self, World, Family, Meaning) with short descriptions."
-            caption="Before — the first concept leaned on colour to distinguish dimensions."
+            caption="Before: the first concept leaned on colour to distinguish dimensions."
             flush
             tone="pink"
           />
@@ -242,7 +242,7 @@ export default function FoundingDesign() {
             width={737}
             height={839}
             alt="Iterated Dimensions screen: uniform grey hexagons with a single selected dimension highlighted, a clear prompt, and a Continue button."
-            caption="After — a calmer, selectable grid with a single highlight state."
+            caption="After: a calmer, selectable grid with a single highlight state."
             flush
             tone="lavender"
           />
@@ -261,12 +261,12 @@ export default function FoundingDesign() {
       <CaseSection id="influences" eyebrow="Feature #2" title="The people who shape a user">
         <p>
           Influences lets users declare the thinkers, belief systems, or frameworks that
-          shape their worldview — for example Brené Brown, Rumi, Stoicism, or Islamic
+          shape their worldview, for example Brené Brown, Rumi, Stoicism, or Islamic
           values.
         </p>
         <p>
           <strong>How it works:</strong> users select their influences during onboarding.
-          The AI references them sparingly and strategically — only when a specific quote
+          The AI references them sparingly and strategically, only when a specific quote
           or teaching would significantly deepen a key coaching point.
         </p>
         <div className="my-8 grid gap-4 sm:grid-cols-2">
@@ -275,7 +275,7 @@ export default function FoundingDesign() {
             width={822}
             height={306}
             alt="Influences step with selections: chips for Christianity and Simon Sinek in the field, and an active Continue button."
-            caption="Chosen — with influences added, the step advances."
+            caption="Chosen: with influences added, the step advances."
             flush
             tone="lavender"
           />
@@ -284,7 +284,7 @@ export default function FoundingDesign() {
             width={758}
             height={328}
             alt="Influences step with nothing selected: an empty search field and a 'Skip for now' button, since influences are optional."
-            caption="Unselected — influences are optional, so the step can be skipped."
+            caption="Unselected: influences are optional, so the step can be skipped."
             flush
             tone="pink"
           />
@@ -369,7 +369,7 @@ export default function FoundingDesign() {
         </p>
         <h3>Iteration 2: the slider wasn&rsquo;t a slider</h3>
         <p>
-          With Supportive removed, only two modes remained — but the control still looked
+          With Supportive removed, only two modes remained, but the control still looked
           like a slider, sliding between just two end states:
         </p>
         <div className="my-8 grid gap-4 sm:grid-cols-2">
@@ -378,7 +378,7 @@ export default function FoundingDesign() {
             width={462}
             height={140}
             alt="Two-mode personality slider with the handle at the Supportive end, between Supportive and Provocative labels."
-            caption="Handle left — toward Supportive."
+            caption="Handle left: toward Supportive."
             flush
             tone="sky"
           />
@@ -387,7 +387,7 @@ export default function FoundingDesign() {
             width={462}
             height={140}
             alt="Two-mode personality slider with the handle at the Provocative end, between Supportive and Provocative labels."
-            caption="Handle right — toward Provocative."
+            caption="Handle right: toward Provocative."
             flush
             tone="peach"
           />
@@ -430,7 +430,7 @@ export default function FoundingDesign() {
 
       <CaseSection id="final-designs" eyebrow="Outcome" title="Final onboarding designs">
         <p>
-          The shipped onboarding, end to end — welcome, a light warm-up, then the three
+          The shipped onboarding, end to end: welcome, a light warm-up, then the three
           context-gathering features (dimensions, influences, personality) working together
           as one system.
         </p>
@@ -513,7 +513,7 @@ export default function FoundingDesign() {
       <CaseSection id="design-system" eyebrow="Craft" title="Design system snippets">
         <p>
           Alongside the flagship features, I built out the component language the product
-          ships with — settings surfaces plus a full set of buttons, inputs, and action
+          ships with: settings surfaces plus a full set of buttons, inputs, and action
           buttons specified across every size, intent, and state.
         </p>
         <h3>Settings surfaces</h3>
@@ -523,7 +523,7 @@ export default function FoundingDesign() {
             width={921}
             height={736}
             alt="Personalization settings: AI response tone toggle, editable Dimensions of Life pills, and an Influences field."
-            caption="Personalization — tone, dimensions, and influences all editable in one place."
+            caption="Personalization: tone, dimensions, and influences all editable in one place."
             flush
             tone="sky"
           />
@@ -532,7 +532,7 @@ export default function FoundingDesign() {
             width={921}
             height={736}
             alt="Subscription settings: a $100-per-month plan with next billing date, and Cancel / Update subscription buttons."
-            caption="Subscription — plan, billing, and account actions."
+            caption="Subscription: plan, billing, and account actions."
             flush
             tone="lavender"
           />
@@ -548,15 +548,15 @@ export default function FoundingDesign() {
         />
         <h3>Component examples</h3>
         <p>
-          Every component is specified as a full matrix — variants, intents, sizes, and
-          interaction states — so engineering can build from a single source of truth.
+          Every component is specified as a full matrix: variants, intents, sizes, and
+          interaction states, so engineering can build from a single source of truth.
         </p>
         <ImageFrame
           src="/images/founding-design/system/buttons.png"
           width={3398}
           height={1399}
           alt="A button specimen sheet: contained, outlined, and text variants across Primary, Secondary, Error, Warning, Info, Success, and Inherit intents, in large, medium, and small sizes with enabled, hovered, focused, pressed, and disabled states."
-          caption="Buttons — every variant × intent × size × state on one sheet."
+          caption="Buttons: every variant × intent × size × state on one sheet."
           size="full"
           tone="pink"
         />
@@ -566,7 +566,7 @@ export default function FoundingDesign() {
             width={1284}
             height={1656}
             alt="An input-field specimen sheet: standard, filled, and outlined inputs in medium and small sizes, across enabled, hovered, focused, disabled, and error states, with and without a value."
-            caption="Inputs — with/without value, across sizes and states."
+            caption="Inputs: with/without value, across sizes and states."
             flush
             tone="lavender"
           />
@@ -575,7 +575,7 @@ export default function FoundingDesign() {
             width={1552}
             height={3116}
             alt="A floating-action-button specimen sheet: extended and round FABs across default, primary, secondary, and inherit styles, in large, medium, and small sizes and every interaction state, with and without an icon."
-            caption="Action buttons — extended and round FABs, fully specified."
+            caption="Action buttons: extended and round FABs, fully specified."
             flush
             tone="sky"
           />
@@ -594,7 +594,7 @@ export default function FoundingDesign() {
           width={2820}
           height={3620}
           alt="A brand-research moodboard collecting circular, portal, and swirl logo references and 'Hello I'm COROS' framing explorations."
-          caption="Brand research — collecting references around a circular, portal-like mark."
+          caption="Brand research: collecting references around a circular, portal-like mark."
           size="md"
           tone="lavender"
         />
@@ -602,8 +602,8 @@ export default function FoundingDesign() {
           src="/images/founding-design/research/logo-ideation.png"
           width={11382}
           height={6640}
-          alt="A wide logo-ideation board with dozens of exploratory sketches — circles, orbits, atoms, and gradient orbs."
-          caption="Ideation — exploring dozens of directions for the mark."
+          alt="A wide logo-ideation board with dozens of exploratory sketches: circles, orbits, atoms, and gradient orbs."
+          caption="Ideation: exploring dozens of directions for the mark."
           size="full"
           tone="sky"
         />
@@ -612,7 +612,7 @@ export default function FoundingDesign() {
           width={4192}
           height={3762}
           alt="A grid iterating the chosen crescent-and-droplet mark across construction guides and colour gradients on light and dark backgrounds."
-          caption="Iteration — refining the chosen mark and its colour treatment."
+          caption="Iteration: refining the chosen mark and its colour treatment."
           size="full"
           tone="pink"
         />
@@ -633,17 +633,17 @@ export default function FoundingDesign() {
         <div className="my-8 grid gap-4 sm:grid-cols-2">
           {[
             "Logo section divider from the COROS brand guide.",
-            "Full gradient logo — the hero crescent mark in blue-to-orange gradient, with use cases for homepage, splash, and video openers.",
-            "Flat duo-tone logo — a two-tone dark-blue and electric-blue mark, with use cases for decks, packaging, and UI.",
-            "Solid fill logo, dark mode — the white crescent mark on black, with print, embossing, and watermark use cases.",
-            "Solid fill logo, light mode — the black crescent mark on white, with print, embossing, and watermark use cases.",
+            "Full gradient logo: the hero crescent mark in blue-to-orange gradient, with use cases for homepage, splash, and video openers.",
+            "Flat duo-tone logo: a two-tone dark-blue and electric-blue mark, with use cases for decks, packaging, and UI.",
+            "Solid fill logo, dark mode: the white crescent mark on black, with print, embossing, and watermark use cases.",
+            "Solid fill logo, light mode: the black crescent mark on white, with print, embossing, and watermark use cases.",
             "Colors section divider from the COROS brand guide.",
             "Colour system: primary (#03054A, #0822E6, #EA4A00), gradient (#05066C, #7DF9FF), and utility (#000000, #FFFFFF, #7A7A7A) swatches with roles.",
             "Gradients section divider from the COROS brand guide.",
-            "Four brand gradient swatches — deep blue washes with warm red accents.",
+            "Four brand gradient swatches: deep blue washes with warm red accents.",
             "Typography section divider from the COROS brand guide.",
             "Logo font: Clash Display Bold, shown across COROS wordmark lockups in blue, black, and white.",
-            "DM Sans heading scale — Heading XL Black 80pt down to Heading S.",
+            "DM Sans heading scale: Heading XL Black 80pt down to Heading S.",
           ].map((alt, i) => {
             const n = String(i + 1).padStart(2, "0");
             return (
@@ -731,7 +731,7 @@ export default function FoundingDesign() {
           got tight, I came back to what they actually said. That kept the work honest.
         </p>
         <PullQuote>
-          COROS taught me how to design under pressure — and how to stay focused on what
+          COROS taught me how to design under pressure, and how to stay focused on what
           matters when everything around you is moving fast.
         </PullQuote>
       </CaseSection>

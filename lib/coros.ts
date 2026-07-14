@@ -16,23 +16,13 @@ export const COROS_HUB_HREF = "/work/coros-ai";
 
 export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   {
-    slug: "founding-design",
-    href: "/work/coros-ai/founding-design",
-    title: "Founding designer: shaping the product and the AI together",
-    shortTitle: "Founding design",
-    brief:
-      "Designing COROS's 0→1 onboarding and personality system — user research, competitive analysis, and three features that shape how the AI coaches, plus the brand identity.",
-    tags: ["0→1", "User Research", "AI Behavior", "Brand"],
-    tone: "pink",
-  },
-  {
     slug: "my-world",
     href: "/work/coros-ai/my-world",
     title: "Designing an AI that remembers you",
     shortTitle: "AI memory",
     brief:
-      "End-to-end design of the feature that reflects a user's coaching history back to them — information architecture, widget design, and the LLM prompts behind every card.",
-    tags: ["Product Design", "Prompt Engineering", "Design Engineering"],
+      "End-to-end design of the feature that reflects a user's coaching history back to them: information architecture, widget design, and the LLM prompts behind every card.",
+    tags: ["Prompt Engineering", "UX/UI", "Design Engineering", "Product Design"],
     tone: "lavender",
   },
   {
@@ -41,9 +31,19 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
     title: "Rebuilding the design system across four platforms",
     shortTitle: "Design system rebuild",
     brief:
-      "Migrating the product from stock MUI to a token-driven shadcn system — responsive redesign of every core surface plus a team-facing debug panel.",
-    tags: ["Design Systems", "Responsive", "Design Engineering"],
+      "Migrating the product from stock MUI to a token-driven shadcn system: responsive redesign of every core surface plus a team-facing debug panel.",
+    tags: ["Design Systems", "UX/UI", "Responsive", "Design Engineering"],
     tone: "sky",
+  },
+  {
+    slug: "founding-design",
+    href: "/work/coros-ai/founding-design",
+    title: "Founding design: shaping the product and the AI together",
+    shortTitle: "Founding design",
+    brief:
+      "Designing COROS's 0→1 onboarding and personality system: user research, competitive analysis, and three features that shape how the AI coaches, plus the brand identity.",
+    tags: ["0→1", "UX/UI", "User Research", "AI Behavior", "Brand"],
+    tone: "pink",
   },
 ];
 
