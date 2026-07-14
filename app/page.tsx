@@ -175,7 +175,7 @@ export default function Home() {
             <div className="mt-8">
               <ProjectCard
                 href={COROS_HUB_HREF}
-                title="COROS AI — Ontological AI Coach"
+                title="COROS AI: an AI coaching platform"
                 subtitle="Founding AI Designer"
                 description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand."
                 tags={[

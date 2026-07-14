@@ -7,7 +7,7 @@ import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
-  title: "Rebuilding COROS AI — From MUI Defaults to a Token-Driven Design System",
+  title: "Rebuilding the Design System Across Four Platforms",
   description:
     "Leading COROS AI's full redesign onto a shadcn/Tailwind foundation — 54+ semantic tokens, light/dark theming, responsive surfaces across four platforms, and a team-facing RAG debug panel.",
 };
@@ -17,8 +17,8 @@ const TOC = [
   { id: "context", label: "Why the redesign happened" },
   { id: "tokens", label: "Three layers, zero shortcuts" },
   { id: "components", label: "Component architecture" },
-  { id: "surfaces", label: "Redesigning the surfaces" },
-  { id: "retrieved-context", label: "The Retrieved Context panel" },
+  { id: "surfaces", label: "Redesigning the screens" },
+  { id: "retrieved-context", label: "A debug panel for the team" },
   { id: "handoff", label: "Handoff & outcomes" },
   { id: "learnings", label: "What I learned" },
 ];
@@ -36,7 +36,7 @@ const STATS = [
   },
   {
     value: "4",
-    label: "platforms from one system — web desktop, tablet, iOS, Android",
+    label: "platforms from one system: web desktop, tablet, iOS, and Android",
     bg: "bg-mint-soft",
   },
 ];
@@ -46,8 +46,8 @@ export default function DesignSystem() {
     <CaseStudyLayout
       slug="design-system"
       eyebrow="COROS AI · Case Study"
-      title="Rebuilding COROS AI: From MUI Defaults to a Token-Driven Design System"
-      summary="Product Design · Design Systems · Design Engineering — migrating a live AI coaching product onto a semantic-token foundation across four platforms."
+      title="Rebuilding the design system across four platforms"
+      summary="Product Design · Design Systems · Design Engineering. Migrating a live AI coaching product onto a scalable design system across four platforms."
       meta={[
         {
           label: "Role",
@@ -274,7 +274,7 @@ export default function DesignSystem() {
       <CaseSection
         id="components"
         eyebrow="Component architecture"
-        title="Variants where structure changes, properties everywhere else"
+        title="How the components were built"
       >
         <p>
           My rule:{" "}
@@ -311,7 +311,7 @@ export default function DesignSystem() {
         </p>
       </CaseSection>
 
-      <CaseSection id="surfaces" eyebrow="Surfaces" title="Redesigning the base surfaces">
+      <CaseSection id="surfaces" eyebrow="Screens" title="Redesigning the core screens">
         <h3>Chat</h3>
         <p>
           Chat is the product, so it got the deepest state inventory: empty state, typing
@@ -538,7 +538,7 @@ export default function DesignSystem() {
       <CaseSection
         id="retrieved-context"
         eyebrow="Feature"
-        title="The Retrieved Context panel: designing for the team, inside the product"
+        title="A debug panel for the team, built into the product"
       >
         <p>
           COROS&rsquo;s coaching quality depends on a memory pipeline: RAG retrieval over

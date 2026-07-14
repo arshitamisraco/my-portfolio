@@ -18,7 +18,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   {
     slug: "founding-design",
     href: "/work/coros-ai/founding-design",
-    title: "Founding AI Designer — Designing UI and AI Behavior as One System",
+    title: "Founding designer: shaping the product and the AI together",
     shortTitle: "Founding design",
     brief:
       "Designing COROS's 0→1 onboarding and personality system — user research, competitive analysis, and three features that shape how the AI coaches, plus the brand identity.",
@@ -28,8 +28,8 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   {
     slug: "my-world",
     href: "/work/coros-ai/my-world",
-    title: "My World — Designing an AI That Remembers You Back",
-    shortTitle: "My World",
+    title: "Designing an AI that remembers you",
+    shortTitle: "AI memory",
     brief:
       "End-to-end design of the feature that reflects a user's coaching history back to them — information architecture, widget design, and the LLM prompts behind every card.",
     tags: ["Product Design", "Prompt Engineering", "Design Engineering"],
@@ -38,7 +38,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   {
     slug: "design-system",
     href: "/work/coros-ai/design-system",
-    title: "Rebuilding COROS AI — From MUI Defaults to a Token-Driven Design System",
+    title: "Rebuilding the design system across four platforms",
     shortTitle: "Design system rebuild",
     brief:
       "Migrating the product from stock MUI to a token-driven shadcn system — responsive redesign of every core surface plus a team-facing debug panel.",

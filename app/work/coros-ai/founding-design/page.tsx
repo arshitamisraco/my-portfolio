@@ -16,8 +16,8 @@ const TOC = [
   { id: "research-interviews", label: "Research: user interviews" },
   { id: "competitive-analysis", label: "Research: competitive analysis" },
   { id: "solution", label: "The solution framing" },
-  { id: "dimensions", label: "Feature 1: Dimensions" },
-  { id: "influences", label: "Feature 2: Influences" },
+  { id: "dimensions", label: "Feature 1: Life mapping" },
+  { id: "influences", label: "Feature 2: Relationships" },
   { id: "personality", label: "Feature 3: Personality" },
   { id: "final-designs", label: "Final designs" },
   { id: "design-system", label: "Design system" },
@@ -31,7 +31,7 @@ export default function FoundingDesign() {
     <CaseStudyLayout
       slug="founding-design"
       eyebrow="COROS AI · Case Study"
-      title="Founding AI Designer — Designing UI and AI Behavior as One System"
+      title="Founding designer: shaping the product and the AI together"
       summary="How COROS AI learned to gather context before it coaches: three onboarding features, the prompt architecture behind them, and the brand around them."
       meta={[
         { label: "Role", value: "AI Designer · Founding Employee" },
@@ -200,7 +200,7 @@ export default function FoundingDesign() {
       <CaseSection
         id="solution"
         eyebrow="Solution"
-        title="Designing UI and AI behavior as one system"
+        title="Designing the interface and the AI together"
       >
         <p>
           The solution wasn&rsquo;t just introducing an onboarding flow — it was designing
@@ -213,7 +213,7 @@ export default function FoundingDesign() {
       <CaseSection
         id="dimensions"
         eyebrow="Feature #1"
-        title="The Seven Dimensions of Life"
+        title="Mapping what matters in a user's life"
       >
         <p>
           Dimensions lets users declare which areas of life matter most to them:{" "}
@@ -258,7 +258,7 @@ export default function FoundingDesign() {
         />
       </CaseSection>
 
-      <CaseSection id="influences" eyebrow="Feature #2" title="Influences">
+      <CaseSection id="influences" eyebrow="Feature #2" title="The people who shape a user">
         <p>
           Influences lets users declare the thinkers, belief systems, or frameworks that
           shape their worldview — for example Brené Brown, Rumi, Stoicism, or Islamic
@@ -303,7 +303,7 @@ export default function FoundingDesign() {
       <CaseSection
         id="personality"
         eyebrow="Feature #3"
-        title="Personality Slider (then toggle)"
+        title="Tuning the AI's personality"
       >
         <p>
           The Personality Slider lets users control the AI&rsquo;s coaching intensity by
@@ -360,14 +360,14 @@ export default function FoundingDesign() {
           />
         </div>
         <p>The original design: a three-position slider spanning the three coaching modes.</p>
-        <h3>Iteration #1 — Supportive mode had to go</h3>
+        <h3>Iteration 1: cutting supportive mode</h3>
         <p>
           I initially designed three modes (Supportive, Balanced, Provocative), but
           through testing and stakeholder alignment, we discovered that a coddling
           &ldquo;supportive&rdquo; approach contradicted the ontological coaching
           framework, which requires challenging limiting beliefs to drive growth.
         </p>
-        <h3>Iteration #2 — the slider wasn&rsquo;t a slider</h3>
+        <h3>Iteration 2: the slider wasn&rsquo;t a slider</h3>
         <p>
           With Supportive removed, only two modes remained — but the control still looked
           like a slider, sliding between just two end states:
@@ -546,7 +546,7 @@ export default function FoundingDesign() {
           size="md"
           tone="pink"
         />
-        <h3>Component specimens</h3>
+        <h3>Component examples</h3>
         <p>
           Every component is specified as a full matrix — variants, intents, sizes, and
           interaction states — so engineering can build from a single source of truth.
