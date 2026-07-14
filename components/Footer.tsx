@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PixelCloud from "./PixelCloud";
+import { RESUME_PDF_URL } from "@/lib/resume";
 
 export default function Footer() {
   return (
@@ -27,8 +28,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                {/* TODO: replace href with the hosted resume URL */}
-                <a href="#" className="text-body text-ink-muted hover:text-accent-deep">
+                <a
+                  href={RESUME_PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-body text-ink-muted hover:text-accent-deep"
+                >
                   Resume
                 </a>
               </li>
