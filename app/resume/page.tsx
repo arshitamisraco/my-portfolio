@@ -4,6 +4,7 @@ import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import TagChip, { type ChipTone } from "@/components/TagChip";
+import { PROJECTS_HREF } from "@/lib/coros";
 import { RESUME_PDF_URL } from "@/lib/resume";
 
 export const metadata: Metadata = {
@@ -310,7 +311,7 @@ export default function Resume() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="flex flex-wrap gap-4">
-              <Button href="/work/coros-ai">See my work</Button>
+              <Button href={PROJECTS_HREF}>See my work</Button>
               <Button href="/contact" variant="secondary">
                 Contact me
               </Button>

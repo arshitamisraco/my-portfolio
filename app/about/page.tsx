@@ -8,6 +8,7 @@ import PixelCloud from "@/components/PixelCloud";
 import PrincipleCard from "@/components/PrincipleCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
+import { COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/coros";
 
 export const metadata: Metadata = {
   title: "About",
@@ -59,12 +60,12 @@ export default function About() {
             I&rsquo;m a product designer obsessed with human-centered AI. I build products
             that help people think more clearly, relate more powerfully, and grow beyond
             what they thought possible. Currently doing that @{" "}
-            <a
-              href="/work/coros-ai"
+            <Link
+              href={COROS_HUB_HREF}
               className="font-medium text-accent-deep underline decoration-accent underline-offset-4 hover:text-ink"
             >
               COROS AI
-            </a>
+            </Link>
             .
           </p>
         </div>
@@ -380,7 +381,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="flex flex-wrap gap-4">
-              <Button href="/work/coros-ai">See my work</Button>
+              <Button href={PROJECTS_HREF}>See my work</Button>
               <Button
                 href="https://www.linkedin.com/in/arshita-misra/"
                 variant="secondary"

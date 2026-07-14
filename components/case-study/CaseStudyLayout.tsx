@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import PixelCloud from "@/components/PixelCloud";
 import TagChip from "@/components/TagChip";
-import { COROS_HUB_HREF, getCaseStudy, getPrevNext } from "@/lib/coros";
+import { COROS_HUB_HREF, getCaseStudy, getPrevNext, PROJECTS_HREF } from "@/lib/coros";
 import Toc, { type TocItem } from "./Toc";
 
 interface MetaItem {
@@ -48,8 +48,8 @@ export default function CaseStudyLayout({
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2 text-caption text-ink-muted">
               <li>
-                <Link href={COROS_HUB_HREF} className="hover:text-accent-deep">
-                  Work
+                <Link href={PROJECTS_HREF} className="hover:text-accent-deep">
+                  Projects
                 </Link>
               </li>
               <li aria-hidden="true">/</li>

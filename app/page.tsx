@@ -148,6 +148,9 @@ export default function Home() {
             <SectionLabel cloud>Selected Work</SectionLabel>
           </Reveal>
 
+          {/* Card + its direct-entrance links reveal together as one unit — the
+              links belong to the card, so a single Reveal keeps them from fading
+              in a scroll behind it. */}
           <Reveal delay={0.1}>
             <div className="mt-8">
               <ProjectCard
@@ -165,10 +168,8 @@ export default function Home() {
                 cover={<CorosCarousel />}
               />
             </div>
-          </Reveal>
 
-          {/* Direct entrances for recruiters who want to jump straight in */}
-          <Reveal delay={0.2}>
+            {/* Direct entrances for recruiters who want to jump straight in */}
             <ul className="mt-6 flex flex-wrap gap-3">
               {COROS_CASE_STUDIES.map((study) => (
                 <li key={study.slug}>

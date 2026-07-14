@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import PixelCloud from "@/components/PixelCloud";
+import { PROJECTS_HREF } from "@/lib/coros";
 
 export default function NotFound() {
   return (
@@ -16,7 +17,7 @@ export default function NotFound() {
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         <Button href="/">Back home</Button>
-        <Button href="/work/coros-ai" variant="secondary">
+        <Button href={PROJECTS_HREF} variant="secondary">
           See my work
         </Button>
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PROJECTS_HREF } from "@/lib/coros";
 import PixelCloud from "./PixelCloud";
 
 export default function Footer() {
@@ -17,8 +18,8 @@ export default function Footer() {
           <nav aria-label="Footer">
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/work/coros-ai" className="text-body text-ink-muted hover:text-accent-deep">
-                  Work
+                <Link href={PROJECTS_HREF} className="text-body text-ink-muted hover:text-accent-deep">
+                  Projects
                 </Link>
               </li>
               <li>

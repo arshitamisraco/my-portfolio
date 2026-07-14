@@ -4,7 +4,7 @@ import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import TagChip from "@/components/TagChip";
-import { COROS_CASE_STUDIES } from "@/lib/coros";
+import { COROS_CASE_STUDIES, PROJECTS_HREF } from "@/lib/coros";
 
 export const metadata: Metadata = {
   title: "COROS AI: an AI Coaching Platform",
@@ -27,7 +27,11 @@ export default function CorosHub() {
         <div className="container-site relative py-14 md:py-20">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 text-caption text-ink-muted">
-              <li>Work</li>
+              <li>
+                <Link href={PROJECTS_HREF} className="hover:text-accent-deep">
+                  Projects
+                </Link>
+              </li>
               <li aria-hidden="true">/</li>
               <li aria-current="page" className="text-ink">
                 COROS AI

@@ -14,12 +14,16 @@ export interface CorosCaseStudy {
   inProgress?: boolean;
 }
 
-export const COROS_HUB_HREF = "/work/coros-ai";
+/** The COROS AI blurb/overview page. Reached only from the landing thumbnail. */
+export const COROS_HUB_HREF = "/coros-ai";
+
+/** The Projects listing page — three case-study cards, reached from the main nav. */
+export const PROJECTS_HREF = "/projects";
 
 export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   {
     slug: "my-world",
-    href: "/work/coros-ai/my-world",
+    href: "/projects/my-world",
     title: "Designing an AI that remembers you",
     shortTitle: "AI memory",
     brief:
@@ -30,7 +34,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   },
   {
     slug: "design-system",
-    href: "/work/coros-ai/design-system",
+    href: "/projects/design-system",
     title: "Rebuilding the design system across three platforms",
     shortTitle: "Design system rebuild",
     brief:
@@ -40,7 +44,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
   },
   {
     slug: "founding-design",
-    href: "/work/coros-ai/founding-design",
+    href: "/projects/founding-design",
     title: "Founding design: shaping the product and the AI together",
     shortTitle: "Founding design",
     brief:
