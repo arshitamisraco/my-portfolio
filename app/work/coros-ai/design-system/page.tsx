@@ -52,7 +52,7 @@ export default function DesignSystem() {
         {
           label: "Role",
           value:
-            "Product Designer — design system owner, end-to-end surface design, developer handoff",
+            "Product Designer: design system owner, end-to-end surface design, developer handoff",
         },
         {
           label: "Team",
@@ -88,12 +88,12 @@ export default function DesignSystem() {
     >
       <CaseSection id="tldr" eyebrow="Summary" title="TL;DR">
         <p>
-          COROS AI&rsquo;s first product ran on stock Material UI — dark-only,
+          COROS AI&rsquo;s first product ran on stock Material UI: dark-only,
           desktop-only, and hard to iterate on. I led the full redesign onto a shadcn
           foundation, building the design system from raw color primitives up to a
           published Figma library with 54+ semantic tokens, full light/dark theming, and
-          responsive components across four platforms. I redesigned every base surface —
-          onboarding, chat, sidebar, and settings — and designed an internal
+          responsive components across four platforms. I redesigned every base surface
+          (onboarding, chat, sidebar, and settings) and designed an internal
           &ldquo;Retrieved Context&rdquo; panel that lets the team inspect the RAG
           pipeline directly inside the product.
         </p>
@@ -189,7 +189,7 @@ export default function DesignSystem() {
           no token layer, so restyling anything meant touching individual components. The
           UI was desktop-only despite mobile plans. With a second designer joining and
           engineers building from screenshots, there was no shared library or naming
-          convention — and the brand (COROS blue #0822E6, orange #EA4A00) had disappeared
+          convention, and the brand (COROS blue #0822E6, orange #EA4A00) had disappeared
           into Material defaults.
         </p>
         <p>
@@ -211,7 +211,7 @@ export default function DesignSystem() {
           For primitives, I generated full 11-stop scales for new{" "}
           <code>coros-neutral</code>, <code>coros-blue</code>, and{" "}
           <code>coros-orange</code> groups, with the brand hexes locked at the 600 stop.
-          The neutrals aren&rsquo;t gray — they&rsquo;re tinted at the brand&rsquo;s blue
+          The neutrals aren&rsquo;t gray; they&rsquo;re tinted at the brand&rsquo;s blue
           hue, so even &ldquo;empty&rdquo; surfaces feel like COROS. I also built a custom
           crimson scale for destructive states when the kit&rsquo;s red clashed. Everything
           was added as new groups instead of overwriting kit defaults, keeping the kit
@@ -221,7 +221,7 @@ export default function DesignSystem() {
           Semantic tokens are forbidden from touching raw scales directly; they resolve
           only through the brand layer. That one rule makes a rebrand a single-layer
           repoint instead of a token audit. On top sit 54+ role-based tokens mapped for
-          light and dark via Figma variable modes — including product-specific tokens like{" "}
+          light and dark via Figma variable modes, including product-specific tokens like{" "}
           <code>chat-bubble-coros</code> and <code>chat-bubble-user</code> that shadcn
           doesn&rsquo;t ship.
         </p>
@@ -262,7 +262,7 @@ export default function DesignSystem() {
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The variable library at a glance — semantic colors holding a value per token
+            The variable library at a glance: semantic colors holding a value per token
             for both the shadcn (light) and shadcn-dark modes, typography resolving
             through shared font definitions, and spacing carrying separate sm (mobile)
             and lg (desktop) values. Every color resolves through a brand reference,
@@ -282,17 +282,17 @@ export default function DesignSystem() {
             variants only when structure changes, component properties for everything
             else.
           </strong>{" "}
-          The chat input bar shows why — it needed default, focused, with-text, and
+          The chat input bar shows why: it needed default, focused, with-text, and
           multiline states across breakpoints, which naively explodes into a variant grid.
           Instead:
         </p>
         <ul>
           <li>
-            <strong>Multiline</strong> earned a variant — it changes the component&rsquo;s
+            <strong>Multiline</strong> earned a variant: it changes the component&rsquo;s
             height and layout.
           </li>
           <li>
-            <strong>Focus</strong> became a boolean — it&rsquo;s just a ring, not a new
+            <strong>Focus</strong> became a boolean: it&rsquo;s just a ring, not a new
             structure.
           </li>
           <li>
@@ -316,7 +316,7 @@ export default function DesignSystem() {
         <p>
           Chat is the product, so it got the deepest state inventory: empty state, typing
           indicator vs. streaming text, errors and retries, message-level actions, and
-          scroll and return-to-chat behavior. The user bubble color was a real debate —
+          scroll and return-to-chat behavior. The user bubble color was a real debate:
           full brand blue felt heavy, so I prototyped three alternatives in working HTML
           across both themes and brought the finalists to stakeholder review. That set the
           project&rsquo;s working pattern:{" "}
@@ -331,7 +331,7 @@ export default function DesignSystem() {
           description="A coaching exchange on web in dark mode: the COROS greeting, a user message, a streamed response, and the read-aloud and flag actions revealed beneath it."
           size="lg"
           tone="sky"
-          caption="Chat in motion on web (dark theme) — the greeting, a streamed reply, and the message-level actions beneath each COROS response."
+          caption="Chat in motion on web (dark theme): the greeting, a streamed reply, and the message-level actions beneath each COROS response."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -367,7 +367,7 @@ export default function DesignSystem() {
           </div>
           <p className="mt-3 text-caption text-ink-muted">
             The same surface on mobile (light theme): date-grouped history with message
-            actions, the inline tone quick-switch, and composing a message — one component
+            actions, the inline tone quick-switch, and composing a message: one component
             system, both themes.
           </p>
         </div>
@@ -375,8 +375,8 @@ export default function DesignSystem() {
         <h3>Onboarding</h3>
         <p>
           The legacy flow was eight dark-only screens that asked for the user&rsquo;s name{" "}
-          <em>last</em>, after personalizing everything. I restructured it to six —{" "}
-          <strong>Welcome → Name → Dimensions → Influences → Tone → Loading</strong> — with
+          <em>last</em>, after personalizing everything. I restructured it to six:{" "}
+          <strong>Welcome → Name → Dimensions → Influences → Tone → Loading</strong>, with
           the name up front so the rest of the flow can address the user personally. The
           welcome greeting rotates through nine languages to signal multilingual support
           without a selector. The tone screen teaches through interaction: the chosen card
@@ -427,7 +427,7 @@ export default function DesignSystem() {
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The same flow on mobile (light theme) — the multilingual welcome, tone cards, and
+            The same flow on mobile (light theme): the multilingual welcome, tone cards, and
             dimension pills. Every screen was designed for web desktop, web tablet, iOS, and
             Android at once, so the token system is what keeps them identical.
           </p>
@@ -435,8 +435,8 @@ export default function DesignSystem() {
 
         <h3>Sidebar &amp; settings</h3>
         <p>
-          Settings became a modal shell with a persistent left nav — Account, Data control,
-          Personalization, About, Terms, and My Memories — consistent across every tab so
+          Settings became a modal shell with a persistent left nav (Account, Data control,
+          Personalization, About, Terms, and My Memories) consistent across every tab so
           the frame never jumps. The Appearance toggle moved out of settings and into the
           sidebar as an inline utility row, since switching themes should never require
           navigating anywhere.
@@ -450,7 +450,7 @@ export default function DesignSystem() {
           description="The settings modal on web in light mode, navigating between Account and Data control with its persistent left nav."
           size="lg"
           tone="mint"
-          caption="The settings modal shell on web (light theme) — a persistent left nav that never jumps between tabs."
+          caption="The settings modal shell on web (light theme): a persistent left nav that never jumps between tabs."
         />
         <CaseVideo
           src="/videos/design-system/personalization-web-light.mp4"
@@ -461,7 +461,7 @@ export default function DesignSystem() {
           description="The Personalization tab on web in light mode: tone, dimensions, and influences, with the tone orbs animating."
           size="lg"
           tone="butter"
-          caption="Personalization on web (light theme) — tone, dimensions, and influences share the same modal shell as settings."
+          caption="Personalization on web (light theme): tone, dimensions, and influences share the same modal shell as settings."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -582,11 +582,11 @@ export default function DesignSystem() {
           description="Navigating the Retrieved Context panel: the Associated Query pair, then Memory Config with the session-change probability, expandable short-term memory turns, past-session retrieval, and the think block."
           size="lg"
           tone="peach"
-          caption="The panel in use — from the Associated Query pair into Memory Config: session-change probability, turn-by-turn short-term memory, and the model's think block, one tab away."
+          caption="The panel in use, from the Associated Query pair into Memory Config: session-change probability, turn-by-turn short-term memory, and the model's think block, one tab away."
         />
         <p>
           I was doing the prompt QA myself, so I designed the tool as its own primary user:
-          every field answers a question I actually had during prompt iteration —
+          every field answers a question I actually had during prompt iteration:
           &ldquo;did the topic switch when it should have?&rdquo; (the session-change
           probability), &ldquo;why did it retrieve <em>that</em> session?&rdquo; (the score
           breakdown). It uses the same tokens and modal shell as settings, so it reads as a
@@ -601,7 +601,7 @@ export default function DesignSystem() {
           description="Scrolling the team-only My Memories tab in settings: the biographical memory accordion, then dated session summaries with dimension, entry and exit mood, and breakthrough fields."
           size="lg"
           tone="lavender"
-          caption="My Memories (team-only) — biographical memory and dated session summaries, living in the same settings shell as every user-facing tab."
+          caption="My Memories (team-only): biographical memory and dated session summaries, living in the same settings shell as every user-facing tab."
         />
         <p>
           The feature quietly changed how the team works: prompt regressions that used to be
@@ -611,8 +611,8 @@ export default function DesignSystem() {
 
       <CaseSection id="handoff" eyebrow="Impact" title="Handoff & outcomes">
         <p>
-          Designs shipped with a markdown spec per surface — layout differences, component
-          inventory, UX states, and edge cases — written to a consistent template so
+          Designs shipped with a markdown spec per surface (layout differences, component
+          inventory, UX states, and edge cases) written to a consistent template so
           engineers always knew where to look. Documented sections were accepted by
           engineering with <strong>zero redesign requests</strong>.
         </p>
@@ -630,7 +630,7 @@ export default function DesignSystem() {
             onboarding rework as a primary contributor.
           </li>
           <li>
-            <strong>A published library the whole team builds on</strong> — the second
+            <strong>A published library the whole team builds on</strong>: the second
             designer and both engineers work from the same tokens, without detaching
             components.
           </li>
@@ -644,19 +644,19 @@ export default function DesignSystem() {
       <CaseSection id="learnings" eyebrow="Reflection" title="What I learned">
         <p>
           <strong>Token discipline is a social contract, not a Figma feature.</strong> It
-          only holds if someone enforces it in review — the system&rsquo;s value came from
+          only holds if someone enforces it in review: the system&rsquo;s value came from
           the discipline, not the variables.
         </p>
         <p>
           <strong>Design the boring layer first.</strong> Weeks spent on color architecture
           before drawing a single screen felt slow at a pre-seed startup, and it turned out
-          to be the highest-leverage decision of the project — every surface after it was
+          to be the highest-leverage decision of the project: every surface after it was
           faster than the one before.
         </p>
         <p>
           <strong>Internal users deserve product design too.</strong> The debug panel could
           have been a JSON dump; treating the team as real users produced a tool people
-          actually open — and it made me a better prompt engineer, because I had to decide
+          actually open, and it made me a better prompt engineer, because I had to decide
           what information <em>mattered</em>.
         </p>
       </CaseSection>

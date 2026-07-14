@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ImageFrame from "@/components/ImageFrame";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
@@ -40,44 +39,31 @@ export default function CorosHub() {
             Founding AI Designer · June 2025 – Present
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            COROS AI: an AI coach built on conversations that change people.
+            COROS AI: an AI coach that transforms people in conversation.
           </h1>
 
           <div className="case-prose mt-8">
             <p>
-              COROS AI is an ontological coaching platform that helps professionals
+              COROS AI is an AI coach based on linguistic ontology that helps professionals
               navigate moods, repair relationships, and take action when they&rsquo;re
-              stuck. It is built on a simple but profound thesis:{" "}
-              <strong>
-                the transformation of human beings is the transformation of our language.
-              </strong>{" "}
-              Our capacity to listen, to trust, to coordinate promises, to handle
-              breakdowns in language — these are not &ldquo;soft skills.&rdquo; They are
-              hard and critical skills that have been systematically neglected.
+              stuck. It helps you build skills that AI can&rsquo;t replace: capacity to
+              listen, to trust, to coordinate promises, to handle breakdowns in language.
             </p>
             <p>COROS helps users:</p>
             <ul>
               <li>Track and shift moods before breakdowns spiral into bigger messes.</li>
               <li>Reflect on key relationships and how people show up in conversations.</li>
               <li>Coordinate promises and recover from breakdowns with agility.</li>
-              <li>Reframe challenges as games worth playing.</li>
-              <li>
-                Create different futures than the obvious outcomes by shifting moods.
-              </li>
+              <li>Create different futures by shifting moods.</li>
             </ul>
             <p>
-              I joined as the founding designer — and since June 2025 my work has spanned
-              product design, UX, prompt engineering, user research, and brand.
+              I joined as the founding designer, and since June 2025 my work has spanned{" "}
+              <strong>
+                product design, UX, prompt engineering, user research, and brand
+              </strong>
+              .
             </p>
           </div>
-
-          <ImageFrame
-            alt="COROS AI product hero — the coaching chat interface in the redesigned light theme"
-            plannedSrc="/images/coros/product-hero.png"
-            aspect="wide"
-            tone="sky"
-            caption="The COROS AI coaching surface."
-          />
         </div>
       </section>
 

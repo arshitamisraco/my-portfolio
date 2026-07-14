@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 interface RevealProps {
   children: ReactNode;
@@ -13,9 +15,23 @@ interface RevealProps {
 /**
  * Fade-up-on-scroll wrapper. Under prefers-reduced-motion the
  * content renders static and fully visible.
+ *
+ * Reduced motion is detected after mount (not via framer's useReducedMotion),
+ * so the server and first client render always agree — both render the
+ * motion.div. Branching on the media query during render instead produced a
+ * hydration mismatch that left the SSR'd `opacity: 0` stuck (invisible content)
+ * for reduced-motion users.
  */
 export default function Reveal({ children, delay = 0, className }: RevealProps) {
-  const reduce = useReducedMotion();
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(REDUCED_MOTION_QUERY);
+    setReduce(mq.matches);
+    const onChange = (event: MediaQueryListEvent) => setReduce(event.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   if (reduce) {
     return <div className={className}>{children}</div>;
