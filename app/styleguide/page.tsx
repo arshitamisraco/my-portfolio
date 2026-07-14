@@ -86,7 +86,7 @@ export default function Styleguide() {
       </p>
 
       <div className="mt-12">
-        <Section title="Raw palette — pink family">
+        <Section title="Raw palette: pink family">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
             {RAW_PINKS.map((c) => (
               <div key={c.name}>
@@ -109,7 +109,7 @@ export default function Styleguide() {
           </div>
         </Section>
 
-        <Section title="Supporting pastels — soft surface + AA text pair">
+        <Section title="Supporting pastels: soft surface + AA text pair">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {PASTEL_PAIRS.map((p) => (
               <div
@@ -156,7 +156,7 @@ export default function Styleguide() {
           </p>
         </Section>
 
-        <Section title="Pixel clouds — 3 shapes × 3 variants">
+        <Section title="Pixel clouds: 3 shapes × 3 variants">
           <div className="flex flex-col gap-8">
             {CLOUD_SHAPES.map((shape) => (
               <div key={shape} className="flex flex-wrap items-end gap-10">

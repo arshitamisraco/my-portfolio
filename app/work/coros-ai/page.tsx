@@ -8,7 +8,7 @@ import TagChip from "@/components/TagChip";
 import { COROS_CASE_STUDIES } from "@/lib/coros";
 
 export const metadata: Metadata = {
-  title: "COROS AI — Ontological AI Coach",
+  title: "COROS AI: an AI Coaching Platform",
   description:
     "Arshita Misra is the founding AI designer at COROS AI, an ontological coaching platform — spanning product design, UX, prompt engineering, research, and brand.",
 };
@@ -40,7 +40,7 @@ export default function CorosHub() {
             Founding AI Designer · June 2025 – Present
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            COROS AI — an ontological coach built on conversations that transform.
+            COROS AI: an AI coach built on conversations that change people.
           </h1>
 
           <div className="case-prose mt-8">

@@ -8,7 +8,7 @@ import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
-  title: "My World — Designing an AI That Remembers You Back",
+  title: "Designing an AI That Remembers You",
   description:
     "End-to-end design of the COROS AI surface that reflects a user's coaching history back to them — information architecture, widgets, and the LLM prompts behind every card.",
 };
@@ -28,8 +28,8 @@ export default function MyWorld() {
     <CaseStudyLayout
       slug="my-world"
       eyebrow="COROS AI · Case Study"
-      title="My World — Designing an AI That Remembers You Back"
-      summary="A page that reflects a user's coaching history back to them at a pre-seed AI startup — designed end to end, from the information architecture to the prompts that generate every card."
+      title="Designing an AI that remembers you"
+      summary="A page that reflects a user's coaching history back to them at an early-stage AI startup, designed end to end from the information architecture to the prompts behind every card."
       meta={[
         {
           label: "Role",
@@ -147,7 +147,7 @@ export default function MyWorld() {
       <CaseSection
         id="architecture"
         eyebrow="Layer 1 · Architecture"
-        title="Sessions, Topics, and My World"
+        title="How the AI organizes what it remembers"
       >
         <p>
           I co-authored the product&rsquo;s design and implementation document through
@@ -189,7 +189,7 @@ export default function MyWorld() {
         eyebrow="Layer 2 · Interface"
         title="Three iterations that mattered"
       >
-        <h3>The top level</h3>
+        <h3>The main view</h3>
         <p>
           A <strong>featured band</strong> of three reflective cards (My Breakthroughs,
           Coaching Provocation, Latest Breakthrough) above a full-width stacked{" "}
@@ -210,7 +210,7 @@ export default function MyWorld() {
           caption="The page, top to bottom: featured band, reminders, topics."
         />
 
-        <h3>Merging the donut and the Latest Breakthrough</h3>
+        <h3>Combining two key widgets</h3>
         <p>
           We had two separate widgets, and the donut was under threat from a line-chart
           alternative. Instead of choosing, I merged them into{" "}
@@ -273,7 +273,7 @@ export default function MyWorld() {
           caption="A reminder checked off — completion gets confetti."
         />
 
-        <h3>Decluttering the topic surface</h3>
+        <h3>Simplifying a cluttered screen</h3>
         <p>
           Alongside these, I ran repeated decluttering passes on the topic card and detail
           views in weekly triage with the founder: labels stripped to inline values,{" "}
@@ -297,7 +297,7 @@ export default function MyWorld() {
       <CaseSection
         id="ai"
         eyebrow="Layer 3 · The AI"
-        title="Prompts, playground, and QA"
+        title="Prompts, testing, and QA"
       >
         <h3>Prompt engineering as design work</h3>
         <p>
@@ -326,7 +326,7 @@ export default function MyWorld() {
           caption="What the invitation prompt produces: a provocation synthesized across recent sessions, ending in a question — and an on-ramp back to coaching."
         />
 
-        <h3>Building my own QA tooling</h3>
+        <h3>Building my own testing tools</h3>
         <p>
           To validate all of this, I built out our <strong>Streamlit playground</strong> —
           a QA harness that runs real conversation transcripts through the entire My World
@@ -356,7 +356,7 @@ export default function MyWorld() {
       <CaseSection
         id="implementation"
         eyebrow="Co-implementation"
-        title="From mockups to merge requests"
+        title="From mockups to shipped code"
       >
         <p>
           Midway through, I stopped ending my work at the Figma handoff. Using{" "}
@@ -387,7 +387,7 @@ export default function MyWorld() {
       <CaseSection
         id="takeaway"
         eyebrow="Reflection"
-        title="What I'd want a hiring team to take from this"
+        title="What I'd want a hiring team to know"
       >
         <p>
           The takeaway I&rsquo;d offer a hiring team is the shape of the work: I wrote the

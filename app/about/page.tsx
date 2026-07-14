@@ -93,7 +93,7 @@ export default function About() {
             <Reveal>
               <TimelineItem
                 date="June 2025"
-                title="Graduated from UW — Human Centered Design & Engineering"
+                title="Graduated from UW in Human Centered Design & Engineering"
                 body={
                   <>
                     <p>
