@@ -116,7 +116,7 @@ export default function CorosHub() {
                           aria-hidden="true"
                           className="h-1.5 w-1.5 rounded-pill bg-mint-deep motion-safe:animate-pulse"
                         />
-                        Current project
+                        In progress
                       </span>
                     )}
                   </div>
