@@ -10,6 +10,8 @@ export interface CorosCaseStudy {
   brief: string;
   tags: string[];
   tone: ChipTone;
+  /** Shown as an "In progress" badge on the hub card when the work is still shipping. */
+  inProgress?: boolean;
 }
 
 export const COROS_HUB_HREF = "/work/coros-ai";
@@ -24,11 +26,12 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
       "End-to-end design of the feature that reflects a user's coaching history back to them: information architecture, widget design, and the LLM prompts behind every card.",
     tags: ["Prompt Engineering", "UX/UI", "Design Engineering", "Product Design"],
     tone: "lavender",
+    inProgress: true,
   },
   {
     slug: "design-system",
     href: "/work/coros-ai/design-system",
-    title: "Rebuilding the design system across four platforms",
+    title: "Rebuilding the design system across three platforms",
     shortTitle: "Design system rebuild",
     brief:
       "Migrating the product from stock MUI to a token-driven shadcn system: responsive redesign of every core surface plus a team-facing debug panel.",

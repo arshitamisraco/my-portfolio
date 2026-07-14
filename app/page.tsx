@@ -18,16 +18,22 @@ import { COROS_CASE_STUDIES, COROS_HUB_HREF } from "@/lib/coros";
  * The negative delay is chosen so each cloud's transform lands at ~0 at
  * t=0 — i.e. right at its resting `left` — so the full sky is already
  * populated on first paint instead of drifting into view over the course
- * of the ~65-120s loop.
+ * of the loop. delay = (left + DRIFT_MARGIN_VW) / 132 * duration, since
+ * every cloud travels the same 132vw (100vw + 2 * margin) span — recompute
+ * it whenever `left` or `drift` changes, or the cloud starts mid-flight.
  */
 const DRIFT_MARGIN_VW = 16;
 
 const HERO_CLOUDS = [
-  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 4, opacity: 0.6, drift: "cloud-drift-slow", delay: "-30s" },
-  { shape: "cumulus", variant: "pink", size: 140, top: "20%", left: 38, opacity: 0.8, drift: "cloud-drift-mid", delay: "-63s" },
-  { shape: "puff", variant: "lavender", size: 88, top: "50%", left: 14, opacity: 0.7, drift: "cloud-drift-fast", delay: "-26s" },
-  { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: 62, opacity: 0.55, drift: "cloud-drift-slow", delay: "-118s" },
-  { shape: "wisp", variant: "pink", size: 150, top: "38%", left: 76, opacity: 0.5, drift: "cloud-drift-mid", delay: "-108s" },
+  // Two light clouds anchor the left in its empty pockets (above the eyebrow,
+  // below the buttons) so the sky isn't lopsided; the fuller cluster sits right.
+  { shape: "puff", variant: "pink", size: 96, top: "6%", left: 3, opacity: 0.28, drift: "cloud-drift-slow", delay: "-29s" },
+  { shape: "wisp", variant: "lavender", size: 120, top: "82%", left: 6, opacity: 0.4, drift: "cloud-drift-fast", delay: "-19s" },
+  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 52, opacity: 0.5, drift: "cloud-drift-slow", delay: "-103s" },
+  { shape: "cumulus", variant: "pink", size: 125, top: "22%", left: 74, opacity: 0.6, drift: "cloud-drift-mid", delay: "-106s" },
+  { shape: "puff", variant: "lavender", size: 88, top: "50%", left: 68, opacity: 0.6, drift: "cloud-drift-fast", delay: "-73s" },
+  { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: 84, opacity: 0.5, drift: "cloud-drift-slow", delay: "-152s" },
+  { shape: "wisp", variant: "pink", size: 140, top: "38%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
 ] as const;
 
 function CloudI({ variant }: { variant: "lavender" | "sky" }) {
@@ -140,7 +146,7 @@ export default function Home() {
                 href={COROS_HUB_HREF}
                 title="COROS AI: an AI coaching platform"
                 subtitle="Founding AI Designer"
-                description="Designing an AI coaching platform end to end: product, AI behavior, design system, and brand."
+                description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand. Onboarding and interaction redesigns lifted user retention 2.5×."
                 tags={[
                   { label: "Product Design", tone: "pink" },
                   { label: "AI/UX", tone: "lavender" },

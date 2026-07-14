@@ -7,7 +7,7 @@ import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
-  title: "Rebuilding the Design System Across Four Platforms",
+  title: "Rebuilding the Design System Across Three Platforms",
   description:
     "Leading COROS AI's full redesign onto a shadcn/Tailwind foundation — 54+ semantic tokens, light/dark theming, responsive surfaces across four platforms, and a team-facing RAG debug panel.",
 };
@@ -46,17 +46,17 @@ export default function DesignSystem() {
     <CaseStudyLayout
       slug="design-system"
       eyebrow="COROS AI · Case Study"
-      title="Rebuilding the design system across four platforms"
+      title="Rebuilding the design system across three platforms"
       summary="Product Design · Design Systems · Design Engineering. Migrating a live AI coaching product onto a scalable design system across four platforms."
       meta={[
         {
           label: "Role",
           value:
-            "Product Designer: design system owner, end-to-end surface design, developer handoff",
+            "Product Designer · Design system ownership · Surface design · Developer handoff",
         },
         {
           label: "Team",
-          value: "Founder/CEO, two engineers, one collaborating designer",
+          value: "Founder/CEO · 2 engineers · 1 designer",
         },
         { label: "Platforms", value: "Web (desktop + tablet), iOS, Android" },
         {
@@ -541,10 +541,10 @@ export default function DesignSystem() {
         title="A debug panel for the team, built into the product"
       >
         <p>
-          COROS&rsquo;s coaching quality depends on a memory pipeline: RAG retrieval over
-          past sessions, session-boundary detection, and biographical memory. When a
-          response went wrong, answering <em>&ldquo;what did the model actually
-          see?&rdquo;</em> meant an engineer digging through logs.
+          COROS&rsquo;s coaching quality depends on a retrieval-and-memory pipeline: the
+          model pulls in relevant past context before it responds. When a response went
+          wrong, answering <em>&ldquo;what did the model actually see?&rdquo;</em> meant an
+          engineer digging through logs.
         </p>
         <p>
           I designed a team-only panel, opened from any COROS response, that exposes the
@@ -556,21 +556,18 @@ export default function DesignSystem() {
             session is anchored to a concrete exchange.
           </li>
           <li>
-            <strong>Whether the session-boundary detector fired</strong>, and its
-            probability score.
+            <strong>Whether the model treated this as a new topic</strong> or a continuation
+            of an earlier one.
           </li>
           <li>
             <strong>The short-term memory</strong>, turn by turn.
           </li>
           <li>
-            <strong>Retrieved past sessions</strong>, each with its semantic, recency, and
-            final blended score.
+            <strong>The past context it retrieved</strong>, ranked by how relevant each piece
+            was to the moment.
           </li>
           <li>
-            <strong>The raw chunk results</strong> from the knowledge base.
-          </li>
-          <li>
-            <strong>The biographical memory</strong> as the model sees it.
+            <strong>The longer-term memory</strong> as the model sees it.
           </li>
         </ul>
         <CaseVideo
@@ -579,18 +576,17 @@ export default function DesignSystem() {
           width={1440}
           height={936}
           title="The Retrieved Context panel on web, light theme"
-          description="Navigating the Retrieved Context panel: the Associated Query pair, then Memory Config with the session-change probability, expandable short-term memory turns, past-session retrieval, and the think block."
+          description="Navigating the Retrieved Context panel: the query and response pair, whether the model treated the turn as a new topic, expandable short-term memory turns, and the past context it retrieved."
           size="lg"
           tone="peach"
-          caption="The panel in use, from the Associated Query pair into Memory Config: session-change probability, turn-by-turn short-term memory, and the model's think block, one tab away."
+          caption="The panel in use: from the query and response pair into the model's context — new-topic handling, turn-by-turn short-term memory, and retrieved past context, one tab away."
         />
         <p>
           I was doing the prompt QA myself, so I designed the tool as its own primary user:
           every field answers a question I actually had during prompt iteration:
-          &ldquo;did the topic switch when it should have?&rdquo; (the session-change
-          probability), &ldquo;why did it retrieve <em>that</em> session?&rdquo; (the score
-          breakdown). It uses the same tokens and modal shell as settings, so it reads as a
-          native surface, not a bolted-on debug console.
+          &ldquo;did it treat this as a new topic when it should have?&rdquo; and &ldquo;why
+          did it pull in <em>that</em> past session?&rdquo; It uses the same tokens and modal
+          shell as settings, so it reads as a native surface, not a bolted-on debug console.
         </p>
         <CaseVideo
           src="/videos/design-system/my-memories-web-light.mp4"
@@ -598,10 +594,10 @@ export default function DesignSystem() {
           width={1440}
           height={936}
           title="The team-only My Memories tab on web, light theme"
-          description="Scrolling the team-only My Memories tab in settings: the biographical memory accordion, then dated session summaries with dimension, entry and exit mood, and breakthrough fields."
+          description="Scrolling the team-only My Memories tab in settings: the longer-term memory accordion, then dated session summaries the model keeps for each conversation."
           size="lg"
           tone="lavender"
-          caption="My Memories (team-only): biographical memory and dated session summaries, living in the same settings shell as every user-facing tab."
+          caption="My Memories (team-only): longer-term memory and dated session summaries, living in the same settings shell as every user-facing tab."
         />
         <p>
           The feature quietly changed how the team works: prompt regressions that used to be

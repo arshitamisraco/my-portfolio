@@ -1,4 +1,4 @@
-export type HobbyIconName = "gym" | "hiking" | "vlogging";
+export type HobbyIconName = "gym" | "hiking" | "vlogging" | "cooking";
 
 /*
  * Pixel-art icons in the same idiom as PixelCloud: a char grid rendered as 1×1
@@ -49,6 +49,21 @@ const GRIDS: Record<HobbyIconName, string[]> = {
     ".XXXXXX.OOO.",
     ".XXXXXX.OO..",
     ".XXXXXX.O...",
+    "............",
+    "............",
+  ],
+  // Frying pan (top view): round pan with an accent interior + a handle to the right
+  cooking: [
+    "............",
+    "............",
+    "...XXXXX....",
+    "..XXXXXXX...",
+    ".XXOOOOOXX..",
+    ".XXOOOOOXXXX",
+    ".XXOOOOOXX..",
+    "..XXXXXXX...",
+    "...XXXXX....",
+    "............",
     "............",
     "............",
   ],

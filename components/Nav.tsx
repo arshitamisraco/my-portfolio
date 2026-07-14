@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 const LINKS = [
   { label: "Work", href: "/work/coros-ai" },
   { label: "About", href: "/about" },
-  // TODO: replace href with the hosted resume URL (PDF or external link)
-  { label: "Resume", href: "#", external: true },
+  { label: "Resume", href: "/resume" },
+  { label: "Contact", href: "/contact" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/arshita-misra/", external: true },
 ];
 

@@ -27,6 +27,8 @@ interface Clip {
   height: number;
   alt: string;
   tone: Tone;
+  /** Show only the left half of the media (right half trimmed) — carousel-only crop. */
+  cropLeftHalf?: boolean;
 }
 
 /*
@@ -60,6 +62,7 @@ const CLIPS: Clip[] = [
     height: 398,
     alt: "My World reminders widget",
     tone: "sky",
+    cropLeftHalf: true,
   },
   {
     src: "/videos/coros-carousel/chat-web-dark.mp4",
@@ -225,14 +228,16 @@ export default function CorosCarousel() {
             >
               <div
                 className="relative h-full overflow-hidden rounded-[8px] bg-surface"
-                style={{ aspectRatio: `${clip.width} / ${clip.height}` }}
+                style={{
+                  aspectRatio: `${clip.cropLeftHalf ? clip.width / 2 : clip.width} / ${clip.height}`,
+                }}
               >
                 <Image
                   src={clip.poster}
                   alt=""
                   fill
                   sizes="(min-width: 768px) 360px, 40vw"
-                  className="object-cover"
+                  className={`object-cover ${clip.cropLeftHalf ? "object-left" : ""}`}
                 />
                 {!reducedMotion && (
                   <video
@@ -245,7 +250,7 @@ export default function CorosCarousel() {
                     loop
                     playsInline
                     preload="none"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className={`absolute inset-0 h-full w-full object-cover ${clip.cropLeftHalf ? "object-left" : ""}`}
                   >
                     <track kind="captions" />
                   </video>

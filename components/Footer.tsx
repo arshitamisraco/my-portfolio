@@ -43,10 +43,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                {/* TODO: replace with real contact email (mailto:) */}
-                <a href="#" className="text-body text-ink-muted hover:text-accent-deep">
-                  Email
-                </a>
+                <Link href="/contact" className="text-body text-ink-muted hover:text-accent-deep">
+                  Contact
+                </Link>
               </li>
             </ul>
           </nav>

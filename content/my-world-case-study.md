@@ -4,7 +4,7 @@
 **Company:** COROS AI, a pre-seed ontological AI coaching startup ("Conversations that transform")
 **Team:** Founder/CEO, 3 engineers, 2 designers. I owned My World's design end to end.
 **Timeline:** [X months], 2026 (**feature currently in progress, shipping incrementally**)
-**Tools:** Figma, Claude Code, Streamlit, HTML/CSS/JS prototyping, LLM prompt engineering (Gemini 2.5 Flash via LiteLLM)
+**Tools:** Figma, Claude Code, Streamlit, HTML/CSS/JS prototyping, LLM prompt engineering
 
 ---
 

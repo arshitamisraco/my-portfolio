@@ -33,20 +33,20 @@ export default function MyWorld() {
       meta={[
         {
           label: "Role",
-          value: "Product Designer: design, prompt engineering, prototyping, co-implementation",
+          value: "Product Designer · Prompt engineering · Prototyping · Co-implementation",
         },
         {
           label: "Team",
-          value: "Founder/CEO, 3 engineers, 2 designers; I owned My World end to end",
+          value: "Founder/CEO · 2 engineers · 2 designers",
         },
         {
           label: "Timeline",
-          value: "April 2026 to present, in progress, shipping incrementally",
+          value: "April 2026 – Present",
         },
         {
           label: "Tools",
           value:
-            "Figma, Claude Code, Streamlit, HTML/CSS/JS prototyping, LLM prompt engineering (Gemini 2.5 Flash via LiteLLM)",
+            "Figma · Claude Code · Streamlit · HTML/CSS/JS · Prompt engineering",
         },
       ]}
       toc={TOC}
@@ -304,13 +304,12 @@ export default function MyWorld() {
           name an exclusion with examples, the model walks through it.
         </p>
         <p>
-          The <code>breakthrough_insight</code> field shows the stakes. A breakthrough
-          shown back to a user is a claim about their life; get it wrong and you
-          manufacture a false memory. I built it around a strict{" "}
-          <strong>ownership gate</strong> (only what the user said or explicitly agreed
-          to), bans on inceptive language (&ldquo;began to&rdquo;) and victory language
-          (&ldquo;freedom from&rdquo;), and a required ontological rather than
-          psychological register.
+          The <strong>breakthrough</strong> field shows the stakes. A breakthrough shown
+          back to a user is a claim about their life; get it wrong and you manufacture a
+          false memory. I built it around a strict <strong>ownership gate</strong> (it can
+          only reflect what the user actually said or agreed to), explicit guardrails against
+          language that overstates or fictionalizes change, and a required register that
+          describes rather than diagnoses.
         </p>
         <ImageFrame
           src="/images/my-world/coaching-provocation.png"
@@ -323,7 +322,7 @@ export default function MyWorld() {
 
         <h3>Building my own testing tools</h3>
         <p>
-          To validate all of this, I built out our <strong>Streamlit playground</strong>:
+          To validate all of this, with the development team, I built out our <strong>Streamlit playground</strong>:
           a QA harness that runs real conversation transcripts through the entire My World
           pipeline (session summary, two-stage topic detection, and topic summary),
           exporting structured JSON. I later added an Invitation tab for the provocation
@@ -335,7 +334,7 @@ export default function MyWorld() {
           width={1440}
           height={936}
           title="The Streamlit QA playground"
-          description="A tour of the playground: real session JSON loaded in, the editable Appendix A/B/C prompts, a step-1 freeze, then a run whose results table shows per-session match decisions with cosine scores: 20 sessions, 12 matched, 8 new topics, 0 errored."
+          description="A tour of the playground: real session JSON loaded in, the editable prompts, a first-stage freeze, then a run whose results table shows per-session match decisions with similarity scores: 20 sessions, 12 matched, 8 new topics, 0 errored."
           tone="mint"
           caption="The Streamlit playground: real transcripts in, editable prompts, structured JSON out, with a per-session results table for field-level compliance checks."
         />

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-// TODO: update to the final production domain before launch
-const BASE = "https://arshitamisra.vercel.app";
+const BASE = "https://arshita.co";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
