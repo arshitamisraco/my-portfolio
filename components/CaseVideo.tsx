@@ -50,6 +50,11 @@ interface CaseVideoProps {
   size?: keyof typeof SIZES;
   /** Drop the outer vertical margin — use when nested in a grid that provides spacing. */
   flush?: boolean;
+  /**
+   * "autoplay" (default): short loop that plays muted while in view.
+   * "click": poster with a play button — use for longer clips that shouldn't run unasked.
+   */
+  mode?: "autoplay" | "click";
 }
 
 /**
@@ -70,6 +75,7 @@ export default function CaseVideo({
   tone = "pink",
   size = "full",
   flush = false,
+  mode = "autoplay",
 }: CaseVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -84,7 +90,7 @@ export default function CaseVideo({
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || mode !== "autoplay") return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -102,7 +108,7 @@ export default function CaseVideo({
     );
     observer.observe(video);
     return () => observer.disconnect();
-  }, [reducedMotion]);
+  }, [reducedMotion, mode]);
 
   return (
     <figure
@@ -122,7 +128,7 @@ export default function CaseVideo({
             className="block h-auto w-full"
             sizes="(min-width: 1024px) 680px, 100vw"
           />
-          {!reducedMotion ? (
+          {!reducedMotion && mode === "autoplay" ? (
             <video
               ref={videoRef}
               src={src}
