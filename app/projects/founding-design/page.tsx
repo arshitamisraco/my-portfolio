@@ -33,6 +33,7 @@ export default function FoundingDesign() {
       eyebrow="COROS AI · Case Study"
       title="Founding designer: shaping the product and the AI together"
       summary="How COROS AI learned to gather context before it coaches: three onboarding features, the prompt architecture behind them, and the brand around them."
+      highlight={{ stat: "3 flagship features shipped 0→1" }}
       meta={[
         { label: "Role", value: "AI Designer · Founding Employee" },
         { label: "Timeline", value: "June 2025 – Present" },
