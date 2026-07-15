@@ -10,12 +10,19 @@ interface MetaItem {
   value: ReactNode;
 }
 
+interface Highlight {
+  /** The headline metric, quantitative ("2.5× user return rate") or qualitative. */
+  stat: ReactNode;
+}
+
 interface CaseStudyLayoutProps {
   slug: string;
   /** Serif page title (may differ slightly from the nav shortTitle). */
   title: string;
   eyebrow: string;
   summary: string;
+  /** Headline impact metric shown at the top of the header for skimming recruiters. */
+  highlight?: Highlight;
   meta: MetaItem[];
   toc: TocItem[];
   children: ReactNode;
@@ -26,6 +33,7 @@ export default function CaseStudyLayout({
   title,
   eyebrow,
   summary,
+  highlight,
   meta,
   toc,
   children,
@@ -70,6 +78,18 @@ export default function CaseStudyLayout({
             {title}
           </h1>
           <p className="mt-4 max-w-2xl text-body-lg text-ink-muted">{summary}</p>
+
+          {highlight && (
+            <aside
+              aria-label="Impact highlight"
+              className="mt-8 max-w-2xl rounded-frame border border-line border-l-4 border-l-accent bg-surface-raised p-5 md:p-6"
+            >
+              <p className="text-style-eyebrow text-accent-deep">Impact</p>
+              <p className="mt-2 font-display text-h3 font-semibold text-ink">
+                {highlight.stat}
+              </p>
+            </aside>
+          )}
 
           <div className="mt-6 flex flex-wrap gap-2">
             {study.tags.map((tag) => (

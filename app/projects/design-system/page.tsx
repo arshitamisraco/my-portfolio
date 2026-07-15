@@ -48,6 +48,7 @@ export default function DesignSystem() {
       eyebrow="COROS AI · Case Study"
       title="Rebuilding the design system across three platforms"
       summary="Product Design · Design Systems · Design Engineering. Migrating a live AI coaching product onto a scalable design system across four platforms."
+      highlight={{ stat: "2.5× increase in user return rate" }}
       meta={[
         {
           label: "Role",

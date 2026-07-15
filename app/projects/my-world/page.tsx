@@ -29,6 +29,7 @@ export default function MyWorld() {
       eyebrow="COROS AI · Case Study"
       title="Designing an AI that remembers you"
       summary="A page that reflects a user's coaching history back to them at an early-stage AI startup, designed end to end from the information architecture to the prompts behind every card."
+      highlight={{ stat: "3 layers owned by one designer" }}
       meta={[
         {
           label: "Role",
