@@ -15,7 +15,7 @@
 
 COROS AI's first product was built on stock Material UI: dark-only, desktop-only, visually generic, and increasingly painful to iterate on. I led the full redesign onto a shadcn/Tailwind foundation, building the design system from raw color primitives up to a published multi-designer Figma library with 54+ semantic tokens, full light/dark theming, and responsive component architecture across four platforms. I redesigned every base surface (onboarding, chat, sidebar, and settings) and shipped an internal "Retrieved Context" transparency panel that lets the team inspect the RAG pipeline (retrieved chunks, memory scoring, session-boundary detection) directly inside the product for prompt QA.
 
-The redesign is live in production. The onboarding rework contributed to a **2.5× increase in user return rate**, and the shared token system compressed design-to-review cycles from days to hours.
+The redesign is live in production. After the onboarding rework, **55% of early signups return the next day** and **40% of registered users are weekly actives**, and the shared token system compressed design-to-review cycles from days to hours.
 
 ---
 
@@ -102,7 +102,7 @@ Designs shipped with a markdown design specification covering every surface: scr
 ## 7. Outcomes
 
 - **Live in production** at [app.coros.ai](https://app.coros.ai) across web, iOS, and Android.
-- **2.5× increase in user return rate** following launch, with the redesigned coaching-interview onboarding as a primary contributor.
+- **55% of early signups return the next day** and **40% of registered users are weekly actives** following launch, with the redesigned coaching-interview onboarding as a primary contributor.
 - **A published, adopted design library**: the second designer and both engineers work from the same tokens; the microinteractions workstream builds on my components without detaching them.
 - **Design-to-review cycles compressed from days to hours**, aided by functional HTML/CSS/JS prototypes for contested decisions.
 - **A team that can see its own AI.** The Retrieved Context panel made prompt QA a first-class, in-product workflow.

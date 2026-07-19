@@ -14,7 +14,7 @@
 
 COROS AI's first product ran on stock Material UI: dark-only, desktop-only, and hard to iterate on. I led the full redesign onto a shadcn foundation, building the design system from color primitives up to a published Figma library with 54+ semantic tokens, full light/dark theming, and responsive components across four platforms. I redesigned every base surface (onboarding, chat, sidebar, settings) and designed an internal Retrieved Context panel that lets the team inspect the RAG pipeline inside the product.
 
-The redesign is live in production. The onboarding rework contributed to a **2.5× increase in user return rate**, and the shared token system cut design-to-review cycles from days to hours.
+The redesign is live in production. After the onboarding rework, **55% of early signups return the next day** and **40% of registered users are weekly actives**, and the shared token system cut design-to-review cycles from days to hours.
 
 ## 1. Why the redesign happened
 
@@ -60,7 +60,7 @@ I was doing prompt QA myself, so I designed the tool as its own primary user. Ev
 
 Designs shipped with a markdown spec per surface covering layout differences, component inventory, UX states, and edge cases. Documented sections were accepted by engineering with zero redesign requests.
 
-Results: live in production across web, iOS, and Android; a 2.5× increase in user return rate after launch; a published library the whole team builds on without detaching components; and review cycles cut from days to hours.
+Results: live in production across web, iOS, and Android; 55% of early signups returning the next day and 40% of registered users active weekly after launch; a published library the whole team builds on without detaching components; and review cycles cut from days to hours.
 
 ## 7. What I learned
 

@@ -11,7 +11,7 @@ interface MetaItem {
 }
 
 interface Highlight {
-  /** The headline metric, quantitative ("2.5× user return rate") or qualitative. */
+  /** The headline metric, quantitative ("55% next-day return") or qualitative. */
   stat: ReactNode;
 }
 

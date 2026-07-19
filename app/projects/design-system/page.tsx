@@ -25,8 +25,8 @@ const TOC = [
 
 const STATS = [
   {
-    value: "2.5×",
-    label: "increase in user return rate after the onboarding rework",
+    value: "55%",
+    label: "of early signups return the next day after the onboarding rework",
     bg: "bg-lavender-soft",
   },
   {
@@ -48,7 +48,7 @@ export default function DesignSystem() {
       eyebrow="COROS AI · Case Study"
       title="Rebuilding the design system across three platforms"
       summary="Product Design · Design Systems · Design Engineering. Migrating a live AI coaching product onto a scalable design system across four platforms."
-      highlight={{ stat: "2.5× increase in user return rate" }}
+      highlight={{ stat: "55% of early signups return the next day" }}
       meta={[
         {
           label: "Role",
@@ -99,9 +99,10 @@ export default function DesignSystem() {
           pipeline directly inside the product.
         </p>
         <p>
-          The redesign is live in production. The onboarding rework contributed to a{" "}
-          <strong>2.5× increase in user return rate</strong>, and the shared token system
-          cut design-to-review cycles from days to hours.
+          The redesign is live in production. After the onboarding rework,{" "}
+          <strong>55% of early signups return the next day</strong> and{" "}
+          <strong>40% of registered users are weekly actives</strong>, and the shared
+          token system cut design-to-review cycles from days to hours.
         </p>
       </CaseSection>
 
@@ -623,8 +624,9 @@ export default function DesignSystem() {
             across web, iOS, and Android.
           </li>
           <li>
-            A <strong>2.5× increase in user return rate</strong> after launch, with the
-            onboarding rework as a primary contributor.
+            <strong>55% of early signups return the next day</strong> and{" "}
+            <strong>40% of registered users are weekly actives</strong> after launch, with
+            the onboarding rework as a primary contributor.
           </li>
           <li>
             <strong>A published library the whole team builds on</strong>: the second
