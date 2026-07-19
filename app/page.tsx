@@ -157,7 +157,7 @@ export default function Home() {
                 href={COROS_HUB_HREF}
                 title="COROS AI: an AI coaching platform"
                 subtitle="Founding AI Designer"
-                description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand. Onboarding and interaction redesigns lifted user retention 2.5×."
+                description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand. Onboarding and interaction redesigns drove 55% next-day return from early signups and 40% weekly actives."
                 tags={[
                   { label: "Product Design", tone: "pink" },
                   { label: "AI/UX", tone: "lavender" },

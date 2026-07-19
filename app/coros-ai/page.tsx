@@ -84,8 +84,9 @@ export default function CorosHub() {
               <strong>
                 product design, UX, prompt engineering, user research, and brand
               </strong>
-              &nbsp;— with onboarding and interaction redesigns that increased user
-              retention <strong>2.5×</strong>.
+              &nbsp;— with onboarding and interaction redesigns that got{" "}
+              <strong>55%</strong> of early signups returning the next day and{" "}
+              <strong>40%</strong> of registered users active weekly.
             </p>
           </div>
         </div>
