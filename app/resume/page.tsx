@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 /* ---------- Headline impact metrics ---------- */
 const STATS: { value: string; label: string; tone: ChipTone }[] = [
   { value: "55%", label: "Next-day return from early signups", tone: "pink" },
-  { value: "+15%", label: "KPI lift at pilot venue", tone: "peach" },
+  { value: "15%", label: "Average tip size lift at pilot venue (bar)", tone: "peach" },
   { value: "2nd / 100", label: "Teams worldwide — RESNA challenge", tone: "mint" },
   { value: "$20K", label: "Grant secured for museum platform", tone: "lavender" },
 ];

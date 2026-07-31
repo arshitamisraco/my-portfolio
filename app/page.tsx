@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Button from "@/components/Button";
-import CorosCarousel from "@/components/CorosCarousel";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import PixelCloud from "@/components/PixelCloud";
-import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import { COROS_CASE_STUDIES, COROS_HUB_HREF } from "@/lib/coros";
@@ -142,48 +141,44 @@ export default function Home() {
       </section>
 
       {/* ================= Selected Work ================= */}
+      {/* All three case studies live here, stacked, with one short shared
+          preamble: they're all the same role at the same company, so the
+          context is stated once instead of repeated on every card. */}
       <section id="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
           <Reveal>
             <SectionLabel cloud>Selected Work</SectionLabel>
+            <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
+              Three end-to-end case studies, all from my work as founding designer at COROS AI.
+            </h2>
+            <p className="mt-5 max-w-2xl text-body-lg text-ink-muted">
+              COROS AI is an AI coach that helps professionals shift moods, repair
+              relationships, and take action when they&rsquo;re stuck. Since June 2025
+              I&rsquo;ve led its product design, UX, prompt engineering, research, and brand.
+            </p>
+            <a
+              href="https://app.coros.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-6 inline-flex items-center gap-2 rounded-frame border border-line px-4 py-2 text-caption font-medium text-accent-deep transition-all duration-300 hover:border-accent hover:bg-surface-raised"
+            >
+              Try what I built
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
+              >
+                →
+              </span>
+            </a>
           </Reveal>
 
-          {/* Card + its direct-entrance links reveal together as one unit — the
-              links belong to the card, so a single Reveal keeps them from fading
-              in a scroll behind it. */}
-          <Reveal delay={0.1}>
-            <div className="mt-8">
-              <ProjectCard
-                href={COROS_HUB_HREF}
-                title="COROS AI: an AI coaching platform"
-                subtitle="Founding AI Designer"
-                description="Designing an AI coaching platform end to end — product, AI behavior, design system, and brand. Onboarding and interaction redesigns drove 55% next-day return from early signups and 40% weekly actives."
-                tags={[
-                  { label: "Product Design", tone: "pink" },
-                  { label: "AI/UX", tone: "lavender" },
-                  { label: "Prompt Engineering", tone: "sky" },
-                  { label: "Design Systems", tone: "mint" },
-                  { label: "0→1", tone: "butter" },
-                ]}
-                cover={<CorosCarousel />}
-              />
-            </div>
-
-            {/* Direct entrances for recruiters who want to jump straight in */}
-            <ul className="mt-6 flex flex-wrap gap-3">
-              {COROS_CASE_STUDIES.map((study) => (
-                <li key={study.slug}>
-                  <Link
-                    href={study.href}
-                    className="inline-flex items-center gap-2 rounded-pill border border-line bg-surface-raised px-4 py-2 text-caption font-medium text-ink-muted transition-colors hover:border-accent hover:text-accent-deep"
-                  >
-                    {study.shortTitle}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className="mt-12 flex flex-col gap-8">
+            {COROS_CASE_STUDIES.map((study, i) => (
+              <Reveal key={study.slug} delay={i * 0.08}>
+                <CaseStudyCard study={study} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -7,36 +7,36 @@ import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
-  title: "Rebuilding the Design System Across Three Platforms",
+  title: "COROS AI Redesign: MUI → shadcn",
   description:
-    "Leading COROS AI's full redesign onto a shadcn/Tailwind foundation — 54+ semantic tokens, light/dark theming, responsive surfaces across four platforms, and a team-facing RAG debug panel.",
+    "Rebuilding the entire COROS AI product UI and its design system: 54+ semantic tokens in light and dark, every core surface redesigned, live on web, iOS, and Android.",
 };
 
 const TOC = [
-  { id: "tldr", label: "TL;DR" },
-  { id: "context", label: "Why the redesign happened" },
-  { id: "tokens", label: "Three layers, zero shortcuts" },
-  { id: "components", label: "Component architecture" },
-  { id: "surfaces", label: "Redesigning the screens" },
-  { id: "retrieved-context", label: "A debug panel for the team" },
-  { id: "handoff", label: "Handoff & outcomes" },
-  { id: "learnings", label: "What I learned" },
+  { id: "problem", label: "The problem" },
+  { id: "tokens", label: "Design system" },
+  { id: "components", label: "Components" },
+  { id: "onboarding", label: "Onboarding" },
+  { id: "chat", label: "Chat" },
+  { id: "settings", label: "Settings" },
+  { id: "retrieved-context", label: "Retrieved Context panel" },
+  { id: "results", label: "Results" },
 ];
 
 const STATS = [
   {
-    value: "55%",
-    label: "of early signups return the next day after the onboarding rework",
+    value: "54+",
+    label: "semantic tokens, light and dark",
     bg: "bg-lavender-soft",
   },
   {
-    value: "54+",
-    label: "semantic tokens, themed for light and dark in one file",
+    value: "Days → hours",
+    label: "design-to-review cycles",
     bg: "bg-sky-soft",
   },
   {
     value: "4",
-    label: "platforms from one system: web desktop, tablet, iOS, and Android",
+    label: "platforms: web, tablet, iOS, Android",
     bg: "bg-mint-soft",
   },
 ];
@@ -46,20 +46,19 @@ export default function DesignSystem() {
     <CaseStudyLayout
       slug="design-system"
       eyebrow="COROS AI · Case Study"
-      title="Rebuilding the design system across three platforms"
-      summary="Product Design · Design Systems · Design Engineering. Migrating a live AI coaching product onto a scalable design system across four platforms."
-      highlight={{ stat: "55% of early signups return the next day" }}
+      title="COROS AI Redesign: MUI → shadcn"
+      summary="AI life coaching app. I rebuilt the entire product UI and its design system, live on web, iOS, and Android."
+      highlight={{ stat: "Live in production on web, iOS, and Android" }}
       meta={[
         {
           label: "Role",
-          value:
-            "Product Designer · Design system ownership · Surface design · Developer handoff",
+          value: "Product Designer",
         },
         {
-          label: "Team",
-          value: "Founder/CEO · 2 engineers · 1 designer",
+          label: "Ownership",
+          value: "Design system owner",
         },
-        { label: "Platforms", value: "Web (desktop + tablet), iOS, Android" },
+        { label: "Platforms", value: "4 platforms: web, tablet, iOS, Android" },
         {
           label: "Links",
           value: (
@@ -70,7 +69,7 @@ export default function DesignSystem() {
                 rel="noopener noreferrer"
                 className="text-accent-deep underline decoration-accent underline-offset-2 hover:decoration-accent-deep"
               >
-                Live product
+                app.coros.ai
               </a>
               {" · "}
               <a
@@ -79,7 +78,7 @@ export default function DesignSystem() {
                 rel="noopener noreferrer"
                 className="text-accent-deep underline decoration-accent underline-offset-2 hover:decoration-accent-deep"
               >
-                Figma system
+                Figma
               </a>
             </>
           ),
@@ -87,42 +86,26 @@ export default function DesignSystem() {
       ]}
       toc={TOC}
     >
-      <CaseSection id="tldr" eyebrow="Summary" title="TL;DR">
-        <p>
-          COROS AI&rsquo;s first product ran on stock Material UI: dark-only,
-          desktop-only, and hard to iterate on. I led the full redesign onto a shadcn
-          foundation, building the design system from raw color primitives up to a
-          published Figma library with 54+ semantic tokens, full light/dark theming, and
-          responsive components across four platforms. I redesigned every base surface
-          (onboarding, chat, sidebar, and settings) and designed an internal
-          &ldquo;Retrieved Context&rdquo; panel that lets the team inspect the RAG
-          pipeline directly inside the product.
-        </p>
-        <p>
-          The redesign is live in production. After the onboarding rework,{" "}
-          <strong>55% of early signups return the next day</strong> and{" "}
-          <strong>40% of registered users are weekly actives</strong>, and the shared
-          token system cut design-to-review cycles from days to hours.
-        </p>
-      </CaseSection>
-
-      {/* Scope + impact at a glance — a numeric read leading into the visual hero. */}
-      <div className="mb-14 grid gap-3 sm:grid-cols-3 sm:gap-4">
-        {STATS.map((stat) => (
-          <div
-            key={stat.value}
-            className={`rounded-frame border border-line p-5 sm:p-6 ${stat.bg}`}
-          >
-            <p className="font-display text-h1 font-semibold leading-none text-ink">
-              {stat.value}
-            </p>
-            <p className="mt-3 text-caption text-ink-muted">{stat.label}</p>
-          </div>
-        ))}
-      </div>
+      {/* Scope at a glance — a numeric read leading into the visual hero. */}
+      <section aria-label="At a glance" className="mb-14">
+        <p className="text-style-eyebrow text-ink-muted">At a glance</p>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3 sm:gap-4">
+          {STATS.map((stat) => (
+            <div
+              key={stat.label}
+              className={`rounded-frame border border-line p-5 ${stat.bg}`}
+            >
+              <p className="font-display text-h3 font-semibold leading-tight text-ink">
+                {stat.value}
+              </p>
+              <p className="mt-3 text-caption text-ink-muted">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <HeroMontage
-        label="The redesign, at a glance"
+        label="The live product, in light and dark"
         portrait={[
           {
             src: "/videos/design-system/onboarding-mobile-light.mp4",
@@ -179,62 +162,24 @@ export default function DesignSystem() {
         ]}
       />
 
-      <CaseSection id="context" eyebrow="Context" title="Why the redesign happened">
+      <CaseSection id="problem" eyebrow="Context" title="The problem">
         <p>
-          COROS is an AI coach. The interface has one job: stay out of the way of a deep,
-          sometimes emotionally heavy conversation while still feeling premium. The MUI
-          product did the opposite. Testers said the dim, low-contrast dark theme strained
-          their eyes during long sessions, and there was no light mode to offer them.
-        </p>
-        <p>
-          The internal problems were structural. MUI defaults were overridden ad hoc with
-          no token layer, so restyling anything meant touching individual components. The
-          UI was desktop-only despite mobile plans. With a second designer joining and
-          engineers building from screenshots, there was no shared library or naming
-          convention, and the brand (COROS blue #0822E6, orange #EA4A00) had disappeared
-          into Material defaults.
-        </p>
-        <p>
-          Engineering was moving to shadcn/Tailwind. My mandate was to build the design
-          side of that migration and redesign every surface on top of it.
+          The v1 product was stock Material UI: dark-only, desktop-only, no design system.
+          Testers said it strained their eyes. Engineering was moving to shadcn, and I
+          owned the design side of the migration.
         </p>
       </CaseSection>
 
-      <CaseSection id="tokens" eyebrow="Design system" title="Three layers, zero shortcuts">
+      <CaseSection id="tokens" eyebrow="Foundation" title="Design system">
         <p>
-          I built on the Obra shadcn Figma kit because it mirrors how shadcn works in code:
-          components only reference semantic tokens, never raw values. I extended it with a
-          strict architecture.
+          One rule: components never touch raw colors. Everything resolves through
+          primitives → brand layer → semantic tokens, mirroring the code exactly.
         </p>
         <PullQuote>
           Raw primitives → Brand layer → Semantic tokens → Components
         </PullQuote>
-        <p>
-          For primitives, I generated full 11-stop scales for new{" "}
-          <code>coros-neutral</code>, <code>coros-blue</code>, and{" "}
-          <code>coros-orange</code> groups, with the brand hexes locked at the 600 stop.
-          The neutrals aren&rsquo;t gray; they&rsquo;re tinted at the brand&rsquo;s blue
-          hue, so even &ldquo;empty&rdquo; surfaces feel like COROS. I also built a custom
-          crimson scale for destructive states when the kit&rsquo;s red clashed. Everything
-          was added as new groups instead of overwriting kit defaults, keeping the kit
-          upgradeable.
-        </p>
-        <p>
-          Semantic tokens are forbidden from touching raw scales directly; they resolve
-          only through the brand layer. That one rule makes a rebrand a single-layer
-          repoint instead of a token audit. On top sit 54+ role-based tokens mapped for
-          light and dark via Figma variable modes, including product-specific tokens like{" "}
-          <code>chat-bubble-coros</code> and <code>chat-bubble-user</code> that shadcn
-          doesn&rsquo;t ship.
-        </p>
-        <p>
-          The payoff: every screen is designed once. Toggling the frame&rsquo;s mode
-          re-resolves every token, so verifying both themes is a click, not a redraw. That
-          is the only way a team this small ships two themes across four platforms. I
-          published the library for the whole team to build on.
-        </p>
         <div className="my-8">
-          <div className="grid gap-3 sm:grid-cols-3 sm:items-center sm:gap-4">
+          <div className="grid gap-3 sm:grid-cols-2 sm:items-center sm:gap-4">
             <ImageFrame
               src="/images/design-system/figma/tokens-semantic-colors.png"
               width={1882}
@@ -253,76 +198,98 @@ export default function DesignSystem() {
               tone="mint"
               flush
             />
+          </div>
+          <p className="mt-3 text-caption text-ink-muted">
+            The system in Figma: semantic colors holding a value per token for both light
+            and dark modes, and typography resolving through shared font definitions.
+          </p>
+        </div>
+        <ul>
+          <li>
+            Custom 11-stop scales for COROS blue, orange, and blue-tinted neutrals.
+          </li>
+          <li>
+            54+ tokens across light and dark via Figma variable modes: design once, toggle
+            themes with one click.
+          </li>
+          <li>
+            Published as a shared library; the whole team builds on it without detaching.
+          </li>
+        </ul>
+      </CaseSection>
+
+      <CaseSection id="components" eyebrow="Architecture" title="Components">
+        <p>
+          Variants only when structure changes. Everything else is a property. The chat
+          input handles 4 states × all breakpoints without a variant explosion.
+        </p>
+      </CaseSection>
+
+      <CaseSection id="onboarding" eyebrow="Screens" title="Onboarding">
+        <p>
+          8 dark-only screens → 6 themed screens, name moved up front so the flow addresses
+          you personally.
+        </p>
+        <CaseVideo
+          src="/videos/design-system/onboarding-web-dark.mp4"
+          poster="/images/design-system/posters/onboarding-web-dark.jpg"
+          width={1440}
+          height={936}
+          title="The six-screen onboarding on web, dark theme"
+          description="The full onboarding on web in dark mode: the rotating multilingual welcome, name, dimensions, influences, tone selection with its animated orbs, and the loading hand-off into chat."
+          size="lg"
+          tone="lavender"
+          caption="Welcome through Loading on web (dark theme), including the greeting that rotates through nine languages and the tone selection."
+        />
+        <p>
+          The tone screen teaches by interaction: pick Supportive or Provocative and the
+          orb, card, and background respond.
+        </p>
+        <div className="my-8">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <CaseVideo
+              src="/videos/design-system/onboarding-mobile-light.mp4"
+              poster="/images/design-system/posters/onboarding-mobile-light.jpg"
+              width={640}
+              height={1392}
+              title="Onboarding on mobile, light theme"
+              description="The onboarding welcome on mobile in light mode, greeting rotating through languages."
+              size="mobile"
+              tone="pink"
+              flush
+            />
             <ImageFrame
-              src="/images/design-system/figma/tokens-semantic-spacing.png"
-              width={1889}
-              height={1890}
-              alt="Figma variables editor showing the semantic spacing collection with separate sm (mobile) and lg (desktop) columns for padding, layout, and gap tokens."
-              size="full"
+              src="/images/design-system/mobile/personalization-tone.png"
+              width={1206}
+              height={2622}
+              alt="Mobile tone selection with Supportive and Provocative cards, each carrying an animated orb."
+              size="mobile"
               tone="sky"
+              flush
+            />
+            <ImageFrame
+              src="/images/design-system/mobile/personalization-dimensions.png"
+              width={1206}
+              height={2622}
+              alt="Mobile dimensions selection with seven pill options, several selected."
+              size="mobile"
+              tone="lavender"
               flush
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The variable library at a glance: semantic colors holding a value per token
-            for both the shadcn (light) and shadcn-dark modes, typography resolving
-            through shared font definitions, and spacing carrying separate sm (mobile)
-            and lg (desktop) values. Every color resolves through a brand reference,
-            never a raw hex.
+            The same flow on mobile (light theme): the multilingual welcome, the tone cards
+            with their orbs, and the dimension pills. Every screen was designed for web,
+            tablet, iOS, and Android at once.
           </p>
         </div>
       </CaseSection>
 
-      <CaseSection
-        id="components"
-        eyebrow="Component architecture"
-        title="How the components were built"
-      >
+      <CaseSection id="chat" eyebrow="Screens" title="Chat">
         <p>
-          My rule:{" "}
-          <strong>
-            variants only when structure changes, component properties for everything
-            else.
-          </strong>{" "}
-          The chat input bar shows why: it needed default, focused, with-text, and
-          multiline states across breakpoints, which naively explodes into a variant grid.
-          Instead:
-        </p>
-        <ul>
-          <li>
-            <strong>Multiline</strong> earned a variant: it changes the component&rsquo;s
-            height and layout.
-          </li>
-          <li>
-            <strong>Focus</strong> became a boolean: it&rsquo;s just a ring, not a new
-            structure.
-          </li>
-          <li>
-            <strong>Send button and placeholder</strong> became component properties.
-          </li>
-          <li>
-            <strong>Width differences</strong> were handled by auto-layout constraints
-            rather than breakpoint variants, so the component resizes instead of
-            multiplying.
-          </li>
-        </ul>
-        <p>
-          The same logic ran through message bubbles, the sidebar, and settings. Icons
-          standardized on Lucide at 20px inside 32px ghost hit areas, benchmarked against
-          production values from leading AI chat products rather than invented.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="surfaces" eyebrow="Screens" title="Redesigning the core screens">
-        <h3>Chat</h3>
-        <p>
-          Chat is the product, so it got the deepest state inventory: empty state, typing
-          indicator vs. streaming text, errors and retries, message-level actions, and
-          scroll and return-to-chat behavior. The user bubble color was a real debate:
-          full brand blue felt heavy, so I prototyped three alternatives in working HTML
-          across both themes and brought the finalists to stakeholder review. That set the
-          project&rsquo;s working pattern:{" "}
-          <strong>prototype disagreements, don&rsquo;t argue them.</strong>
+          Designed the full state inventory: empty, streaming, errors, message actions,
+          return-to-chat. Prototyped 3 user-bubble options in working HTML to settle the
+          debate.
         </p>
         <CaseVideo
           src="/videos/design-system/chat-web-dark.mp4"
@@ -333,7 +300,7 @@ export default function DesignSystem() {
           description="A coaching exchange on web in dark mode: the COROS greeting, a user message, a streamed response, and the read-aloud and flag actions revealed beneath it."
           size="lg"
           tone="sky"
-          caption="Chat in motion on web (dark theme): the greeting, a streamed reply, and the message-level actions beneath each COROS response."
+          caption="Chat on web (dark theme): the greeting, a streamed reply, and the message actions beneath each COROS response."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -369,79 +336,16 @@ export default function DesignSystem() {
           </div>
           <p className="mt-3 text-caption text-ink-muted">
             The same surface on mobile (light theme): date-grouped history with message
-            actions, the inline tone quick-switch, and composing a message: one component
+            actions, the inline tone quick-switch, and composing a message. One component
             system, both themes.
           </p>
         </div>
+      </CaseSection>
 
-        <h3>Onboarding</h3>
+      <CaseSection id="settings" eyebrow="Screens" title="Settings">
         <p>
-          The legacy flow was eight dark-only screens that asked for the user&rsquo;s name{" "}
-          <em>last</em>, after personalizing everything. I restructured it to six:{" "}
-          <strong>Welcome → Name → Dimensions → Influences → Tone → Loading</strong>, with
-          the name up front so the rest of the flow can address the user personally. The
-          welcome greeting rotates through nine languages to signal multilingual support
-          without a selector. The tone screen teaches through interaction: the chosen card
-          comes forward, the background tints blue or orange, and each orb animates to
-          match its personality. Every screen shipped for all four platforms.
-        </p>
-        <CaseVideo
-          src="/videos/design-system/onboarding-web-dark.mp4"
-          poster="/images/design-system/posters/onboarding-web-dark.jpg"
-          width={1440}
-          height={936}
-          title="The six-screen onboarding on web, dark theme"
-          description="The full onboarding on web in dark mode: the rotating multilingual welcome, name, dimensions, influences, tone selection with its animated orbs, and the loading hand-off into chat."
-          size="lg"
-          tone="lavender"
-          caption="Welcome through Loading on web (dark theme): the rotating multilingual greeting, gated navigation, and the tone cards whose orbs animate per personality."
-        />
-        <div className="my-8">
-          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-            <CaseVideo
-              src="/videos/design-system/onboarding-mobile-light.mp4"
-              poster="/images/design-system/posters/onboarding-mobile-light.jpg"
-              width={640}
-              height={1392}
-              title="Onboarding on mobile, light theme"
-              description="The onboarding welcome on mobile in light mode, greeting rotating through languages."
-              size="mobile"
-              tone="pink"
-              flush
-            />
-            <ImageFrame
-              src="/images/design-system/mobile/personalization-tone.png"
-              width={1206}
-              height={2622}
-              alt="Mobile tone selection with Supportive and Provocative cards, each carrying an animated orb."
-              size="mobile"
-              tone="sky"
-              flush
-            />
-            <ImageFrame
-              src="/images/design-system/mobile/personalization-dimensions.png"
-              width={1206}
-              height={2622}
-              alt="Mobile dimensions selection with seven pill options, several selected."
-              size="mobile"
-              tone="lavender"
-              flush
-            />
-          </div>
-          <p className="mt-3 text-caption text-ink-muted">
-            The same flow on mobile (light theme): the multilingual welcome, tone cards, and
-            dimension pills. Every screen was designed for web desktop, web tablet, iOS, and
-            Android at once, so the token system is what keeps them identical.
-          </p>
-        </div>
-
-        <h3>Sidebar &amp; settings</h3>
-        <p>
-          Settings became a modal shell with a persistent left nav (Account, Data control,
-          Personalization, About, Terms, and My Memories) consistent across every tab so
-          the frame never jumps. The Appearance toggle moved out of settings and into the
-          sidebar as an inline utility row, since switching themes should never require
-          navigating anywhere.
+          Modal shell with persistent nav. Appearance toggle moved into the sidebar so
+          switching themes never requires navigating.
         </p>
         <CaseVideo
           src="/videos/design-system/settings-web-light.mp4"
@@ -463,7 +367,7 @@ export default function DesignSystem() {
           description="The Personalization tab on web in light mode: tone, dimensions, and influences, with the tone orbs animating."
           size="lg"
           tone="butter"
-          caption="Personalization on web (light theme): tone, dimensions, and influences share the same modal shell as settings."
+          caption="Personalization on web (light theme): tone, dimensions, and influences share the same modal shell."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -496,8 +400,9 @@ export default function DesignSystem() {
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The settings shell on mobile: the sidebar flyout, the profile and Account group,
-            and Connected accounts expanding inline rather than pushing to a new screen.
+            The settings shell on mobile: the sidebar flyout, the profile and Account
+            group, and Connected accounts expanding inline rather than pushing to a new
+            screen.
           </p>
         </div>
         <div className="my-8">
@@ -532,7 +437,7 @@ export default function DesignSystem() {
           </div>
           <p className="mt-3 text-caption text-ink-muted">
             States, not just screens: searching influences, the selected chips, and the
-            type-to-confirm delete dialog rendered on its own destructive token.
+            type-to-confirm delete dialog on its own destructive token.
           </p>
         </div>
       </CaseSection>
@@ -540,37 +445,18 @@ export default function DesignSystem() {
       <CaseSection
         id="retrieved-context"
         eyebrow="Feature"
-        title="A debug panel for the team, built into the product"
+        title="Retrieved Context panel (team-only)"
       >
         <p>
-          COROS&rsquo;s coaching quality depends on a retrieval-and-memory pipeline: the
-          model pulls in relevant past context before it responds. When a response went
-          wrong, answering <em>&ldquo;what did the model actually see?&rdquo;</em> meant an
-          engineer digging through logs.
-        </p>
-        <p>
-          I designed a team-only panel, opened from any COROS response, that exposes the
-          pipeline for that exact turn:
+          My favorite piece. Debugging the AI meant engineers digging through logs. I
+          designed an in-product panel that shows exactly what the model saw for any
+          response:
         </p>
         <ul>
-          <li>
-            <strong>The query and response pair</strong> under inspection, so the debugging
-            session is anchored to a concrete exchange.
-          </li>
-          <li>
-            <strong>Whether the model treated this as a new topic</strong> or a continuation
-            of an earlier one.
-          </li>
-          <li>
-            <strong>The short-term memory</strong>, turn by turn.
-          </li>
-          <li>
-            <strong>The past context it retrieved</strong>, ranked by how relevant each piece
-            was to the moment.
-          </li>
-          <li>
-            <strong>The longer-term memory</strong> as the model sees it.
-          </li>
+          <li>Retrieved sessions with semantic and recency scores.</li>
+          <li>Session-boundary probability.</li>
+          <li>Chunk results.</li>
+          <li>Memory.</li>
         </ul>
         <CaseVideo
           src="/videos/design-system/retrieved-context-web-light.mp4"
@@ -581,14 +467,11 @@ export default function DesignSystem() {
           description="Navigating the Retrieved Context panel: the query and response pair, whether the model treated the turn as a new topic, expandable short-term memory turns, and the past context it retrieved."
           size="lg"
           tone="peach"
-          caption="The panel in use: from the query and response pair into the model's context — new-topic handling, turn-by-turn short-term memory, and retrieved past context, one tab away."
+          caption="The panel in use: from the query and response pair into the model's context, one tab away."
         />
         <p>
-          I was doing the prompt QA myself, so I designed the tool as its own primary user:
-          every field answers a question I actually had during prompt iteration:
-          &ldquo;did it treat this as a new topic when it should have?&rdquo; and &ldquo;why
-          did it pull in <em>that</em> past session?&rdquo; It uses the same tokens and modal
-          shell as settings, so it reads as a native surface, not a bolted-on debug console.
+          I did prompt QA myself, so I designed it as my own user. Every field answers a
+          question I actually had.
         </p>
         <CaseVideo
           src="/videos/design-system/my-memories-web-light.mp4"
@@ -599,65 +482,26 @@ export default function DesignSystem() {
           description="Scrolling the team-only My Memories tab in settings: the longer-term memory accordion, then dated session summaries the model keeps for each conversation."
           size="lg"
           tone="lavender"
-          caption="My Memories (team-only): longer-term memory and dated session summaries, living in the same settings shell as every user-facing tab."
+          caption="My Memories (team-only): longer-term memory and dated session summaries, in the same settings shell as every user-facing tab."
         />
-        <p>
-          The feature quietly changed how the team works: prompt regressions that used to be
-          argued from vibes are now diagnosed from the panel.
-        </p>
       </CaseSection>
 
-      <CaseSection id="handoff" eyebrow="Impact" title="Handoff & outcomes">
-        <p>
-          Designs shipped with a markdown spec per surface (layout differences, component
-          inventory, UX states, and edge cases) written to a consistent template so
-          engineers always knew where to look. Documented sections were accepted by
-          engineering with <strong>zero redesign requests</strong>.
-        </p>
-        <p>Results:</p>
+      <CaseSection id="results" eyebrow="Impact" title="Results">
         <ul>
           <li>
-            <strong>Live in production</strong> at{" "}
+            <strong>Live in production on 4 platforms</strong> at{" "}
             <a href="https://app.coros.ai" target="_blank" rel="noopener noreferrer">
               app.coros.ai
-            </a>{" "}
-            across web, iOS, and Android.
+            </a>
+            .
           </li>
           <li>
-            <strong>55% of early signups return the next day</strong> and{" "}
-            <strong>40% of registered users are weekly actives</strong> after launch, with
-            the onboarding rework as a primary contributor.
+            <strong>Zero redesign requests</strong> on documented handoff specs.
           </li>
           <li>
-            <strong>A published library the whole team builds on</strong>: the second
-            designer and both engineers work from the same tokens, without detaching
-            components.
-          </li>
-          <li>
-            <strong>Review cycles cut from days to hours</strong>, aided by working HTML
-            prototypes for contested decisions.
+            <strong>A library the whole team ships from</strong>.
           </li>
         </ul>
-      </CaseSection>
-
-      <CaseSection id="learnings" eyebrow="Reflection" title="What I learned">
-        <p>
-          <strong>Token discipline is a social contract, not a Figma feature.</strong> It
-          only holds if someone enforces it in review: the system&rsquo;s value came from
-          the discipline, not the variables.
-        </p>
-        <p>
-          <strong>Design the boring layer first.</strong> Weeks spent on color architecture
-          before drawing a single screen felt slow at a pre-seed startup, and it turned out
-          to be the highest-leverage decision of the project: every surface after it was
-          faster than the one before.
-        </p>
-        <p>
-          <strong>Internal users deserve product design too.</strong> The debug panel could
-          have been a JSON dump; treating the team as real users produced a tool people
-          actually open, and it made me a better prompt engineer, because I had to decide
-          what information <em>mattered</em>.
-        </p>
       </CaseSection>
     </CaseStudyLayout>
   );

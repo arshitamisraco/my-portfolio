@@ -92,8 +92,8 @@ export default function About() {
                 body={
                   <>
                     <p>
-                      Happy at COROS AI, but always open to opportunities, good conversation
-                      about design and AI, and whatever we could build together.
+                      Always open to opportunities, good conversation about design and AI,
+                      and whatever we could build together.
                     </p>
                     <Link
                       href="/contact"

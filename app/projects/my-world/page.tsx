@@ -9,17 +9,27 @@ import PullQuote from "@/components/PullQuote";
 export const metadata: Metadata = {
   title: "Designing an AI That Remembers You",
   description:
-    "End-to-end design of the COROS AI surface that reflects a user's coaching history back to them — information architecture, widgets, and the LLM prompts behind every card.",
+    "One page that reflects a user's coaching history back to them, designed end to end: the architecture, the interface, and the prompts behind every card.",
 };
 
 const TOC = [
   { id: "problem", label: "The problem" },
-  { id: "architecture", label: "Architecture" },
-  { id: "interface", label: "Interface" },
-  { id: "ai", label: "The AI" },
-  { id: "implementation", label: "Co-implementation" },
-  { id: "outcomes", label: "Where it stands" },
+  { id: "architecture", label: "How the AI organizes memory" },
+  { id: "interface", label: "The interface" },
+  { id: "ai", label: "The prompts" },
+  { id: "implementation", label: "From mockups to code" },
   { id: "takeaway", label: "The takeaway" },
+];
+
+const STATS = [
+  { value: "6", label: "widgets designed and shipping", bg: "bg-lavender-soft" },
+  { value: "20+", label: "prompt versions engineered", bg: "bg-sky-soft" },
+  {
+    value: "One owner",
+    label: "architecture → UI → prompts → code",
+    bg: "bg-mint-soft",
+  },
+  { value: "Web + mobile", label: "fully responsive", bg: "bg-butter-soft" },
 ];
 
 export default function MyWorld() {
@@ -28,12 +38,11 @@ export default function MyWorld() {
       slug="my-world"
       eyebrow="COROS AI · Case Study"
       title="Designing an AI that remembers you"
-      summary="A page that reflects a user's coaching history back to them at an early-stage AI startup, designed end to end from the information architecture to the prompts behind every card."
-      highlight={{ stat: "3 layers owned by one designer" }}
+      summary="One page that reflects a user's coaching history back to them. Designed end to end: the architecture, the interface, and the prompts behind every card."
       meta={[
         {
           label: "Role",
-          value: "Product Designer · Prompt engineering · Prototyping · Co-implementation",
+          value: "Product Designer · Prompt engineering · Co-implementation",
         },
         {
           label: "Team",
@@ -41,18 +50,17 @@ export default function MyWorld() {
         },
         {
           label: "Timeline",
-          value: "April 2026 – Present",
+          value: "April 2026 – Present (in progress, shipping incrementally)",
         },
         {
           label: "Tools",
-          value:
-            "Figma · Claude Code · Streamlit · HTML/CSS/JS · Prompt engineering",
+          value: "Figma · Claude Code · Streamlit · HTML/CSS/JS",
         },
       ]}
       toc={TOC}
     >
       <HeroStills
-        label="My World, at a glance"
+        label="A first look at My World"
         ariaLabel="A first look at My World"
         rows={[
           [
@@ -99,68 +107,47 @@ export default function MyWorld() {
         ]}
       />
 
+      {/* Scope at a glance — a numeric read between the visual hero and the writing. */}
+      <section aria-label="At a glance" className="mb-14">
+        <p className="text-style-eyebrow text-ink-muted">At a glance</p>
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {STATS.map((stat) => (
+            <div
+              key={stat.label}
+              className={`rounded-frame border border-line p-5 ${stat.bg}`}
+            >
+              <p className="font-display text-h3 font-semibold leading-tight text-ink">
+                {stat.value}
+              </p>
+              <p className="mt-3 text-caption text-ink-muted">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <CaseSection id="problem" eyebrow="The problem" title="Coaching that evaporates">
         <p>
-          COROS is an AI life coach. Users have genuinely transformative conversations:
-          they name a fear, make a commitment, see something about themselves for the
-          first time. Then the session ends and all of it vanishes into chat history.
+          COROS is an AI life coach. Users have transformative conversations, then
+          everything vanishes into chat history.
         </p>
-        <p>
-          My World reflects that history back. The brief I wrote for it became the
-          team&rsquo;s north star:
-        </p>
+        <p>My World reflects it back. My brief became the team&rsquo;s north star:</p>
         <PullQuote attribution="The design brief, and the team's north star">
           A mirror, not a filing cabinet.
         </PullQuote>
         <p>
-          Not a tracker, not a stats dashboard, but a surface that shows you the pattern of
-          your own transformation and invites you back into conversation. That one
-          sentence settled dozens of downstream debates: no page-level filters, no scores
-          or streaks, a ~100-word cap per widget, and every element ending in an on-ramp
-          back to coaching.
+          No filters on the page. No scores or streaks. Every card ends in a way back into
+          coaching.
         </p>
-        <p>
-          And this wasn&rsquo;t UI over an API. Every card&rsquo;s content is{" "}
-          <strong>generated by LLM prompts I wrote</strong>, so I owned three layers at
-          once:
-        </p>
-        <ol>
-          <li>
-            <strong>The information architecture</strong>: how raw conversations become
-            structured, browsable objects.
-          </li>
-          <li>
-            <strong>The interface</strong>: a responsive page of independent widgets.
-          </li>
-          <li>
-            <strong>The prompts, plus the QA tooling</strong>: the generation layer
-            behind every field on screen, and the harness that validates it.
-          </li>
-        </ol>
       </CaseSection>
 
       <CaseSection
         id="architecture"
-        eyebrow="Layer 1 · Architecture"
-        title="How the AI organizes what it remembers"
+        eyebrow="Architecture"
+        title="How the AI organizes memory"
       >
         <p>
-          I co-authored the product&rsquo;s design and implementation document through
-          four versions, which engineering builds from directly. Its core distinction: a{" "}
-          <strong>Session</strong> is an event: one conversation, factually summarized
-          into a structured object with summary, moods, breakthrough, reminders, and
-          relationships. A <strong>Topic</strong> is a territory: a situation the user
-          keeps returning to, like &ldquo;Navigating a difficult conversation with
-          dad.&rdquo;
-        </p>
-        <p>
-          The rule I fought hardest for:{" "}
-          <strong>a topic is a situational territory, never a feeling.</strong> Early
-          model outputs kept producing topics like &ldquo;Self-worth&rdquo;, which is
-          navigationally useless and subtly harmful. I codified this as the{" "}
-          <em>identity-vs-texture</em> rule: feelings may color a summary, but never
-          become the title. It now governs the topic prompts and the two-stage detection
-          pipeline (embedding search feeding an LLM match decision).
+          A <strong>Session</strong> is an event. A <strong>Topic</strong> is a territory
+          the user keeps returning to.
         </p>
         <CaseVideo
           src="/videos/my-world/topic-to-session.mp4"
@@ -170,30 +157,18 @@ export default function MyWorld() {
           title="Navigating from a topic into a session"
           description="Opening a topic from My World: the territory view with its summary, moods, and session list, then clicking through to a single session's detail page with commitments and a breakthrough."
           tone="lavender"
-          caption="The hierarchy in navigation: My World → a topic's territory → one session's detail."
+          caption="My World → a topic's territory → one session's detail."
         />
         <p>
-          I also framed My World as a <strong>federated portal</strong>: each widget ships
-          independently with its own prompt, logic, and documented rationale, so engineers
-          could build one widget without waiting on another to stabilize.
+          The rule I fought for:{" "}
+          <strong>a topic is a situation, never a feeling.</strong> &ldquo;Conversation
+          with dad,&rdquo; not &ldquo;Self-worth.&rdquo; It now governs the detection
+          pipeline.
         </p>
       </CaseSection>
 
-      <CaseSection
-        id="interface"
-        eyebrow="Layer 2 · Interface"
-        title="Three iterations that mattered"
-      >
-        <h3>The main view</h3>
-        <p>
-          A <strong>featured band</strong> of three reflective cards (My Breakthroughs,
-          Coaching Provocation, Latest Breakthrough) above a full-width stacked{" "}
-          <strong>Topics list</strong>, filterable by seven life dimensions (Family, Work,
-          Self, Health, Meaning, Belonging, World) and by status. Topics are never tiled
-          as a grid; each gets room to breathe. A cross-page filtering concept tested well,
-          but I argued to defer it and hold a stricter rule:{" "}
-          <strong>filters belong to individual widgets, not the page.</strong>
-        </p>
+      <CaseSection id="interface" eyebrow="The interface" title="The interface">
+        <h3>The page</h3>
         <CaseVideo
           src="/videos/my-world/page-tour.mp4"
           poster="/images/my-world/posters/page-tour.jpg"
@@ -202,32 +177,13 @@ export default function MyWorld() {
           title="My World, top to bottom"
           description="A tour of the page: the featured band of reflective cards above the reminders widget and the stacked topics list."
           tone="lavender"
-          caption="The page, top to bottom: featured band, reminders, topics."
+          caption="Featured band, reminders, topics. Filters live inside widgets, never on the page."
         />
 
-        <h3>Combining two key widgets</h3>
+        <h3>Two widgets became one</h3>
         <p>
-          We had two separate widgets, and the donut was under threat from a line-chart
-          alternative. Instead of choosing, I merged them into{" "}
-          <strong>one widget with two modes</strong> and specced the full state machine:
-        </p>
-        <ul>
-          <li>
-            <strong>Mode A:</strong> donut inert, the panel shows the newest breakthrough,
-            arrows walk the whole history.
-          </li>
-          <li>
-            <strong>Mode B:</strong> clicking a segment filters the panel to that
-            dimension, and auto-advancing past a dimension&rsquo;s last breakthrough{" "}
-            <strong>moves the donut&rsquo;s live selection in real time</strong>,
-            traversing dimensions in palette order.
-          </li>
-        </ul>
-        <p>
-          I resolved every edge case before handoff: backward symmetry, wrap behavior, and
-          empty dimensions absent from the ring and the traversal alike. The merge settled
-          the chart debate and delivered cross-filtering as an{" "}
-          <em>intra-widget</em> interaction, honoring the no-page-level-filters rule.
+          The breakthrough donut was about to be cut. Instead of defending it, I merged it
+          with the Latest Breakthrough card and specced the full state machine.
         </p>
         <CaseVideo
           src="/videos/my-world/breakthrough-widget.mp4"
@@ -237,26 +193,20 @@ export default function MyWorld() {
           title="The combined breakthrough widget"
           description="The two-mode state machine in action: Mode A walking the full history, then a segment click entering Mode B with the donut's live selection following auto-advance across dimension boundaries."
           tone="pink"
-          caption="Both modes of the state machine, including the donut's live selection following auto-advance across a dimension boundary."
+          caption="Mode A: browse all breakthroughs. Mode B: click a segment to filter by dimension. Auto-advance moves the donut's selection live."
         />
+        <ul>
+          <li>
+            Every edge case resolved before handoff: wrap, backward symmetry, empty
+            dimensions.
+          </li>
+          <li>
+            Settled a team debate and delivered cross-filtering without breaking the
+            no-page-filters rule.
+          </li>
+        </ul>
 
-        <h3>The Reminders widget</h3>
-        <p>
-          When the team reframed <code>commitments</code> into <code>reminders</code>{" "}
-          (which can also be stances: &ldquo;Notice the voice of fear and keep going
-          anyway&rdquo;), I designed the widget that carries them: reminders pooled across
-          all sessions, newest first, <strong>paginated inside the widget</strong>. Two
-          actions, <strong>Done</strong> and <strong>Delete</strong>. Delete exists
-          because these are AI-generated and can be wrong, so users need an honest way out.
-          Both update shared state across the widget <em>and</em> the originating session.
-        </p>
-        <p>
-          One detail I&rsquo;m proud of: an unchecked reminder{" "}
-          <strong>re-enters at its original chronological position</strong>, so position
-          always encodes creation order. I flagged the engineering implication myself: the
-          creation timestamp must live in shared state, not be derived from visible
-          position, and it went straight into the build spec.
-        </p>
+        <h3>Reminders</h3>
         <CaseVideo
           src="/videos/my-world/reminders-widget.mp4"
           poster="/images/my-world/posters/reminders-widget.jpg"
@@ -265,18 +215,17 @@ export default function MyWorld() {
           title="Reminders widget interactions"
           description="Checking off a reminder in the widget: the row completes with a burst of confetti."
           tone="sky"
-          caption="A reminder checked off: completion gets confetti."
+          caption="Pooled across all sessions. Done gets confetti. Delete exists because AI can be wrong."
         />
+        <ul>
+          <li>Unchecking re-inserts at original chronological position.</li>
+          <li>
+            I flagged the engineering implication (timestamp in shared state) in the spec
+            myself.
+          </li>
+        </ul>
 
-        <h3>Simplifying a cluttered screen</h3>
-        <p>
-          Alongside these, I ran repeated decluttering passes on the topic card and detail
-          views in weekly triage with the founder: labels stripped to inline values,{" "}
-          &ldquo;Archive&rdquo; renamed to &ldquo;Box&rdquo; to fit the product&rsquo;s
-          language, sticky bottom CTAs held because users decide to continue only{" "}
-          <em>after</em> reading. The whole design is <strong>responsive</strong>, specced
-          with breakpoint behavior across desktop and mobile rather than as two designs.
-        </p>
+        <h3>Decluttering</h3>
         <CaseVideo
           src="/videos/my-world/topics-by-dimension.mp4"
           poster="/images/my-world/posters/topics-by-dimension.jpg"
@@ -285,31 +234,14 @@ export default function MyWorld() {
           title="Filtering topics by life dimension"
           description="The topics list narrowing as dimension chips are clicked (All, then Self) with each topic card showing its inline dimension, date, and session count."
           tone="mint"
-          caption="Widget-level filtering: the topics list narrowing by life dimension."
+          caption="Topic surfaces after repeated simplification passes: inline metadata, sticky CTAs, dimension filtering."
         />
       </CaseSection>
 
-      <CaseSection
-        id="ai"
-        eyebrow="Layer 3 · The AI"
-        title="Prompts, testing, and QA"
-      >
-        <h3>Prompt engineering as design work</h3>
+      <CaseSection id="ai" eyebrow="The AI" title="The prompts are the product">
         <p>
-          I wrote and iterated the prompts that generate everything on screen: the session
-          summary (six versions, now the canonical data artifact), the topic summary (seven
-          versions), topic detection, and the coaching invitation prompt now in progress.
-          The craft is closer to spec-writing than copywriting.{" "}
-          <strong>Silence in a gate is an admission</strong>: if you don&rsquo;t explicitly
-          name an exclusion with examples, the model walks through it.
-        </p>
-        <p>
-          The <strong>breakthrough</strong> field shows the stakes. A breakthrough shown
-          back to a user is a claim about their life; get it wrong and you manufacture a
-          false memory. I built it around a strict <strong>ownership gate</strong> (it can
-          only reflect what the user actually said or agreed to), explicit guardrails against
-          language that overstates or fictionalizes change, and a required register that
-          describes rather than diagnoses.
+          Every card&rsquo;s content is LLM-generated from prompts I wrote: session summary
+          (v6), topic summary (v7), topic detection, coaching invitation.
         </p>
         <ImageFrame
           src="/images/my-world/coaching-provocation.png"
@@ -317,17 +249,15 @@ export default function MyWorld() {
           height={528}
           alt="The Coaching Provocation widget: 'Identity is built, not discovered,' a synthesis across recent sessions that ends in a question and a Revisit action."
           tone="butter"
-          caption="What the invitation prompt produces: a provocation synthesized across recent sessions, ending in a question, and an on-ramp back to coaching."
+          caption="A provocation synthesized across sessions, ending in a question back to the user."
         />
-
-        <h3>Building my own testing tools</h3>
         <p>
-          To validate all of this, with the development team, I built out our <strong>Streamlit playground</strong>:
-          a QA harness that runs real conversation transcripts through the entire My World
-          pipeline (session summary, two-stage topic detection, and topic summary),
-          exporting structured JSON. I later added an Invitation tab for the provocation
-          prompt with a five-line additive diff.
+          The stakes: a wrong &ldquo;breakthrough&rdquo; manufactures a false memory. So the
+          prompt has an <strong>ownership gate</strong>: it can only reflect what the user
+          actually said or agreed to.
         </p>
+
+        <h3>And I test them myself</h3>
         <CaseVideo
           src="/videos/my-world/playground.mp4"
           poster="/images/my-world/posters/playground.jpg"
@@ -336,14 +266,18 @@ export default function MyWorld() {
           title="The Streamlit QA playground"
           description="A tour of the playground: real session JSON loaded in, the editable prompts, a first-stage freeze, then a run whose results table shows per-session match decisions with similarity scores: 20 sessions, 12 matched, 8 new topics, 0 errored."
           tone="mint"
-          caption="The Streamlit playground: real transcripts in, editable prompts, structured JSON out, with a per-session results table for field-level compliance checks."
+          caption="The Streamlit playground I built out with the dev team: real transcripts in, editable prompts, structured JSON out."
         />
-        <p>
-          My method: run a batch of ~20 sessions, then check every output field against
-          the prompt&rsquo;s own rules. A recent run surfaced five must-fix issues: each
-          traced to a specific missing clause and fixed with a surgical insert, not a
-          rewrite.
-        </p>
+        <ul>
+          <li>
+            Method: 20-session batches, every field checked against the prompt&rsquo;s own
+            rules.
+          </li>
+          <li>
+            One run surfaced 5 must-fix issues. Each fixed with a surgical clause, not a
+            rewrite.
+          </li>
+        </ul>
       </CaseSection>
 
       <CaseSection
@@ -352,41 +286,22 @@ export default function MyWorld() {
         title="From mockups to shipped code"
       >
         <p>
-          Midway through, I stopped ending my work at the Figma handoff. Using{" "}
-          <strong>Claude Code</strong>, I began implementing widgets on localhost and
-          shipping working builds to engineers for review.
+          Using <strong>Claude Code</strong>, I implement widgets on localhost and ship
+          working builds to engineers for review. I write implementation prompts the way I
+          write specs: complete state machines, every assumption flagged as a one-line
+          toggle.
         </p>
-        <p>
-          The technique that made it work: I write{" "}
-          <strong>implementation prompts the way I write design specs.</strong> The
-          combined breakthrough widget went to code as a complete state machine, with every
-          assumption flagged as a one-line toggle if wrong. Engineers now review a working
-          reference instead of interpreting a static frame.
-        </p>
+        <p>Engineers review a working reference, not a static frame.</p>
       </CaseSection>
 
-      <CaseSection id="outcomes" eyebrow="Status" title="Where it stands">
+      <CaseSection id="takeaway" eyebrow="Reflection" title="The takeaway">
         <p>
-          My World is <strong>live in development</strong>: the featured band, Reminders
-          widget, and topic surfaces are implemented; the invitation prompt and mood
-          taxonomy integration are in progress.
-        </p>
-      </CaseSection>
-
-      <CaseSection
-        id="takeaway"
-        eyebrow="Reflection"
-        title="What I'd want a hiring team to know"
-      >
-        <p>
-          The takeaway I&rsquo;d offer a hiring team is the shape of the work: I wrote the
-          product doc engineers build from, the prompts that generate the content, the QA
-          tooling that validates them, and increasingly the code itself.
+          I wrote the doc engineers build from, the prompts that generate the content, the
+          QA tooling that validates them, and increasingly the code itself.
         </p>
         <PullQuote>
           At a pre-seed startup, the most valuable designer is the one who removes
-          handoffs. That&rsquo;s the designer I&rsquo;ve become, and the design engineer
-          I&rsquo;m becoming.
+          handoffs.
         </PullQuote>
       </CaseSection>
     </CaseStudyLayout>
