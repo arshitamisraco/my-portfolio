@@ -138,13 +138,12 @@ export default function Resume() {
             Arshita Misra
           </h1>
           <p className="mt-4 font-display text-h2 font-medium text-accent-deep">
-            Founding Product Designer
+            AI-forward Product Designer who Engineers
           </p>
           <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
-            Product designer obsessed with human-centered AI — shipping end to end across
-            product, design systems, and AI behavior.
-            <br />
-            B.S. in Human Centered Design &amp; Engineering, University of Washington.
+            At the intersection of UX, visual design, AI systems, and design systems, shipping
+            end-to-end from research and IA to high-fidelity UI, LLM prompts, and production
+            frontend.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             {/* Opens the hosted résumé in Google Drive's viewer (new tab). */}
