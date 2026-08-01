@@ -164,9 +164,8 @@ export default function DesignSystem() {
 
       <CaseSection id="problem" eyebrow="Context" title="The problem">
         <p>
-          The v1 product was stock Material UI: dark-only, desktop-only, no design system.
-          Testers said it strained their eyes. Engineering was moving to shadcn, and I
-          owned the design side of the migration.
+          Testers said the v1 product strained their eyes. Engineering was moving to
+          shadcn, and I owned the design side of the migration.
         </p>
       </CaseSection>
 

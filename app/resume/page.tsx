@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     "Arshita Misra — founding product designer at COROS AI. A concise, metric-led résumé of product design, design systems, and AI work.",
 };
 
-/* ---------- Headline impact metrics ---------- */
-const STATS: { value: string; label: string; tone: ChipTone }[] = [
-  { value: "55%", label: "Next-day return from early signups", tone: "pink" },
-  { value: "15%", label: "Average tip size lift at pilot venue (bar)", tone: "peach" },
-  { value: "2nd / 100", label: "Teams worldwide — RESNA challenge", tone: "mint" },
-  { value: "$20K", label: "Grant secured for museum platform", tone: "lavender" },
-];
-
 /* ---------- Experience (metric-led, trimmed to the strongest work) ---------- */
 interface Role {
   date: string;
@@ -128,15 +120,6 @@ const SKILLS: { group: string; tone: ChipTone; items: string[] }[] = [
   },
 ];
 
-const STAT_TONE: Record<ChipTone, string> = {
-  pink: "bg-surface text-accent-deep",
-  lavender: "bg-lavender-soft text-lavender-deep",
-  sky: "bg-sky-soft text-sky-deep",
-  mint: "bg-mint-soft text-mint-deep",
-  butter: "bg-butter-soft text-butter-deep",
-  peach: "bg-peach-soft text-peach-deep",
-};
-
 export default function Resume() {
   return (
     <>
@@ -179,29 +162,6 @@ export default function Resume() {
               LinkedIn
             </Button>
           </div>
-        </div>
-      </section>
-
-      {/* ================= Impact metrics ================= */}
-      <section className="pb-section">
-        <div className="container-site">
-          <Reveal>
-            <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              {STATS.map((s) => (
-                <div
-                  key={s.label}
-                  className={`rounded-frame p-6 ${STAT_TONE[s.tone]}`}
-                >
-                  <dt className="font-display text-h1 font-semibold leading-none">
-                    {s.value}
-                  </dt>
-                  <dd className="mt-3 text-caption font-medium text-ink-muted">
-                    {s.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
         </div>
       </section>
 
