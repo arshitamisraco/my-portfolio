@@ -142,14 +142,6 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "mint",
       cropLeftHalf: true,
     },
-    {
-      src: "/videos/my-world/playground.mp4",
-      poster: "/images/my-world/posters/playground.jpg",
-      width: 1440,
-      height: 936,
-      alt: "The My World playground",
-      tone: "peach",
-    },
   ],
   "design-system": [
     {

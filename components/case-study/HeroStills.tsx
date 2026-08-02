@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PixelCloud from "@/components/PixelCloud";
+import HeroVideoMedia from "./HeroVideoMedia";
 
 type FrameTone = "pink" | "lavender" | "sky" | "mint" | "butter" | "peach";
 
@@ -12,7 +13,17 @@ const TONES: Record<FrameTone, string> = {
   peach: "bg-peach-soft",
 };
 
+const CLOUD: Record<FrameTone, "pink" | "lavender" | "sky"> = {
+  pink: "pink",
+  lavender: "lavender",
+  sky: "sky",
+  mint: "sky",
+  butter: "pink",
+  peach: "pink",
+};
+
 export interface HeroStill {
+  kind?: "image";
   /** Image under public/. */
   src: string;
   /** Intrinsic pixel dimensions — they drive the mosaic's column math. */
@@ -23,10 +34,28 @@ export interface HeroStill {
   tone?: FrameTone;
 }
 
-/** One mosaic cell: a single still, or a vertical stack of stills. */
-export type HeroCell = HeroStill | HeroStill[];
+export interface HeroVideo {
+  kind: "video";
+  /** Web-safe mp4 under public/. */
+  src: string;
+  /** Poster frame under public/ — reserves the tile's height and stands in under reduced motion. */
+  poster: string;
+  /** Intrinsic poster dimensions — they drive the mosaic's column math. */
+  width: number;
+  height: number;
+  /** Short name for screen readers. */
+  title: string;
+  /** 1–2 sentences describing what the clip shows — read by screen readers. */
+  description: string;
+  tone?: FrameTone;
+}
 
-const ratio = (still: HeroStill) => still.width / still.height;
+type HeroMedia = HeroStill | HeroVideo;
+
+/** One mosaic cell: a single still or clip, or a vertical stack of them. */
+export type HeroCell = HeroMedia | HeroMedia[];
+
+const ratio = (still: HeroMedia) => still.width / still.height;
 
 /** Aspect ratio of a whole cell — a stack behaves like one image of combined height. */
 const cellRatio = (cell: HeroCell) =>
@@ -37,7 +66,7 @@ function Tile({
   fill,
   sizes,
 }: {
-  still: HeroStill;
+  still: HeroMedia;
   /** Stretch to the row height (desktop only) instead of rendering at natural aspect —
       used for tiles sharing a row with a stack, whose extra frame chrome would
       otherwise misalign the bottom edge. */
@@ -54,16 +83,30 @@ function Tile({
       <div
         className={`relative overflow-hidden rounded-[8px] ${fill ? "sm:min-h-0 sm:flex-1" : ""}`}
       >
-        <Image
-          src={still.src}
-          alt={still.alt}
-          width={still.width}
-          height={still.height}
-          sizes={sizes}
-          className={`block h-auto w-full ${
-            fill ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover" : ""
-          }`}
-        />
+        {still.kind === "video" ? (
+          <HeroVideoMedia
+            src={still.src}
+            poster={still.poster}
+            width={still.width}
+            height={still.height}
+            title={still.title}
+            description={still.description}
+            sizes={sizes}
+            cloud={CLOUD[tone]}
+            fill={fill}
+          />
+        ) : (
+          <Image
+            src={still.src}
+            alt={still.alt}
+            width={still.width}
+            height={still.height}
+            sizes={sizes}
+            className={`block h-auto w-full ${
+              fill ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover" : ""
+            }`}
+          />
+        )}
       </div>
     </div>
   );
@@ -110,7 +153,7 @@ export default function HeroStills({ label, ariaLabel, rows }: HeroStillsProps) 
             >
               {row.map((cell, cellIndex) => {
                 const share = cellRatio(cell) / rowRatioSum;
-                const sizes = `(min-width: 1024px) ${Math.round(share * 810)}px, (min-width: 640px) ${Math.round(share * 94)}vw, 94vw`;
+                const sizes = `(min-width: 1024px) ${Math.round(share * 1120)}px, (min-width: 640px) ${Math.round(share * 94)}vw, 94vw`;
                 return (
                   <div
                     key={cellIndex}

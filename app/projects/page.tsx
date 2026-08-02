@@ -21,7 +21,9 @@ export default function Projects() {
           </h1>
         </Reveal>
 
-        <div className="mt-12 flex flex-col gap-8">
+        {/* Same narrowed, centered card column as the home page's Selected Work,
+            so the two listings stay identical. */}
+        <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
           {COROS_CASE_STUDIES.map((study, i) => (
             <Reveal key={study.slug} delay={i * 0.08}>
               <CaseStudyCard study={study} />

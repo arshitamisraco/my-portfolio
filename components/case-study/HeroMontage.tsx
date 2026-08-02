@@ -42,8 +42,8 @@ export interface HeroClip {
 }
 
 const SIZES = {
-  portrait: "(min-width: 1024px) 260px, (min-width: 640px) 30vw, 62vw",
-  landscape: "(min-width: 1024px) 430px, (min-width: 640px) 46vw, 90vw",
+  portrait: "(min-width: 1024px) 363px, (min-width: 640px) 30vw, 62vw",
+  landscape: "(min-width: 1024px) 552px, (min-width: 640px) 46vw, 90vw",
 };
 
 function Clip({
@@ -55,8 +55,10 @@ function Clip({
 }) {
   const { src, poster, width, height, title, description, tone = "pink" } = clip;
   const videoRef = useRef<HTMLVideoElement>(null);
+  const userPausedRef = useRef(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [active, setActive] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia(REDUCED_MOTION_QUERY);
@@ -76,7 +78,7 @@ function Clip({
         // Re-check the media query directly so a stale first render can't autoplay.
         if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          if (!userPausedRef.current) video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -90,11 +92,23 @@ function Clip({
     };
   }, [reducedMotion]);
 
+  const toggleUserPlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      userPausedRef.current = false;
+      video.play().catch(() => {});
+    } else {
+      userPausedRef.current = true;
+      video.pause();
+    }
+  };
+
   return (
     <figure className={`overflow-hidden rounded-frame border border-line p-2 sm:p-3 ${TONES[tone]}`}>
       {/* The poster always renders at its intrinsic size — it defines the box height
           (no collapse), and the <video> overlays it exactly. */}
-      <div className="relative overflow-hidden rounded-[10px]">
+      <div className="group relative overflow-hidden rounded-[10px]">
         <Image
           src={poster}
           alt=""
@@ -104,19 +118,40 @@ function Clip({
           sizes={SIZES[orientation]}
         />
         {!reducedMotion ? (
-          <video
-            ref={videoRef}
-            src={src}
-            poster={poster}
-            muted
-            loop
-            playsInline
-            preload="none"
-            aria-label={`${title}. ${description}`}
-            className="absolute inset-0 h-full w-full"
-          >
-            <track kind="captions" />
-          </video>
+          <>
+            <video
+              ref={videoRef}
+              src={src}
+              poster={poster}
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-label={`${title}. ${description}`}
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+              className="absolute inset-0 h-full w-full"
+            >
+              <track kind="captions" />
+            </video>
+            <button
+              type="button"
+              onClick={toggleUserPlayback}
+              aria-label={playing ? `Pause video: ${title}` : `Play video: ${title}`}
+              className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-pill border border-line bg-surface-raised/90 opacity-0 shadow-sm transition-opacity focus-visible:opacity-100 group-hover:opacity-100"
+            >
+              {playing ? (
+                <svg width="12" height="12" viewBox="0 0 18 18" aria-hidden="true">
+                  <rect x="5" y="3.5" width="3" height="11" rx="1" fill="var(--color-accent-strong)" />
+                  <rect x="10" y="3.5" width="3" height="11" rx="1" fill="var(--color-accent-strong)" />
+                </svg>
+              ) : (
+                <svg width="12" height="12" viewBox="0 0 18 18" aria-hidden="true">
+                  <path d="M5 3.5v11l9-5.5-9-5.5z" fill="var(--color-accent-strong)" />
+                </svg>
+              )}
+            </button>
+          </>
         ) : active ? (
           <video
             src={src}

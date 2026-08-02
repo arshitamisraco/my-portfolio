@@ -21,7 +21,7 @@ export default function CaseStudyCard({ study }: { study: CorosCaseStudy }) {
         <CorosCarousel clips={CASE_STUDY_CLIPS[study.slug]} />
       </div>
 
-      <div className="flex flex-col gap-4 p-6 md:flex-row md:items-end md:justify-between md:p-8">
+      <div className="flex flex-col gap-4 p-5 md:flex-row md:items-end md:justify-between md:p-7">
         <div className="max-w-2xl">
           {study.inProgress && (
             <span className="inline-flex items-center gap-1.5 rounded-pill bg-mint-soft px-3 py-1 text-caption font-medium text-mint-deep">

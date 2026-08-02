@@ -109,7 +109,10 @@ export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Cli
     <div
       ref={boxRef}
       aria-hidden="true"
-      className="relative flex aspect-[2/1] items-center overflow-hidden bg-gradient-to-br from-accent-soft via-surface to-sky-soft md:aspect-[5/2]"
+      /* Fixed height, not an aspect ratio: the band's height is a design
+         constant, so narrowing the card just crops the shelf horizontally
+         (fewer clips in frame at once) instead of shrinking the clips. */
+      className="relative flex h-[220px] items-center overflow-hidden bg-gradient-to-br from-accent-soft via-surface to-sky-soft sm:h-[280px] md:h-[340px]"
     >
       {/* On-brand clouds drifting behind the shelf, echoing the hero. */}
       <PixelCloud
@@ -126,11 +129,11 @@ export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Cli
       />
 
       <div
-        className="coros-marquee-track relative flex h-[54%] w-max items-center will-change-transform md:h-[60%]"
+        className="coros-marquee-track relative flex h-[58%] w-max items-center will-change-transform md:h-[64%]"
         style={
           {
             // Scale duration to the clip count so the glide speed stays constant.
-            "--coros-marquee-duration": `${clips.length * 5.75}s`,
+            "--coros-marquee-duration": `${clips.length * 8}s`,
             animationPlayState: paused ? "paused" : "running",
           } as React.CSSProperties
         }

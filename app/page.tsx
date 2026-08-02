@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import CaseStudyCard from "@/components/CaseStudyCard";
@@ -111,11 +112,20 @@ export default function Home() {
           <div className="mt-8 flex max-w-3xl flex-col gap-y-1 text-body-lg text-ink-muted">
             <p>
               Currently leading{" "}
-              <Link href={COROS_HUB_HREF} className="text-accent-strong underline-offset-4 hover:underline">
-                AI Design @ COROS AI
+              <Link
+                href={COROS_HUB_HREF}
+                className="inline-flex items-center gap-1 text-accent-strong underline-offset-4 hover:underline"
+              >
+                AI Design @
+                <Image
+                  src="/images/logos/coros-ai.png"
+                  alt="COROS AI"
+                  width={116}
+                  height={30}
+                  className="inline-block"
+                />
               </Link>
             </p>
-            <p>Human Centered Design and Engineering at the University of Washington 2025</p>
           </div>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#selected-work">See my work ↓</Button>
@@ -146,6 +156,8 @@ export default function Home() {
           context is stated once instead of repeated on every card. */}
       <section id="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
+          {/* The intro runs the full site container; only the card stack below is
+              narrowed and centered so it reads as a focused list. */}
           <Reveal>
             <SectionLabel cloud>Selected Work</SectionLabel>
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
@@ -172,7 +184,7 @@ export default function Home() {
             </a>
           </Reveal>
 
-          <div className="mt-12 flex flex-col gap-8">
+          <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
             {COROS_CASE_STUDIES.map((study, i) => (
               <Reveal key={study.slug} delay={i * 0.08}>
                 <CaseStudyCard study={study} />

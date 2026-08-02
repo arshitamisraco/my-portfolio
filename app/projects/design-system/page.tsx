@@ -85,8 +85,67 @@ export default function DesignSystem() {
         },
       ]}
       toc={TOC}
+      hero={
+        <HeroMontage
+          label="The live product, in light and dark"
+          portrait={[
+            {
+              src: "/videos/design-system/onboarding-mobile-light.mp4",
+              poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
+              width: 640,
+              height: 1392,
+              tone: "pink",
+              title: "Onboarding on mobile, light theme",
+              description:
+                "The redesigned onboarding flow on mobile in light mode, from the rotating multilingual welcome onward.",
+            },
+            {
+              src: "/videos/design-system/chat-mobile-light.mp4",
+              poster: "/images/design-system/posters/chat-mobile-light.jpg",
+              width: 640,
+              height: 1392,
+              tone: "sky",
+              title: "Chat on mobile, light theme",
+              description:
+                "Composing and sending a message in the mobile chat, with COROS thinking and replying.",
+            },
+            {
+              src: "/videos/design-system/influences-mobile-light.mp4",
+              poster: "/images/design-system/posters/influences-mobile-light.jpg",
+              width: 640,
+              height: 1392,
+              tone: "lavender",
+              title: "Choosing influences on mobile, light theme",
+              description:
+                "Searching influences on mobile with live results and selected chips filling the field.",
+            },
+          ]}
+          landscape={[
+            {
+              src: "/videos/design-system/landing-web-light.mp4",
+              poster: "/images/design-system/posters/landing-web-light.jpg",
+              width: 1440,
+              height: 936,
+              tone: "mint",
+              title: "First open on web, light theme",
+              description:
+                "The personalized COROS greeting streaming into the empty chat on web in light mode.",
+            },
+            {
+              src: "/videos/design-system/dictation-web-light.mp4",
+              poster: "/images/design-system/posters/dictation-web-light.jpg",
+              width: 1440,
+              height: 936,
+              tone: "butter",
+              title: "Dictation on web, light theme",
+              description:
+                "Dictating a message in the web chat, the live waveform running in the input bar.",
+            },
+          ]}
+        />
+      }
     >
-      {/* Scope at a glance — a numeric read leading into the visual hero. */}
+      {/* Scope at a glance — a numeric read after the visual hero. */}
       <section aria-label="At a glance" className="mb-14">
         <p className="text-style-eyebrow text-ink-muted">At a glance</p>
         <div className="mt-5 grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -103,64 +162,6 @@ export default function DesignSystem() {
           ))}
         </div>
       </section>
-
-      <HeroMontage
-        label="The live product, in light and dark"
-        portrait={[
-          {
-            src: "/videos/design-system/onboarding-mobile-light.mp4",
-            poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
-            width: 640,
-            height: 1392,
-            tone: "pink",
-            title: "Onboarding on mobile, light theme",
-            description:
-              "The redesigned onboarding flow on mobile in light mode, from the rotating multilingual welcome onward.",
-          },
-          {
-            src: "/videos/design-system/chat-mobile-light.mp4",
-            poster: "/images/design-system/posters/chat-mobile-light.jpg",
-            width: 640,
-            height: 1392,
-            tone: "sky",
-            title: "Chat on mobile, light theme",
-            description:
-              "Composing and sending a message in the mobile chat, with COROS thinking and replying.",
-          },
-          {
-            src: "/videos/design-system/influences-mobile-light.mp4",
-            poster: "/images/design-system/posters/influences-mobile-light.jpg",
-            width: 640,
-            height: 1392,
-            tone: "lavender",
-            title: "Choosing influences on mobile, light theme",
-            description:
-              "Searching influences on mobile with live results and selected chips filling the field.",
-          },
-        ]}
-        landscape={[
-          {
-            src: "/videos/design-system/landing-web-light.mp4",
-            poster: "/images/design-system/posters/landing-web-light.jpg",
-            width: 1440,
-            height: 936,
-            tone: "mint",
-            title: "First open on web, light theme",
-            description:
-              "The personalized COROS greeting streaming into the empty chat on web in light mode.",
-          },
-          {
-            src: "/videos/design-system/dictation-web-light.mp4",
-            poster: "/images/design-system/posters/dictation-web-light.jpg",
-            width: 1440,
-            height: 936,
-            tone: "butter",
-            title: "Dictation on web, light theme",
-            description:
-              "Dictating a message in the web chat, the live waveform running in the input bar.",
-          },
-        ]}
-      />
 
       <CaseSection id="problem" eyebrow="Context" title="The problem">
         <p>

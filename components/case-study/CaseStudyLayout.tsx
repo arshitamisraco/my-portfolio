@@ -25,6 +25,8 @@ interface CaseStudyLayoutProps {
   highlight?: Highlight;
   meta: MetaItem[];
   toc: TocItem[];
+  /** Optional full-width photo/video hero, rendered above the TOC + content grid. */
+  hero?: ReactNode;
   children: ReactNode;
 }
 
@@ -36,6 +38,7 @@ export default function CaseStudyLayout({
   highlight,
   meta,
   toc,
+  hero,
   children,
 }: CaseStudyLayoutProps) {
   const study = getCaseStudy(slug);
@@ -77,7 +80,7 @@ export default function CaseStudyLayout({
           <h1 className="mt-4 max-w-4xl font-display text-h1 font-semibold text-ink">
             {title}
           </h1>
-          <p className="mt-4 max-w-2xl text-body-lg text-ink-muted">{summary}</p>
+          <p className="mt-4 max-w-4xl text-body-lg text-ink-muted">{summary}</p>
 
           {highlight && (
             <aside
@@ -111,27 +114,31 @@ export default function CaseStudyLayout({
       </header>
 
       {/* ================= Body ================= */}
-      <div className="container-site grid gap-10 py-14 lg:grid-cols-12 lg:gap-14 md:py-20">
-        <aside className="lg:col-span-3 lg:order-2">
-          <div className="flex flex-col gap-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)]">
-            <Toc items={toc} />
+      <div className="container-site py-14 md:py-20">
+        {hero}
+
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <aside className="lg:col-span-3 lg:order-2">
+            <div className="flex flex-col gap-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)]">
+              <Toc items={toc} />
+              <Link
+                href={COROS_HUB_HREF}
+                className="hidden text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:block"
+              >
+                ← Back to COROS AI
+              </Link>
+            </div>
+          </aside>
+
+          <div className="min-w-0 lg:col-span-9 lg:order-1">
             <Link
               href={COROS_HUB_HREF}
-              className="hidden text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:block"
+              className="mb-8 inline-block text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:hidden"
             >
               ← Back to COROS AI
             </Link>
+            {children}
           </div>
-        </aside>
-
-        <div className="min-w-0 lg:col-span-9 lg:order-1">
-          <Link
-            href={COROS_HUB_HREF}
-            className="mb-8 inline-block text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:hidden"
-          >
-            ← Back to COROS AI
-          </Link>
-          {children}
         </div>
       </div>
 

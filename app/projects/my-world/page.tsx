@@ -21,24 +21,13 @@ const TOC = [
   { id: "takeaway", label: "The takeaway" },
 ];
 
-const STATS = [
-  { value: "6", label: "widgets designed and shipping", bg: "bg-lavender-soft" },
-  { value: "20+", label: "prompt versions engineered", bg: "bg-sky-soft" },
-  {
-    value: "One owner",
-    label: "architecture → UI → prompts → code",
-    bg: "bg-mint-soft",
-  },
-  { value: "Web + mobile", label: "fully responsive", bg: "bg-butter-soft" },
-];
-
 export default function MyWorld() {
   return (
     <CaseStudyLayout
       slug="my-world"
       eyebrow="COROS AI · Case Study"
       title="Designing an AI that remembers you"
-      summary="One page that reflects a user's coaching history back to them. Designed end to end: the architecture, the interface, and the prompts behind every card."
+      summary="“My World” is an experience that remembers your coaching conversations with COROS AI, showing your breakthroughs, reminders, and ongoing concerns at a glance. I designed it end to end: architecture, interface, and the AI prompts that write every card."
       meta={[
         {
           label: "Role",
@@ -58,73 +47,63 @@ export default function MyWorld() {
         },
       ]}
       toc={TOC}
+      hero={
+        <HeroStills
+          label="A first look at My World"
+          ariaLabel="A first look at My World"
+          rows={[
+            [
+              {
+                src: "/images/my-world/hero/hero-page.jpg",
+                width: 1600,
+                height: 998,
+                alt: "The My World page: a featured band with the My Breakthroughs donut, a breakthrough quote, and Coaching Provocation cards above the Reminders widget.",
+                tone: "lavender",
+              },
+              {
+                src: "/images/my-world/hero/hero-session.jpg",
+                width: 1600,
+                height: 998,
+                alt: "A session detail page ('Exploring Visa Paths and Defining Your AI Offer') with summary, entry and exit moods, reminders, and a breakthrough quote.",
+                tone: "sky",
+              },
+            ],
+            [
+              {
+                kind: "video",
+                src: "/videos/my-world/breakthrough-widget.mp4",
+                poster: "/images/my-world/posters/breakthrough-widget.jpg",
+                width: 1322,
+                height: 528,
+                title: "The My Breakthroughs widget",
+                description:
+                  "The My Breakthroughs donut showing 26 breakthroughs by dimension, beside the latest breakthrough quote.",
+                tone: "pink",
+              },
+              {
+                src: "/images/my-world/hero/hero-provocation.png",
+                width: 1404,
+                height: 528,
+                alt: "The Coaching Provocation card: 'Identity is built, not discovered,' ending in a question back to the user.",
+                tone: "butter",
+              },
+            ],
+            [
+              {
+                kind: "video",
+                src: "/videos/my-world/reminders-widget.mp4",
+                poster: "/images/my-world/posters/reminders-widget.jpg",
+                width: 1440,
+                height: 438,
+                title: "The Reminders widget",
+                description: "The My Reminders widget: a checklist of commitments from past sessions.",
+                tone: "peach",
+              },
+            ],
+          ]}
+        />
+      }
     >
-      <HeroStills
-        label="A first look at My World"
-        ariaLabel="A first look at My World"
-        rows={[
-          [
-            {
-              src: "/images/my-world/hero/hero-page.jpg",
-              width: 1600,
-              height: 998,
-              alt: "The My World page: a featured band with the My Breakthroughs donut, Latest Breakthrough, and Coaching Provocation cards above the Reminders widget.",
-              tone: "lavender",
-            },
-            {
-              src: "/images/my-world/hero/hero-session.jpg",
-              width: 1600,
-              height: 999,
-              alt: "A session detail page ('Overcoming avoidance to write resume') with summary, entry and exit moods, a commitment, a breakthrough quote, and relationships.",
-              tone: "sky",
-            },
-          ],
-          [
-            {
-              src: "/images/my-world/hero/hero-breakthrough.jpg",
-              width: 1318,
-              height: 534,
-              alt: "The My Breakthroughs donut showing 20 breakthroughs by dimension, beside the latest breakthrough quote.",
-              tone: "pink",
-            },
-            {
-              src: "/images/my-world/hero/hero-provocation.png",
-              width: 1404,
-              height: 528,
-              alt: "The Coaching Provocation card: 'Identity is built, not discovered,' ending in a question back to the user.",
-              tone: "butter",
-            },
-          ],
-          [
-            {
-              src: "/images/my-world/hero/hero-reminders.jpg",
-              width: 1600,
-              height: 375,
-              alt: "The Reminders widget mid-celebration: confetti falling as a reminder is checked off.",
-              tone: "peach",
-            },
-          ],
-        ]}
-      />
-
-      {/* Scope at a glance — a numeric read between the visual hero and the writing. */}
-      <section aria-label="At a glance" className="mb-14">
-        <p className="text-style-eyebrow text-ink-muted">At a glance</p>
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          {STATS.map((stat) => (
-            <div
-              key={stat.label}
-              className={`rounded-frame border border-line p-5 ${stat.bg}`}
-            >
-              <p className="font-display text-h3 font-semibold leading-tight text-ink">
-                {stat.value}
-              </p>
-              <p className="mt-3 text-caption text-ink-muted">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <CaseSection id="problem" eyebrow="The problem" title="Coaching that evaporates">
         <p>
           COROS is an AI life coach. Users have transformative conversations, then
@@ -211,7 +190,7 @@ export default function MyWorld() {
           src="/videos/my-world/reminders-widget.mp4"
           poster="/images/my-world/posters/reminders-widget.jpg"
           width={1440}
-          height={398}
+          height={438}
           title="Reminders widget interactions"
           description="Checking off a reminder in the widget: the row completes with a burst of confetti."
           tone="sky"

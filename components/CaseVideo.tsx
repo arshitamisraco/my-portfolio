@@ -84,9 +84,11 @@ export default function CaseVideo({
   allowAudio = false,
 }: CaseVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const userPausedRef = useRef(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [active, setActive] = useState(false);
   const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   // Keep the element's muted state in sync — React's `muted` attribute alone isn't
   // reliably applied, so drive it imperatively too.
@@ -116,7 +118,7 @@ export default function CaseVideo({
         // Re-check the media query directly so a stale first render can't autoplay.
         if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          if (!userPausedRef.current) video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -127,6 +129,18 @@ export default function CaseVideo({
     return () => observer.disconnect();
   }, [reducedMotion, mode]);
 
+  const toggleUserPlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      userPausedRef.current = false;
+      video.play().catch(() => {});
+    } else {
+      userPausedRef.current = true;
+      video.pause();
+    }
+  };
+
   return (
     <figure
       className={`${flush ? "" : "my-8"} ${SIZES[size]} ${size === "full" ? "" : "mx-auto"}`}
@@ -136,7 +150,7 @@ export default function CaseVideo({
       >
         {/* The poster is always rendered at its intrinsic size — it defines the box height
             (no collapse), and the <video> overlays it exactly. */}
-        <div className="relative overflow-hidden rounded-[10px]">
+        <div className="group relative overflow-hidden rounded-[10px]">
           <Image
             src={poster}
             alt=""
@@ -146,19 +160,40 @@ export default function CaseVideo({
             sizes="(min-width: 1024px) 680px, 100vw"
           />
           {!reducedMotion && mode === "autoplay" ? (
-            <video
-              ref={videoRef}
-              src={src}
-              poster={poster}
-              muted={muted}
-              loop
-              playsInline
-              preload="none"
-              aria-label={`${title}. ${description}`}
-              className="absolute inset-0 h-full w-full"
-            >
-              <track kind="captions" />
-            </video>
+            <>
+              <video
+                ref={videoRef}
+                src={src}
+                poster={poster}
+                muted={muted}
+                loop
+                playsInline
+                preload="none"
+                aria-label={`${title}. ${description}`}
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+                className="absolute inset-0 h-full w-full"
+              >
+                <track kind="captions" />
+              </video>
+              <button
+                type="button"
+                onClick={toggleUserPlayback}
+                aria-label={playing ? `Pause video: ${title}` : `Play video: ${title}`}
+                className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-pill border border-line bg-surface-raised/90 opacity-0 shadow-sm transition-opacity focus-visible:opacity-100 group-hover:opacity-100"
+              >
+                {playing ? (
+                  <svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true">
+                    <rect x="5" y="3.5" width="3" height="11" rx="1" fill="var(--color-accent-strong)" />
+                    <rect x="10" y="3.5" width="3" height="11" rx="1" fill="var(--color-accent-strong)" />
+                  </svg>
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true">
+                    <path d="M5 3.5v11l9-5.5-9-5.5z" fill="var(--color-accent-strong)" />
+                  </svg>
+                )}
+              </button>
+            </>
           ) : active ? (
             <video
               src={src}
