@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PixelCloud from "@/components/PixelCloud";
 
 export const metadata: Metadata = {
   title: "Résumé (print)",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 
 const CONTACT: { label: string; href?: string }[] = [
   { label: "arshita.co", href: "https://arshita.co" },
+  { label: "Seattle, WA" },
   { label: "arshitamisraco@gmail.com", href: "mailto:arshitamisraco@gmail.com" },
   { label: "+1 (206) 777-5333" },
   {
@@ -90,7 +92,7 @@ const EXPERIENCE: PrintRole[] = [
 const PROJECTS: PrintRole[] = [
   {
     title: "Switcharoo",
-    org: "RESNA Student Accessibility Design Challenge",
+    org: "Product Designer, RESNA Student Accessibility Design Challenge",
     date: "Sep 2024 – Jun 2025",
     points: [
       <>
@@ -156,20 +158,20 @@ const SKILLS: { group: string; items: string[] }[] = [
 
 function SectionHeading({ children }: { children: string }) {
   return (
-    <div className="mt-[12px]">
-      <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-deep">
+    <div className="mt-[16px]">
+      <h2 className="text-[13px] font-semibold uppercase leading-none tracking-[0.14em] text-accent-deep">
         {children}
       </h2>
-      <div aria-hidden="true" className="mb-[8px] mt-[2px] border-t border-line" />
+      <div aria-hidden="true" className="mb-[9px] mt-[3px] border-t border-line" />
     </div>
   );
 }
 
 function Entry({ role, compact = false }: { role: PrintRole; compact?: boolean }) {
   return (
-    <div className={compact ? "mb-[3px]" : "mb-[5px]"}>
+    <div className={compact ? "mb-[8px]" : "mb-[11px]"}>
       <div className="flex items-baseline justify-between gap-3">
-        <h3 className="font-display text-[14.5px] font-semibold text-ink">
+        <h3 className="font-display text-[16px] font-semibold text-ink">
           {role.title}
           {!role.location && (
             <span className="whitespace-nowrap font-sans text-[12px] font-normal text-ink">
@@ -178,19 +180,19 @@ function Entry({ role, compact = false }: { role: PrintRole; compact?: boolean }
             </span>
           )}
         </h3>
-        <p className="shrink-0 text-[12px] font-medium text-ink">{role.date}</p>
+        <p className="shrink-0 text-[12px] font-medium text-ink-muted">{role.date}</p>
       </div>
       {role.location && (
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-[12px] text-ink">{role.org}</p>
-          <p className="shrink-0 text-[12px] text-ink">{role.location}</p>
+          <p className="shrink-0 text-[12px] text-ink-muted">{role.location}</p>
         </div>
       )}
-      <ul className="mt-[3px] space-y-[3px]">
+      <ul className="mt-[4px] space-y-[5px] pl-[8px]">
         {role.points.map((p, i) => (
           <li
             key={i}
-            className="relative pl-[13px] text-[12px] leading-[1.5] text-ink [&>strong]:font-semibold [&>strong]:text-ink"
+            className="relative pl-[13px] text-[12px] leading-[17px] text-ink [&>strong]:font-semibold [&>strong]:text-ink"
           >
             <span
               aria-hidden="true"
@@ -226,23 +228,26 @@ export default function ResumePrint() {
         }}
       />
       <div className="resume-screen-wrap flex justify-center bg-surface py-10 print:py-0">
-        <div className="resume-sheet h-[11in] w-[8.5in] shrink-0 overflow-hidden bg-bg p-[0.45in] shadow-xl">
+        <div className="resume-sheet relative h-[11in] w-[8.5in] shrink-0 overflow-hidden bg-bg p-[0.3in] shadow-xl">
+          <PixelCloud
+            shape="puff"
+            variant="pink"
+            size={40}
+            className="absolute right-[0.3in] top-[0.3in]"
+          />
           {/* ---- Header ---- */}
           <header>
             <div className="text-center">
-              <h1 className="font-display text-[32px] font-semibold leading-none text-ink">
+              <h1 className="font-display text-[26px] font-semibold leading-none text-ink">
                 Arshita Misra
               </h1>
-              <p className="mt-[4px] font-display text-[14px] font-medium text-accent-deep">
-                Seattle, WA
-              </p>
             </div>
-            <p className="mt-[4px] text-center text-[12px] font-medium text-ink">
+            <p className="mt-[4px] text-center text-[12px] font-medium text-ink-muted">
               {CONTACT.map((c, i) => (
                 <span key={c.label}>
                   {i > 0 && "   ·   "}
                   {c.href ? (
-                    <a href={c.href} className="text-ink underline underline-offset-2">
+                    <a href={c.href} className="text-ink-muted underline underline-offset-2">
                       {c.label}
                     </a>
                   ) : (
@@ -251,7 +256,7 @@ export default function ResumePrint() {
                 </span>
               ))}
             </p>
-            <p className="mt-[4px] text-center text-[12px] leading-[1.4] text-ink">
+            <p className="mt-[4px] text-center text-[12px] leading-[1.4] text-ink-muted">
               Product designer and design engineer at the intersection of UX, AI systems, and design systems, shipping end-to-end from
 research and IA to high-fidelity UI, LLM prompts, and production frontend.
             </p>
@@ -282,24 +287,24 @@ research and IA to high-fidelity UI, LLM prompts, and production frontend.
             <SectionHeading>Education</SectionHeading>
             <div className="mb-[14px]">
               <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-display text-[14.5px] font-semibold text-ink">
+                <h3 className="font-display text-[16px] font-semibold text-ink">
                   University of Washington
                 </h3>
-                <p className="shrink-0 text-[12px] text-ink">Seattle, WA</p>
+                <p className="shrink-0 text-[12px] text-ink-muted">Seattle, WA</p>
               </div>
               <div className="mt-[1px] flex items-baseline justify-between gap-3">
                 <p className="text-[12px] leading-[1.5] text-ink">
                   B.S., Human Centered Design &amp; Engineering (Data Science
                   concentration)
                 </p>
-                <p className="shrink-0 text-[12px] font-medium text-ink">
+                <p className="shrink-0 text-[12px] font-medium text-ink-muted">
                   Sep 2021 – Jun 2025
                 </p>
               </div>
               <p className="mt-[3px] text-[12px] font-medium text-ink">
                 Dean&rsquo;s List · GPA 3.8 / 4.0
               </p>
-              <p className="mt-[2px] text-[12px] leading-[1.5] text-ink">
+              <p className="mt-[2px] text-[12px] leading-[1.5] text-ink-muted">
                 Coursework: Designing for AI, Human-Computer Interaction, Data &amp;
                 Information Visualization, Accessible Design, Design Systems and
                 Libraries, Service Design, Intro to Machine Learning
