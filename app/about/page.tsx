@@ -280,7 +280,7 @@ export default function About() {
               </div>
             </Reveal>
 
-            {/* 2. Hobby media — vertical vlog + cooking photos + meta glasses.
+            {/* 2. Hobby media — vertical vlog + cooking photos.
                 Stacked and matched to the same width because the right column is
                 narrow; both center in the column. */}
             <Reveal>
@@ -324,18 +324,6 @@ export default function About() {
                     flush
                   />
                 </div>
-
-                {/* Trying on the Meta Ray-Ban glasses. */}
-                <ImageFrame
-                  src="/images/about/metaglasses.jpg"
-                  alt="Wearing the Meta Ray-Ban smart glasses"
-                  width={1400}
-                  height={1866}
-                  caption="Recording the world with my Meta glasses"
-                  tone="mint"
-                  size="mobile"
-                  flush
-                />
               </div>
             </Reveal>
 
