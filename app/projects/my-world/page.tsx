@@ -237,16 +237,6 @@ export default function MyWorld() {
         </p>
 
         <h3>And I test them myself</h3>
-        <CaseVideo
-          src="/videos/my-world/playground.mp4"
-          poster="/images/my-world/posters/playground.jpg"
-          width={1440}
-          height={936}
-          title="The Streamlit QA playground"
-          description="A tour of the playground: real session JSON loaded in, the editable prompts, a first-stage freeze, then a run whose results table shows per-session match decisions with similarity scores: 20 sessions, 12 matched, 8 new topics, 0 errored."
-          tone="mint"
-          caption="The Streamlit playground I built out with the dev team: real transcripts in, editable prompts, structured JSON out."
-        />
         <ul>
           <li>
             Method: 20-session batches, every field checked against the prompt&rsquo;s own
