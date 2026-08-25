@@ -458,31 +458,18 @@ export default function DesignSystem() {
           <li>Chunk results.</li>
           <li>Memory.</li>
         </ul>
-        <CaseVideo
-          src="/videos/design-system/retrieved-context-web-light.mp4"
-          poster="/images/design-system/posters/retrieved-context-web-light.jpg"
-          width={1440}
-          height={936}
-          title="The Retrieved Context panel on web, light theme"
-          description="Navigating the Retrieved Context panel: the query and response pair, whether the model treated the turn as a new topic, expandable short-term memory turns, and the past context it retrieved."
-          size="lg"
-          tone="peach"
-          caption="The panel in use: from the query and response pair into the model's context, one tab away."
-        />
         <p>
           I did prompt QA myself, so I designed it as my own user. Every field answers a
           question I actually had.
         </p>
-        <CaseVideo
-          src="/videos/design-system/my-memories-web-light.mp4"
-          poster="/images/design-system/posters/my-memories-web-light.jpg"
-          width={1440}
-          height={936}
-          title="The team-only My Memories tab on web, light theme"
-          description="Scrolling the team-only My Memories tab in settings: the longer-term memory accordion, then dated session summaries the model keeps for each conversation."
+        <ImageFrame
+          src="/images/design-system/my-memories-settings-web-light.png"
+          width={3024}
+          height={1964}
+          alt="The team-only My Memories tab in settings, showing Biographical memory and Session History rows in the same modal shell as every user-facing tab."
           size="lg"
           tone="lavender"
-          caption="My Memories (team-only): longer-term memory and dated session summaries, in the same settings shell as every user-facing tab."
+          caption="My Memories (team-only): biographical memory and session history, in the same settings shell as every user-facing tab."
         />
       </CaseSection>
 
