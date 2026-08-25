@@ -1,0 +1,680 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T08:32:47Z",
+  "title": "Design System: Arshita Misra Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Palest Warm Pink",
+        "canonical": "#fdf8f7",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Recessed Blush",
+        "canonical": "#faeeec",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Lifted Paper",
+        "canonical": "#fefcfb",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Plum Ink",
+        "canonical": "#2b2230",
+        "tonalRamp": [
+          "#120818",
+          "#362d3a",
+          "#5a525c",
+          "#7e767e",
+          "#a29ba1",
+          "#c6c0c3",
+          "#eae4e5",
+          "#ffffff"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Plum",
+        "canonical": "#6e5b6f",
+        "tonalRamp": [
+          "#120818",
+          "#362d3a",
+          "#5a525c",
+          "#7e767e",
+          "#a29ba1",
+          "#c6c0c3",
+          "#eae4e5",
+          "#ffffff"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Blush Hairline",
+        "canonical": "#f0dddd",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "canonical": "#fff7f5",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Soft Rose Tint",
+        "canonical": "#e28a9b",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "Muted Rose",
+        "canonical": "#ac5169",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "accent-deep": {
+        "role": "primary",
+        "displayName": "Deep Rose",
+        "canonical": "#96455c",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Pale Rose Wash",
+        "canonical": "#f6c6cf",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "lavender-soft": {
+        "role": "secondary",
+        "displayName": "Soft Lavender",
+        "canonical": "#e6ddf5",
+        "tonalRamp": [
+          "#4a3485",
+          "#624e96",
+          "#7a68a7",
+          "#9282b8",
+          "#aa9bca",
+          "#c1b5db",
+          "#d9cfec",
+          "#f1e9fd"
+        ]
+      },
+      "lavender-deep": {
+        "role": "secondary",
+        "displayName": "Deep Violet",
+        "canonical": "#5b4691",
+        "tonalRamp": [
+          "#4a3485",
+          "#624e96",
+          "#7a68a7",
+          "#9282b8",
+          "#aa9bca",
+          "#c1b5db",
+          "#d9cfec",
+          "#f1e9fd"
+        ]
+      },
+      "sky-soft": {
+        "role": "secondary",
+        "displayName": "Soft Sky",
+        "canonical": "#d9e9f7",
+        "tonalRamp": [
+          "#1f507d",
+          "#3c6790",
+          "#587fa2",
+          "#7496b5",
+          "#91aec8",
+          "#adc5da",
+          "#cadced",
+          "#e6f4ff"
+        ]
+      },
+      "sky-deep": {
+        "role": "secondary",
+        "displayName": "Deep Slate Blue",
+        "canonical": "#33608a",
+        "tonalRamp": [
+          "#1f507d",
+          "#3c6790",
+          "#587fa2",
+          "#7496b5",
+          "#91aec8",
+          "#adc5da",
+          "#cadced",
+          "#e6f4ff"
+        ]
+      },
+      "mint-soft": {
+        "role": "secondary",
+        "displayName": "Soft Mint",
+        "canonical": "#dcefe3",
+        "tonalRamp": [
+          "#1a5b3a",
+          "#387254",
+          "#56886e",
+          "#739f88",
+          "#91b6a1",
+          "#afccbb",
+          "#cce3d5",
+          "#eafaef"
+        ]
+      },
+      "mint-deep": {
+        "role": "secondary",
+        "displayName": "Deep Green",
+        "canonical": "#2f6b4c",
+        "tonalRamp": [
+          "#1a5b3a",
+          "#387254",
+          "#56886e",
+          "#739f88",
+          "#91b6a1",
+          "#afccbb",
+          "#cce3d5",
+          "#eafaef"
+        ]
+      },
+      "butter-soft": {
+        "role": "secondary",
+        "displayName": "Soft Butter",
+        "canonical": "#faedcf",
+        "tonalRamp": [
+          "#614201",
+          "#785c20",
+          "#907640",
+          "#a79060",
+          "#bfab7f",
+          "#d6c59f",
+          "#eddfbe",
+          "#fff9de"
+        ]
+      },
+      "butter-deep": {
+        "role": "secondary",
+        "displayName": "Deep Olive",
+        "canonical": "#715417",
+        "tonalRamp": [
+          "#614201",
+          "#785c20",
+          "#907640",
+          "#a79060",
+          "#bfab7f",
+          "#d6c59f",
+          "#eddfbe",
+          "#fff9de"
+        ]
+      },
+      "peach-soft": {
+        "role": "secondary",
+        "displayName": "Soft Peach",
+        "canonical": "#fbe1d3",
+        "tonalRamp": [
+          "#853716",
+          "#975133",
+          "#a96b50",
+          "#bb856d",
+          "#cd9f8a",
+          "#dfb9a7",
+          "#f1d3c4",
+          "#ffede1"
+        ]
+      },
+      "peach-deep": {
+        "role": "secondary",
+        "displayName": "Deep Terracotta",
+        "canonical": "#92492a",
+        "tonalRamp": [
+          "#853716",
+          "#975133",
+          "#a96b50",
+          "#bb856d",
+          "#cd9f8a",
+          "#dfb9a7",
+          "#f1d3c4",
+          "#ffede1"
+        ]
+      },
+      "cloud-pink-edge": {
+        "role": "tertiary",
+        "displayName": "Cloud Edge Pink",
+        "canonical": "#efa6b4",
+        "tonalRamp": [
+          "#96455c",
+          "#ac5169",
+          "#e28a9b",
+          "#efa6b4",
+          "#f6c6cf",
+          "#faeeec",
+          "#fdf8f7",
+          "#fefcfb"
+        ]
+      },
+      "cloud-lavender-edge": {
+        "role": "tertiary",
+        "displayName": "Cloud Edge Lavender",
+        "canonical": "#cdbfe8",
+        "tonalRamp": [
+          "#4a3485",
+          "#624e96",
+          "#7a68a7",
+          "#9282b8",
+          "#aa9bca",
+          "#c1b5db",
+          "#d9cfec",
+          "#f1e9fd"
+        ]
+      },
+      "cloud-sky-edge": {
+        "role": "tertiary",
+        "displayName": "Cloud Edge Sky",
+        "canonical": "#b7d3ec",
+        "tonalRamp": [
+          "#1f507d",
+          "#3c6790",
+          "#587fa2",
+          "#7496b5",
+          "#91aec8",
+          "#adc5da",
+          "#cadced",
+          "#e6f4ff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page-opening statements. Playfair with tightened tracking."
+      },
+      "h1": {
+        "displayName": "H1",
+        "purpose": "Page titles and hero supporting statements."
+      },
+      "h2": {
+        "displayName": "H2",
+        "purpose": "Section headings and card titles — the most-used heading."
+      },
+      "h3": {
+        "displayName": "H3",
+        "purpose": "Sub-headings inside case-study prose."
+      },
+      "h4": {
+        "displayName": "H4",
+        "purpose": "The nav wordmark. Smallest serif in the system."
+      },
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Section intros, hero supporting copy, mobile nav links."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text. Set on body, the floor everything departs from."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Figure captions, chips, form labels, status messages."
+      },
+      "eyebrow": {
+        "displayName": "Eyebrow",
+        "purpose": "Section labels and card subtitles. Uppercase, always Deep Rose."
+      }
+    },
+    "shadows": [
+      {
+        "name": "separation",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Media resting on a tinted mat (carousel clips) and floating controls over video. The only shadow in the shipped web system; elevation is deliberately underdeveloped and may earn more room."
+      },
+      {
+        "name": "print-sheet",
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "purpose": "The /resume-print paper sheet only. Outside the web system; stripped in the print stylesheet."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reveal",
+        "value": "0.5s cubic-bezier(0.25, 0.4, 0.25, 1)",
+        "purpose": "Fade-up-on-scroll for content blocks (opacity 0→1, y 24→0), fires once at -80px margin."
+      },
+      {
+        "name": "state-color",
+        "value": "200ms",
+        "purpose": "Default color transition on buttons, links, nav, and input borders."
+      },
+      {
+        "name": "state-surface",
+        "value": "300ms",
+        "purpose": "Card hover: lift, border warm, and arrow step move together at this duration."
+      },
+      {
+        "name": "cloud-drift-slow",
+        "value": "200s linear infinite",
+        "purpose": "Rearmost hero cloud layer. Sets the register for the whole system: slow enough to read as weather."
+      },
+      {
+        "name": "cloud-drift-mid",
+        "value": "155s linear infinite",
+        "purpose": "Middle hero cloud layer."
+      },
+      {
+        "name": "cloud-drift-fast",
+        "value": "115s linear infinite",
+        "purpose": "Frontmost hero cloud layer. The fastest ambient motion on the site."
+      },
+      {
+        "name": "cloud-bob",
+        "value": "5s ease-in-out infinite",
+        "purpose": "6px vertical float on resting clouds."
+      },
+      {
+        "name": "scroll-hint",
+        "value": "2.4s ease-in-out infinite",
+        "purpose": "7px downward float on the scroll cue, so a resting cloud reads as ‘keep going down’."
+      },
+      {
+        "name": "coros-marquee",
+        "value": "46s linear infinite",
+        "purpose": "Continuous left-drift of the case-study cover carousel; content duplicated 2× and translated -50% for a seamless loop. Pauses on hover and off-screen."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call to action — résumé, contact, case-study entry.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">View résumé</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: var(--radius-pill, 999px); padding: 12px 24px; font-family: var(--font-sans, system-ui, sans-serif); font-size: 1rem; line-height: 1.65; font-weight: 500; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background-color 200ms, border-color 200ms, color 200ms; } .ds-btn-primary { background: var(--color-accent-strong, #ac5169); color: var(--color-on-accent, #fff7f5); border-color: var(--color-accent-strong, #ac5169); } .ds-btn-primary:hover { background: var(--color-accent-deep, #96455c); border-color: var(--color-accent-deep, #96455c); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The paired, lower-emphasis action. Its border warms before its fill changes.",
+      "html": "<a class=\"ds-btn ds-btn-secondary\" href=\"#\">Read the case study</a>",
+      "css": ".ds-btn-secondary { background: var(--color-surface-raised, #fefcfb); color: var(--color-ink, #2b2230); border-color: var(--color-line, #f0dddd); } .ds-btn-secondary:hover { border-color: var(--color-accent, #e28a9b); background: var(--color-surface, #faeeec); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Tertiary action. No border and no fill at rest — only text.",
+      "html": "<a class=\"ds-btn ds-btn-ghost\" href=\"#\">All projects</a>",
+      "css": ".ds-btn-ghost { background: transparent; color: var(--color-accent-deep, #96455c); border-color: transparent; } .ds-btn-ghost:hover { background: var(--color-surface, #faeeec); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "chip-pink",
+      "description": "Skill and scope tags on case-study cards. Six tone families; a study owns exactly one.",
+      "html": "<span class=\"ds-chip ds-chip-pink\">Design Systems</span> <span class=\"ds-chip ds-chip-lavender\">0→1</span> <span class=\"ds-chip ds-chip-sky\">Prompt Design</span> <span class=\"ds-chip ds-chip-mint\">Shipped</span> <span class=\"ds-chip ds-chip-butter\">Brand</span> <span class=\"ds-chip ds-chip-peach\">Research</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; border-radius: var(--radius-pill, 999px); padding: 4px 12px; margin: 0 4px 4px 0; font-family: var(--font-sans, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; font-weight: 500; } .ds-chip-pink { background: var(--color-surface, #faeeec); color: var(--color-accent-deep, #96455c); } .ds-chip-lavender { background: var(--color-lavender-soft, #e6ddf5); color: var(--color-lavender-deep, #5b4691); } .ds-chip-sky { background: var(--color-sky-soft, #d9e9f7); color: var(--color-sky-deep, #33608a); } .ds-chip-mint { background: var(--color-mint-soft, #dcefe3); color: var(--color-mint-deep, #2f6b4c); } .ds-chip-butter { background: var(--color-butter-soft, #faedcf); color: var(--color-butter-deep, #715417); } .ds-chip-peach { background: var(--color-peach-soft, #fbe1d3); color: var(--color-peach-deep, #92492a); }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip-mint",
+      "description": "The 'Current project' pill — the only chip that animates, and the system's one status color. Renders only when work is genuinely in progress.",
+      "html": "<span class=\"ds-chip-status\"><span class=\"ds-chip-status-dot\" aria-hidden=\"true\"></span>Current project</span>",
+      "css": ".ds-chip-status { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-pill, 999px); background: var(--color-mint-soft, #dcefe3); color: var(--color-mint-deep, #2f6b4c); padding: 4px 12px; font-family: var(--font-sans, system-ui, sans-serif); font-size: 0.875rem; font-weight: 500; } .ds-chip-status-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--color-mint-deep, #2f6b4c); animation: none; } @media (prefers-reduced-motion: no-preference) { .ds-chip-status-dot { animation: ds-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; } } @keyframes ds-pulse { 50% { opacity: 0.5; } }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Contact-form field. Border warms to accent on focus, under the global focus ring.",
+      "html": "<label class=\"ds-label\" for=\"ds-demo-field\">Email <span class=\"ds-required\">*</span></label><input class=\"ds-field\" id=\"ds-demo-field\" type=\"email\" placeholder=\"you@company.com\" />",
+      "css": ".ds-label { display: block; font-family: var(--font-sans, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; font-weight: 600; color: var(--color-ink, #2b2230); } .ds-required { color: var(--color-accent-strong, #ac5169); } .ds-field { display: block; width: 100%; margin-top: 8px; border-radius: var(--radius-card, 12px); border: 1px solid var(--color-line, #f0dddd); background: var(--color-surface-raised, #fefcfb); padding: 12px 16px; font-family: var(--font-sans, system-ui, sans-serif); font-size: 1rem; line-height: 1.65; color: var(--color-ink, #2b2230); transition: border-color 200ms; } .ds-field::placeholder { color: var(--color-ink-muted, #6e5b6f); } .ds-field:focus { border-color: var(--color-accent, #e28a9b); } .ds-field:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; }"
+    },
+    {
+      "name": "Case Study Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The signature listing unit. One link wraps cover and copy; on hover the card lifts, the border warms, and the arrow steps forward — all three, or none.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-cover\" aria-hidden=\"true\"></div><div class=\"ds-card-body\"><div class=\"ds-card-copy\"><h2 class=\"ds-card-title\">My World</h2><p class=\"ds-card-brief\">An AI memory feature — IA, widget design, and the LLM prompts behind every card.</p><div><span class=\"ds-chip ds-chip-sky\">Information Architecture</span><span class=\"ds-chip ds-chip-sky\">Prompt Design</span></div></div><span class=\"ds-card-arrow\" aria-hidden=\"true\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 10h12m0 0l-5-5m5 5l-5 5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></div></a>",
+      "css": ".ds-card { display: block; overflow: hidden; border-radius: var(--radius-frame, 16px); border: 1px solid var(--color-line, #f0dddd); background: var(--color-surface-raised, #fefcfb); text-decoration: none; transition: transform 300ms, border-color 300ms; } .ds-card-cover { height: 120px; border-bottom: 1px solid var(--color-line, #f0dddd); background: linear-gradient(105deg, var(--color-sky-soft, #d9e9f7), var(--color-lavender-soft, #e6ddf5)); } .ds-card-body { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 20px; } .ds-card-copy { max-width: 42rem; } .ds-card-title { margin: 0; font-family: var(--font-display, Georgia, serif); font-size: 1.75rem; line-height: 1.25; letter-spacing: -0.008em; font-weight: 600; color: var(--color-ink, #2b2230); transition: color 300ms; } .ds-card-brief { margin: 12px 0 16px; font-family: var(--font-sans, system-ui, sans-serif); font-size: 1rem; line-height: 1.65; color: var(--color-ink-muted, #6e5b6f); } .ds-card-arrow { display: flex; flex-shrink: 0; height: 48px; width: 48px; align-items: center; justify-content: center; border-radius: var(--radius-pill, 999px); border: 1px solid var(--color-line, #f0dddd); background: var(--color-surface, #faeeec); color: var(--color-accent-deep, #96455c); transition: transform 300ms, background-color 300ms; } .ds-card:hover { transform: translateY(-4px); border-color: var(--color-accent, #e28a9b); } .ds-card:hover .ds-card-title { color: var(--color-accent-deep, #96455c); } .ds-card:hover .ds-card-arrow { transform: translateX(4px); background: var(--color-accent-soft, #f6c6cf); } .ds-card:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-card:hover, .ds-card:hover .ds-card-arrow { transform: none; } }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky 64px header. Playfair wordmark, Inter links; active route is Deep Rose at 500 and carries aria-current.",
+      "html": "<header class=\"ds-nav\"><nav class=\"ds-nav-inner\" aria-label=\"Main\"><a class=\"ds-nav-mark\" href=\"#\">Arshita Misra</a><ul class=\"ds-nav-links\"><li><a class=\"ds-nav-link ds-nav-link-active\" href=\"#\" aria-current=\"page\">Projects</a></li><li><a class=\"ds-nav-link\" href=\"#\">About</a></li><li><a class=\"ds-nav-link\" href=\"#\">Resume</a></li></ul></nav></header>",
+      "css": ".ds-nav { border-bottom: 1px solid var(--color-line, #f0dddd); background: color-mix(in srgb, var(--color-bg, #fdf8f7) 85%, transparent); backdrop-filter: blur(12px); } .ds-nav-inner { display: flex; height: 64px; align-items: center; justify-content: space-between; padding: 0 24px; } .ds-nav-mark { font-family: var(--font-display, Georgia, serif); font-size: 1.125rem; line-height: 1.45; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink, #2b2230); text-decoration: none; transition: color 200ms; } .ds-nav-mark:hover { color: var(--color-accent-deep, #96455c); } .ds-nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; } .ds-nav-link { font-family: var(--font-sans, system-ui, sans-serif); font-size: 1rem; color: var(--color-ink-muted, #6e5b6f); text-decoration: none; transition: color 200ms; } .ds-nav-link:hover { color: var(--color-accent-deep, #96455c); } .ds-nav-link-active { color: var(--color-accent-deep, #96455c); font-weight: 500; } .ds-nav-link:focus-visible { outline: 2px solid var(--color-accent-strong, #ac5169); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "description": "The signature section opener: an eyebrow in Deep Rose beside a 28px puff cloud. Keeps the motif present on pages with no hero sky.",
+      "html": "<p class=\"ds-section-label\"><svg viewBox=\"0 0 8 5\" width=\"28\" height=\"18\" shape-rendering=\"crispEdges\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"0\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"3\" y=\"0\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"4\" y=\"0\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"5\" y=\"0\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"1\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"2\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"3\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"4\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"5\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"6\" y=\"1\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"0\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"1\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"2\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"3\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"4\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"5\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"6\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"7\" y=\"2\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"0\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"1\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"2\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"3\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"4\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"5\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"6\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink)\"/><rect x=\"7\" y=\"3\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"1\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"2\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"3\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"4\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"5\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/><rect x=\"6\" y=\"4\" width=\"1\" height=\"1\" fill=\"var(--color-cloud-pink-edge)\"/></svg>Selected work</p>",
+      "css": ".ds-section-label { display: flex; align-items: center; gap: 12px; margin: 0; font-family: var(--font-sans, system-ui, sans-serif); font-size: 0.75rem; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-deep, #96455c); }"
+    },
+    {
+      "name": "Pull Quote",
+      "kind": "custom",
+      "description": "The one heavy stroke in the system — a 4px Soft Rose Tint left rule against Playfair at H2.",
+      "html": "<blockquote class=\"ds-quote\"><p class=\"ds-quote-text\">I’d rather show you the real work than a prettier version of it.</p><footer class=\"ds-quote-attr\">— Arshita</footer></blockquote>",
+      "css": ".ds-quote { margin: 48px 0; border-left: 4px solid var(--color-accent, #e28a9b); padding-left: 24px; } .ds-quote-text { margin: 0; font-family: var(--font-display, Georgia, serif); font-size: 1.75rem; line-height: 1.375; font-weight: 500; color: var(--color-ink, #2b2230); } .ds-quote-attr { margin-top: 16px; font-family: var(--font-sans, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; color: var(--color-ink-muted, #6e5b6f); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Pixel Sky",
+    "overview": "The world is a warm, pale-pink sheet of paper with weather on it. Soft 8-bit clouds drift behind the hero at glacial speed, mark the start of sections, and land as the dot of the “i” in the name — the same motif at three scales, doing three jobs. Everything else is quiet enough to let them be the only thing that moves. Playfair Display carries every statement and Inter carries every explanation, and the strict division between the two is what keeps a site this soft from reading as sentimental: the serif is warm, the sans is exact, and the seam between them is where the craft shows.\n\nDensity is generous and unhurried. Sections breathe on a fluid rhythm that scales with the viewport, prose is capped at 68 characters, and surfaces are separated by tone and a hairline rather than by shadow — three tinted planes stacked so precisely that depth arrives without weight. Nothing is sharp. Radii are large, buttons are pills, and hairline borders warm to accent under the cursor. The system is quietly responsive: everything answers to touch, and nothing announces it. Cards lift a few pixels, an arrow steps forward, a border changes temperature — three small motions that fire together or not at all.\n\nMotion here is evidence of care, and it is engineered as such. Every animation is declared off and switched on only inside a no-preference media query, so reduced motion is the default state of the stylesheet rather than a patch applied over it. The clouds take between 115 and 200 seconds to cross the screen. That restraint is not decoration on the portfolio — for a designer whose claim is that she engineers, it is part of the argument.\n\nThe world explicitly refuses three neighboring looks: the dark-mode AI startup (near-black ground, neon-violet gradient, glow, glass), agency-portfolio maximalism (scroll-jacking, kinetic type, cursor followers, spectacle in place of evidence), and the corporate SaaS template (blue-gray neutrals, stock illustration, badge rows, competence with no author in it). The pink paper ground is a direct answer to the first, and the quiet is a direct answer to the second.",
+    "keyCharacteristics": [
+      "Warm pink paper ground (#fdf8f7) — never white, never dark, no dark mode",
+      "Pixel clouds as identity: ambient sky, section marker, and letterform, all crisp-edged",
+      "Playfair for statements, Inter for everything else, no overlap",
+      "Flat tonal layering with hairline borders; depth from temperature, not shadow",
+      "Six tone families (pink, lavender, sky, mint, butter, peach), each a soft/deep pair",
+      "One tone assigned per case study, held across every surface it appears on",
+      "Motion off by default at the CSS level, on only under no-preference",
+      "Three radii, no fourth: 12px, 16px, 999px"
+    ],
+    "rules": [
+      {
+        "name": "The Decorative Tint Rule",
+        "section": "colors",
+        "body": "Soft Rose Tint (#e28a9b) never carries text. It is a fill, a border, a cloud, an underline decoration — never a word. Link and body text use Muted Rose (#ac5169) or Deep Rose (#96455c), which pass AA on the ground. This is documented in globals.css and is the single most load-bearing color rule in the system. Test: if any resolved color on a text node is #e28a9b, it is a bug."
+      },
+      {
+        "name": "The Paired Pastel Rule",
+        "section": "colors",
+        "body": "Every supporting pastel is a soft/deep pair and is used only as a pair. A lavender-soft background carries lavender-deep text and nothing else. Never cross families inside one chip, frame, or card, and never put ink on a pastel where the pastel's own deep counterpart exists."
+      },
+      {
+        "name": "The One Tone Per Study Rule",
+        "section": "colors",
+        "body": "Each case study owns exactly one tone, declared once as its ChipTone, and it holds across its listing card, its chips, its image frames, and its carousel clips site-wide. A study's color is an identifier, not a decoration, so it never varies by surface."
+      },
+      {
+        "name": "The No Raw Hex Rule",
+        "section": "colors",
+        "body": "Hex values appear in exactly one file: app/globals.css, inside @theme. Everywhere else, color arrives as a semantic Tailwind utility. Raw palette tokens feed semantic tokens; components consume only the semantic layer. Tailwind's default palette is deliberately wiped, so a stray bg-blue-500 does not silently work — it produces nothing."
+      },
+      {
+        "name": "The Serif-For-Statements Rule",
+        "section": "typography",
+        "body": "Playfair sets the display line, every section H2, card titles, the wordmark, and pull quotes. It never sets body copy, captions, labels, buttons, or any UI text — those are Inter without exception. If a serif appears in a control, it is wrong."
+      },
+      {
+        "name": "The 68ch Rule",
+        "section": "typography",
+        "body": "Every reading column in the system is capped at 68 characters, via measure-prose or .case-prose. Case-study prose picks up the type system from plain markup with no per-element classes, which is what keeps a long-form page from accumulating one-off text styles."
+      },
+      {
+        "name": "The One Muted Step Rule",
+        "section": "typography",
+        "body": "Text has exactly two colors: Deep Plum Ink and Muted Plum. There is no third, lighter gray for 'even less important' text. When something needs to recede further, it gets smaller or moves, it does not fade."
+      },
+      {
+        "name": "The 1200 Rule",
+        "section": "layout",
+        "body": "Everything is inside container-site. The only things that break the container are the hero's cloud sky and full-width tinted section bands, and in both cases the content inside them is still in the container."
+      },
+      {
+        "name": "The Section Rhythm Rule",
+        "section": "layout",
+        "body": "Space between major sections is always py-section. Never a hand-picked padding value. If a section needs different breathing room, the token changes, not the section."
+      },
+      {
+        "name": "The Tonal Ladder Rule",
+        "section": "elevation",
+        "body": "Depth is bg → surface → surface-raised, separated by line. Reach for a plane and a hairline before reaching for a shadow. A surface that needs to feel raised gets lighter, not shadowed."
+      },
+      {
+        "name": "The Three Radii Rule",
+        "section": "shapes",
+        "body": "12px, 16px, 999px. Any other corner value is drift. The single arbitrary radius in the system (10px, on media inside a frame) exists only to nest concentrically inside 16px and is not a general-purpose step."
+      },
+      {
+        "name": "The Crisp Edge Rule",
+        "section": "shapes",
+        "body": "The pixel cloud never anti-aliases, never gains a gradient, never gets a blur, and never scales to a non-integer grid. It is pixel art, and softening it destroys the one thing that makes it a signature instead of a decoration."
+      },
+      {
+        "name": "The Whole Card Is The Link Rule",
+        "section": "components",
+        "body": "Listing cards are a single Link wrapping cover and copy together. The cover carousel is aria-hidden so the card keeps exactly one accessible name, and the arrow is aria-hidden because it is an affordance, not a second destination."
+      },
+      {
+        "name": "The Reciprocal Hover Rule",
+        "section": "components",
+        "body": "On card hover, three things move together: the card lifts, the border warms, and the arrow steps forward into a filled well. All three, or none. And all three are explicitly cancelled with motion-reduce: variants — the color changes survive, the movement does not."
+      },
+      {
+        "name": "The Off-By-Default Rule",
+        "section": "components",
+        "body": "Every keyframe animation in the system is declared animation: none at the top level and enabled only inside @media (prefers-reduced-motion: no-preference). Reduced motion is the stylesheet's resting state, not an override applied on top of it. New animations follow the same shape: define the class as none, then switch it on under no-preference."
+      }
+    ],
+    "dos": [
+      "Do define every new color in app/globals.css under @theme, as a raw token feeding a semantic token, and consume only the semantic name in components.",
+      "Do use Muted Rose (#ac5169) or Deep Rose (#96455c) for any accent-colored text, and reserve Soft Rose Tint (#e28a9b) for fills, borders, and decoration.",
+      "Do ship supporting pastels as soft/deep pairs and use them together — bg-sky-soft with text-sky-deep, never with ink.",
+      "Do give each case study exactly one tone and hold it across every surface that study appears on.",
+      "Do set every statement in Playfair and every explanation in Inter, with no crossover into buttons, labels, or captions.",
+      "Do cap reading columns at 68 characters using measure-prose or .case-prose.",
+      "Do space major sections with py-section and nothing else.",
+      "Do reach for a tonal plane and a hairline before reaching for a shadow.",
+      "Do declare new animations as animation: none first and enable them only under @media (prefers-reduced-motion: no-preference), and pair every hover transform with a motion-reduce: cancel.",
+      "Do keep pixel clouds on the integer grid with shapeRendering=\"crispEdges\".",
+      "Do wrap listing cards in one link and aria-hidden the decorative cover and arrow so the card has a single accessible name.",
+      "Do state in-progress work as in-progress, using the mint status chip."
+    ],
+    "donts": [
+      "Don't put a hex value anywhere outside app/globals.css.",
+      "Don't use --color-accent (#e28a9b) as a text color, ever. It fails contrast on the ground and the rule is documented in the stylesheet.",
+      "Don't introduce a fourth radius. 12px, 16px, and 999px cover every case.",
+      "Don't introduce a third text color. Ink and Muted Plum are the whole vocabulary; recede by size or position, not by fading further.",
+      "Don't add a dark mode or a white ground. The warm pink paper is the world, and there is no dark variant of it.",
+      "Don't use a gray border. Every line in the system is Blush Hairline (#f0dddd).",
+      "Don't reach for Tailwind's default palette — it is wiped, and bg-blue-500 will silently produce nothing.",
+      "Don't add another arbitrary type value. The homepage hero's clamp(3.5rem, 9vw + 1rem, 7rem) is the one sanctioned exception.",
+      "Don't drift toward the dark-mode AI startup look: near-black grounds, neon-violet gradients, glow, or glassmorphism. The pink paper ground exists specifically to refuse it.",
+      "Don't drift toward agency-portfolio maximalism: scroll-jacking, cursor followers, kinetic type, or autoplaying full-bleed spectacle. Evidence carries this site, not effects.",
+      "Don't drift toward the corporate SaaS template: blue-gray neutrals, stock illustration, gradient-on-white heroes, or badge rows.",
+      "Don't soften, blur, gradient, or off-grid the pixel cloud.",
+      "Don't animate anything at a speed that asks for attention. The slowest cloud takes 200 seconds to cross the screen, and that is the register."
+    ]
+  }
+}

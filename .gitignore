@@ -25,3 +25,6 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# claude code tooling (local; the design docs it produces are committed)
+/.claude/
