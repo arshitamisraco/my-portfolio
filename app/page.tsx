@@ -111,12 +111,12 @@ export default function Home() {
           </p>
           <div className="mt-8 flex max-w-3xl flex-col gap-y-1 text-body-lg text-ink-muted">
             <p>
-              Currently leading{" "}
+              Previously{" "}
               <Link
                 href={COROS_HUB_HREF}
                 className="inline-flex items-center gap-1 text-accent-strong underline-offset-4 hover:underline"
               >
-                AI Design @
+                Founding Product Designer @
                 <Image
                   src="/images/logos/coros-ai.png"
                   alt="COROS AI"
@@ -131,6 +131,9 @@ export default function Home() {
             <Button href="#selected-work">See my work ↓</Button>
             <Button href="/about" variant="secondary">
               About me
+            </Button>
+            <Button href="/contact" variant="secondary">
+              Contact me
             </Button>
           </div>
         </div>

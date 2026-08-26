@@ -153,6 +153,40 @@
   }
 }
 
+/* Breaks an element out of container-site to span the full viewport width. */
+@utility full-bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+/* Hides the scrollbar on an overflow-x-auto strip while staying scrollable. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Continuously scrolls a duplicated-content strip; pauses under reduced motion. */
+@utility animate-marquee {
+  animation: marquee-scroll var(--marquee-duration, 40s) linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Case-study prose measure */
 @utility measure-prose {
   max-width: 68ch;
@@ -175,7 +209,7 @@
 
 @layer components {
   .case-prose {
-    max-width: 68ch;
+    max-width: none;
   }
 
   .case-prose p {

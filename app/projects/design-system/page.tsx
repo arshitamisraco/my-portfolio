@@ -12,17 +12,6 @@ export const metadata: Metadata = {
     "Rebuilding the entire COROS AI product UI and its design system: 54+ semantic tokens in light and dark, every core surface redesigned, live on web, iOS, and Android.",
 };
 
-const TOC = [
-  { id: "problem", label: "The problem" },
-  { id: "tokens", label: "Design system" },
-  { id: "components", label: "Components" },
-  { id: "onboarding", label: "Onboarding" },
-  { id: "chat", label: "Chat" },
-  { id: "settings", label: "Settings" },
-  { id: "retrieved-context", label: "Retrieved Context panel" },
-  { id: "results", label: "Results" },
-];
-
 const STATS = [
   {
     value: "54+",
@@ -84,7 +73,6 @@ export default function DesignSystem() {
           ),
         },
       ]}
-      toc={TOC}
       hero={
         <HeroMontage
           label="The live product, in light and dark"

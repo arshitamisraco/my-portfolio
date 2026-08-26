@@ -11,21 +11,6 @@ export const metadata: Metadata = {
     "Designing COROS AI's 0→1 onboarding and personality system: user research, competitive analysis, and three features that shape how the AI coaches.",
 };
 
-const TOC = [
-  { id: "context", label: "Context" },
-  { id: "research-interviews", label: "Research: user interviews" },
-  { id: "competitive-analysis", label: "Research: competitive analysis" },
-  { id: "solution", label: "The solution framing" },
-  { id: "dimensions", label: "Feature 1: Life mapping" },
-  { id: "influences", label: "Feature 2: Relationships" },
-  { id: "personality", label: "Feature 3: Personality" },
-  { id: "final-designs", label: "Final designs" },
-  { id: "design-system", label: "Design system" },
-  { id: "brand", label: "Logo & brand" },
-  { id: "pitch-deck", label: "Investment pitch deck" },
-  { id: "reflection", label: "Reflection" },
-];
-
 export default function FoundingDesign() {
   return (
     <CaseStudyLayout
@@ -40,7 +25,6 @@ export default function FoundingDesign() {
         { label: "Company", value: "COROS AI" },
         { label: "Focus", value: "Product · UX · AI · Research · Brand" },
       ]}
-      toc={TOC}
     >
       <CaseSection id="context" eyebrow="Context" title="Founding designer, many hats">
         <p>

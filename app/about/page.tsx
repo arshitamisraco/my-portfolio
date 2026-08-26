@@ -87,13 +87,13 @@ export default function About() {
           <ol className="border-l-2 border-line space-y-24">
             <Reveal>
               <TimelineItem
-                date="Now"
+                date=""
                 title="What's next?"
                 body={
                   <>
                     <p>
-                      Always open to opportunities, good conversation about design and AI,
-                      and whatever we could build together.
+                      I design and ship end to end, to take your startup from 0-to-1 and
+                      1-to-100. I am open to work! And always open to a connection or chat.
                     </p>
                     <Link
                       href="/contact"

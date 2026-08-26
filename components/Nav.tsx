@@ -12,6 +12,8 @@ const LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/arshita-misra/", external: true },
 ];
 
+const CONTACT_LINK = { label: "Contact me", href: "/contact" };
+
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -35,33 +37,42 @@ export default function Nav() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {LINKS.map((link) => (
-            <li key={link.label}>
-              {link.external ? (
-                <a
-                  href={link.href}
-                  {...(link.href.startsWith("http")
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="text-body text-ink-muted transition-colors hover:text-accent-deep"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  href={link.href}
-                  aria-current={isActive(link.href) ? "page" : undefined}
-                  className={`text-body transition-colors hover:text-accent-deep ${
-                    isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-8 md:flex">
+          <ul className="flex items-center gap-8">
+            {LINKS.map((link) => (
+              <li key={link.label}>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    {...(link.href.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="text-body text-ink-muted transition-colors hover:text-accent-deep"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={`text-body transition-colors hover:text-accent-deep ${
+                      isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={CONTACT_LINK.href}
+            aria-current={isActive(CONTACT_LINK.href) ? "page" : undefined}
+            className="inline-flex items-center rounded-pill border border-line bg-surface-raised px-4 py-2 text-body font-medium text-ink transition-colors hover:border-accent hover:bg-surface"
+          >
+            {CONTACT_LINK.label}
+          </Link>
+        </div>
 
         {/* Mobile menu button */}
         <button
@@ -111,6 +122,17 @@ export default function Nav() {
                 )}
               </li>
             ))}
+            <li>
+              <Link
+                href={CONTACT_LINK.href}
+                aria-current={isActive(CONTACT_LINK.href) ? "page" : undefined}
+                className={`block rounded-card px-3 py-3 text-body-lg hover:bg-surface ${
+                  isActive(CONTACT_LINK.href) ? "font-medium text-accent-deep" : "text-ink-muted"
+                }`}
+              >
+                {CONTACT_LINK.label}
+              </Link>
+            </li>
           </ul>
         </div>
       )}

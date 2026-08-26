@@ -129,7 +129,7 @@ export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Cli
       />
 
       <div
-        className="coros-marquee-track relative flex h-[58%] w-max items-center will-change-transform md:h-[64%]"
+        className="coros-marquee-track relative flex h-[90%] w-max items-center will-change-transform"
         style={
           {
             // Scale duration to the clip count so the glide speed stays constant.

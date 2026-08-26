@@ -67,22 +67,32 @@ function Tile({
   sizes,
 }: {
   still: HeroMedia;
-  /** Stretch to the row height (desktop only) instead of rendering at natural aspect —
-      used for tiles sharing a row with a stack, whose extra frame chrome would
-      otherwise misalign the bottom edge. */
-  fill?: boolean;
+  /** Stretch to the row height instead of rendering at natural aspect — used for
+      tiles sharing a row with a stack (desktop only, whose extra frame chrome would
+      otherwise misalign the bottom edge) or for a fixed-height scroll tile (always). */
+  fill?: boolean | "always";
   sizes: string;
 }) {
   const tone = still.tone ?? "pink";
+  const outerFillClass =
+    fill === "always"
+      ? "flex h-full flex-col"
+      : fill
+        ? "sm:flex sm:h-full sm:flex-col"
+        : "";
+  const innerFillClass =
+    fill === "always" ? "min-h-0 flex-1" : fill ? "sm:min-h-0 sm:flex-1" : "";
+  const mediaFillClass =
+    fill === "always"
+      ? "absolute inset-0 h-full object-cover"
+      : fill
+        ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover"
+        : "";
   return (
     <div
-      className={`overflow-hidden rounded-frame border border-line p-1.5 ${TONES[tone]} ${
-        fill ? "sm:flex sm:h-full sm:flex-col" : ""
-      }`}
+      className={`overflow-hidden rounded-frame border border-line p-1.5 ${TONES[tone]} ${outerFillClass}`}
     >
-      <div
-        className={`relative overflow-hidden rounded-[8px] ${fill ? "sm:min-h-0 sm:flex-1" : ""}`}
-      >
+      <div className={`relative overflow-hidden rounded-[8px] ${innerFillClass}`}>
         {still.kind === "video" ? (
           <HeroVideoMedia
             src={still.src}
@@ -93,7 +103,8 @@ function Tile({
             description={still.description}
             sizes={sizes}
             cloud={CLOUD[tone]}
-            fill={fill}
+            fill={!!fill}
+            fillAlways={fill === "always"}
           />
         ) : (
           <Image
@@ -102,9 +113,7 @@ function Tile({
             width={still.width}
             height={still.height}
             sizes={sizes}
-            className={`block h-auto w-full ${
-              fill ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover" : ""
-            }`}
+            className={`block h-auto w-full ${mediaFillClass}`}
           />
         )}
       </div>
@@ -123,6 +132,8 @@ interface HeroStillsProps {
    * gallery. On small screens the rows unstack into a single column.
    */
   rows: HeroCell[][];
+  /** Break the mosaic out to the full viewport width instead of the content column. */
+  fullBleed?: boolean;
 }
 
 /**
@@ -131,7 +142,39 @@ interface HeroStillsProps {
  * explanation. Stills are framed in the site's tinted-border system with tight
  * gutters; the videos these frames come from live in the feature sections below.
  */
-export default function HeroStills({ label, ariaLabel, rows }: HeroStillsProps) {
+export default function HeroStills({ label, ariaLabel, rows, fullBleed }: HeroStillsProps) {
+  if (fullBleed) {
+    const items = rows.flat().flatMap((cell) => (Array.isArray(cell) ? cell : [cell]));
+    const duration = `${items.length * 14}s`;
+    return (
+      <section aria-label={ariaLabel ?? "A first look at the product"} className="relative mb-28">
+        <PixelCloud
+          shape="wisp"
+          variant="lavender"
+          size={72}
+          className="absolute -top-4 right-0 hidden opacity-50 sm:block"
+          aria-hidden
+        />
+        <div className="full-bleed mt-5 overflow-hidden">
+          <div
+            className="animate-marquee flex w-max gap-8 sm:gap-10 md:gap-12"
+            style={{ "--marquee-duration": duration } as React.CSSProperties}
+          >
+            {[...items, ...items].map((still, i) => (
+              <div
+                key={`${still.src}-${i}`}
+                className="h-64 flex-none sm:h-80 md:h-96 lg:h-[30rem]"
+                style={{ aspectRatio: ratio(still) }}
+              >
+                <Tile still={still} fill="always" sizes="60vw" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section aria-label={ariaLabel ?? "A first look at the product"} className="relative mb-14">
       {label && <p className="text-style-eyebrow text-ink-muted">{label}</p>}

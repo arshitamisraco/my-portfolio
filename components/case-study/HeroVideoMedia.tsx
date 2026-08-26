@@ -17,6 +17,8 @@ interface HeroVideoMediaProps {
   cloud: "pink" | "lavender" | "sky";
   /** Stretch the poster to the row height (desktop only) — matches Tile's stack-row fix-up. */
   fill?: boolean;
+  /** Same as fill, but applied at every breakpoint — used by fixed-height scroll tiles. */
+  fillAlways?: boolean;
 }
 
 /**
@@ -34,6 +36,7 @@ export default function HeroVideoMedia({
   sizes,
   cloud,
   fill,
+  fillAlways,
 }: HeroVideoMediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -79,7 +82,13 @@ export default function HeroVideoMedia({
         width={width}
         height={height}
         sizes={sizes}
-        className={`block h-auto w-full ${fill ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover" : ""}`}
+        className={`block h-auto w-full ${
+          fillAlways
+            ? "absolute inset-0 h-full object-cover"
+            : fill
+              ? "sm:absolute sm:inset-0 sm:h-full sm:object-cover"
+              : ""
+        }`}
       />
       {!reducedMotion ? (
         <video

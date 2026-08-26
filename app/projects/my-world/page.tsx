@@ -12,15 +12,6 @@ export const metadata: Metadata = {
     "One page that reflects a user's coaching history back to them, designed end to end: the architecture, the interface, and the prompts behind every card.",
 };
 
-const TOC = [
-  { id: "problem", label: "The problem" },
-  { id: "architecture", label: "How the AI organizes memory" },
-  { id: "interface", label: "The interface" },
-  { id: "ai", label: "The prompts" },
-  { id: "implementation", label: "From mockups to code" },
-  { id: "takeaway", label: "The takeaway" },
-];
-
 export default function MyWorld() {
   return (
     <CaseStudyLayout
@@ -46,20 +37,12 @@ export default function MyWorld() {
           value: "Figma · Claude Code · Streamlit · HTML/CSS/JS",
         },
       ]}
-      toc={TOC}
       hero={
         <HeroStills
-          label="A first look at My World"
           ariaLabel="A first look at My World"
+          fullBleed
           rows={[
             [
-              {
-                src: "/images/my-world/hero/hero-page.jpg",
-                width: 1600,
-                height: 998,
-                alt: "The My World page: a featured band with the My Breakthroughs donut, a breakthrough quote, and Coaching Provocation cards above the Reminders widget.",
-                tone: "lavender",
-              },
               {
                 src: "/images/my-world/hero/hero-session.jpg",
                 width: 1600,
@@ -67,8 +50,6 @@ export default function MyWorld() {
                 alt: "A session detail page ('Exploring Visa Paths and Defining Your AI Offer') with summary, entry and exit moods, reminders, and a breakthrough quote.",
                 tone: "sky",
               },
-            ],
-            [
               {
                 kind: "video",
                 src: "/videos/my-world/breakthrough-widget.mp4",
@@ -81,14 +62,12 @@ export default function MyWorld() {
                 tone: "pink",
               },
               {
-                src: "/images/my-world/hero/hero-provocation.png",
-                width: 1404,
-                height: 528,
-                alt: "The Coaching Provocation card: 'Identity is built, not discovered,' ending in a question back to the user.",
-                tone: "butter",
+                src: "/images/my-world/hero/hero-page.jpg",
+                width: 1600,
+                height: 998,
+                alt: "The My World page: a featured band with the My Breakthroughs donut, a breakthrough quote, and Coaching Provocation cards above the Reminders widget.",
+                tone: "lavender",
               },
-            ],
-            [
               {
                 kind: "video",
                 src: "/videos/my-world/reminders-widget.mp4",
@@ -98,6 +77,13 @@ export default function MyWorld() {
                 title: "The Reminders widget",
                 description: "The My Reminders widget: a checklist of commitments from past sessions.",
                 tone: "peach",
+              },
+              {
+                src: "/images/my-world/hero/hero-provocation.png",
+                width: 1404,
+                height: 528,
+                alt: "The Coaching Provocation card: 'Identity is built, not discovered,' ending in a question back to the user.",
+                tone: "butter",
               },
             ],
           ]}

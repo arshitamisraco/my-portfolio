@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import PixelCloud from "@/components/PixelCloud";
 import TagChip from "@/components/TagChip";
 import { COROS_HUB_HREF, getCaseStudy, getPrevNext, PROJECTS_HREF } from "@/lib/coros";
-import Toc, { type TocItem } from "./Toc";
 
 interface MetaItem {
   label: string;
@@ -24,8 +23,7 @@ interface CaseStudyLayoutProps {
   /** Headline impact metric shown at the top of the header for skimming recruiters. */
   highlight?: Highlight;
   meta: MetaItem[];
-  toc: TocItem[];
-  /** Optional full-width photo/video hero, rendered above the TOC + content grid. */
+  /** Optional full-width photo/video hero, rendered above the content. */
   hero?: ReactNode;
   children: ReactNode;
 }
@@ -37,7 +35,6 @@ export default function CaseStudyLayout({
   summary,
   highlight,
   meta,
-  toc,
   hero,
   children,
 }: CaseStudyLayoutProps) {
@@ -117,29 +114,7 @@ export default function CaseStudyLayout({
       <div className="container-site py-14 md:py-20">
         {hero}
 
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-          <aside className="lg:col-span-3 lg:order-2">
-            <div className="flex flex-col gap-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)]">
-              <Toc items={toc} />
-              <Link
-                href={COROS_HUB_HREF}
-                className="hidden text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:block"
-              >
-                ← Back to COROS AI
-              </Link>
-            </div>
-          </aside>
-
-          <div className="min-w-0 lg:col-span-9 lg:order-1">
-            <Link
-              href={COROS_HUB_HREF}
-              className="mb-8 inline-block text-caption font-medium text-ink-muted transition-colors hover:text-accent-deep lg:hidden"
-            >
-              ← Back to COROS AI
-            </Link>
-            {children}
-          </div>
-        </div>
+        <div className="min-w-0">{children}</div>
       </div>
 
       {/* ================= Prev / Next ================= */}
