@@ -205,6 +205,25 @@ export default function MyWorld() {
         </ul>
 
         <h3>Decluttering</h3>
+        <PullQuote attribution="The redesign rationale">
+          From a data table to a bento box. Every topic became a widget you could scan,
+          not a row you had to read.
+        </PullQuote>
+        <h4>Initial designs featured topics like a CRM</h4>
+        <p>
+          I pitched against it to stakeholders, and landed on a widget-style bento box
+          design for the entire page, including topics, introducing more ways of
+          visualizing data rather than just a topics list.
+        </p>
+        <ImageFrame
+          src="/images/my-world/topics-page-before.png"
+          width={1440}
+          height={1024}
+          alt="An early version of the topics page: a dense, spreadsheet-like list with heavy metadata, closer to a CRM than a coaching tool."
+          caption="Before: a dense table of topics."
+          tone="peach"
+          flush
+        />
         <CaseVideo
           src="/videos/my-world/topics-by-dimension.mp4"
           poster="/images/my-world/posters/topics-by-dimension.jpg"

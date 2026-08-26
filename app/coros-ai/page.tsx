@@ -9,7 +9,7 @@ import { COROS_CASE_STUDIES, PROJECTS_HREF } from "@/lib/coros";
 export const metadata: Metadata = {
   title: "COROS AI: an AI Coaching Platform",
   description:
-    "Arshita Misra is the founding AI designer at COROS AI, an ontological coaching platform — spanning product design, UX, prompt engineering, research, and brand.",
+    "Arshita Misra is the founding AI designer at COROS AI, an ontological coaching platform, spanning product design, UX, prompt engineering, research, and brand.",
 };
 
 export default function CorosHub() {
@@ -84,7 +84,7 @@ export default function CorosHub() {
               <strong>
                 product design, UX, prompt engineering, user research, and brand
               </strong>
-              &nbsp;— with onboarding and interaction redesigns that got{" "}
+              , with onboarding and interaction redesigns that got{" "}
               <strong>55%</strong> of early signups returning the next day and{" "}
               <strong>40%</strong> of registered users active weekly.
             </p>

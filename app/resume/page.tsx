@@ -10,7 +10,7 @@ import { RESUME_PDF_URL } from "@/lib/resume";
 export const metadata: Metadata = {
   title: "Résumé",
   description:
-    "Arshita Misra — founding product designer at COROS AI. A concise, metric-led résumé of product design, design systems, and AI work.",
+    "Arshita Misra, founding product designer at COROS AI. A concise, metric-led résumé of product design, design systems, and AI work.",
 };
 
 /* ---------- Experience (metric-led, trimmed to the strongest work) ---------- */
@@ -53,7 +53,7 @@ const ROLES: Role[] = [
     points: [
       <>
         Lifted a key engagement metric <strong className="text-ink">15%</strong> at a pilot
-        venue with a gamified performance system — badges, streaks, and real-time feedback.
+        venue with a gamified performance system (badges, streaks, and real-time feedback).
       </>,
       <>
         Designed <strong className="text-ink">30+ screens</strong> across 5 flows and
@@ -66,7 +66,7 @@ const ROLES: Role[] = [
   {
     date: "Sep 2024 — Jun 2025",
     title: "Product Designer",
-    company: "Switcharoo — RESNA Accessibility Challenge",
+    company: "Switcharoo, RESNA Accessibility Challenge",
     points: [
       <>
         Placed <strong className="text-ink">2nd of 100 teams worldwide</strong> for a
@@ -82,7 +82,7 @@ const ROLES: Role[] = [
   },
   {
     date: "Jan — Jun 2025",
-    title: "UX Designer — Senior Capstone",
+    title: "UX Designer, Senior Capstone",
     company: "Edmonds Historical Museum",
     points: [
       <>

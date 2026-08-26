@@ -8,7 +8,7 @@ import PullQuote from "@/components/PullQuote";
 export const metadata: Metadata = {
   title: "Founding AI Designer at COROS AI",
   description:
-    "Designing COROS AI's 0→1 onboarding and personality system — user research, competitive analysis, and three features that shape how the AI coaches.",
+    "Designing COROS AI's 0→1 onboarding and personality system: user research, competitive analysis, and three features that shape how the AI coaches.",
 };
 
 const TOC = [

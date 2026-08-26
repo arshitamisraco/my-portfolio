@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Arshita Misra — product designer working at the intersection of UX, user research, and AI systems.";
+  "Arshita Misra, product designer working at the intersection of UX, user research, and AI systems.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

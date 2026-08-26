@@ -198,6 +198,15 @@
     color: var(--color-ink);
   }
 
+  .case-prose h4 {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
   .case-prose ul,
   .case-prose ol {
     margin-block: 1.1em;

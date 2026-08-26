@@ -13,7 +13,7 @@ import { COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/coros";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Arshita Misra is a product designer obsessed with human-centered AI — currently the founding designer at COROS AI.",
+    "Arshita Misra is a product designer obsessed with human-centered AI, currently the founding designer at COROS AI.",
 };
 
 interface TimelineEntry {
@@ -221,8 +221,8 @@ export default function About() {
                       Nitecapp was my entry into startup life. As a UX/UI intern I
                       shipped real product work alongside a small, scrappy team and learned
                       what it takes to move an idea from concept to something people can
-                      actually use. One system I designed &mdash; badges, streaks, and
-                      real-time feedback &mdash; lifted a key engagement metric{" "}
+                      actually use. One system I designed (badges, streaks, and
+                      real-time feedback) lifted a key engagement metric{" "}
                       <span className="font-medium text-accent-deep">15%</span> at the
                       pilot venue.
                     </p>

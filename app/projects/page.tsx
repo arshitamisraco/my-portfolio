@@ -7,7 +7,7 @@ import { COROS_CASE_STUDIES } from "@/lib/coros";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Three end-to-end case studies from Arshita Misra's work as founding AI designer at COROS AI — spanning product design, UX, prompt engineering, design systems, and brand.",
+    "Three end-to-end case studies from Arshita Misra's work as founding AI designer at COROS AI, spanning product design, UX, prompt engineering, design systems, and brand.",
 };
 
 export default function Projects() {
