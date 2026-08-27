@@ -116,9 +116,9 @@ export default function Home() {
               Previously{" "}
               <Link
                 href={COROS_HUB_HREF}
-                className="inline-flex items-center gap-1 text-accent-strong underline-offset-4 hover:underline"
+                className="inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-accent-strong underline-offset-4 hover:underline"
               >
-                Founding Product Designer @
+                <span className="whitespace-nowrap">Founding Product Designer @</span>
                 <Image
                   src="/images/logos/coros-ai.png"
                   alt="COROS AI"
