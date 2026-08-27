@@ -285,6 +285,45 @@
     border-radius: 6px;
     padding: 0.1em 0.4em;
   }
+
+  /* ============================================================
+     Case-study data tables — a bordered, striped frame so a table
+     reads as one deliberate visual block rather than loose rows.
+     Applied via `.case-table` on the element that wraps the <table>.
+     ============================================================ */
+  .case-table {
+    border: 1px solid var(--color-accent-soft);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .case-table table {
+    border-collapse: collapse;
+  }
+
+  .case-table thead tr {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+
+  .case-table tbody tr:nth-child(odd) {
+    background-color: var(--color-surface-raised);
+  }
+
+  .case-table tbody tr:nth-child(even) {
+    background-color: var(--color-surface);
+  }
+
+  /* Keep cell content off the new frame edge. */
+  .case-table th:first-child,
+  .case-table td:first-child {
+    padding-left: 1rem;
+  }
+
+  .case-table th:last-child,
+  .case-table td:last-child {
+    padding-right: 1rem;
+  }
 }
 
 /* ============================================================
@@ -349,26 +388,7 @@
   }
 }
 
-/* COROS card marquee: a continuous, linear left-drift of framed clips.
-   Content is duplicated 2× and the track slides exactly one copy width
-   (-50%), so the loop is seamless. Off by default (reduced motion / no-JS);
-   only enabled under no-preference. JS toggles animation-play-state to pause
-   on hover and when the card is off-screen. */
-@keyframes coros-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.coros-marquee-track {
-  animation: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .coros-marquee-track {
-    animation: coros-marquee var(--coros-marquee-duration, 46s) linear infinite;
-  }
-}
+/* COROS card marquee: the framed-clip shelf is a native horizontal scroller
+   (see CorosCarousel.tsx) — a rAF loop advances scrollLeft to auto-drift, and
+   manual drag / wheel / swipe scroll it directly, briefly pausing the drift.
+   No CSS animation is involved. */

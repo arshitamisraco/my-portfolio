@@ -230,10 +230,10 @@ export default function Switcharoo() {
       </CaseSection>
 
       <CaseSection id="games" eyebrow="The games" title="Six games, one press">
-        <div className="overflow-x-auto">
+        <div className="case-table overflow-x-auto">
           <table className="w-full text-left text-body">
             <thead>
-              <tr className="border-b border-line text-style-eyebrow text-ink-muted">
+              <tr className="text-style-eyebrow text-ink">
                 <th className="py-2 pr-4 font-medium">Game</th>
                 <th className="py-2 font-medium">Theme</th>
               </tr>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
+import OnboardingFlowDiagram from "@/components/case-study/OnboardingFlowDiagram";
 import QuoteCard from "@/components/case-study/QuoteCard";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
@@ -195,6 +196,21 @@ export default function FoundingDesign() {
         </p>
       </CaseSection>
 
+      <CaseSection id="flow" eyebrow="The flow" title="The conversation, end to end">
+        <OnboardingFlowDiagram />
+        <p className="text-caption text-ink-muted">
+          The full onboarding sequence: eight steps, an optional detour around
+          Influences, and one Back path running the length of the flow.
+        </p>
+        <p>
+          Name comes first so every screen after it can address the user directly, the
+          way Transition does. Influences sits after Dimensions and stays optional, so a
+          user who doesn&rsquo;t want to declare a worldview keeps moving. Tone comes
+          last because it&rsquo;s the only choice that changes how the AI speaks rather
+          than what it knows.
+        </p>
+      </CaseSection>
+
       <CaseSection
         id="dimensions"
         eyebrow="Feature #1"
@@ -283,6 +299,14 @@ export default function FoundingDesign() {
           size="md"
           tone="sky"
         />
+        <p className="border-l-4 border-accent pl-4 font-medium">
+          The rule: an influence is referenced sparingly and strategically, only when a
+          specific quote or teaching would significantly deepen a key coaching point.
+        </p>
+        <p>
+          An influence only carries weight when it lands at the right moment. Reaching
+          for one just to prove the AI remembers spends that credibility on nothing.
+        </p>
       </CaseSection>
 
       <CaseSection
@@ -345,6 +369,62 @@ export default function FoundingDesign() {
           />
         </div>
         <p>The original design: a three-position slider spanning the three coaching modes.</p>
+        <h3>The voice and tone rules behind each mode</h3>
+        <p>
+          Each mode is its own prompt architecture, not a change in wording, so the three
+          differ in what a turn asks for, not just how it sounds.
+        </p>
+        <div className="case-table overflow-x-auto">
+          <table className="w-full text-left text-body">
+            <thead>
+              <tr className="text-style-eyebrow text-ink">
+                <th className="py-2 pr-4 font-medium">Mode</th>
+                <th className="py-2 pr-4 font-medium">Traits</th>
+                <th className="py-2 pr-4 font-medium">What the turn does</th>
+                <th className="py-2 font-medium">Sample turn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-line">
+                <td className="py-3 pr-4 align-top font-medium text-ink">Supportive</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">Calm, gentle, patient</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">
+                  Acknowledges first, then asks for more context before offering anything
+                </td>
+                <td className="py-3 align-top text-ink-muted">
+                  &ldquo;I hear you. How are you doing as you bring this up?
+                  What&rsquo;s happening at work?&rdquo;
+                </td>
+              </tr>
+              <tr className="border-b border-line">
+                <td className="py-3 pr-4 align-top font-medium text-ink">Balanced</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">Grounded, curious, discerning</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">
+                  Names what it&rsquo;s hearing and checks the read with the user
+                </td>
+                <td className="py-3 align-top text-ink-muted">
+                  &ldquo;I&rsquo;m hearing a mood of overwhelm, does that feel
+                  right?&rdquo;
+                </td>
+              </tr>
+              <tr className="last:border-0">
+                <td className="py-3 pr-4 align-top font-medium text-ink">Provocative</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">Candid, bold, perturbing</td>
+                <td className="py-3 pr-4 align-top text-ink-muted">
+                  Closes the loop and asks for a commitment
+                </td>
+                <td className="py-3 align-top text-ink-muted">
+                  &ldquo;Are you going to do it or not?&rdquo;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Supportive was cut after testing and stakeholder alignment, since a coddling
+          approach contradicted the ontological coaching framework. That left two shipped
+          modes, and it made the slider the wrong shape for the choice.
+        </p>
         <h3>Iteration 1: cutting supportive mode</h3>
         <p>
           I initially designed three modes (Supportive, Balanced, Provocative), but

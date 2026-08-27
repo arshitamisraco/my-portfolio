@@ -3,6 +3,8 @@ import CaseVideo from "@/components/CaseVideo";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroMontage from "@/components/case-study/HeroMontage";
+import StateInventory from "@/components/case-study/StateInventory";
+import ToneComparison from "@/components/case-study/ToneComparison";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 
@@ -27,6 +29,39 @@ const STATS = [
     value: "4",
     label: "platforms: web, tablet, iOS, Android",
     bg: "bg-mint-soft",
+  },
+];
+
+const CHAT_STATES = [
+  {
+    state: "Empty state",
+    trigger: "A new conversation with no messages yet.",
+    sees: "The greeting and the composer, with nothing above it.",
+  },
+  {
+    state: "Typing indicator",
+    trigger: "The message has been sent and the model has not begun responding.",
+    sees: "An indicator in place of the response, so the wait is accounted for.",
+  },
+  {
+    state: "Streaming text",
+    trigger: "The response has started arriving.",
+    sees: "Text building in the response bubble, distinct from the typing state.",
+  },
+  {
+    state: "Message-level actions",
+    trigger: "A COROS response has completed.",
+    sees: "Read-aloud and flag actions beneath the message.",
+  },
+  {
+    state: "Error and retry",
+    trigger: "The response fails.",
+    sees: "The failure surfaced in place, with a retry available.",
+  },
+  {
+    state: "Scrolled away mid-response",
+    trigger: "The user scrolls up while a response is arriving.",
+    sees: "A return-to-chat affordance rather than a forced scroll jump.",
   },
 ];
 
@@ -328,6 +363,13 @@ export default function DesignSystem() {
             system, both themes.
           </p>
         </div>
+        <h3>Every state a conversation can be in</h3>
+        <p>
+          Chat is the product, so the states got inventoried before any screen was drawn.
+          Most of them are waiting or failure states, not the happy path: empty, streaming,
+          errors, message actions, return-to-chat.
+        </p>
+        <StateInventory rows={CHAT_STATES} />
       </CaseSection>
 
       <CaseSection id="settings" eyebrow="Screens" title="Settings">
@@ -440,6 +482,12 @@ export default function DesignSystem() {
           designed an in-product panel that shows exactly what the model saw for any
           response:
         </p>
+        <p>
+          When a response lands wrong, the first thing to establish is whether the system
+          knew which conversation it was in. The new-topic-versus-continuation field
+          answers that directly. A correct answer to the wrong topic still reads to the
+          user as a broken conversation.
+        </p>
         <ul>
           <li>Retrieved sessions with semantic and recency scores.</li>
           <li>Session-boundary probability.</li>
@@ -459,6 +507,17 @@ export default function DesignSystem() {
           tone="lavender"
           caption="My Memories (team-only): biographical memory and session history, in the same settings shell as every user-facing tab."
         />
+        <h3>One system, two voices</h3>
+        <ToneComparison
+          userMessage="I feel like I'm working overtime every single day, but my team just keeps giving me grunt work and I'm so pissed off."
+          supportive="I hear you. How are you doing as you bring this up? What's happening at work?"
+          provocative="Are you going to do it or not?"
+        />
+        <p>
+          Tone selection swaps the whole response architecture, not a word bank, which is
+          why one response asks for more context and the other asks for a decision. The
+          inline tone quick-switch shown above lets a user change it mid-conversation.
+        </p>
       </CaseSection>
 
       <CaseSection id="results" eyebrow="Impact" title="Results">

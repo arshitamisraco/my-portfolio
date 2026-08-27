@@ -5,6 +5,8 @@ import HeroStills from "@/components/case-study/HeroStills";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
+import ReviewLoop from "@/components/case-study/ReviewLoop";
+import ReviewMatrix from "@/components/case-study/ReviewMatrix";
 
 export const metadata: Metadata = {
   title: "Designing an AI That Remembers You",
@@ -30,7 +32,7 @@ export default function MyWorld() {
         },
         {
           label: "Timeline",
-          value: "April 2026 – Present (in progress, shipping incrementally)",
+          value: "April 2026 – August 2026 (in progress, shipping incrementally)",
         },
         {
           label: "Tools",
@@ -252,6 +254,40 @@ export default function MyWorld() {
             rewrite.
           </li>
         </ul>
+      </CaseSection>
+
+      <CaseSection
+        id="transcript-review"
+        eyebrow="Transcript review"
+        title="Finding where the conversation broke"
+      >
+        <p>
+          I run the same 20 real session transcripts through every prompt and score each
+          generated field against the rule it&rsquo;s supposed to follow. I read a stratified
+          sample by hand to confirm the scores, fix the rule that let a failure through, and
+          re-run the same batch to check the fix held. A wrong breakthrough manufactures a
+          false memory, so an inaccurate card is a trust failure, not a cosmetic one.
+        </p>
+        <ReviewLoop />
+        <ReviewMatrix />
+        <ul>
+          <li>
+            One run surfaced five must-fix issues, each traced to a specific rule the output
+            had violated.
+          </li>
+          <li>
+            Every fix was a single added clause rather than a prompt rewrite, so each change
+            stayed attributable to one behavior.
+          </li>
+          <li>
+            Fixes were verified by re-running the same 20-session batch, not by checking one
+            output.
+          </li>
+        </ul>
+        <p className="mt-6 text-caption text-ink-muted">
+          User conversations are confidential, so the examples on this page are redacted or
+          synthetic. The prompts themselves are company IP.
+        </p>
       </CaseSection>
 
       <CaseSection

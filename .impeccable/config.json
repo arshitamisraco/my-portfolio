@@ -20,6 +20,15 @@
         ],
         "createdAt": "2026-08-27T03:44:33.221Z",
         "reason": "same pre-existing callout convention as CaseStudyLayout.tsx's Impact aside and PullQuote.tsx (border-l-4 border-l-accent), reused for the finding boxes"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/projects/founding-design/page.tsx"
+        ],
+        "createdAt": "2026-08-27T21:42:51.336Z",
+        "reason": "border-l-4 border-accent callout is the page's pre-existing pattern (line 148/149, predates this session's edits) and is already a sanctioned exception project-wide (see StatCallout.tsx, ResearchTimeline.tsx ignores); the new Influences callout intentionally reuses it for design-system consistency"
       }
     ]
   }
