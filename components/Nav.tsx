@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PROJECTS_HREF } from "@/lib/projects";
+import PixelCloud from "@/components/PixelCloud";
 
 const LINKS = [
   { label: "For fun", href: "/for-fun" },
   { label: "Projects", href: PROJECTS_HREF },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/resume" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/arshita-misra/", external: true },
 ];
 
 const CONTACT_LINK = { label: "Contact me", href: "/contact" };
@@ -32,9 +32,16 @@ export default function Nav() {
       <nav aria-label="Main" className="container-site flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="font-display text-h4 font-semibold tracking-tight text-ink transition-colors hover:text-accent-deep"
+          aria-label="Arshita Misra — home"
+          className="group flex items-center gap-2 font-display text-h4 font-semibold tracking-tight text-ink transition-colors hover:text-accent-deep"
         >
-          Arshita Misra
+          <PixelCloud
+            shape="puff"
+            variant="pink"
+            size={28}
+            className="shrink-0 transition-transform group-hover:-translate-y-0.5"
+          />
+          <span>AM</span>
         </Link>
 
         {/* Desktop links */}
@@ -42,27 +49,15 @@ export default function Nav() {
           <ul className="flex items-center gap-8">
             {LINKS.map((link) => (
               <li key={link.label}>
-                {link.external ? (
-                  <a
-                    href={link.href}
-                    {...(link.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="text-body text-ink-muted transition-colors hover:text-accent-deep"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={link.href}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`text-body transition-colors hover:text-accent-deep ${
-                      isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )}
+                <Link
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`text-body transition-colors hover:text-accent-deep ${
+                    isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -100,27 +95,15 @@ export default function Nav() {
           <ul className="container-site flex flex-col gap-1 py-4">
             {LINKS.map((link) => (
               <li key={link.label}>
-                {link.external ? (
-                  <a
-                    href={link.href}
-                    {...(link.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="block rounded-card px-3 py-3 text-body-lg text-ink-muted hover:bg-surface"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={link.href}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`block rounded-card px-3 py-3 text-body-lg hover:bg-surface ${
-                      isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )}
+                <Link
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`block rounded-card px-3 py-3 text-body-lg hover:bg-surface ${
+                    isActive(link.href) ? "font-medium text-accent-deep" : "text-ink-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
             <li>
