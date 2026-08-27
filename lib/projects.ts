@@ -1,6 +1,6 @@
 import type { ChipTone } from "@/components/TagChip";
 
-export interface CorosCaseStudy {
+export interface CaseStudy {
   slug: string;
   href: string;
   title: string;
@@ -12,15 +12,23 @@ export interface CorosCaseStudy {
   tone: ChipTone;
   /** Shown as an "In progress" badge on the hub card when the work is still shipping. */
   inProgress?: boolean;
+  /**
+   * The company/hub this case study belongs to, if any. When set, CaseStudyLayout
+   * renders a breadcrumb crumb for it (Projects / {company.name} / {study}). Omit for
+   * standalone projects not tied to a company hub.
+   */
+  company?: { name: string; href: string };
 }
 
 /** The COROS AI blurb/overview page. Reached only from the landing thumbnail. */
 export const COROS_HUB_HREF = "/coros-ai";
 
-/** The Projects listing page — three case-study cards, reached from the main nav. */
+/** The Projects listing page — case-study cards, reached from the main nav. */
 export const PROJECTS_HREF = "/projects";
 
-export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
+const COROS: CaseStudy["company"] = { name: "COROS AI", href: COROS_HUB_HREF };
+
+export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "my-world",
     href: "/projects/my-world",
@@ -31,6 +39,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
     tags: ["Prompt Engineering", "UX/UI", "Design Engineering", "Product Design"],
     tone: "lavender",
     inProgress: true,
+    company: COROS,
   },
   {
     slug: "design-system",
@@ -41,6 +50,7 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
       "Migrating the product from stock MUI to a token-driven shadcn system: responsive redesign of every core surface plus a team-facing debug panel.",
     tags: ["Design Systems", "UX/UI", "Responsive", "Design Engineering"],
     tone: "sky",
+    company: COROS,
   },
   {
     slug: "founding-design",
@@ -51,23 +61,34 @@ export const COROS_CASE_STUDIES: CorosCaseStudy[] = [
       "Designing COROS's 0→1 onboarding and personality system: user research, competitive analysis, and three features that shape how the AI coaches, plus the brand identity.",
     tags: ["0→1", "UX/UI", "User Research", "AI Behavior", "Brand"],
     tone: "pink",
+    company: COROS,
+  },
+  {
+    slug: "switcharoo",
+    href: "/projects/switcharoo",
+    title: "One switch, infinite possibilities",
+    shortTitle: "Switcharoo",
+    brief:
+      "A switch-accessible tablet game library for pre-K and kindergarten children with motor and cognitive disabilities — 2nd place out of 100+ teams at the RESNA Student Design Challenge.",
+    tags: ["UX Research", "Accessibility", "UX/UI", "Product Design"],
+    tone: "mint",
   },
 ];
 
-export function getCaseStudy(slug: string): CorosCaseStudy {
-  const study = COROS_CASE_STUDIES.find((s) => s.slug === slug);
-  if (!study) throw new Error(`Unknown COROS case study: ${slug}`);
+export function getCaseStudy(slug: string): CaseStudy {
+  const study = CASE_STUDIES.find((s) => s.slug === slug);
+  if (!study) throw new Error(`Unknown case study: ${slug}`);
   return study;
 }
 
 export function getPrevNext(slug: string): {
-  prev: CorosCaseStudy;
-  next: CorosCaseStudy;
+  prev: CaseStudy;
+  next: CaseStudy;
 } {
-  const i = COROS_CASE_STUDIES.findIndex((s) => s.slug === slug);
-  const n = COROS_CASE_STUDIES.length;
+  const i = CASE_STUDIES.findIndex((s) => s.slug === slug);
+  const n = CASE_STUDIES.length;
   return {
-    prev: COROS_CASE_STUDIES[(i - 1 + n) % n],
-    next: COROS_CASE_STUDIES[(i + 1) % n],
+    prev: CASE_STUDIES[(i - 1 + n) % n],
+    next: CASE_STUDIES[(i + 1) % n],
   };
 }

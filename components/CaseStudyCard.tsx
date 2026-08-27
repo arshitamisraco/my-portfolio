@@ -2,7 +2,7 @@ import Link from "next/link";
 import CorosCarousel from "@/components/CorosCarousel";
 import TagChip from "@/components/TagChip";
 import { CASE_STUDY_CLIPS } from "@/lib/carousel";
-import type { CorosCaseStudy } from "@/lib/coros";
+import type { CaseStudy } from "@/lib/projects";
 
 /**
  * Full-width, stacked case-study card — the shared listing unit for the COROS
@@ -10,7 +10,7 @@ import type { CorosCaseStudy } from "@/lib/coros";
  * identical. The whole card is one link; the cover carousel is aria-hidden so
  * the card keeps a single accessible name.
  */
-export default function CaseStudyCard({ study }: { study: CorosCaseStudy }) {
+export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <Link
       href={study.href}

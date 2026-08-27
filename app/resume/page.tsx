@@ -4,7 +4,7 @@ import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import TagChip, { type ChipTone } from "@/components/TagChip";
-import { PROJECTS_HREF } from "@/lib/coros";
+import { PROJECTS_HREF } from "@/lib/projects";
 import { RESUME_PDF_URL } from "@/lib/resume";
 
 export const metadata: Metadata = {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { PROJECTS_HREF } from "@/lib/coros";
+import { PROJECTS_HREF } from "@/lib/projects";
 
 const LINKS = [
   { label: "Projects", href: PROJECTS_HREF },

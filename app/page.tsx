@@ -5,7 +5,9 @@ import CaseStudyCard from "@/components/CaseStudyCard";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { COROS_CASE_STUDIES, COROS_HUB_HREF } from "@/lib/coros";
+import { CASE_STUDIES, COROS_HUB_HREF } from "@/lib/projects";
+
+const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
 
 /*
  * Hero sky: each cloud gets a resting position (its `left`/`top`) — the

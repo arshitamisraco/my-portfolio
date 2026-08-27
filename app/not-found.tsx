@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import PixelCloud from "@/components/PixelCloud";
-import { PROJECTS_HREF } from "@/lib/coros";
+import { PROJECTS_HREF } from "@/lib/projects";
 
 export default function NotFound() {
   return (

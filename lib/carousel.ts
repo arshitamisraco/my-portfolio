@@ -102,22 +102,6 @@ export const COROS_MIX_CLIPS: Clip[] = [
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
   "my-world": [
     {
-      src: "/videos/my-world/page-tour.mp4",
-      poster: "/images/my-world/posters/page-tour.jpg",
-      width: 1440,
-      height: 900,
-      alt: "A tour of the My World page",
-      tone: "lavender",
-    },
-    {
-      src: "/videos/my-world/topic-to-session.mp4",
-      poster: "/images/my-world/posters/topic-to-session.jpg",
-      width: 1440,
-      height: 900,
-      alt: "Turning a topic into a coaching session in My World",
-      tone: "sky",
-    },
-    {
       src: "/videos/my-world/breakthrough-widget.mp4",
       poster: "/images/my-world/posters/breakthrough-widget.jpg",
       width: 1322,
@@ -273,6 +257,43 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       height: 953,
       alt: "The COROS AI chat on web",
       tone: "lavender",
+    },
+  ],
+  switcharoo: [
+    {
+      poster: "/images/switcharoo/library-single.png",
+      width: 2388,
+      height: 1668,
+      alt: "The Switcharoo game library, showing six switch-accessible games",
+      tone: "sky",
+    },
+    {
+      poster: "/images/switcharoo/selected-game-pop-the-balloon.png",
+      width: 2388,
+      height: 1668,
+      alt: "Pop the Balloon, a cause-and-effect game",
+      tone: "mint",
+    },
+    {
+      poster: "/images/switcharoo/favorites.png",
+      width: 2388,
+      height: 1668,
+      alt: "The Favorites screen with starred games",
+      tone: "peach",
+    },
+    {
+      poster: "/images/switcharoo/selected-game-sorting-game.png",
+      width: 2388,
+      height: 1668,
+      alt: "The Sorting Game, teaching categorization",
+      tone: "butter",
+    },
+    {
+      poster: "/images/switcharoo/settings.png",
+      width: 2388,
+      height: 1668,
+      alt: "Settings for switch pairing, contrast, sound, and haptics",
+      tone: "pink",
     },
   ],
 };

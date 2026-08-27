@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PROJECTS_HREF } from "@/lib/coros";
+import { PROJECTS_HREF } from "@/lib/projects";
 import PixelCloud from "./PixelCloud";
 
 export default function Footer() {

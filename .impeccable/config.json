@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "components/case-study/StatCallout.tsx"
+        ],
+        "createdAt": "2026-08-27T03:44:33.150Z",
+        "reason": "matches pre-existing site convention: CaseStudyLayout.tsx's Impact aside and PullQuote.tsx both already use border-l-4 border-l-accent before this session; new component deliberately reuses that established callout language"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "components/case-study/ResearchTimeline.tsx"
+        ],
+        "createdAt": "2026-08-27T03:44:33.221Z",
+        "reason": "same pre-existing callout convention as CaseStudyLayout.tsx's Impact aside and PullQuote.tsx (border-l-4 border-l-accent), reused for the finding boxes"
+      }
+    ]
+  }
+}

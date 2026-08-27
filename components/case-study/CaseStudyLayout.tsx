@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import PixelCloud from "@/components/PixelCloud";
 import TagChip from "@/components/TagChip";
-import { COROS_HUB_HREF, getCaseStudy, getPrevNext, PROJECTS_HREF } from "@/lib/coros";
+import { getCaseStudy, getPrevNext, PROJECTS_HREF } from "@/lib/projects";
 
 interface MetaItem {
   label: string;
@@ -61,12 +61,16 @@ export default function CaseStudyLayout({
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li>
-                <Link href={COROS_HUB_HREF} className="hover:text-accent-deep">
-                  COROS AI
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
+              {study.company && (
+                <>
+                  <li>
+                    <Link href={study.company.href} className="hover:text-accent-deep">
+                      {study.company.name}
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                </>
+              )}
               <li aria-current="page" className="text-ink">
                 {study.shortTitle}
               </li>

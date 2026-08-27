@@ -8,7 +8,7 @@ import PixelCloud from "@/components/PixelCloud";
 import PrincipleCard from "@/components/PrincipleCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/coros";
+import { COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "About",
