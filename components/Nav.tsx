@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { PROJECTS_HREF } from "@/lib/projects";
 
 const LINKS = [
+  { label: "For fun", href: "/for-fun" },
   { label: "Projects", href: PROJECTS_HREF },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/resume" },

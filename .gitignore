@@ -28,3 +28,7 @@ next-env.d.ts
 
 # claude code tooling (local; the design docs it produces are committed)
 /.claude/
+
+# large raw video source files (not served)
+/content/videos/fun-1.MOV
+/content/videos/fun-2.mov
