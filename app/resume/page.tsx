@@ -10,7 +10,7 @@ import { RESUME_PDF_URL } from "@/lib/resume";
 export const metadata: Metadata = {
   title: "Résumé",
   description:
-    "Arshita Misra, UI/UX designer and design engineer at COROS AI. A concise, metric-led résumé of product design, design systems, and AI work.",
+    "Arshita Misra, product designer and design engineer at COROS AI. A short, results-focused résumé covering product design, design systems, and AI work.",
 };
 
 /* ---------- Experience (metric-led, trimmed to the strongest work) ---------- */
@@ -25,13 +25,13 @@ interface Role {
 const ROLES: Role[] = [
   {
     date: "Jul 2025 — Aug 2026",
-    title: "UI/UX Designer",
+    title: "Founding Product Designer",
     company: "COROS AI",
     points: [
       <>
         Designed an AI coaching product <strong className="text-ink">0 to 1</strong> across
-        web, iOS, and Android — ideation, wireframes, and user flows through high-fidelity
-        responsive UI and front-end — taking it from concept to launch in{" "}
+        web, iOS, and Android, covering ideation, wireframes, and user flows through
+        high-fidelity responsive UI and front-end, taking it from concept to launch in{" "}
         <strong className="text-ink">2 months</strong>.
       </>,
       <>
@@ -55,8 +55,8 @@ const ROLES: Role[] = [
         validate model outputs.
       </>,
       <>
-        Established brand identity — logo, typography, marketing posts, short-form video,
-        and an investment pitch deck — that helped land the first round of investment.
+        Established brand identity (logo, typography, marketing posts, short-form video,
+        and an investment pitch deck) that helped land the first round of investment.
       </>,
     ],
     tags: ["Product design", "Design systems", "AI prototyping", "Prompt engineering"],
@@ -206,8 +206,8 @@ export default function Resume() {
             Product Designer &amp; Design Engineer
           </p>
           <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
-            At the intersection of UX, AI, systems thinking, and design systems, shipping
-            end-to-end from research, information architecture, and visual design to
+            Working across UX, AI, systems thinking, and design systems, and shipping
+            end-to-end: research, information architecture, and visual design through to
             high-fidelity UI, LLM prompts, and production front-end.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -278,68 +278,96 @@ export default function Resume() {
         </div>
       </section>
 
-      {/* ================= Education + Skills ================= */}
+      {/* ================= Education + Leadership ================= */}
       <section className="border-t border-line bg-surface py-section">
-        <div className="container-site grid gap-14 lg:grid-cols-[1fr_2fr] lg:gap-24">
+        <div className="container-site space-y-14">
           {/* Education */}
           <Reveal>
             <div>
               <SectionLabel cloud cloudVariant="sky">
                 Education
               </SectionLabel>
-              <h2 className="mt-6 font-display text-h3 font-semibold text-ink">
-                University of Washington
-              </h2>
-              <p className="mt-1 text-body text-ink-muted">
-                B.S., Human Centered Design &amp; Engineering (Data Science concentration)
-              </p>
-              <p className="mt-3 text-caption text-ink-muted">
-                Dean&rsquo;s List · GPA 3.93 / 4.0 · Sep 2021 – Jun 2025
-              </p>
-              <p className="mt-2 text-caption text-ink-muted">
-                Coursework: Designing for AI, Human-Computer Interaction, Data
-                Visualization, Accessible Design, Design Systems &amp; Libraries, Visual
-                Communication Design, UI Design, UX Design
-              </p>
+              <div className="mt-10 grid gap-4 md:grid-cols-[1fr_2fr] md:gap-12">
+                {/* Left: meta */}
+                <div>
+                  <p className="text-style-eyebrow text-accent-deep">
+                    Sep 2021 – Jun 2025
+                  </p>
+                  <h2 className="mt-3 font-display text-h3 font-semibold text-ink">
+                    University of Washington
+                  </h2>
+                  <p className="mt-1 text-body text-ink-muted">
+                    B.S., Human Centered Design &amp; Engineering (Data Science
+                    concentration)
+                  </p>
+                </div>
 
-              <div className="mt-8">
-                <SectionLabel cloud cloudVariant="sky">
-                  Leadership
-                </SectionLabel>
-                <h3 className="mt-6 font-display text-h3 font-semibold text-ink">
-                  Engineering Peer Educator
-                </h3>
-                <p className="mt-1 text-body text-ink-muted">
-                  UW College of Engineering · Sep – Dec 2023
-                </p>
-                <p className="mt-3 text-caption text-ink-muted">
-                  Earned a 92% excellent-and-friendly rating across weekly mentorship
-                  sessions on communication and collaboration skills.
-                </p>
+                {/* Right: details */}
+                <div>
+                  <p className="text-body-lg text-ink-muted">
+                    Dean&rsquo;s List · GPA 3.93 / 4.0
+                  </p>
+                  <p className="mt-3 text-body-lg text-ink-muted">
+                    Coursework: Designing for AI, Human-Computer Interaction, Data
+                    Visualization, Accessible Design, Design Systems &amp; Libraries,
+                    Visual Communication Design, UI Design, UX Design
+                  </p>
+                </div>
               </div>
             </div>
           </Reveal>
 
-          {/* Skills */}
+          {/* Leadership */}
           <Reveal delay={0.05}>
             <div>
-              <SectionLabel cloud cloudVariant="pink">
-                Skills
+              <SectionLabel cloud cloudVariant="sky">
+                Leadership
               </SectionLabel>
-              <div className="mt-6 space-y-6">
-                {SKILLS.map((s) => (
-                  <div key={s.group}>
-                    <p className="text-caption font-semibold text-ink">{s.group}</p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {s.items.map((item) => (
-                        <TagChip key={item} tone={s.tone}>
-                          {item}
-                        </TagChip>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+              <div className="mt-10 grid gap-4 md:grid-cols-[1fr_2fr] md:gap-12">
+                {/* Left: meta */}
+                <div>
+                  <p className="text-style-eyebrow text-accent-deep">Sep – Dec 2023</p>
+                  <h2 className="mt-3 font-display text-h3 font-semibold text-ink">
+                    Engineering Peer Educator
+                  </h2>
+                  <p className="mt-1 text-body text-ink-muted">
+                    UW College of Engineering
+                  </p>
+                </div>
+
+                {/* Right: details */}
+                <div>
+                  <p className="text-body-lg text-ink-muted">
+                    Earned a 92% excellent-and-friendly rating across weekly mentorship
+                    sessions on communication and collaboration skills.
+                  </p>
+                </div>
               </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ================= Skills ================= */}
+      <section className="border-t border-line py-section">
+        <div className="container-site">
+          <Reveal>
+            <SectionLabel cloud cloudVariant="pink">
+              Skills
+            </SectionLabel>
+            <div className="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-2">
+              {SKILLS.map((s) => (
+                <div key={s.group}>
+                  <p className="text-caption font-semibold text-ink">{s.group}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {s.items.map((item) => (
+                      <TagChip key={item} tone={s.tone}>
+                        {item}
+                      </TagChip>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>

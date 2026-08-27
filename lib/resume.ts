@@ -8,4 +8,4 @@
  * Nothing else needs to change.
  */
 export const RESUME_PDF_URL =
-  "https://drive.google.com/file/d/1vfRePd_Tg7x5aMphsHaMW0VMhB6kDqmo/view?usp=sharing";
+  "https://drive.google.com/file/d/1cFAi3VHYtRPjQHHRSqjN8zwqzYNQfaTg/view?usp=sharing";
