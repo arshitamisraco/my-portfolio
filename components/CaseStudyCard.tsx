@@ -23,20 +23,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
 
       <div className="flex flex-col gap-4 p-5 md:flex-row md:items-end md:justify-between md:p-7">
         <div className="max-w-2xl">
-          {study.inProgress && (
-            <span className="inline-flex items-center gap-1.5 rounded-pill bg-mint-soft px-3 py-1 text-caption font-medium text-mint-deep">
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 rounded-pill bg-mint-deep motion-safe:animate-pulse"
-              />
-              Current project
-            </span>
-          )}
-          <h2
-            className={`font-display text-h2 font-semibold text-ink group-hover:text-accent-deep ${
-              study.inProgress ? "mt-4" : ""
-            }`}
-          >
+          <h2 className="font-display text-h2 font-semibold text-ink group-hover:text-accent-deep">
             {study.title}
           </h2>
           <p className="mt-3 text-body text-ink-muted">{study.brief}</p>

@@ -10,8 +10,6 @@ export interface CaseStudy {
   brief: string;
   tags: string[];
   tone: ChipTone;
-  /** Shown as an "In progress" badge on the hub card when the work is still shipping. */
-  inProgress?: boolean;
   /**
    * The company/hub this case study belongs to, if any. When set, CaseStudyLayout
    * renders a breadcrumb crumb for it (Projects / {company.name} / {study}). Omit for
@@ -38,7 +36,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       "End-to-end design of the feature that reflects a user's coaching history back to them: information architecture, widget design, and the LLM prompts behind every card.",
     tags: ["Prompt Engineering", "UX/UI", "Design Engineering", "Product Design"],
     tone: "lavender",
-    inProgress: true,
     company: COROS,
   },
   {

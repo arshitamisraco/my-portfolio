@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import TagChip from "@/components/TagChip";
 import { CASE_STUDIES, PROJECTS_HREF } from "@/lib/projects";
 
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
@@ -104,50 +104,10 @@ export default function CorosHub() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
             {COROS_CASE_STUDIES.map((study, i) => (
               <Reveal key={study.slug} delay={i * 0.08}>
-                <Link
-                  href={study.href}
-                  className="group flex h-full flex-col rounded-frame border border-line bg-surface-raised p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent motion-reduce:hover:translate-y-0"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <PixelCloud
-                      shape="puff"
-                      variant={study.tone === "lavender" ? "lavender" : study.tone === "sky" ? "sky" : "pink"}
-                      size={44}
-                    />
-                    {study.inProgress && (
-                      <span className="inline-flex items-center gap-1.5 rounded-pill bg-mint-soft px-3 py-1 text-caption font-medium text-mint-deep">
-                        <span
-                          aria-hidden="true"
-                          className="h-1.5 w-1.5 rounded-pill bg-mint-deep motion-safe:animate-pulse"
-                        />
-                        In progress
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-5 font-display text-h3 font-semibold text-ink group-hover:text-accent-deep">
-                    {study.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-body text-ink-muted">{study.brief}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <TagChip key={tag} tone={study.tone}>
-                        {tag}
-                      </TagChip>
-                    ))}
-                  </div>
-                  <p className="mt-5 text-caption font-medium text-accent-deep">
-                    Read the case study{" "}
-                    <span
-                      aria-hidden="true"
-                      className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
-                    >
-                      →
-                    </span>
-                  </p>
-                </Link>
+                <CaseStudyCard study={study} />
               </Reveal>
             ))}
           </div>
