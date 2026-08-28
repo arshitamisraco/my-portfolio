@@ -259,6 +259,43 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "lavender",
     },
   ],
+  "foryou-playmat": [
+    {
+      poster: "/images/foryou-playmat/final-mat.jpg",
+      width: 1350,
+      height: 1800,
+      alt: "The finished play mat: a wipeable top over a lit green LED grid, with sensory texture cushions",
+      tone: "butter",
+    },
+    {
+      poster: "/images/foryou-playmat/concept-sketch.jpg",
+      width: 1600,
+      height: 1236,
+      alt: "The 'floor is lava' concept sketch: LED lava, detachable sensory 'rock' blocks",
+      tone: "peach",
+    },
+    {
+      poster: "/images/foryou-playmat/woz-mat.jpg",
+      width: 1350,
+      height: 1800,
+      alt: "The Wizard of Oz prototype: string lights under a poly sheet with sewn texture cushions",
+      tone: "mint",
+    },
+    {
+      poster: "/images/foryou-playmat/classroom.jpg",
+      width: 2000,
+      height: 1500,
+      alt: "An EEU classroom on a rain day, floor space limited",
+      tone: "sky",
+    },
+    {
+      poster: "/images/foryou-playmat/hero-team.jpg",
+      width: 2200,
+      height: 1650,
+      alt: "The four-person project team at the HuskyADAPT showcase",
+      tone: "lavender",
+    },
+  ],
   switcharoo: [
     {
       poster: "/images/switcharoo/library-single.png",

@@ -73,6 +73,16 @@ export const CASE_STUDIES: CaseStudy[] = [
     tags: ["UX Research", "Accessibility", "UX/UI", "Product Design"],
     tone: "mint",
   },
+  {
+    slug: "foryou-playmat",
+    href: "/projects/foryou-playmat",
+    title: "ForYou Playmat",
+    shortTitle: "ForYou Playmat",
+    brief:
+      "An interactive 'floor is lava' play mat — a light-up surface with hand-sewn sensory blocks — for preschoolers with neurodivergence and motor and cognitive disabilities, built with the EEU in Seattle to bring active, social play indoors on rainy days.",
+    tags: ["User Research", "Field Observation", "Physical Prototyping", "Inclusive Design"],
+    tone: "butter",
+  },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy {
