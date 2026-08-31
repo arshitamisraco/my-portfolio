@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import OnboardingFlowDiagram from "@/components/case-study/OnboardingFlowDiagram";
+import ProductIntro from "@/components/case-study/ProductIntro";
 import QuoteCard from "@/components/case-study/QuoteCard";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
@@ -26,6 +27,7 @@ export default function FoundingDesign() {
         { label: "Company", value: "COROS AI" },
         { label: "Focus", value: "Product · UX · AI · Research · Brand" },
       ]}
+      productIntro={<ProductIntro />}
     >
       <CaseSection id="context" eyebrow="Context" title="Founding designer, many hats">
         <p>

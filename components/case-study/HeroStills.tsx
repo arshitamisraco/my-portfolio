@@ -143,11 +143,55 @@ interface HeroStillsProps {
  * gutters; the videos these frames come from live in the feature sections below.
  */
 export default function HeroStills({ label, ariaLabel, rows, fullBleed }: HeroStillsProps) {
+  const mosaic = (
+    <div className="mt-5 flex flex-col gap-2 sm:gap-3">
+      {rows.map((row, rowIndex) => {
+        const rowRatioSum = row.reduce((sum, cell) => sum + cellRatio(cell), 0);
+        const rowHasStack = row.some((cell) => Array.isArray(cell));
+        return (
+          <div
+            key={rowIndex}
+            className="flex flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-3"
+          >
+            {row.map((cell, cellIndex) => {
+              const share = cellRatio(cell) / rowRatioSum;
+              const sizes = fullBleed
+                ? `(min-width: 640px) ${Math.round(share * 96)}vw, 94vw`
+                : `(min-width: 1024px) ${Math.round(share * 1120)}px, (min-width: 640px) ${Math.round(share * 94)}vw, 94vw`;
+              return (
+                <div
+                  key={cellIndex}
+                  className="min-w-0 sm:flex-[var(--cell)]"
+                  style={{ "--cell": cellRatio(cell) } as React.CSSProperties}
+                >
+                  {Array.isArray(cell) ? (
+                    <div className="flex h-full flex-col gap-2 sm:gap-3">
+                      {cell.map((still) => (
+                        <Tile key={still.src} still={still} sizes={sizes} />
+                      ))}
+                    </div>
+                  ) : (
+                    <Tile
+                      still={cell}
+                      fill={rowHasStack && row.length > 1}
+                      sizes={sizes}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+
   if (fullBleed) {
-    const items = rows.flat().flatMap((cell) => (Array.isArray(cell) ? cell : [cell]));
-    const duration = `${items.length * 14}s`;
     return (
-      <section aria-label={ariaLabel ?? "A first look at the product"} className="relative mb-28">
+      <section
+        aria-label={ariaLabel ?? "A first look at the product"}
+        className="relative mb-28"
+      >
         <PixelCloud
           shape="wisp"
           variant="lavender"
@@ -155,22 +199,7 @@ export default function HeroStills({ label, ariaLabel, rows, fullBleed }: HeroSt
           className="absolute -top-4 right-0 hidden opacity-50 sm:block"
           aria-hidden
         />
-        <div className="full-bleed mt-5 overflow-hidden">
-          <div
-            className="animate-marquee flex w-max gap-8 sm:gap-10 md:gap-12"
-            style={{ "--marquee-duration": duration } as React.CSSProperties}
-          >
-            {[...items, ...items].map((still, i) => (
-              <div
-                key={`${still.src}-${i}`}
-                className="h-64 flex-none sm:h-80 md:h-96 lg:h-[30rem]"
-                style={{ aspectRatio: ratio(still) }}
-              >
-                <Tile still={still} fill="always" sizes="60vw" />
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="full-bleed px-6 md:px-10">{mosaic}</div>
       </section>
     );
   }
@@ -185,44 +214,7 @@ export default function HeroStills({ label, ariaLabel, rows, fullBleed }: HeroSt
         className="absolute -top-4 right-0 hidden opacity-50 sm:block"
         aria-hidden
       />
-      <div className="mt-5 flex flex-col gap-2 sm:gap-3">
-        {rows.map((row, rowIndex) => {
-          const rowRatioSum = row.reduce((sum, cell) => sum + cellRatio(cell), 0);
-          const rowHasStack = row.some((cell) => Array.isArray(cell));
-          return (
-            <div
-              key={rowIndex}
-              className="flex flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-3"
-            >
-              {row.map((cell, cellIndex) => {
-                const share = cellRatio(cell) / rowRatioSum;
-                const sizes = `(min-width: 1024px) ${Math.round(share * 1120)}px, (min-width: 640px) ${Math.round(share * 94)}vw, 94vw`;
-                return (
-                  <div
-                    key={cellIndex}
-                    className="min-w-0 sm:flex-[var(--cell)]"
-                    style={{ "--cell": cellRatio(cell) } as React.CSSProperties}
-                  >
-                    {Array.isArray(cell) ? (
-                      <div className="flex h-full flex-col gap-2 sm:gap-3">
-                        {cell.map((still) => (
-                          <Tile key={still.src} still={still} sizes={sizes} />
-                        ))}
-                      </div>
-                    ) : (
-                      <Tile
-                        still={cell}
-                        fill={rowHasStack && row.length > 1}
-                        sizes={sizes}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+      {mosaic}
     </section>
   );
 }

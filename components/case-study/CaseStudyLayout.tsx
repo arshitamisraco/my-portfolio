@@ -23,6 +23,8 @@ interface CaseStudyLayoutProps {
   /** Headline impact metric shown at the top of the header for skimming recruiters. */
   highlight?: Highlight;
   meta: MetaItem[];
+  /** Optional "The product" primer, rendered above the visual preview/hero. */
+  productIntro?: ReactNode;
   /** Optional full-width photo/video hero, rendered above the content. */
   hero?: ReactNode;
   children: ReactNode;
@@ -35,6 +37,7 @@ export default function CaseStudyLayout({
   summary,
   highlight,
   meta,
+  productIntro,
   hero,
   children,
 }: CaseStudyLayoutProps) {
@@ -116,6 +119,7 @@ export default function CaseStudyLayout({
 
       {/* ================= Body ================= */}
       <div className="container-site py-14 md:py-20">
+        {productIntro}
         {hero}
 
         <div className="min-w-0">{children}</div>

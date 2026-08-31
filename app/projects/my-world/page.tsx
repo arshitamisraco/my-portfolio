@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroStills from "@/components/case-study/HeroStills";
+import ProductIntro from "@/components/case-study/ProductIntro";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
 import ReviewLoop from "@/components/case-study/ReviewLoop";
-import ReviewMatrix from "@/components/case-study/ReviewMatrix";
 
 export const metadata: Metadata = {
   title: "Designing an AI That Remembers You",
@@ -36,9 +36,10 @@ export default function MyWorld() {
         },
         {
           label: "Tools",
-          value: "Figma · Claude Code · Streamlit · HTML/CSS/JS",
+          value: "Figma · Claude Code · Streamlit · TypeScript, React on Next.js",
         },
       ]}
+      productIntro={<ProductIntro />}
       hero={
         <HeroStills
           ariaLabel="A first look at My World"
@@ -46,11 +47,14 @@ export default function MyWorld() {
           rows={[
             [
               {
-                src: "/images/my-world/hero/hero-session.jpg",
-                width: 1600,
-                height: 998,
-                alt: "A session detail page ('Exploring Visa Paths and Defining Your AI Offer') with summary, entry and exit moods, reminders, and a breakthrough quote.",
-                tone: "sky",
+                kind: "video",
+                src: "/videos/my-world/reminders-widget.mp4",
+                poster: "/images/my-world/posters/reminders-widget.jpg",
+                width: 1440,
+                height: 438,
+                title: "The Reminders widget",
+                description: "The My Reminders widget: a checklist of commitments from past sessions.",
+                tone: "peach",
               },
               {
                 kind: "video",
@@ -64,23 +68,6 @@ export default function MyWorld() {
                 tone: "pink",
               },
               {
-                src: "/images/my-world/hero/hero-page.jpg",
-                width: 1600,
-                height: 998,
-                alt: "The My World page: a featured band with the My Breakthroughs donut, a breakthrough quote, and Coaching Provocation cards above the Reminders widget.",
-                tone: "lavender",
-              },
-              {
-                kind: "video",
-                src: "/videos/my-world/reminders-widget.mp4",
-                poster: "/images/my-world/posters/reminders-widget.jpg",
-                width: 1440,
-                height: 438,
-                title: "The Reminders widget",
-                description: "The My Reminders widget: a checklist of commitments from past sessions.",
-                tone: "peach",
-              },
-              {
                 src: "/images/my-world/hero/hero-provocation.png",
                 width: 1404,
                 height: 528,
@@ -88,23 +75,56 @@ export default function MyWorld() {
                 tone: "butter",
               },
             ],
+            [
+              {
+                src: "/images/my-world/hero/hero-session.jpg",
+                width: 1600,
+                height: 998,
+                alt: "A session detail page ('Exploring Visa Paths and Defining Your AI Offer') with summary, entry and exit moods, reminders, and a breakthrough quote.",
+                tone: "sky",
+              },
+              {
+                src: "/images/my-world/hero/hero-page.jpg",
+                width: 1600,
+                height: 998,
+                alt: "The My World page: a featured band with the My Breakthroughs donut, a breakthrough quote, and Coaching Provocation cards above the Reminders widget.",
+                tone: "lavender",
+              },
+            ],
           ]}
         />
       }
     >
-      <CaseSection id="problem" eyebrow="The problem" title="Coaching that evaporates">
+      <CaseSection id="problem" eyebrow="The problem" title="How we got here">
         <p>
-          COROS is an AI life coach. Users have transformative conversations, then
-          everything vanishes into chat history.
+          <strong>25 customer interviews.</strong> One thread ran through nearly all of
+          them: <em>the coaching lands, but the product never shows it.</em>
         </p>
-        <p>My World reflects it back. My brief became the team&rsquo;s north star:</p>
-        <PullQuote attribution="The design brief, and the team's north star">
-          A mirror, not a filing cabinet.
+        <PullQuote>
+          &ldquo;I had a difficult relationship with one of my nephews. From COROS, I had
+          breakthroughs there. I can&rsquo;t find them anymore.&rdquo;
+        </PullQuote>
+        <PullQuote>
+          &ldquo;If I could separate work and relationship conversations into different
+          threads, that would be really useful.&rdquo;
         </PullQuote>
         <p>
-          No filters on the page. No scores or streaks. Every card ends in a way back into
-          coaching.
+          The ask wasn&rsquo;t better coaching. It was somewhere to see the coaching
+          they&rsquo;d already done.
         </p>
+        <p>So I gave the conversation structure:</p>
+        <ul>
+          <li>
+            <strong>Session:</strong> one bounded conversation about one situation.
+          </li>
+          <li>
+            <strong>Topic:</strong> the recurring situation that many sessions belong to.
+          </li>
+          <li>
+            <strong>My World:</strong> where your topics, breakthroughs, provocations, and
+            open commitments live.
+          </li>
+        </ul>
       </CaseSection>
 
       <CaseSection
@@ -269,7 +289,6 @@ export default function MyWorld() {
           false memory, so an inaccurate card is a trust failure, not a cosmetic one.
         </p>
         <ReviewLoop />
-        <ReviewMatrix />
         <ul>
           <li>
             One run surfaced five must-fix issues, each traced to a specific rule the output
@@ -296,12 +315,8 @@ export default function MyWorld() {
         title="From mockups to shipped code"
       >
         <p>
-          Using <strong>Claude Code</strong>, I implement widgets on localhost and ship
-          working builds to engineers for review. I write implementation prompts the way I
-          write specs: complete state machines, every assumption flagged as a one-line
-          toggle.
+          I implemented production grade front-end in TypeScript and React on Next.js.
         </p>
-        <p>Engineers review a working reference, not a static frame.</p>
       </CaseSection>
 
       <CaseSection id="takeaway" eyebrow="Reflection" title="The takeaway">

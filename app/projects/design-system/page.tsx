@@ -3,6 +3,7 @@ import CaseVideo from "@/components/CaseVideo";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroMontage from "@/components/case-study/HeroMontage";
+import ProductIntro from "@/components/case-study/ProductIntro";
 import StateInventory from "@/components/case-study/StateInventory";
 import ToneComparison from "@/components/case-study/ToneComparison";
 import ImageFrame from "@/components/ImageFrame";
@@ -108,6 +109,7 @@ export default function DesignSystem() {
           ),
         },
       ]}
+      productIntro={<ProductIntro />}
       hero={
         <HeroMontage
           label="The live product, in light and dark"
