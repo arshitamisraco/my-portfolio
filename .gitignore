@@ -31,3 +31,6 @@ next-env.d.ts
 
 # raw capture material — never pushed; only web-safe files promoted to /public are tracked
 /content/
+
+# Moritz intake redesign source (its own git repo; kept local as reference material, like /content/)
+/casei-design-engineer-case/

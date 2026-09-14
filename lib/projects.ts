@@ -28,6 +28,16 @@ const COROS: CaseStudy["company"] = { name: "COROS AI", href: COROS_HUB_HREF };
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "moritz-intake",
+    href: "/projects/moritz-intake",
+    title: "Redesigning a law firm's front door",
+    shortTitle: "Moritz intake",
+    brief:
+      "A one-week design take-home for Moritz, an AI-native law firm: the case intake flow redesigned end to end and built as a working TypeScript prototype, so a client always knows what step they're on, whether they're done, and who is behind it.",
+    tags: ["Design Engineering", "UX/UI", "AI Product Design", "UX Writing"],
+    tone: "peach",
+  },
+  {
     slug: "my-world",
     href: "/projects/my-world",
     title: "Designing an AI that remembers you",

@@ -100,6 +100,54 @@ export const COROS_MIX_CLIPS: Clip[] = [
  * Keyed by CorosCaseStudy.slug.
  */
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
+  "moritz-intake": [
+    {
+      src: "/videos/moritz-intake/start.mp4",
+      poster: "/images/moritz-intake/posters/start.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Starting a case from the composer on the Moritz home screen",
+      tone: "peach",
+    },
+    {
+      poster: "/images/moritz-intake/tiles.png",
+      width: 1570,
+      height: 760,
+      alt: "Your cases: each case tile shows its stage and its lawyers",
+      tone: "sky",
+    },
+    {
+      src: "/videos/moritz-intake/submit.mp4",
+      poster: "/images/moritz-intake/posters/submit.jpg",
+      width: 1440,
+      height: 900,
+      alt: "The moment of submission: a case number, a track, and the lawyers",
+      tone: "butter",
+    },
+    {
+      poster: "/images/moritz-intake/card-top.png",
+      width: 1424,
+      height: 540,
+      alt: "The submitted card with the four-step track",
+      tone: "mint",
+    },
+    {
+      src: "/videos/moritz-intake/steps.mp4",
+      poster: "/images/moritz-intake/posters/steps.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Step receipts appearing in the intake conversation",
+      tone: "lavender",
+    },
+    {
+      src: "/videos/moritz-intake/after.mp4",
+      poster: "/images/moritz-intake/posters/after.jpg",
+      width: 1440,
+      height: 900,
+      alt: "The home screen after submitting, with the new case at the top",
+      tone: "pink",
+    },
+  ],
   "my-world": [
     {
       src: "/videos/my-world/breakthrough-widget.mp4",
