@@ -33,7 +33,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Redesigning a law firm's front door",
     shortTitle: "Moritz intake",
     brief:
-      "A one-week design take-home for Moritz, an AI-native law firm: the case intake flow redesigned end to end and built as a working TypeScript prototype, so a client always knows what step they're on, whether they're done, and who is behind it.",
+      "Moritz is an AI-native law firm. Clients came out of its intake flow unsure whether they'd submitted, which step they were on, or where to upload a file. I redesigned the flow end to end and built it as a working TypeScript prototype in the firm's own codebase, in three days.",
     tags: ["Design Engineering", "UX/UI", "AI Product Design", "UX Writing"],
     tone: "peach",
   },

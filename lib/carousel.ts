@@ -102,11 +102,11 @@ export const COROS_MIX_CLIPS: Clip[] = [
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
   "moritz-intake": [
     {
-      src: "/videos/moritz-intake/start.mp4",
-      poster: "/images/moritz-intake/posters/start.jpg",
-      width: 1440,
-      height: 900,
-      alt: "Starting a case from the composer on the Moritz home screen",
+      src: "/videos/moritz-intake/journey.mp4",
+      poster: "/images/moritz-intake/posters/journey.jpg",
+      width: 1920,
+      height: 1200,
+      alt: "The case journey animation: talk to Moritz, receive a quote, our lawyers take on your case",
       tone: "peach",
     },
     {
@@ -119,8 +119,8 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
     {
       src: "/videos/moritz-intake/submit.mp4",
       poster: "/images/moritz-intake/posters/submit.jpg",
-      width: 1440,
-      height: 900,
+      width: 1920,
+      height: 1200,
       alt: "The moment of submission: a case number, a track, and the lawyers",
       tone: "butter",
     },
@@ -134,17 +134,17 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
     {
       src: "/videos/moritz-intake/steps.mp4",
       poster: "/images/moritz-intake/posters/steps.jpg",
-      width: 1440,
-      height: 900,
-      alt: "Step receipts appearing in the intake conversation",
+      width: 1920,
+      height: 1200,
+      alt: "A step receipt appearing in the intake conversation",
       tone: "lavender",
     },
     {
-      src: "/videos/moritz-intake/after.mp4",
-      poster: "/images/moritz-intake/posters/after.jpg",
-      width: 1440,
-      height: 900,
-      alt: "The home screen after submitting, with the new case at the top",
+      src: "/videos/moritz-intake/start.mp4",
+      poster: "/images/moritz-intake/posters/start.jpg",
+      width: 1920,
+      height: 1200,
+      alt: "Typing the first message starts a case",
       tone: "pink",
     },
   ],

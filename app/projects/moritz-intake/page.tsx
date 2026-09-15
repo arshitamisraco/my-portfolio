@@ -1,164 +1,105 @@
 import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
-import HeroStills from "@/components/case-study/HeroStills";
 import LabeledTiles from "@/components/case-study/LabeledTiles";
 import QuoteCard from "@/components/case-study/QuoteCard";
 import StatCallout from "@/components/case-study/StatCallout";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
-import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
   title: "Redesigning a law firm's front door",
   description:
-    "A one-week design take-home for Moritz, an AI-native law firm: the case intake flow redesigned end to end and built as a working TypeScript prototype.",
+    "Moritz is an AI-native law firm whose clients came out of intake unsure what had happened. I redesigned the flow end to end and built it as a working prototype in three days.",
 };
 
-const LIVE_URL = "https://legal-intake-design.vercel.app/en/client/fresh";
+const COMPLAINTS = [
+  "I'm not sure my case was actually submitted.",
+  "I don't know which step I'm on, or how many are left.",
+  "I can't find where to upload my documents.",
+  "It feels sterile. Like a form, not a firm.",
+];
 
 export default function MoritzIntake() {
   return (
     <CaseStudyLayout
       slug="moritz-intake"
-      eyebrow="Design Take-Home · Case Study"
+      eyebrow="Moritz · Case study"
       title="Redesigning a law firm's front door"
-      summary="Moritz is an AI-native law firm. Clients describe their matter, agents draft a first pass, and lawyers finish it. Intake is the only step clients drive themselves, and too many of them came out of it unsure what had just happened. In one week I redesigned it end to end and built it as a working prototype in the firm's own codebase."
+      summary="Moritz is an AI-native law firm. A client describes their matter, an agent drafts a first pass, and a lawyer finishes it. Intake is the only part clients drive themselves, and too many came out of it unsure what had just happened. I redesigned it end to end and built it as a working prototype inside the firm's own codebase."
       highlight={{
-        stat: "Brief to working prototype in one week. Every complaint in the brief answered in the flow, and you can click through it yourself.",
+        stat: "Brief to prototype in 3 days",
       }}
       meta={[
         { label: "Role", value: "Product design · Design engineering · UX writing" },
-        { label: "For", value: "Moritz (Casei AI), design take-home" },
-        { label: "Timeline", value: "One week · September 2026" },
+        { label: "Client", value: "Moritz, an AI-native law firm" },
+        { label: "Timeline", value: "3 days · September 2026" },
         {
-          label: "Live prototype",
-          value: (
-            <>
-              <a
-                href={LIVE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent-deep underline decoration-accent underline-offset-4 hover:text-accent-strong"
-              >
-                legal-intake-design.vercel.app
-              </a>
-              <span className="block text-caption text-ink-muted">password 123</span>
-            </>
-          ),
+          label: "Delivered",
+          value: "A working TypeScript prototype in the firm's codebase, behind a design switch",
         },
       ]}
-      hero={
-        <HeroStills
-          ariaLabel="A first look at the redesigned Moritz intake"
-          fullBleed
-          rows={[
-            [
-              {
-                kind: "video",
-                src: "/videos/moritz-intake/start.mp4",
-                poster: "/images/moritz-intake/posters/start.jpg",
-                width: 1440,
-                height: 900,
-                title: "Starting a case",
-                description:
-                  "A new client types into the composer under the greeting; the case-journey animation plays once and the intake conversation begins.",
-                tone: "peach",
-              },
-              {
-                src: "/images/moritz-intake/new-user-home.png",
-                width: 2880,
-                height: 1800,
-                alt: "A new client's home screen: 'Good evening, Alex', a composer that says 'Describe your matter, or drop a document here', matter chips, and a row of five lawyers with their backgrounds.",
-                tone: "sky",
-              },
-            ],
-            [
-              {
-                kind: "video",
-                src: "/videos/moritz-intake/submit.mp4",
-                poster: "/images/moritz-intake/posters/submit.jpg",
-                width: 1440,
-                height: 900,
-                title: "Submitting a case",
-                description:
-                  "The review card is submitted; a card with the case number and a four-step track appears, then Moritz narrates the processing steps.",
-                tone: "lavender",
-              },
-              [
-                {
-                  src: "/images/moritz-intake/card-lawyers.png",
-                  width: 1440,
-                  height: 370,
-                  alt: "The bottom of the submitted card: the three lawyers the case is heading toward, and what happens next.",
-                  tone: "mint",
-                },
-                {
-                  src: "/images/moritz-intake/track.png",
-                  width: 1400,
-                  height: 150,
-                  alt: "The four-step track: Case submitted, Estimating quote, Accept and pay, Meet your lawyer.",
-                  tone: "butter",
-                },
-              ],
-            ],
-            [
-              {
-                kind: "video",
-                src: "/videos/moritz-intake/steps.mp4",
-                poster: "/images/moritz-intake/posters/steps.jpg",
-                width: 1440,
-                height: 900,
-                title: "Step receipts",
-                description:
-                  "As the client answers, a receipt appears in the conversation and the case brief on the right fills in and counts up.",
-                tone: "sky",
-              },
-              {
-                kind: "video",
-                src: "/videos/moritz-intake/after.mp4",
-                poster: "/images/moritz-intake/posters/after.jpg",
-                width: 1440,
-                height: 900,
-                title: "Home, after submitting",
-                description:
-                  "Back on the home screen, the new case sits at the top with its stage, its lawyers, and its last update.",
-                tone: "peach",
-              },
-            ],
-          ]}
-        />
-      }
     >
-      <CaseSection id="brief" eyebrow="The brief" title="Four complaints, from real clients">
+      <CaseSection
+        id="customer"
+        eyebrow="The customer"
+        title="Moritz is a law firm where you talk to an agent before you meet a lawyer."
+      >
         <p>
-          Moritz&rsquo;s intake worked. It just didn&rsquo;t feel like a premium product, and too
-          many people weren&rsquo;t sure what had happened. The feedback was specific:
+          Its clients run businesses. They arrive with a contract dispute, an employment
+          question, a supplier who wants out, and no legal team of their own. They type what
+          happened, an agent builds the case notes, and one of the firm&rsquo;s lawyers takes it
+          from there. Intake is the first thing a client ever does with Moritz, and the only
+          part they do alone.
         </p>
-        <LabeledTiles
-          columns={2}
-          tiles={[
-            { label: "01 · Not sure it was submitted." },
-            { label: "02 · Not sure which step, or where." },
-            { label: "03 · Can't find the upload." },
-            { label: "04 · Feels sterile." },
-          ]}
+        <ImageFrame
+          src="/images/moritz-intake/lawyer-row.png"
+          width={1520}
+          height={450}
+          alt="'The lawyers who take on cases like yours. You'll see a quote before you pay anything.' Five lawyers with their backgrounds: Daniel, Kyle, Max, Aélita, Catarina."
+          caption="The people behind the agent. A client now meets them before typing a word."
+          tone="peach"
         />
+      </CaseSection>
+
+      <CaseSection
+        id="problem"
+        eyebrow="The problem"
+        title="Clients finished intake and still didn't know what had happened."
+      >
         <p>
-          Two goals, pulling against each other: make submitting a case as clear as possible,
-          and make it feel premium and human. That tension was the design problem.
+          The flow worked. People got through it. But the feedback coming back from real
+          clients kept landing on the same four things:
         </p>
-        <PullQuote attribution="The brief">
-          Clear and concise beats clever. If a decision makes the flow prettier but less obvious,
-          make the other decision.
-        </PullQuote>
+        <ol className="my-10 list-none space-y-5 pl-0">
+          {COMPLAINTS.map((line, i) => (
+            <li
+              key={line}
+              className="flex items-baseline gap-5 border-b border-line pb-5 last:border-0 last:pb-0"
+            >
+              <span className="text-style-eyebrow shrink-0 text-accent-deep">0{i + 1}</span>
+              <span className="font-display text-h2 font-semibold text-ink">{line}</span>
+            </li>
+          ))}
+        </ol>
         <p>
-          The format was blunt: not Figma screens, a working prototype in TypeScript, built on
-          the firm&rsquo;s existing design playground. One week.
+          Two goals, pulling against each other. Make submitting a case as clear as possible.
+          Make it feel like a premium firm, not a web form. Most fixes for one make the other
+          worse. That tension was the design problem.
         </p>
       </CaseSection>
 
-      <CaseSection id="before-after" eyebrow="What changed" title="Before and after, in one table">
+      <CaseSection
+        id="approach"
+        eyebrow="The approach"
+        title="Show people where they are, at every step, with real people in it."
+      >
+        <p>
+          All four complaints are one complaint. The client can&rsquo;t see the process. So the
+          redesign puts the process on screen everywhere the client looks: a story before they
+          start, a receipt after every answer, a track after they submit, a lawyer&rsquo;s face
+          at each of those moments. Here&rsquo;s what changed, moment by moment.
+        </p>
         <div className="case-table overflow-x-auto">
           <table className="w-full text-left text-body">
             <thead>
@@ -212,20 +153,24 @@ export default function MoritzIntake() {
         </div>
       </CaseSection>
 
-      <CaseSection id="start" eyebrow="Starting a case" title="One box, one message. The case has started.">
+      <CaseSection
+        id="journey"
+        eyebrow="The story, in three beats"
+        title="Before you type anything, the journey plays once: talk, quote, lawyers."
+      >
         <p>
-          Before, &ldquo;Start a case&rdquo; was buried a few clicks deep. Now the composer sits
-          under the greeting. The journey plays once, in three beats, and the lawyers are
-          already there.
+          A brand-new client lands on an empty home screen. Instead of a button, they get a
+          six-second story: talk to Moritz, receive a quote and pay, our lawyers take on your
+          case. It ends on three real faces, and the composer slides in underneath.
         </p>
         <CaseVideo
-          src="/videos/moritz-intake/start.mp4"
-          poster="/images/moritz-intake/posters/start.jpg"
-          width={1440}
-          height={900}
-          title="Starting a case"
-          description="A new client types into the composer under the greeting; the case-journey animation plays once and the intake conversation begins."
-          caption="A new client's first visit. The first message starts the case."
+          src="/videos/moritz-intake/journey.mp4"
+          poster="/images/moritz-intake/posters/journey.jpg"
+          width={1920}
+          height={1200}
+          title="The case journey"
+          description="On a new client's first visit, three beats play in sequence under the greeting: Talk to Moritz about your case, Receive a quote and pay, Our lawyers take on your case. The last beat shows three lawyer photos."
+          caption="First visit. The story plays once, then gets out of the way."
           tone="peach"
         />
         <ImageFrame
@@ -233,78 +178,147 @@ export default function MoritzIntake() {
           width={2780}
           height={260}
           alt="The three beats of the case journey: Talk to Moritz about your case, Receive a quote and pay, Our lawyers take on your case."
-          caption="The journey, three beats. It ends in people, not a checkmark."
+          caption="Three beats. It ends in people, not a checkmark."
           tone="butter"
         />
-        <StatCallout>
-          A case exists from the first typed message, not from submission. A draft tile appears
-          the moment you start, so &ldquo;did I submit?&rdquo; has a visible answer: the number
-          appears when you do.
-        </StatCallout>
+        <p>
+          This one animation answers all four complaints at once. You see the steps before you
+          take them. You see there is a submit, a quote, a person at the end. And it feels like
+          being welcomed, not being processed. It never repeats, so it never becomes noise.
+        </p>
       </CaseSection>
 
-      <CaseSection id="receipts" eyebrow="Where am I" title="Every answer gets a receipt.">
+      <CaseSection
+        id="step-mark"
+        eyebrow="One mark, everywhere"
+        title="One small dot tells you what's done, what's next, and what you skipped."
+      >
         <p>
-          Each answer leaves a one-line receipt in the thread, and the count in the brief moves.
-          Skip a step and it still counts. You chose, so it&rsquo;s done.
+          The step dot and its rail were drawn six different ways across the app. I made one
+          foundation component and gave it five states, then used it everywhere a client asks
+          &ldquo;where am I?&rdquo;: in the brief panel, in the receipts in the thread, on the
+          track of the submitted card, and on the case tiles at home.
         </p>
-        <CaseVideo
-          src="/videos/moritz-intake/steps.mp4"
-          poster="/images/moritz-intake/posters/steps.jpg"
-          width={1440}
-          height={900}
-          title="Step receipts"
-          description="As the client answers, a receipt appears in the conversation and the case brief on the right fills in and counts up."
-          caption="The brief fills in as you talk."
-          tone="peach"
-        />
-        <ImageFrame
-          src="/images/moritz-intake/receipt.png"
-          width={1560}
-          height={330}
-          alt="A step receipt in the thread: a green check, 'Saved timeline', then Moritz: 'Got it, you need to resolve this by end of week. We have what we need.'"
-          caption="The receipt, in the thread."
-          tone="mint"
+        <LabeledTiles
+          columns={3}
+          tiles={[
+            { label: "Filled", detail: "Green, with a check. This step is done." },
+            { label: "Current", detail: "A ring with a pip and a soft halo. You are here." },
+            { label: "Dashed", detail: "A dashed ring. You skipped it, and that still counts." },
+            { label: "Outline", detail: "An empty ring. Still to come." },
+            { label: "Ghost", detail: "Just the glyph, no ring. A note, not a step." },
+            { label: "The rail", detail: "The hairline between two marks. It turns green once the run above it is done." },
+          ]}
         />
         <div className="my-8 grid gap-4 sm:grid-cols-2">
-          <ImageFrame
-            src="/images/moritz-intake/brief-count.png"
-            width={730}
-            height={96}
-            alt="The case brief header with its step count."
-            caption="The count."
-            flush
-            tone="sky"
-          />
           <ImageFrame
             src="/images/moritz-intake/brief-skipped.png"
             width={730}
             height={240}
-            alt="A skipped optional step in the brief, drawn with a dashed ring, still counted as done."
-            caption="Skipped, still counted."
+            alt="A skipped optional step in the brief panel, drawn with a dashed ring, still counted as done."
+            caption="In the brief panel: skipped, still counted."
             flush
-            tone="lavender"
+            tone="sky"
+          />
+          <ImageFrame
+            src="/images/moritz-intake/receipt.png"
+            width={1560}
+            height={330}
+            alt="A step receipt in the thread: a green check, 'Saved timeline', then Moritz: 'Got it, you need to resolve this by end of week. We have what we need.'"
+            caption="In the thread: a receipt after each answer."
+            flush
+            tone="mint"
           />
         </div>
+        <ImageFrame
+          src="/images/moritz-intake/track.png"
+          width={1400}
+          height={150}
+          alt="The four-step track: Case submitted, Estimating quote, Accept and pay, Meet your lawyer."
+          caption="On the card, laid out sideways: the same mark, four steps, ending in people."
+          tone="lavender"
+        />
+      </CaseSection>
+
+      <CaseSection
+        id="start"
+        eyebrow="Starting"
+        title="One typed message, and the case exists."
+      >
+        <p>
+          The composer sits under the greeting on every visit. You type what happened, and the
+          conversation opens with your words already at the top and the brief panel already
+          filling in.
+        </p>
+        <CaseVideo
+          src="/videos/moritz-intake/start.mp4"
+          poster="/images/moritz-intake/posters/start.jpg"
+          width={1920}
+          height={1200}
+          title="Starting a case"
+          description="A client types a description of their matter into the composer on the home screen and sends it; the intake conversation opens with the brief panel on the right."
+          caption="The first message starts the case. Nothing to click first."
+          tone="peach"
+        />
+        <StatCallout>
+          A case exists from the first typed message, not from submission. A draft tile appears
+          the moment you start, and the case number appears the moment you submit. So
+          &ldquo;did I submit?&rdquo; always has a visible answer.
+        </StatCallout>
+      </CaseSection>
+
+      <CaseSection
+        id="receipts"
+        eyebrow="Where am I"
+        title="Every answer gets a receipt in the conversation."
+      >
+        <p>
+          Each answer leaves a one-line receipt in the thread, and the count in the brief
+          moves. Skip a step and it still counts. You chose, so it&rsquo;s done.
+        </p>
+        <CaseVideo
+          src="/videos/moritz-intake/steps.mp4"
+          poster="/images/moritz-intake/posters/steps.jpg"
+          width={1920}
+          height={1200}
+          title="Step receipts"
+          description="The client answers a question; a receipt line with a green check appears in the conversation, the brief panel's count goes up, and Moritz asks the next question."
+          caption="Answer, receipt, next question. The brief fills in as you talk."
+          tone="peach"
+        />
+        <ImageFrame
+          src="/images/moritz-intake/brief-count.png"
+          width={730}
+          height={96}
+          alt="The case brief header with its step count."
+          caption="The count, top of the brief panel."
+          size="lg"
+          tone="sky"
+        />
         <p>
           The receipts aren&rsquo;t a new capability. The agent already knew what it had saved.
           It just never said so.
         </p>
       </CaseSection>
 
-      <CaseSection id="transparency" eyebrow="Transparency" title="Moritz shows its working.">
+      <CaseSection
+        id="transparency"
+        eyebrow="Transparency"
+        title="When Moritz fills something in for you, it says so."
+      >
         <p>
-          When it pulls answers out of your first message, it says which ones. Anything it filled
-          in is yours to correct.
+          A long first message often answers three questions at once. Moritz takes them, names
+          which ones it took, and leaves them editable. Anything it filled in is yours to
+          correct.
         </p>
         <CaseVideo
           src="/videos/moritz-intake/working.mp4"
           poster="/images/moritz-intake/posters/working.jpg"
-          width={1440}
-          height={900}
+          width={1920}
+          height={1200}
           title="Moritz names what it took"
-          description="A long first message is read, several brief items fill in at once, and Moritz says which ones it took from the message."
-          caption="One message, several items, and a line saying so."
+          description="A long first message is read, several brief items fill in at once, Moritz says which ones it took from the message, and the client clicks one in the brief panel to edit it."
+          caption="One message, three items filled, one line saying so. Then a click to correct one."
           tone="peach"
         />
         <ImageFrame
@@ -315,13 +329,21 @@ export default function MoritzIntake() {
           caption="The line, in the script."
           tone="butter"
         />
+        <StatCallout>
+          Claude reads, a script decides. A small model pulls answers out of the message; a
+          hand-written script decides what Moritz says next. If the model is slow or wrong, the
+          flow still works.
+        </StatCallout>
       </CaseSection>
 
-      <CaseSection id="attachments" eyebrow="Attachments" title="A button you can see, and the first thing you read.">
+      <CaseSection
+        id="attachments"
+        eyebrow="Uploading"
+        title="The upload button is now the first thing you read."
+      >
         <p>
-          I put the attach control in the placeholder, in Moritz&rsquo;s first message, and in the
-          brief panel at every step, before and after. A file is accepted at any point, not only
-          at the documents step.
+          It&rsquo;s in the placeholder, in Moritz&rsquo;s first message, and in the brief panel
+          at every step. A file is accepted at any point, not only at the documents step.
         </p>
         <ImageFrame
           src="/images/moritz-intake/composer.png"
@@ -352,25 +374,30 @@ export default function MoritzIntake() {
           />
         </div>
         <p>
-          For contract matters, I made the document the very first question. A contract usually
+          For contract matters, the document is the very first question. A contract usually
           already exists, and asking for it late means re-asking everything it would have
           answered.
         </p>
       </CaseSection>
 
-      <CaseSection id="submission" eyebrow="The moment of submission" title="Submitted. Here's what happens next.">
+      <CaseSection
+        id="submission"
+        eyebrow="Submitting"
+        title="Submitted. A case number, a track, and the lawyers it's heading to."
+      >
         <p>
-          Submitting shows a case number, a track, and the people who will take it on. Then the
-          wait itself gets narrated step by step, instead of a spinner.
+          Submitting used to end in a page that looked like the one before it. Now it ends in a
+          card: a check, a number, a four-step track, and the three people your case is going
+          to.
         </p>
         <CaseVideo
           src="/videos/moritz-intake/submit.mp4"
           poster="/images/moritz-intake/posters/submit.jpg"
-          width={1440}
-          height={900}
+          width={1920}
+          height={1200}
           title="Submitting a case"
-          description="The review card is submitted; a card with the case number and a four-step track appears, then Moritz narrates the processing steps."
-          caption="The moment of submission, start to finish."
+          description="The review card is submitted. A card appears with a green check, 'Case submitted', the case number, and a four-step track ending in three lawyer photos."
+          caption="The moment of submission."
           tone="peach"
         />
         <ImageFrame
@@ -378,15 +405,26 @@ export default function MoritzIntake() {
           width={1424}
           height={540}
           alt="The submitted card: a check, 'Case submitted', the title 'Northwind Fulfilment Termination', case number M-2026-0127, and a track: Case submitted, Estimating quote, Accept and pay, Meet your lawyer, ending in three lawyer faces."
-          caption="The track. It ends in the three lawyers the case is heading toward."
+          caption="The card. The track ends in the three lawyers the case is heading toward."
           tone="lavender"
         />
+      </CaseSection>
+
+      <CaseSection
+        id="waiting"
+        eyebrow="Waiting"
+        title="While the agent works, the wait is narrated, not promised."
+      >
+        <p>
+          After submit, the agent needs a few minutes. Instead of a spinner, Moritz says what
+          it&rsquo;s doing, step by step, and tells you that you don&rsquo;t need to stay.
+        </p>
         <ImageFrame
           src="/images/moritz-intake/processing.png"
           width={1450}
           height={420}
           alt="Moritz: 'We're getting your case ready for the lawyers. It takes a few minutes and you don't need to stay.' Then two green checks, 'Read your documents' and 'Case notes ready', then 'Your case notes are with the lawyers now. Your quote is next.'"
-          caption="While the agent works, three real steps get spelled out in plain words."
+          caption="Three real steps, in plain words, then a handover."
           tone="mint"
         />
         <StatCallout>
@@ -395,44 +433,50 @@ export default function MoritzIntake() {
         </StatCallout>
       </CaseSection>
 
-      <CaseSection id="home" eyebrow="Home" title="Every case, its progress, on the home screen.">
+      <CaseSection
+        id="home"
+        eyebrow="Coming back"
+        title="Back home, every case shows its stage and its lawyer."
+      >
         <p>
-          Every case shows its stage, its lawyer, and when it last moved, so there&rsquo;s no
+          A case tile changes shape as the case moves: a track before a lawyer is assigned, a
+          name and a face after. Every tile shows when it last moved, so there&rsquo;s no
           wondering where a case is.
         </p>
-        <CaseVideo
-          src="/videos/moritz-intake/after.mp4"
-          poster="/images/moritz-intake/posters/after.jpg"
-          width={1440}
-          height={900}
-          title="Home, after submitting"
-          description="Back on the home screen, the new case sits at the top with its stage, its lawyers, and its last update."
-          caption="Back home. The new case is at the top, with its track."
-          tone="peach"
-        />
         <ImageFrame
           src="/images/moritz-intake/tiles.png"
           width={1570}
           height={760}
           alt="Your cases: a hero tile for the newest case with the four-step track, a compact row that says 'Ready for payment' with three faces, and a row that says 'Aélita is on your case' with one face."
-          caption="Your cases. A tile changes shape as the case moves: a track before a lawyer is assigned, a name after."
+          caption="Your cases, the moment after submitting. Newest on top, with its track."
           tone="sky"
+        />
+        <ImageFrame
+          src="/images/moritz-intake/returning.png"
+          width={1570}
+          height={300}
+          alt="A returning client's cases: 'Aélita is on your case' and 'Daniel is on your case', each with the lawyer's photo."
+          caption="A returning client. A lawyer on every case."
+          tone="peach"
         />
       </CaseSection>
 
-      <CaseSection id="human" eyebrow="Human" title="A person at every step.">
+      <CaseSection
+        id="human"
+        eyebrow="Human"
+        title="A real person at every step, and never a promise of one before it's true."
+      >
         <p>
           A lawyer&rsquo;s face shows up on home, in the brief panel, on the submitted card, on
-          every case tile, and on every case you come back to, so the client is never looking at
-          a form alone. The same three faces follow a case from the card to the tile, seeded by
-          its number, so they never shuffle.
+          every case tile, and on every case you come back to. The same three faces follow a
+          case from the card to the tile, so they never shuffle.
         </p>
         <ImageFrame
-          src="/images/moritz-intake/lawyer-row.png"
-          width={1520}
-          height={450}
-          alt="'The lawyers who take on cases like yours. You'll see a quote before you pay anything.' Five lawyers with their backgrounds: Daniel, Kyle, Max, Aélita, Catarina."
-          caption="Home, before the first message."
+          src="/images/moritz-intake/card-lawyers.png"
+          width={1440}
+          height={370}
+          alt="The bottom of the submitted card: the three lawyers the case is heading toward, and what happens next."
+          caption="The bottom of the submitted card: who it's going to, and what happens next."
           tone="peach"
         />
         <div className="my-8 grid gap-4 sm:grid-cols-2">
@@ -455,22 +499,19 @@ export default function MoritzIntake() {
             tone="mint"
           />
         </div>
-        <ImageFrame
-          src="/images/moritz-intake/returning.png"
-          width={1570}
-          height={300}
-          alt="A returning client's cases: 'Aélita is on your case' and 'Daniel is on your case', each with the lawyer's photo."
-          caption="Home, returning client: a lawyer on every case."
-          tone="sky"
-        />
         <p>
-          One thing I refused: a named lawyer attached to the brief before one is assigned. It
-          would have promised a person the pipeline hadn&rsquo;t given you yet.
+          One thing I refused: a named lawyer on the brief before one is assigned. It would
+          have promised a person the firm hadn&rsquo;t given you yet. So the track ends in the
+          three lawyers the case is heading toward, and a name appears only when it&rsquo;s
+          real.
         </p>
       </CaseSection>
 
-      <CaseSection id="voice" eyebrow="Voice" title="Sounds like a firm, not a form.">
-        <p>Most of what Moritz says is scripted by hand, and the model only fills in what it pulled from your message. A few of the lines:</p>
+      <CaseSection id="voice" eyebrow="Voice" title="Moritz sounds like a firm, not a form.">
+        <p>
+          Most of what Moritz says is scripted by hand, and the model only fills in what it
+          pulled from your message. A few of the lines:
+        </p>
         <div className="my-8 grid gap-4 sm:grid-cols-2">
           <QuoteCard attribution="Brief panel" tone="pink">
             Your brief fills in as you talk.
@@ -493,135 +534,33 @@ export default function MoritzIntake() {
         </div>
       </CaseSection>
 
-      <CaseSection id="gaps" eyebrow="The open parts" title="Assume, decide, and say so.">
-        <p>
-          The brief was deliberately incomplete, and the team was slow to answer by design. Where
-          it was open, I made a call and wrote it down.
-        </p>
-        <LabeledTiles
-          columns={2}
-          tiles={[
-            {
-              label: "A case starts at the first message",
-              detail:
-                "Not at submit. The draft tile has no number until you submit, and then it does.",
-            },
-            {
-              label: "No promised turnaround",
-              detail:
-                "I deleted the deadline box instead of softening it, so a future promise has to be made on purpose.",
-            },
-            {
-              label: "Documents first, when one probably exists",
-              detail: "For contract matters, Moritz asks for the contract before anything else.",
-            },
-            {
-              label: "No named lawyer before assignment",
-              detail: "The track ends in the three lawyers the case is heading toward instead.",
-            },
-            {
-              label: "One timestamp per surface",
-              detail:
-                "'Submitted' lives on the card, as an event. Tiles show only 'Updated'. Two clocks make you guess which one matters.",
-            },
-            {
-              label: "Filled gaps, and said so",
-              detail:
-                "Where the plan was silent, Moritz still answers and never re-posts a card. Each of those calls is in the notes I left the team.",
-            },
-          ]}
-        />
-      </CaseSection>
-
-      <CaseSection id="build" eyebrow="Built, not mocked" title="It actually runs, click it.">
-        <p>
-          I built the whole thing in TypeScript, inside Moritz&rsquo;s existing Next.js design
-          playground, behind a single design switch. Flip it off and you get the old flow back,
-          so the team can compare.
-        </p>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "Claude reads, a script decides",
-              detail:
-                "Haiku 4.5 classifies the matter and pulls answers out of the first message; Sonnet 5 writes the recap. Everything falls back to a deterministic script, so the flow never depends on the model.",
-            },
-            {
-              label: "One step mark, not six",
-              detail:
-                "The step dot and rail were drawn six different ways across the app. I added a foundation component, adopted it in the new surfaces, and left the migration as a note.",
-            },
-            {
-              label: "Fixed what I found",
-              detail:
-                "I found two accessibility bugs in the intake shell: an aria-controls attribute pointing at nothing, and aria-hidden sitting over live controls. I fixed both and left a comment explaining why.",
-            },
-          ]}
-        />
-        <p>
-          <a
-            href={LIVE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent-deep underline decoration-accent underline-offset-4 hover:text-accent-strong"
-          >
-            Click through the prototype
-          </a>{" "}
-          (password 123). It starts you as a brand-new client with no cases.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="next" eyebrow="What I'd do next" title="Five things, in order">
+      <CaseSection id="next" eyebrow="What I'd do next" title="Five things, in order.">
         <LabeledTiles
           columns={3}
           tiles={[
             {
               label: "Watch strangers use it",
               detail:
-                "I'd start with a Maze or UX Army run, then make small changes from what people actually do.",
+                "Start with a Maze or UX Army run, then make small changes from what people actually do.",
             },
             {
               label: "Give the canvas some depth",
               detail:
-                "The app is white on white right now. I'd add a light grey ground, like Legora's, and a more consistent token map.",
+                "The app is white on white right now. A light grey ground and a tighter token map would help.",
             },
             {
               label: "One primary action per screen",
               detail:
-                "I'd redo the nav and the screens so the black button is the one thing to do, and everything else drops to secondary.",
+                "Redo the nav and the screens so the black button is the one thing to do, and everything else drops to secondary.",
             },
             {
               label: "Email at every milestone",
-              detail: "I'd send one at each milestone: submitted, quote ready, lawyer assigned.",
+              detail: "One at each milestone: submitted, quote ready, lawyer assigned.",
             },
             {
               label: "Give Moritz a voice",
               detail:
-                "I'd prompt the model for a slightly formal, conversational tone, cut the em dashes, and sharpen the extraction.",
-            },
-          ]}
-        />
-      </CaseSection>
-
-      <CaseSection id="why" eyebrow="Why this is here" title="What a week like this shows">
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "The whole thing, not a slice",
-              detail:
-                "I worked the brief and the feedback, the flow, the screens, every line Moritz says, and the code that runs it, with no handoff in the middle.",
-            },
-            {
-              label: "Calls made when the brief went quiet",
-              detail:
-                "The team was slow to answer on purpose. I decided, wrote each call down, and kept them easy to reverse.",
-            },
-            {
-              label: "Fast without losing their taste",
-              detail:
-                "I stuck to their black, white and grey, and to their existing components and playground. It still looks like Moritz, only clearer.",
+                "Prompt the model for a slightly formal, conversational tone, cut the em dashes, and sharpen the extraction.",
             },
           ]}
         />
