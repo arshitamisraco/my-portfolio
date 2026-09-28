@@ -67,7 +67,7 @@ export default function GmailJobTracker() {
       }}
       meta={[
         { label: "Role", value: "Product design · Design engineering · Agent orchestration" },
-        { label: "Type", value: "Take-home project" },
+        { label: "Type", value: "Full stack product" },
         { label: "Timeline", value: "1 day · September 2026" },
         { label: "Stack", value: "Next.js 16 · Gmail API · Claude Haiku · SQLite · Motion" },
       ]}
