@@ -16,6 +16,8 @@ export interface CaseStudy {
    * standalone projects not tied to a company hub.
    */
   company?: { name: string; href: string };
+  /** Hidden on the production deployment (still visible locally and on Vercel previews). Delete the flag to publish. */
+  hidden?: boolean;
 }
 
 /** The COROS AI blurb/overview page. Reached only from the landing thumbnail. */
@@ -26,7 +28,7 @@ export const PROJECTS_HREF = "/projects";
 
 const COROS: CaseStudy["company"] = { name: "COROS AI", href: COROS_HUB_HREF };
 
-export const CASE_STUDIES: CaseStudy[] = [
+export const ALL_CASE_STUDIES: CaseStudy[] = [
   {
     slug: "gmail-job-tracker",
     href: "/projects/gmail-job-tracker",
@@ -99,11 +101,22 @@ export const CASE_STUDIES: CaseStudy[] = [
       "An interactive 'floor is lava' play mat — a light-up surface with hand-sewn sensory blocks — for preschoolers with neurodivergence and motor and cognitive disabilities, built with the EEU in Seattle to bring active, social play indoors on rainy days.",
     tags: ["User Research", "Field Observation", "Physical Prototyping", "Inclusive Design"],
     tone: "butter",
+    hidden: true,
   },
 ];
 
+/** True only on the production Vercel deployment; local dev and previews show everything. */
+const IS_PRODUCTION = process.env.VERCEL_ENV === "production";
+
+export function isHidden(study: CaseStudy): boolean {
+  return IS_PRODUCTION && !!study.hidden;
+}
+
+/** Case studies visible on this deployment. Use this for listings and navigation. */
+export const CASE_STUDIES: CaseStudy[] = ALL_CASE_STUDIES.filter((s) => !isHidden(s));
+
 export function getCaseStudy(slug: string): CaseStudy {
-  const study = CASE_STUDIES.find((s) => s.slug === slug);
+  const study = ALL_CASE_STUDIES.find((s) => s.slug === slug);
   if (!study) throw new Error(`Unknown case study: ${slug}`);
   return study;
 }

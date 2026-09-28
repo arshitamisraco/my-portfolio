@@ -5,14 +5,18 @@ import LabeledTiles from "@/components/case-study/LabeledTiles";
 import StatCallout from "@/components/case-study/StatCallout";
 import ImageFrame from "@/components/ImageFrame";
 import PullQuote from "@/components/PullQuote";
+import { notFound } from "next/navigation";
+import { getCaseStudy, isHidden } from "@/lib/projects";
 
 export const metadata: Metadata = {
+  ...(isHidden(getCaseStudy("foryou-playmat")) ? { robots: { index: false } } : {}),
   title: "Designing play that doesn't stop when it rains",
   description:
     "An Arduino-powered sensory play mat of hand-sewn textures for preschoolers with neurodivergence and motor and cognitive disabilities, built with the EEU in Seattle.",
 };
 
 export default function ForYouPlaymat() {
+  if (isHidden(getCaseStudy("foryou-playmat"))) notFound();
   return (
     <CaseStudyLayout
       slug="foryou-playmat"
