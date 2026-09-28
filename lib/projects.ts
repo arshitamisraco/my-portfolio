@@ -28,6 +28,16 @@ const COROS: CaseStudy["company"] = { name: "COROS AI", href: COROS_HUB_HREF };
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "gmail-job-tracker",
+    href: "/projects/gmail-job-tracker",
+    title: "Gmail Job Tracker",
+    shortTitle: "Gmail Job Tracker",
+    brief:
+      "A kanban board that reads my Gmail, sorts every job application into Applied, Interviewing, Offer or Rejected, and keeps itself up to date. Designed the product and the build process, then directed a network of AI coding sessions to ship it in a day.",
+    tags: ["Design Engineering", "AI Product", "Agent Orchestration", "Full-stack"],
+    tone: "sky",
+  },
+  {
     slug: "moritz-intake",
     href: "/projects/moritz-intake",
     title: "Redesigning a law firm's front door",

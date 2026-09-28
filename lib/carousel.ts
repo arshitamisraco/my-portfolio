@@ -100,6 +100,54 @@ export const COROS_MIX_CLIPS: Clip[] = [
  * Keyed by CorosCaseStudy.slug.
  */
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
+  "gmail-job-tracker": [
+    {
+      src: "/videos/gmail-job-tracker/board.mp4",
+      poster: "/images/gmail-job-tracker/posters/board.jpg",
+      width: 1440,
+      height: 900,
+      alt: "The Gmail Job Tracker board: application cards sorted into four status columns",
+      tone: "sky",
+    },
+    {
+      src: "/videos/gmail-job-tracker/sync.mp4",
+      poster: "/images/gmail-job-tracker/posters/sync.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Sync now: a new card lands in Applied and another moves to Interviewing",
+      tone: "mint",
+    },
+    {
+      poster: "/images/gmail-job-tracker/contract.png",
+      width: 1920,
+      height: 1406,
+      alt: "The data-model contract from PROJECT.md, rendered as a frosted card",
+      tone: "lavender",
+    },
+    {
+      src: "/videos/gmail-job-tracker/drag.mp4",
+      poster: "/images/gmail-job-tracker/posters/drag.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Dragging a card from Applied to Interviewing",
+      tone: "butter",
+    },
+    {
+      poster: "/images/gmail-job-tracker/board-full.png",
+      width: 2880,
+      height: 1800,
+      alt: "The full board on a pale blue canvas with frosted-glass columns and cards",
+      tone: "peach",
+    },
+    {
+      src: "/videos/gmail-job-tracker/detail.mp4",
+      poster: "/images/gmail-job-tracker/posters/detail.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Editing a card's role in the side panel and saving it",
+      tone: "sky",
+    },
+  ],
   "moritz-intake": [
     {
       src: "/videos/moritz-intake/journey.mp4",
