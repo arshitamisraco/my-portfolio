@@ -29,6 +29,21 @@ interface Reel {
 
 const REELS: Reel[] = [
   {
+    id: "fun-4",
+    title: "Color bands",
+    stack: ["MediaPipe", "Three.js"],
+    tone: "butter",
+    video: {
+      src: "/videos/for-fun/fun-4.mp4",
+      poster: "/images/for-fun/posters/fun-4.jpg",
+      width: 1152,
+      height: 748,
+    },
+    spotify: "https://open.spotify.com/track/696DnlkuDOXcMAnKlTgXXK",
+    description:
+      "A halftone window stretched between my open hands, split into red, yellow and blue bands that bend as I move.",
+  },
+  {
     id: "open-up-the-door",
     title: "Open up the door",
     stack: ["MediaPipe", "Three.js"],
