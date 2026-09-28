@@ -8,12 +8,12 @@ import PixelCloud from "@/components/PixelCloud";
 import PrincipleCard from "@/components/PrincipleCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/projects";
+import { PROJECTS_HREF } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Arshita Misra is a product designer obsessed with human-centered AI, currently the founding designer at COROS AI.",
+    "Arshita Misra is a product designer and design engineer building human-centered AI, currently the founding designer at COROS AI.",
 };
 
 interface TimelineEntry {
@@ -57,16 +57,10 @@ export default function About() {
             I&rsquo;m so glad you&rsquo;re here! I&rsquo;m Arshita.
           </h1>
           <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
-            I&rsquo;m a product designer obsessed with human-centered AI. I build products
-            that help people think more clearly, relate more powerfully, and grow beyond
-            what they thought possible. Currently doing that @{" "}
-            <Link
-              href={COROS_HUB_HREF}
-              className="font-medium text-accent-deep underline decoration-accent underline-offset-4 hover:text-ink"
-            >
-              COROS AI
-            </Link>
-            .
+            I&rsquo;m a product designer and design engineer building human-centered AI. I
+            build full-stack products, from roadmaps to design to implementation, and also
+            make creative visual effect design! I&rsquo;m looking for my next opportunity
+            at a fast paced AI venture, reach out if that&rsquo;s you!
           </p>
         </div>
       </section>
