@@ -14,8 +14,20 @@ canvas { display: block; width: 960px; height: 540px; }
 </head>
 <body>
 <canvas id="c" width="1920" height="1080"></canvas>
+<script src="v/manifest.js"></script>
 <script>
 const W = 1920, H = 1080, FPS = 60, DUR = 15;
+/* Time remap: [storyEnd, realSeconds] pieces. Transitions run near 1x; reading moments get long holds. */
+const SEG = [[1.3, 1.7], [1.8, 1.3], [2.3, .55],
+  [3.22, 1.3], [3.25, .4], [3.4, .3]];
+[1.1, 1.45, 1.8].forEach(b => SEG.push([2.3 + b + .2, .35], [2.3 + b + .35, .6]));
+SEG.push([4.65, .4], [4.7, .5], [4.9, .5],
+  [6.0, 1.4], [7.7, 2.2], [8.15, 1.0], [8.7, .6]);
+[0, 1].forEach(k => SEG.push([8.7 + k * 1.05 + .5, .7], [8.7 + k * 1.05 + .85, 1.3], [8.7 + k * 1.05 + 1.05, .3]));
+SEG.push([11.3, .7], [11.6, 1.2], [11.9, .45], [12.8, 1.1], [13.4, 1.3], [14.0, 1.0], [14.45, .6], [15.0, .9], [15.3, 1.2]);
+const REAL = SEG.reduce((a, s) => a + s[1], 0);
+function storyAt(rt) { let s0 = 0, r0 = 0; for (const [se, rd] of SEG) { if (rt <= r0 + rd) return s0 + (se - s0) * (rt - r0) / rd; s0 = se; r0 += rd; } return s0; }
+let RT = 0, DT = 0;
 const cv = document.getElementById("c");
 const ctx = cv.getContext("2d");
 
@@ -54,7 +66,7 @@ function img(src) {
   const e = cache.get(src); return e && e.ok ? e.im : null;
 }
 function vid(name, lt, loop = true) {
-  let i = Math.floor(lt * 30); const n = 120;
+  let i = Math.floor((lt + DT) * 30); const n = (window.VCOUNT || {})[name] || 120;
   i = loop ? ((i % n) + n) % n : clamp(i, 0, n - 1);
   return img(`v/${name}/${String(i + 1).padStart(4, "0")}.jpg`);
 }
@@ -212,10 +224,10 @@ function hud(t, dark, chapter, label) {
   text("SHOWREEL ’26", 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 3);
   if (chapter) { text(chapter, W - 64, 70, 17, col, 500, MONO, "right", 3); text(label, W - 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "right", 3); }
   // timecode + progress
-  const tc = `00:${String(Math.floor(t)).padStart(2, "0")}:${String(Math.floor((t % 1) * 60)).padStart(2, "0")}`;
+  t = RT; const tc = `00:${String(Math.floor(t)).padStart(2, "0")}:${String(Math.floor((t % 1) * 60)).padStart(2, "0")}`;
   text(tc, 64, H - 52, 16, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 2);
   ctx.fillStyle = dark ? "rgba(255,255,255,.12)" : "rgba(43,34,48,.1)"; ctx.fillRect(220, H - 58, W - 284, 2);
-  ctx.fillStyle = dark ? "#fff" : C.accentStrong; ctx.fillRect(220, H - 58, (W - 284) * t / DUR, 2);
+  ctx.fillStyle = dark ? "#fff" : C.accentStrong; ctx.fillRect(220, H - 58, (W - 284) * t / REAL, 2);
 }
 
 /* ======================================================================
@@ -248,7 +260,7 @@ function s1(t) {
   // tag line
   const tp = eOutExpo(prog(t, 1.2, 1.8));
   ctx.globalAlpha = fade * tp;
-  text("A showreel, in fifteen seconds.", W / 2, 750 + (1 - tp) * 20, 34, C.muted, 400, PF, "center", 0, "italic");
+  text("Selected work, 2023 — 2026.", W / 2, 750 + (1 - tp) * 20, 34, C.muted, 400, PF, "center", 0, "italic");
   ctx.restore();
   hud(t, false, "00", "INTRO");
   pixelWipe(prog(t, 1.9, 2.3), C.ink, 90, 11);
@@ -270,15 +282,15 @@ function s2(t) {
   for (let y = 0; y < H; y += 120) { ctx.beginPath(); ctx.moveTo(0, y + .5); ctx.lineTo(W, y + .5); ctx.stroke(); }
 
   // Part A: manifesto (0 → 0.95)
-  if (lt < 1.05) {
-    const out = eInExpo(prog(lt, .8, 1.02));
+  if (lt < 1.12) {
+    const out = eInExpo(prog(lt, .95, 1.1));
     ctx.save(); ctx.translate(0, -out * 140); ctx.globalAlpha = 1 - out;
     riseText("A product designer", W / 2, 470, 96, .05, lt, { align: "center", color: "#fff", w: 500, stagger: .018, dur: .5 });
-    riseText("who engineers.", W / 2, 640, 170, .22, lt, { align: "center", color: C.accentSoft, style: "italic", w: 600, stagger: .03, dur: .55 });
+    riseText("who engineers.", W / 2, 640, 170, .2, lt, { align: "center", color: C.accentSoft, style: "italic", w: 600, stagger: .02, dur: .45 });
     ctx.restore();
   }
   // Part B: beats (1.0 → 2.6), each .4s
-  const b0 = 1.0, bl = .4;
+  const b0 = 1.1, bl = .35;
   if (lt >= b0 - .05) {
     const bi = clamp(Math.floor((lt - b0) / bl), 0, 3); const bt = lt - b0 - bi * bl;
     const B = BEATS[bi];
@@ -306,7 +318,7 @@ function s2(t) {
   }
   hud(t, true, "01", "PRACTICE");
   // radial COROS-blue wipe out
-  const rp = eInOutCubic(prog(lt, 2.2, 2.6));
+  const rp = eInOutCubic(prog(lt, 2.4, 2.6));
   if (rp > 0) {
     const R = rp * 1300; const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(R, 1));
     g.addColorStop(0, C.navy); g.addColorStop(.86, C.navy); g.addColorStop(.94, "#2233ff"); g.addColorStop(1, "#8fa0ff");
@@ -349,7 +361,7 @@ function s3(t) {
     const colW = 400, gap = 36;
     WALL.forEach((col, ci) => {
       const dir = ci % 2 ? 1 : -1; const speed = 120 + ci * 18;
-      let y = -1500 + dir * lt * speed + (ci % 2 ? -400 : 0);
+      let y = -1500 + dir * (lt + DT) * speed + (ci % 2 ? -400 : 0);
       const x = (ci - 2.5) * (colW + gap);
       for (let rep = 0; rep < 3; rep++) for (const it of col) { const h = tile(it, lt, x, y, colW); y += h + gap; }
     });
@@ -380,7 +392,7 @@ function s3(t) {
     ctx.save(); ctx.globalAlpha *= clamp(p * 2);
     ctx.fillStyle = "rgba(170,180,255,.25)"; ctx.fillRect(x, y - 118, 290 * p, 2);
     text(Math.round(s.n * p) + s.suf, x, y + (1 - p) * 30, 104, "#fff", 600, PF);
-    text(s.l, x, y + 48, 21, "rgba(255,255,255,.62)", 500, IN); if (s.l2) text(s.l2, x, y + 76, 21, "rgba(255,255,255,.62)", 500, IN);
+    text(s.l, x, y + 50, 24, "rgba(255,255,255,.7)", 500, IN); if (s.l2) text(s.l2, x, y + 82, 24, "rgba(255,255,255,.62)", 500, IN);
     ctx.restore();
   });
   // investment callout
@@ -541,7 +553,7 @@ function s6(t) {
 
 /* ---------- frame ---------- */
 function draw(f) {
-  const t = f / FPS;
+  RT = f / FPS; const t = storyAt(RT); DT = RT - t;
   ctx.save();
   if (t < 2.3) s1(t);
   else if (t < 4.9) s2(t);
@@ -560,13 +572,14 @@ window.renderFrame = async (f) => {
   draw(f);
 };
 window.frameJPEG = () => cv.toDataURL("image/jpeg", .94);
-window.TOTAL = FPS * DUR;
+window.TOTAL = Math.round(FPS * REAL);
 window.ready = document.fonts.ready.then(() => Promise.all([
   document.fonts.load(`600 100px ${PF}`), document.fonts.load(`italic 600 100px ${PF}`), document.fonts.load(`500 20px ${IN}`), document.fonts.load(`500 20px JB`)
 ]));
 // preview mode: ?t=seconds
 const q = new URLSearchParams(location.search);
 if (q.has("t")) window.ready.then(() => renderFrame(Math.round(parseFloat(q.get("t")) * FPS)));
+window.storyAt = storyAt; window.REAL = REAL;
 </script>
 </body>
 </html>
