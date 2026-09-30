@@ -218,16 +218,10 @@ function pixelWipe(p, col, cell = 80, seed = 3, dir = 1) {
 }
 
 /* ---------- HUD ---------- */
-function hud(t, dark, chapter, label) {
-  const col = dark ? "rgba(255,255,255,.72)" : "rgba(43,34,48,.62)";
-  text("ARSHITA MISRA", 64, 70, 17, col, 500, MONO, "left", 3);
-  text("SHOWREEL ’26", 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 3);
-  if (chapter) { text(chapter, W - 64, 70, 17, col, 500, MONO, "right", 3); text(label, W - 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "right", 3); }
-  // timecode + progress
-  t = RT; const tc = `00:${String(Math.floor(t)).padStart(2, "0")}:${String(Math.floor((t % 1) * 60)).padStart(2, "0")}`;
-  text(tc, 64, H - 52, 16, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 2);
-  ctx.fillStyle = dark ? "rgba(255,255,255,.12)" : "rgba(43,34,48,.1)"; ctx.fillRect(220, H - 58, W - 284, 2);
-  ctx.fillStyle = dark ? "#fff" : C.accentStrong; ctx.fillRect(220, H - 58, (W - 284) * t / REAL, 2);
+function hud(t, dark) {
+  t = RT;
+  ctx.fillStyle = dark ? "rgba(255,255,255,.12)" : "rgba(43,34,48,.1)"; ctx.fillRect(64, H - 40, W - 128, 3);
+  ctx.fillStyle = dark ? "#fff" : C.accentStrong; ctx.fillRect(64, H - 40, (W - 128) * t / REAL, 3);
 }
 
 /* ======================================================================
@@ -250,7 +244,6 @@ function s1(t) {
   ctx.globalAlpha = fade;
   // eyebrow
   const ep = eOutExpo(prog(t, .85, 1.5));
-  if (ep > 0) text("PRODUCT DESIGNER  ·  DESIGN ENGINEER", W / 2, 408, 24, C.accentStrong, 600, IN, "center", lerp(18, 7, ep));
   // name
   riseText("Arshita Misra", W / 2, 610, 210, .25, t, { align: "center", stagger: .045, dur: .75 });
   // underline
@@ -260,18 +253,18 @@ function s1(t) {
   // tag line
   const tp = eOutExpo(prog(t, 1.2, 1.8));
   ctx.globalAlpha = fade * tp;
-  text("Selected work, 2023 — 2026.", W / 2, 750 + (1 - tp) * 20, 34, C.muted, 400, PF, "center", 0, "italic");
+  text("Product designer", W / 2, 780 + (1 - tp) * 20, 64, C.accentStrong, 500, PF, "center", 0, "italic");
   ctx.restore();
-  hud(t, false, "00", "INTRO");
+  hud(t, false);
   pixelWipe(prog(t, 1.9, 2.3), C.ink, 90, 11);
 }
 
 /* S2 — 2.3 → 4.9  Manifesto + four-beat "I own the whole stack" */
 const BEATS = [
-  { w: "Research.", c: C.accentSoft, src: () => img(P + "founding-design/research/competitive-analysis.png"), fit: "cover", url: "figjam — competitive analysis" },
-  { w: "Interface.", c: C.lavFill, src: () => img(P + "founding-design/onboarding/05-dimensions.png"), dark: true, url: "coros.ai/onboarding" },
-  { w: "Prompts.", c: C.skyFill, src: lt => vid("pg", lt + 1), dark: true, url: "localhost:8501 — prompt playground" },
-  { w: "Code.", c: "#cfe9d8", src: lt => vid("board", lt + .5), url: "job-tracker.vercel.app" },
+  { w: "Research.", c: C.accentSoft, src: () => img(P + "founding-design/research/competitive-analysis.png"), fit: "cover" },
+  { w: "Interface.", c: C.lavFill, src: () => img(P + "founding-design/onboarding/05-dimensions.png"), dark: true },
+  { w: "Prompts.", c: C.skyFill, src: lt => vid("pg", lt + 1), dark: true },
+  { w: "Code.", c: "#cfe9d8", src: lt => vid("board", lt + .5) },
 ];
 function s2(t) {
   const lt = t - 2.3;
@@ -295,9 +288,6 @@ function s2(t) {
     const bi = clamp(Math.floor((lt - b0) / bl), 0, 3); const bt = lt - b0 - bi * bl;
     const B = BEATS[bi];
     // kicker
-    text("I OWN THE WHOLE LOOP", 150, 330, 22, "rgba(255,255,255,.55)", 600, IN, "left", 6);
-    for (let k = 0; k < 4; k++) { ctx.fillStyle = k === bi ? B.c : "rgba(255,255,255,.18)"; ctx.fillRect(150 + k * 58, 360, 46, 5); }
-    text(`0${bi + 1}`, 150, 470, 30, B.c, 500, MONO, "left", 2);
     // big word — slides in each beat
     const ip = eOutExpo(clamp(bt / .28));
     ctx.save(); ctx.beginPath(); ctx.rect(100, 480, 900, 260); ctx.clip();
@@ -311,12 +301,12 @@ function s2(t) {
     ctx.save(); ctx.translate(cx + cw / 2, cy + ch / 2); ctx.rotate(rot); ctx.scale(s, s); ctx.translate(-(cx + cw / 2), -(cy + ch / 2));
     // ghost stack behind
     for (let k = 2; k >= 1; k--) { ctx.save(); ctx.translate(k * 26, k * 22); ctx.globalAlpha = .18 / k; rr(cx, cy, cw, ch, 20); ctx.fillStyle = B.c; ctx.fill(); ctx.restore(); }
-    windowCard(B.src(lt), cx, cy, cw, ch, { dark: B.dark, url: B.url, shadow: "rgba(0,0,0,.5)", ay: bi === 0 ? .5 : 0 });
+    windowCard(B.src(lt), cx, cy, cw, ch, { dark: B.dark, shadow: "rgba(0,0,0,.5)", ay: bi === 0 ? .5 : 0 });
     ctx.restore();
     // flash on cut
     const fl = 1 - clamp(bt / .12); if (fl > 0 && lt > b0 + .02) { ctx.fillStyle = `rgba(255,255,255,${fl * .25})`; ctx.fillRect(0, 0, W, H); }
   }
-  hud(t, true, "01", "PRACTICE");
+  hud(t, true);
   // radial COROS-blue wipe out
   const rp = eInOutCubic(prog(lt, 2.4, 2.6));
   if (rp > 0) {
@@ -377,38 +367,33 @@ function s3(t) {
   const lp = eOutExpo(prog(lt, .05, .7));
   const logo = img(P + "logos/coros-ai.png");
   if (logo) { ctx.save(); ctx.globalAlpha *= lp; ctx.filter = "brightness(3.2) saturate(1.1) drop-shadow(0 0 24px rgba(80,100,255,.8))"; const lw = 420 * lerp(.9, 1, lp); ctx.drawImage(logo, 150, 250 - (1 - lp) * 30, lw, lw * logo.height / logo.width); ctx.restore(); }
-  text("FOUNDING PRODUCT DESIGNER  ·  2025–26", 150, 400, 22, `rgba(160,172,255,${eOutExpo(prog(lt, .25, .8))})`, 600, IN, "left", 5);
-  riseText("Built it from zero:", 150, 490, 64, .35, lt, { color: "#fff", w: 500, stagger: .015, dur: .5 });
-  riseText("brand, product, and the AI.", 150, 570, 64, .5, lt, { color: "#aab4ff", w: 500, style: "italic", stagger: .015, dur: .5 });
+  riseText("Founding designer", 150, 470, 104, .3, lt, { color: "#fff", w: 600, stagger: .02, dur: .5 });
+  riseText("Brand, product & AI, from zero", 150, 560, 54, .5, lt, { color: "#aab4ff", w: 500, style: "italic", stagger: .012, dur: .5 });
   // stat counters
   const stats = [
-    { n: 55, suf: "%", l: "next-day return after", l2: "onboarding redesign", at: 1.15 },
-    { n: 40, suf: "%", l: "weekly active users", l2: "", at: 1.45 },
-    { n: 54, suf: "+", l: "semantic tokens —", l2: "design → review: days to hours", at: 1.75 },
+    { n: 55, suf: "%", l: "next-day return", at: 1.15 },
+    { n: 40, suf: "%", l: "weekly active users", at: 1.5 },
   ];
   stats.forEach((s, i) => {
     const p = eOutExpo(prog(lt, s.at, s.at + .7)); if (p <= 0) return;
-    const x = 150 + i * 330, y = 760;
+    const x = 150 + i * 440, y = 800;
     ctx.save(); ctx.globalAlpha *= clamp(p * 2);
-    ctx.fillStyle = "rgba(170,180,255,.25)"; ctx.fillRect(x, y - 118, 290 * p, 2);
-    text(Math.round(s.n * p) + s.suf, x, y + (1 - p) * 30, 104, "#fff", 600, PF);
-    text(s.l, x, y + 50, 24, "rgba(255,255,255,.7)", 500, IN); if (s.l2) text(s.l2, x, y + 82, 24, "rgba(255,255,255,.62)", 500, IN);
+    ctx.fillStyle = "rgba(170,180,255,.25)"; ctx.fillRect(x, y - 150, 380 * p, 2);
+    text(Math.round(s.n * p) + s.suf, x, y + (1 - p) * 30, 140, "#fff", 600, PF);
+    text(s.l, x, y + 62, 36, "rgba(255,255,255,.82)", 500, IN);
     ctx.restore();
   });
-  // investment callout
-  const ip = eOutExpo(prog(lt, 2.2, 2.8));
-  if (ip > 0) { ctx.save(); ctx.globalAlpha *= ip; const w = chip("◆  Brand + pitch deck that helped land the first round", 150, 890 + (1 - ip) * 20, "rgba(45,60,255,.28)", "#dfe3ff", 22); ctx.restore(); }
   ctx.restore();
-  hud(t, true, "02", "COROS AI · FOUNDING DESIGN");
+  hud(t, true);
   // flash out into paper
   const fo = prog(lt, 3.55, 3.8); if (fo > 0) { ctx.fillStyle = `rgba(253,248,247,${eInCubic(fo)})`; ctx.fillRect(0, 0, W, H); }
 }
 
 /* S4 — 8.7 → 11.9  Case-study card deal */
 const PROJ = [
-  { t: "Founding design", sub: "COROS's 0→1 onboarding and personality system, shaped with the AI, plus the brand identity.", stat: "0 → 1, research to brand", tags: [["0→1", C.surface, C.accentDeep], ["User Research", C.surface, C.accentDeep], ["Brand", C.surface, C.accentDeep]], v: "owd", url: "coros.ai/onboarding", tone: C.accentSoft, dark: true },
-  { t: "Design system rebuild", sub: "From stock MUI to a token-driven shadcn system, with a responsive redesign of every core surface.", stat: "Design → review: days to hours", tags: [["Design Systems", C.skyFill, C.skyDeep], ["Responsive", C.skyFill, C.skyDeep]], v: "cwd", url: "coros.ai/chat", tone: C.skyFill, dark: true },
-  { t: "An AI that remembers you", sub: "IA, widgets, and the LLM prompts behind every card.", stat: "Prompts → pixels", tags: [["Prompt Engineering", C.lavFill, C.lavDeep], ["UX/UI", C.lavFill, C.lavDeep]], v: "bw", url: "coros.ai/my-world", tone: C.lavFill, fit: "contain" },
+  { t: "Designing\nCOROS from\nzero to one",stat: "Research → launch", v: "owd", tone: C.accentSoft, dark: true },
+  { t: "Migrating MUI\nto shadcn",stat: "Reviews: days → hours", v: "cwd", tone: C.skyFill, dark: true },
+  { t: "Designing an\nAI memory\ndashboard",stat: "Prompts → pixels", v: "bw", tone: C.lavFill, fit: "contain" },
 ];
 function s4(t) {
   const lt = t - 8.7, per = 1.05;
@@ -428,40 +413,34 @@ function s4(t) {
     const back = cur - i + (i === cur ? 0 : 0) - (i < cur ? (1 - eOutExpo(clamp(pt / .5))) : 0); // depth in stack
     const depth = Math.max(0, back);
     const P_ = PROJ[i];
-    const cw = 1000, ch = 640, bx = 820, by = 230;
+    const cw = 940, ch = 600, bx = 900, by = 250;
     const x = lerp(W + 200, bx, ent) - depth * 70, y = lerp(700, by, ent) - depth * 48;
     const rot = lerp(.28, -.02 * (i % 2 ? -1 : 1), ent) - depth * .03;
     const s = 1 - depth * .08;
     ctx.save(); ctx.translate(x + cw / 2, y + ch / 2); ctx.rotate(rot); ctx.scale(s, s); ctx.translate(-cw / 2, -ch / 2);
     ctx.globalAlpha = 1 - depth * .25;
-    windowCard(vid(P_.v, lt - i * per + .2), 0, 0, cw, ch, { url: P_.url, fit: P_.fit, bgc: "#fff", ay: 0, dark: P_.dark });
+    windowCard(vid(P_.v, lt - i * per + .2), 0, 0, cw, ch, { fit: P_.fit, bgc: "#fff", ay: 0, dark: P_.dark });
     ctx.restore();
   }
   // left copy
   const P_ = PROJ[cur];
   const cp = eOutExpo(clamp(pt / .45)); const out = cur < 2 ? eInExpo(prog(pt, per - .2, per)) : 0;
   ctx.save(); ctx.globalAlpha = 1 - out;
-  text(`CASE STUDY 0${cur + 1}`, 120, 330, 20, C.accentStrong, 600, IN, "left", 5);
-  ctx.save(); ctx.beginPath(); ctx.rect(100, 340, 720, 250); ctx.clip();
-  const words = P_.t.split(" "); let lines = []; setFont(600, 78, PF); let ln = "";
-  for (const w of words) { if (ctx.measureText(ln + w).width > 640 && ln) { lines.push(ln.trim()); ln = ""; } ln += w + " "; } lines.push(ln.trim());
-  lines.forEach((l, k) => { const lp = eOutExpo(clamp((pt - k * .06) / .45)); text(l, 120, 430 + k * 88 + (1 - lp) * 120, 78, C.ink, 600, PF); });
+  const lines = P_.t.split("\n");
+  const ty = 540 - lines.length * 108 / 2 + 80;
+  ctx.save(); ctx.beginPath(); ctx.rect(100, ty - 110, 740, lines.length * 108 + 40); ctx.clip();
+  lines.forEach((l, k) => { const lp = eOutExpo(clamp((pt - k * .06) / .45)); text(l, 120, ty + k * 108 + (1 - lp) * 130, 96, C.ink, 600, PF); });
   ctx.restore();
-  const yb = 430 + lines.length * 88;
   ctx.globalAlpha = (1 - out) * cp;
-  setFont(400, 26, IN); ctx.fillStyle = C.muted;
-  const sub = P_.sub; const sw = sub.split(" "); let l2 = "", yy = yb + 4;
-  for (const w of sw) { if (ctx.measureText(l2 + w).width > 600 && l2) { ctx.fillText(l2, 120, yy); yy += 38; l2 = ""; } l2 += w + " "; } ctx.fillText(l2, 120, yy);
-  let cx = 120; for (const [tg, bg, fg] of P_.tags) cx += chip(tg, cx, yy + 34, bg, fg, 19) + 12;
   // stat stamp
   const sp = spring(prog(pt, .3, 1.0) * 1.2, 3, 6);
-  setFont(700, 30, IN); const tw = ctx.measureText(P_.stat).width + 56;
+  setFont(700, 36, IN); const tw = ctx.measureText(P_.stat).width + 64;
   ctx.save(); ctx.translate(Math.min(1700, W - 70 - tw / 2), 870); ctx.rotate(-.06); ctx.scale(sp, sp);
-  shadowed(() => { rr(-tw / 2, -34, tw, 68, 34); ctx.fillStyle = C.accentStrong; ctx.fill(); }, 30, 12, "rgba(172,81,105,.4)");
+  shadowed(() => { rr(-tw / 2, -40, tw, 80, 40); ctx.fillStyle = C.accentStrong; ctx.fill(); }, 30, 12, "rgba(172,81,105,.4)");
   ctx.fillStyle = C.onAccent; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(P_.stat, 0, 2); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
   ctx.restore();
   ctx.restore();
-  hud(t, false, "03", "COROS AI · CASE STUDIES");
+  hud(t, false);
   // mint slab wipe into S5
   const wp = eInOutExpo(prog(lt, 2.9, 3.2));
   if (wp > 0) { ctx.save(); ctx.fillStyle = C.mintSoft; ctx.beginPath(); ctx.moveTo(W + 400 - wp * (W + 1200), 0); ctx.lineTo(W + 400, 0); ctx.lineTo(W + 400, H); ctx.lineTo(W + 800 - wp * (W + 1200), H); ctx.fill(); ctx.restore(); }
@@ -475,14 +454,14 @@ function s5(t) {
   cloud("cumulus", "white", 1500 + lt * 40, 120, 14, prog(lt, 0, .6), .9); cloud("puff", "white", 120 - lt * 20, 820, 14, prog(lt, .1, .7), .9);
   // giant "2nd"
   const gp = spring(prog(lt, 0, .8) * 1.3, 2.5, 6);
-  ctx.save(); ctx.translate(380, 560); ctx.scale(gp, gp); ctx.rotate(-.04 * (1 - clamp(gp)));
+  ctx.save(); ctx.translate(380, 590); ctx.scale(gp, gp); ctx.rotate(-.04 * (1 - clamp(gp)));
   text("2nd", 0, 90, 300, C.mintDeep, 700, PF, "center"); ctx.restore();
   const tp = eOutExpo(prog(lt, .2, .75));
   ctx.save(); ctx.globalAlpha = tp;
-  text("of 100+ teams worldwide", 380, 720 + (1 - tp) * 20, 34, C.mintDeep, 600, IN, "center");
-  text("RESNA Student Design Challenge", 380, 768 + (1 - tp) * 20, 24, "rgba(47,107,76,.7)", 500, IN, "center");
+  text("of 100+ teams worldwide", 380, 760 + (1 - tp) * 20, 42, C.mintDeep, 600, IN, "center");
   ctx.restore();
-  text("SWITCHAROO", 380, 330, 20, C.mintDeep, 600, IN, "center", 6);
+  riseText("Games for kids", 380, 270, 72, 0, lt, { align: "center", color: C.ink, w: 600, stagger: .015, dur: .45 });
+  riseText("with disabilities", 380, 355, 72, .08, lt, { align: "center", color: C.ink, w: 600, style: "italic", stagger: .015, dur: .45 });
   // tablets
   const tabs = [["pop", 820, 250, 330, -.06, 0], ["cross", 1130, 330, 560, .03, .1], ["stack", 1540, 200, 300, .07, .2]];
   for (const [v, x, y, w, r, d] of tabs) {
@@ -493,9 +472,7 @@ function s5(t) {
     ctx.save(); rr(-w / 2, -h / 2, w, h, 16); ctx.clip(); if (im) ctx.drawImage(im, -w / 2, -h / 2, w, h); ctx.restore();
     ctx.restore();
   }
-  const cp = eOutExpo(prog(lt, .55, 1.0));
-  ctx.save(); ctx.globalAlpha = cp; chip("Switch-accessible games for kids with motor & cognitive disabilities", 820, 900 + (1 - cp) * 20, "#fff", C.mintDeep, 22); ctx.restore();
-  hud(t, false, "04", "ACCESSIBILITY");
+  hud(t, false);
   pixelWipe(prog(lt, 1.22, 1.5), "#120d14", 90, 21);
 }
 
@@ -510,27 +487,24 @@ function s5b(t) {
     if (r > .3) { ctx.fillStyle = "rgba(226,138,155,.16)"; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
   }
   // copy
-  text("FOR FUN", 120, 330, 20, C.accentSoft, 600, IN, "left", 6);
   riseText("Hands,", 120, 470, 120, .02, lt, { color: "#fff", w: 600, stagger: .03, dur: .45 });
   riseText("tracked.", 120, 600, 120, .12, lt, { color: C.accentSoft, w: 600, style: "italic", stagger: .03, dur: .45 });
   const cp = eOutExpo(prog(lt, .3, .7));
   ctx.save(); ctx.globalAlpha = cp;
-  text("Hand-tracking experiments I make", 120, 690 + (1 - cp) * 16, 28, "rgba(255,255,255,.7)", 400, IN);
-  text("to cultivate taste.", 120, 730 + (1 - cp) * 16, 28, "rgba(255,255,255,.7)", 400, IN);
-  let cx = 120; for (const tg of ["MediaPipe", "Three.js"]) cx += chip(tg, cx, 780 + (1 - cp) * 16, "rgba(246,198,207,.16)", C.accentSoft, 20) + 12;
+  text("MediaPipe", 120, 700 + (1 - cp) * 16, 56, "rgba(255,255,255,.88)", 500, PF, "left", 0, "italic");
+  text("experiments", 120, 766 + (1 - cp) * 16, 56, "rgba(255,255,255,.88)", 500, PF, "left", 0, "italic");
   ctx.restore();
   // 2×2 grid of live clips
-  const gw = 560, gh = 350, gx = 700, gy = 175, gap = 28, push = 1 + prog(lt, .5, 1.5) * .03;
+  const gw = 560, gh = 350, gx = 700, gy = 175, gap = 22, push = 1 + prog(lt, .5, 1.5) * .03;
   FUN.forEach(([v, label], k) => {
     const d = .08 + k * .07, p = eOutBack(prog(lt, d, d + .45), 1.3); if (p <= 0) return;
-    const x = gx + (k % 2) * (gw + gap), y = gy + Math.floor(k / 2) * (gh + gap + 44);
+    const x = gx + (k % 2) * (gw + gap), y = gy + 25 + Math.floor(k / 2) * (gh + gap);
     ctx.save(); ctx.translate(x + gw / 2, y + gh / 2 + (1 - clamp(p)) * 120); ctx.rotate((k % 2 ? 1 : -1) * .025 * (1 - clamp(p) * .6)); ctx.scale(p * push, p * push);
     card(vid(v, lt), -gw / 2, -gh / 2, gw, gh, 16, { shadow: "rgba(0,0,0,.6)", bgc: "#000" });
     ctx.restore();
     const lp = eOutExpo(prog(lt, d + .25, d + .6));
-    ctx.save(); ctx.globalAlpha = lp; text(label, x + 4, y + gh + 36, 22, "rgba(255,255,255,.8)", 400, PF, "left", 0, "italic"); ctx.restore();
   });
-  hud(t, true, "05", "FOR FUN");
+  hud(t, true);
 }
 
 
@@ -584,7 +558,7 @@ function s6(t) {
     ctx.fillStyle = C.onAccent; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("arshita.co  →", 0, 2); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
     ctx.restore();
   }
-  hud(t, false, "", "");
+  hud(t, false);
 }
 
 /* ---------- frame ---------- */
