@@ -18,13 +18,13 @@ canvas { display: block; width: 960px; height: 540px; }
 <script>
 const W = 1920, H = 1080, FPS = 60, DUR = 15;
 /* Time remap: [storyEnd, realSeconds] pieces. Transitions run near 1x; reading moments get long holds. */
-const SEG = [[1.3, 1.7], [1.8, 1.3], [2.3, .55],
+const SEG = [[1.3, 1.7], [1.8, 1.1], [2.3, .55],
   [3.22, 1.3], [3.25, .4], [3.4, .3]];
 [1.1, 1.45, 1.8].forEach(b => SEG.push([2.3 + b + .2, .35], [2.3 + b + .35, .6]));
 SEG.push([4.65, .4], [4.7, .5], [4.9, .5],
-  [6.0, 1.4], [7.7, 2.2], [8.15, 1.0], [8.7, .6]);
-[0, 1].forEach(k => SEG.push([8.7 + k * 1.05 + .5, .7], [8.7 + k * 1.05 + .85, 1.3], [8.7 + k * 1.05 + 1.05, .3]));
-SEG.push([11.3, .7], [11.6, 1.2], [11.9, .45], [12.8, 1.1], [13.4, 1.3], [14.0, 1.0], [14.45, .6], [15.0, .9], [15.3, 1.2]);
+  [6.0, 1.4], [7.7, 2.0], [8.15, 1.0], [8.7, .6]);
+[0, 1].forEach(k => SEG.push([8.7 + k * 1.05 + .5, .7], [8.7 + k * 1.05 + .85, 1.2], [8.7 + k * 1.05 + 1.05, .3]));
+SEG.push([11.3, .7], [11.6, 1.1], [11.9, .45], [12.8, 1.1], [13.4, 1.3], [14.0, 1.0], [14.9, 1.5], [15.5, 1.0], [15.95, .6], [16.5, .9], [16.8, 1.2]);
 const REAL = SEG.reduce((a, s) => a + s[1], 0);
 function storyAt(rt) { let s0 = 0, r0 = 0; for (const [se, rd] of SEG) { if (rt <= r0 + rd) return s0 + (se - s0) * (rt - r0) / rd; s0 = se; r0 += rd; } return s0; }
 let RT = 0, DT = 0;
@@ -75,7 +75,7 @@ async function ensure() {
   for (const s of wanted) {
     if (cache.has(s)) continue;
     const im = new Image(); im.src = s; const e = { im, ok: false }; cache.set(s, e);
-    ps.push(im.decode().then(() => e.ok = true).catch(() => console.warn("fail", s)));
+    ps.push(im.decode().then(() => e.ok = true).catch(async () => { await new Promise(r => setTimeout(r, 50)); const im2 = new Image(); im2.src = s + "?r"; await im2.decode().then(() => { e.im = im2; e.ok = true; }).catch(() => console.warn("fail", s)); }));
   }
   await Promise.all(ps); wanted.clear();
   // keep video frame cache bounded
@@ -406,9 +406,9 @@ function s3(t) {
 
 /* S4 — 8.7 → 11.9  Case-study card deal */
 const PROJ = [
-  { t: "Gmail Job Tracker", sub: "Designed it, then directed a network of AI coding sessions to ship it.", stat: "Shipped in 1 day", tags: [["Design Engineering", C.skyFill, C.skyDeep], ["Agent Orchestration", C.skyFill, C.skyDeep]], v: "drag", url: "job-tracker.app", tone: C.skyFill, deep: C.skyDeep },
-  { t: "Moritz intake", sub: "Redesigned an AI law firm's front door — as working TypeScript.", stat: "Designed + built in 3 days", tags: [["UX/UI", C.peachSoft, C.peachDeep], ["UX Writing", C.peachSoft, C.peachDeep]], v: "steps", url: "moritz.law/new-case", tone: C.peachSoft, deep: C.peachDeep },
-  { t: "An AI that remembers you", sub: "IA, widgets, and the LLM prompts behind every card.", stat: "Prompts → pixels", tags: [["Prompt Engineering", C.lavFill, C.lavDeep], ["UX/UI", C.lavFill, C.lavDeep]], v: "bw", url: "coros.ai/my-world", tone: C.lavFill, deep: C.lavDeep, fit: "contain" },
+  { t: "Founding design", sub: "COROS's 0→1 onboarding and personality system, shaped with the AI, plus the brand identity.", stat: "0 → 1, research to brand", tags: [["0→1", C.surface, C.accentDeep], ["User Research", C.surface, C.accentDeep], ["Brand", C.surface, C.accentDeep]], v: "owd", url: "coros.ai/onboarding", tone: C.accentSoft, dark: true },
+  { t: "Design system rebuild", sub: "From stock MUI to a token-driven shadcn system, with a responsive redesign of every core surface.", stat: "Design → review: days to hours", tags: [["Design Systems", C.skyFill, C.skyDeep], ["Responsive", C.skyFill, C.skyDeep]], v: "cwd", url: "coros.ai/chat", tone: C.skyFill, dark: true },
+  { t: "An AI that remembers you", sub: "IA, widgets, and the LLM prompts behind every card.", stat: "Prompts → pixels", tags: [["Prompt Engineering", C.lavFill, C.lavDeep], ["UX/UI", C.lavFill, C.lavDeep]], v: "bw", url: "coros.ai/my-world", tone: C.lavFill, fit: "contain" },
 ];
 function s4(t) {
   const lt = t - 8.7, per = 1.05;
@@ -420,7 +420,7 @@ function s4(t) {
   ctx.beginPath(); ctx.arc(1320, 540, 620 * eOutExpo(clamp(pt / .6)), 0, 7); ctx.fill(); ctx.restore();
   if (cur > 0 && pt < .4) { ctx.save(); ctx.globalAlpha = .55 * (1 - pt / .4); ctx.fillStyle = PROJ[cur - 1].tone; ctx.beginPath(); ctx.arc(1320, 540, 620, 0, 7); ctx.fill(); ctx.restore(); }
   // clouds
-  cloud("puff", "pink", 90 + lt * 30, 860, 12, 1, .8); cloud("wisp", "sky", 1500 - lt * 25, 70, 10, 1, .8);
+  cloud("puff", "pink", 90 + lt * 30, 860, 12, 1, .8); cloud("wisp", "sky", 1420 - lt * 25, 150, 10, 1, .8);
 
   // cards: each lands then gets pushed back into a stack
   for (let i = 0; i <= cur; i++) {
@@ -434,7 +434,7 @@ function s4(t) {
     const s = 1 - depth * .08;
     ctx.save(); ctx.translate(x + cw / 2, y + ch / 2); ctx.rotate(rot); ctx.scale(s, s); ctx.translate(-cw / 2, -ch / 2);
     ctx.globalAlpha = 1 - depth * .25;
-    windowCard(vid(P_.v, lt - i * per + .2), 0, 0, cw, ch, { url: P_.url, fit: P_.fit, bgc: "#fff", ay: 0 });
+    windowCard(vid(P_.v, lt - i * per + .2), 0, 0, cw, ch, { url: P_.url, fit: P_.fit, bgc: "#fff", ay: 0, dark: P_.dark });
     ctx.restore();
   }
   // left copy
@@ -455,13 +455,13 @@ function s4(t) {
   let cx = 120; for (const [tg, bg, fg] of P_.tags) cx += chip(tg, cx, yy + 34, bg, fg, 19) + 12;
   // stat stamp
   const sp = spring(prog(pt, .3, 1.0) * 1.2, 3, 6);
-  ctx.save(); ctx.translate(1700, 870); ctx.rotate(-.06); ctx.scale(sp, sp);
   setFont(700, 30, IN); const tw = ctx.measureText(P_.stat).width + 56;
+  ctx.save(); ctx.translate(Math.min(1700, W - 70 - tw / 2), 870); ctx.rotate(-.06); ctx.scale(sp, sp);
   shadowed(() => { rr(-tw / 2, -34, tw, 68, 34); ctx.fillStyle = C.accentStrong; ctx.fill(); }, 30, 12, "rgba(172,81,105,.4)");
   ctx.fillStyle = C.onAccent; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(P_.stat, 0, 2); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
   ctx.restore();
   ctx.restore();
-  hud(t, false, "03", "SELECTED WORK");
+  hud(t, false, "03", "COROS AI · CASE STUDIES");
   // mint slab wipe into S5
   const wp = eInOutExpo(prog(lt, 2.9, 3.2));
   if (wp > 0) { ctx.save(); ctx.fillStyle = C.mintSoft; ctx.beginPath(); ctx.moveTo(W + 400 - wp * (W + 1200), 0); ctx.lineTo(W + 400, 0); ctx.lineTo(W + 400, H); ctx.lineTo(W + 800 - wp * (W + 1200), H); ctx.fill(); ctx.restore(); }
@@ -496,18 +496,54 @@ function s5(t) {
   const cp = eOutExpo(prog(lt, .55, 1.0));
   ctx.save(); ctx.globalAlpha = cp; chip("Switch-accessible games for kids with motor & cognitive disabilities", 820, 900 + (1 - cp) * 20, "#fff", C.mintDeep, 22); ctx.restore();
   hud(t, false, "04", "ACCESSIBILITY");
+  pixelWipe(prog(lt, 1.22, 1.5), "#120d14", 90, 21);
 }
+
+/* S5b — 13.4 → 14.9  For fun: MediaPipe hand-tracking experiments */
+const FUN = [["amz", "Amaze, amaze, amaze!"], ["flw", "Fields of flowers"], ["cb", "Color bands"], ["door", "Open up the door"]];
+function s5b(t) {
+  const lt = t - 13.4;
+  paper("#120d14", false);
+  // halftone field, a nod to the pieces themselves
+  for (let x = 0; x < W; x += 28) for (let y = 0; y < H; y += 28) {
+    const d = Math.hypot(x - 1300, y - 560) / 1100, r = clamp(1 - d) * 5 * (.8 + .2 * Math.sin(lt * 3 + x * .01));
+    if (r > .3) { ctx.fillStyle = "rgba(226,138,155,.16)"; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
+  }
+  // copy
+  text("FOR FUN", 120, 330, 20, C.accentSoft, 600, IN, "left", 6);
+  riseText("Hands,", 120, 470, 120, .02, lt, { color: "#fff", w: 600, stagger: .03, dur: .45 });
+  riseText("tracked.", 120, 600, 120, .12, lt, { color: C.accentSoft, w: 600, style: "italic", stagger: .03, dur: .45 });
+  const cp = eOutExpo(prog(lt, .3, .7));
+  ctx.save(); ctx.globalAlpha = cp;
+  text("Hand-tracking experiments I make", 120, 690 + (1 - cp) * 16, 28, "rgba(255,255,255,.7)", 400, IN);
+  text("to cultivate taste.", 120, 730 + (1 - cp) * 16, 28, "rgba(255,255,255,.7)", 400, IN);
+  let cx = 120; for (const tg of ["MediaPipe", "Three.js"]) cx += chip(tg, cx, 780 + (1 - cp) * 16, "rgba(246,198,207,.16)", C.accentSoft, 20) + 12;
+  ctx.restore();
+  // 2×2 grid of live clips
+  const gw = 560, gh = 350, gx = 700, gy = 175, gap = 28, push = 1 + prog(lt, .5, 1.5) * .03;
+  FUN.forEach(([v, label], k) => {
+    const d = .08 + k * .07, p = eOutBack(prog(lt, d, d + .45), 1.3); if (p <= 0) return;
+    const x = gx + (k % 2) * (gw + gap), y = gy + Math.floor(k / 2) * (gh + gap + 44);
+    ctx.save(); ctx.translate(x + gw / 2, y + gh / 2 + (1 - clamp(p)) * 120); ctx.rotate((k % 2 ? 1 : -1) * .025 * (1 - clamp(p) * .6)); ctx.scale(p * push, p * push);
+    card(vid(v, lt), -gw / 2, -gh / 2, gw, gh, 16, { shadow: "rgba(0,0,0,.6)", bgc: "#000" });
+    ctx.restore();
+    const lp = eOutExpo(prog(lt, d + .25, d + .6));
+    ctx.save(); ctx.globalAlpha = lp; text(label, x + 4, y + gh + 36, 22, "rgba(255,255,255,.8)", 400, PF, "left", 0, "italic"); ctx.restore();
+  });
+  hud(t, true, "05", "FOR FUN");
+}
+
 
 /* S6 — 13.4 → 15.0  Mosaic → lockup */
 const MOS = [
   { v: "cwd" }, { i: "switcharoo/selected-game-crossy-roads.png" }, { v: "board" }, { i: "founding-design/brand-guide/page-02.png" }, { v: "steps" }, { i: "my-world/hero/hero-breakthrough.jpg" },
   { i: "founding-design/onboarding/05-dimensions.png" }, { v: "pg" }, { i: "founding-design/research/final-logos.png" }, { v: "mem" }, { i: "foryou-playmat/final-mat.jpg" }, { v: "owd" },
-  { v: "journey" }, { i: "design-system/figma/tokens-semantic-colors.png" }, { v: "tbd" }, { i: "founding-design/investment-pitch-deck/cover.png" }, { v: "pers" }, { i: "founding-design/research/brand-moodboard.png" },
-  { i: "founding-design/research/logo-iterations.png" }, { v: "drag" }, { i: "switcharoo/library-single.png" }, { v: "bw" }, { i: "my-world/hero/hero-provocation.png" }, { v: "cross" },
+  { v: "flw" }, { i: "design-system/figma/tokens-semantic-colors.png" }, { v: "tbd" }, { i: "founding-design/investment-pitch-deck/cover.png" }, { v: "pers" }, { i: "founding-design/research/brand-moodboard.png" },
+  { i: "founding-design/research/logo-iterations.png" }, { v: "drag" }, { i: "switcharoo/library-single.png" }, { v: "bw" }, { i: "my-world/hero/hero-provocation.png" }, { v: "door" },
 ];
 function s6(t) {
-  const lt = t - 13.4;
-  if (lt < .4) { ctx.save(); s5(t); ctx.restore(); ctx.fillStyle = `rgba(253,248,247,${eOutCubic(lt / .4)})`; ctx.fillRect(0, 0, W, H); } else paper(C.bg, true);
+  const lt = t - 14.9;
+  if (lt < .4) { ctx.save(); s5b(t); ctx.restore(); ctx.fillStyle = `rgba(253,248,247,${eOutCubic(lt / .4)})`; ctx.fillRect(0, 0, W, H); } else paper(C.bg, true);
   const cols = 6, rows = 4, gap = 14;
   const tw = (W + 240 - gap * (cols - 1)) / cols, th = (H + 160 - gap * (rows - 1)) / rows;
   const collapse = eInOutExpo(prog(lt, .6, 1.05));
@@ -560,10 +596,12 @@ function draw(f) {
   else if (t < 8.7) s3(t);
   else if (t < 11.9) s4(t);
   else if (t < 13.4) s5(t);
+  else if (t < 14.9) s5b(t);
   else s6(t);
   ctx.restore();
-  vignette(t >= 2.3 && t < 8.7 ? .45 : .12, t >= 2.3 && t < 8.7 ? "0,0,0" : "120,60,80");
-  drawGrain(f, t >= 2.3 && t < 8.7 ? .06 : .04);
+  const dark = (t >= 2.3 && t < 8.7) || (t >= 13.4 && t < 14.9);
+  vignette(dark ? .45 : .12, dark ? "0,0,0" : "120,60,80");
+  drawGrain(f, dark ? .06 : .04);
 }
 window.renderFrame = async (f) => {
   collecting = true; wanted.clear(); try { draw(f); } catch (e) { } collecting = false;

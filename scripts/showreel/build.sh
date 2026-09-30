@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Renders public/videos/showreel/arshita-showreel.mp4 (~28s, 1920x1080, 60fps, with sound).
+# Renders public/videos/showreel/arshita-showreel.mp4 (~30s, 1920x1080, 60fps, with sound).
 # The reel is a canvas animation (index.html) rendered frame-by-frame in headless
 # Chromium (render.mjs) and piped to ffmpeg. Needs: node + playwright, ffmpeg with libx264
 # (e.g. `pip install imageio-ffmpeg`), echo -n "window.VCOUNT={" > v/manifest.js; for d in v/*/; do echo -n ""$(basename $d)":$(ls $d | wc -l)," >> v/manifest.js; done; echo "};" >> v/manifest.js
@@ -27,9 +27,14 @@ ext journey moritz-intake/journey.mp4 0 1440
 ext cross switcharoo/crossy-roads.mp4 0 956
 ext pop switcharoo/pop-the-balloon.mp4 1 500
 ext stack switcharoo/stacking-blocks.mp4 1 504
+ext amz for-fun/amaze.mp4 2 960
+ext flw for-fun/fields-of-flowers.mp4 4 960
+ext cb for-fun/fun-4.mp4 0 960
+ext door for-fun/open-up-the-door.mp4 3.5 960
 npx http-server -p 8123 -s -c-1 . & SRV=$!
 trap 'kill $SRV' EXIT
 sleep 2
+node times.mjs         # writes events.json (real-time cue points) for the score
 node render.mjs full   # or: node render.mjs preview 1.5 6 10  → stills in ./prev
 python3 score.py score.wav   # original soundtrack (numpy + scipy), synced to the edit
 "$FF" -loglevel error -y -i out.mp4 -i score.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart "$V/showreel/arshita-showreel.mp4"

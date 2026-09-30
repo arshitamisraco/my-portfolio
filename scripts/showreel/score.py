@@ -8,20 +8,24 @@ from scipy.signal import butter, sosfilt, fftconvolve
 import wave, sys
 
 SR = 44100
-LEN = 28.05 + 1.2
+LEN = 32.0
 N = int(LEN * SR)
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(7)
 
-B = 60 / 126.3               # beat
-O = 5.55 - 12 * B            # grid origin: 5.55s (first "Research." cut) is a downbeat
-def beat(i): return O + i * B
 
 # ---------- real event times (from the renderer's time-remap) ----------
-EV = dict(wipe=3.11, s2=3.55, beats=[5.55, 6.5, 7.45, 8.4], radial=9.3, s3=9.8,
-          stats=[11.265, 11.653, 12.041], callout=12.624, zoom=14.4, s4=15.0,
-          cards=[15.0, 17.3, 19.6], stamps=[15.42, 17.72, 20.02], mint=21.5, s5=21.95,
-          s6=24.35, collapse=25.35, lockup=25.68, button=26.25, end=28.05)
+import json, os
+_e = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "events.json")))
+EV = dict(wipe=_e["s1wipe"], s2=_e["s2start"], beats=[_e[f"beat{i}"] for i in (1, 2, 3, 4)], radial=_e["radial"], s3=_e["s3"],
+          stats=[_e["stat1"], _e["stat2"], _e["stat3"]], callout=_e["callout"], zoom=_e["zoom"], s4=_e["s4"],
+          cards=[_e["s4"], _e["p2"], _e["p3"]], stamps=[_e["stamp1"], _e["stamp2"], _e["stamp3"]], mint=_e["mint"], s5=_e["s5"],
+          fwipe=_e["fwipe"], fun=_e["fun"], tiles=[_e[f"fun{i}"] for i in (1, 2, 3, 4)],
+          s6=_e["s6"], collapse=_e["collapse"], lockup=_e["lockup"], button=_e["button"], end=_e["end"])
+
+B = 60 / 126.3                    # beat
+O = EV["beats"][0] - 12 * B       # grid origin: the first "Research." cut is a downbeat
+def beat(i): return O + i * B
 
 def t_(d): return np.arange(int(d * SR)) / SR
 def env(n, a=.005, d=.3):
@@ -108,7 +112,8 @@ def section(t):
     if t < EV["zoom"]: return "coros"
     if t < EV["s4"]: return "rise"
     if t < EV["mint"]: return "work"
-    if t < EV["s6"]: return "play"
+    if t < EV["fwipe"]: return "play"
+    if t < EV["s6"]: return "fun"
     if t < EV["lockup"]: return "mosaic"
     return "end"
 
@@ -118,15 +123,16 @@ for b in bars:
     if t0 > EV["lockup"] - .1: break
     ci = b % 4
     sec = section(max(t0, 0))
-    cut = {"intro": 900, "manifesto": 1200, "beats": 2200, "coros": 1600, "work": 2600, "play": 2800}.get(sec, 1500)
+    cut = {"intro": 900, "manifesto": 1200, "beats": 2200, "coros": 1600, "work": 2600, "play": 2800, "fun": 1100}.get(sec, 1500)
     add(pad(CH[ci], BAR + .7, cut), t0, .32 if sec != "intro" else .38)
-    if sec in ("beats", "coros", "work", "play"):
+    if sec in ("beats", "coros", "work", "play", "fun"):
         for k in range(8):  # eighth-note bass
             bt = t0 + k * B / 2
             if bt >= EV["s6"]: break
             if sec == "beats" and bt >= EV["radial"]: break
             if sec == "coros" and bt >= EV["zoom"]: break
-            add(bass(ROOT[ci] + (12 if k in (3, 7) and sec == "work" else 0), B / 2 * .9, 380 if sec == "coros" else 650), bt, .5)
+            if sec == "fun" and k % 3 == 1: continue
+            add(bass(ROOT[ci] + (12 if k in (3, 7) and sec == "work" else 0), B / 2 * .9, 380 if sec in ("coros", "fun") else 650), bt, .5)
     elif sec == "manifesto":
         add(bass(ROOT[ci], BAR * .95, 250), t0, .5)
 
@@ -143,6 +149,10 @@ for i in range(int((0 - O) / B), int((EV["end"] - O) / B) + 1):
         add(hat(), bt + B / 2, .9, .3); add(hat(), bt, .5, -.3)
         if sec in ("work", "play"): add(hat(), bt + B / 4, .35, .5); add(hat(), bt + 3 * B / 4, .35, -.5)
         if sec == "coros" and pos == 3: add(hat(True), bt + B / 2, .4, .4)
+    elif sec == "fun":
+        if pos in (0, 2) or (pos == 3): add(kick(.9 if pos != 3 else .5), bt + (B / 2 if pos == 3 else 0))
+        if pos == 2: add(clap(), bt, .9)
+        for q in range(4): add(hat(), bt + q * B / 4, .45 if q % 2 else .25, (-1) ** q * .5)
     elif sec == "mosaic":
         add(hat(), bt, .7, .3); add(hat(), bt + B / 2, .7, -.3)
 
@@ -165,6 +175,11 @@ MEL = [77, 79, 81, 84, 81, 79, 77, 74, 77, 81, 84, 86, 84, 81, 79, 81]
 for k, tt in enumerate(np.arange(beat(int((EV["s5"] - O) / B)), EV["s6"], B / 2)):
     add(pluck(MEL[k % 16], .5, 1.3), tt, .45, (-1) ** k * .3)
 
+# fun: glassy bell chops that stutter like tracked fingertips
+for k, tt in enumerate(np.arange(EV["fun"], EV["s6"] - .1, B / 4)):
+    if k % 3 == 2: continue
+    add(bell([77, 81, 84, 88, 84, 81][k % 6], .35), tt, .35, np.sin(k) * .7)
+
 # ---------- sound design on cuts ----------
 add(riser(.9), EV["wipe"] - .45, .8)
 for k in range(12): add(tick(), EV["wipe"] + k * .035, .6, rng.uniform(-.6, .6))   # pixel wipe
@@ -184,6 +199,9 @@ for s in EV["stamps"]: add(pop(86), s, .8); add(pop(91), s + .06, .4)
 add(whoosh(.55, 300, 7000), EV["mint"] - .1, .9, -.5)
 add(impact(.5), EV["s5"])
 for k, d in enumerate([0, .1, .2]): add(pop(79 + 3 * k), EV["s5"] + d + .15, .7, -.4 + .4 * k)
+for k in range(10): add(tick(), EV["fwipe"] + k * .03, .7, rng.uniform(-.7, .7))   # pixel wipe into For fun
+add(impact(.6), EV["fun"])
+for k, tt in enumerate(EV["tiles"]): add(whoosh(.3, 1200, 9000), tt - .05, .5, -.6 + .4 * k); add(pop(84 + 2 * k), tt + .2, .55, -.6 + .4 * k)
 for k in range(24): add(pop(int(rng.choice(SCALE)) + 12), EV["s6"] + rng.uniform(0, .45), .35, rng.uniform(-.8, .8))
 add(whoosh(.5, 6000, 300, rev=False), EV["collapse"] - .15, .7)
 add(impact(1.0), EV["lockup"])
