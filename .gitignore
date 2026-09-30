@@ -34,3 +34,8 @@ next-env.d.ts
 
 # Moritz intake redesign source (its own git repo; kept local as reference material, like /content/)
 /casei-design-engineer-case/
+scripts/showreel/v/
+scripts/showreel/p
+scripts/showreel/fonts/
+scripts/showreel/prev/
+scripts/showreel/out.mp4

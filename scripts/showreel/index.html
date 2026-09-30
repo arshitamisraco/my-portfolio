@@ -1,0 +1,572 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Showreel</title>
+<style>
+@font-face { font-family: "Inter"; src: url(fonts/inter.woff2) format("woff2"); font-weight: 100 900; font-display: block; }
+@font-face { font-family: "Playfair Display"; src: url(fonts/pf.woff2) format("woff2"); font-weight: 400 900; font-style: normal; font-display: block; }
+@font-face { font-family: "Playfair Display"; src: url(fonts/pfi.woff2) format("woff2"); font-weight: 400 900; font-style: italic; font-display: block; }
+@font-face { font-family: "JB"; src: url(fonts/jbm.woff2) format("woff2"); font-weight: 100 900; font-display: block; }
+html, body { margin: 0; background: #111; }
+canvas { display: block; width: 960px; height: 540px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+const W = 1920, H = 1080, FPS = 60, DUR = 15;
+const cv = document.getElementById("c");
+const ctx = cv.getContext("2d");
+
+/* ---------- palette ---------- */
+const C = {
+  bg: "#fdf8f7", surface: "#faeeec", raised: "#fefcfb", ink: "#2b2230", muted: "#6e5b6f",
+  accent: "#e28a9b", accentStrong: "#ac5169", accentDeep: "#96455c", accentSoft: "#f6c6cf",
+  line: "#f0dddd", onAccent: "#fff7f5",
+  pinkFill: "#f6c6cf", pinkEdge: "#efa6b4", lavFill: "#e6ddf5", lavEdge: "#cdbfe8",
+  skyFill: "#d9e9f7", skyEdge: "#b7d3ec",
+  lavDeep: "#5b4691", skyDeep: "#33608a", mintSoft: "#dcefe3", mintDeep: "#2f6b4c",
+  butterSoft: "#faedcf", butterDeep: "#715417", peachSoft: "#fbe1d3", peachDeep: "#92492a",
+  navy: "#05060f", coros: "#2d3cff",
+};
+const PF = '"Playfair Display", Georgia, serif', IN = 'Inter, system-ui, sans-serif', MONO = 'JB, monospace';
+
+/* ---------- math ---------- */
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const eOutExpo = x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+const eInExpo = x => x <= 0 ? 0 : Math.pow(2, 10 * x - 10);
+const eInOutExpo = x => x <= 0 ? 0 : x >= 1 ? 1 : x < .5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2;
+const eOutCubic = x => 1 - Math.pow(1 - x, 3);
+const eInCubic = x => x * x * x;
+const eInOutCubic = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const eOutBack = (x, s = 1.70158) => 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2);
+const eOutQuint = x => 1 - Math.pow(1 - x, 5);
+function spring(x, f = 4.5, d = 5.5) { if (x <= 0) return 0; if (x >= 1.6) return 1; return 1 - Math.exp(-d * x) * Math.cos(f * Math.PI * x); }
+function rng(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+
+/* ---------- asset loading (collect pass + draw pass) ---------- */
+const cache = new Map(); let collecting = false; const wanted = new Set();
+function img(src) {
+  if (collecting) { wanted.add(src); return null; }
+  const e = cache.get(src); return e && e.ok ? e.im : null;
+}
+function vid(name, lt, loop = true) {
+  let i = Math.floor(lt * 30); const n = 120;
+  i = loop ? ((i % n) + n) % n : clamp(i, 0, n - 1);
+  return img(`v/${name}/${String(i + 1).padStart(4, "0")}.jpg`);
+}
+async function ensure() {
+  const ps = [];
+  for (const s of wanted) {
+    if (cache.has(s)) continue;
+    const im = new Image(); im.src = s; const e = { im, ok: false }; cache.set(s, e);
+    ps.push(im.decode().then(() => e.ok = true).catch(() => console.warn("fail", s)));
+  }
+  await Promise.all(ps); wanted.clear();
+  // keep video frame cache bounded
+  if (cache.size > 700) { let k = 0; for (const key of cache.keys()) { if (key.startsWith("v/") && k++ < 300) cache.delete(key); } }
+}
+const P = "p/images/";
+
+/* ---------- drawing helpers ---------- */
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+function cover(im, x, y, w, h, ax = .5, ay = .5, zoom = 1) {
+  if (!im) return;
+  const s = Math.max(w / im.width, h / im.height) * zoom;
+  const sw = w / s, sh = h / s;
+  ctx.drawImage(im, (im.width - sw) * ax, (im.height - sh) * ay, sw, sh, x, y, w, h);
+}
+function contain(im, x, y, w, h) {
+  if (!im) return;
+  const s = Math.min(w / im.width, h / im.height);
+  const dw = im.width * s, dh = im.height * s;
+  ctx.drawImage(im, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+function shadowed(fn, blur = 60, oy = 24, col = "rgba(43,34,48,.22)") {
+  ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = blur; ctx.shadowOffsetY = oy; fn(); ctx.restore();
+}
+/* A browser-window card: chrome bar + media */
+function windowCard(im, x, y, w, h, opt = {}) {
+  const r = opt.r ?? 18, bar = opt.bar ?? Math.max(22, h * .055), dark = opt.dark;
+  shadowed(() => { rr(x, y, w, h, r); ctx.fillStyle = dark ? "#15161f" : "#fff"; ctx.fill(); }, opt.blur ?? 70, opt.oy ?? 30, opt.shadow ?? "rgba(43,34,48,.28)");
+  ctx.save(); rr(x, y, w, h, r); ctx.clip();
+  ctx.fillStyle = dark ? "#1b1c27" : "#f4efef"; ctx.fillRect(x, y, w, bar);
+  const dots = dark ? ["#3a3b4a", "#3a3b4a", "#3a3b4a"] : ["#f08c8c", "#f3c969", "#8fd49a"];
+  dots.forEach((c, i) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x + bar * .7 + i * bar * .62, y + bar / 2, bar * .17, 0, 7); ctx.fill(); });
+  if (opt.url) { ctx.fillStyle = dark ? "#262736" : "#fff"; rr(x + w * .3, y + bar * .2, w * .4, bar * .6, bar * .3); ctx.fill(); ctx.fillStyle = dark ? "#8b8ca3" : C.muted; ctx.font = `500 ${bar * .36}px ${IN}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(opt.url, x + w / 2, y + bar / 2 + 1); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; }
+  if (opt.fit === "contain") { ctx.fillStyle = opt.bgc || "#fff"; ctx.fillRect(x, y + bar, w, h - bar); contain(im, x, y + bar, w, h - bar); }
+  else cover(im, x, y + bar, w, h - bar, opt.ax ?? .5, opt.ay ?? 0, opt.zoom ?? 1);
+  ctx.restore();
+  ctx.save(); rr(x + .5, y + .5, w - 1, h - 1, r); ctx.strokeStyle = dark ? "rgba(255,255,255,.08)" : "rgba(43,34,48,.08)"; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore();
+}
+function phone(im, x, y, w, opt = {}) {
+  const h = w * 2.1, r = w * .16, b = w * .035;
+  shadowed(() => { rr(x, y, w, h, r); ctx.fillStyle = "#101014"; ctx.fill(); }, 60, 30, opt.shadow ?? "rgba(43,34,48,.35)");
+  ctx.save(); rr(x + b, y + b, w - 2 * b, h - 2 * b, r - b); ctx.clip(); ctx.fillStyle = "#fff"; ctx.fillRect(x, y, w, h);
+  cover(im, x + b, y + b, w - 2 * b, h - 2 * b, .5, 0); ctx.restore();
+  return h;
+}
+function card(im, x, y, w, h, r = 16, opt = {}) {
+  shadowed(() => { rr(x, y, w, h, r); ctx.fillStyle = opt.bgc || "#fff"; ctx.fill(); }, opt.blur ?? 50, opt.oy ?? 20, opt.shadow ?? "rgba(43,34,48,.25)");
+  ctx.save(); rr(x, y, w, h, r); ctx.clip();
+  if (opt.fit === "contain") contain(im, x, y, w, h); else cover(im, x, y, w, h, opt.ax ?? .5, opt.ay ?? .5, opt.zoom ?? 1);
+  ctx.restore();
+}
+
+/* ---------- pixel clouds (from components/PixelCloud.tsx) ---------- */
+const SHAPES = {
+  cumulus: ["....XXX.....", "..XXXXXX.XX.", ".XXXXXXXXXX.", "XXXXXXXXXXXX", "XXXXXXXXXXXX", ".XXXXXXXXXX."],
+  puff: ["..XXXX..", ".XXXXXX.", "XXXXXXXX", "XXXXXXXX", ".XXXXXX."],
+  wisp: ["...XXXX....XXX..", ".XXXXXXXXXXXXXX.", "XXXXXXXXXXXXXXXX", "..XXXXXXXXXXX..."],
+};
+const VAR = { pink: [C.pinkFill, C.pinkEdge], lav: [C.lavFill, C.lavEdge], sky: [C.skyFill, C.skyEdge], mint: ["#cfe9d8", "#a9d6b8"], white: ["#ffffff", "#f1e6f0"] };
+const cloudCells = {};
+for (const k in SHAPES) {
+  const g = SHAPES[k], R = g.length, Cc = g[0].length, f = (r, c) => r >= 0 && r < R && c >= 0 && c < Cc && g[r][c] === "X";
+  const cells = []; const rnd = rng(k.length * 97 + 7);
+  for (let r = 0; r < R; r++) for (let c = 0; c < Cc; c++) if (f(r, c)) cells.push({ r, c, edge: !f(r - 1, c) || !f(r + 1, c) || !f(r, c - 1) || !f(r, c + 1), d: rnd() });
+  cloudCells[k] = { cells, R, Cc };
+}
+function cloud(shape, variant, x, y, cell, p = 1, alpha = 1, scatter = 0) {
+  const { cells } = cloudCells[shape]; const [fill, edge] = VAR[variant];
+  ctx.save(); ctx.globalAlpha *= alpha;
+  for (const k of cells) {
+    const s = clamp(eOutBack(clamp((p - k.d * .55) / .45)), 0, 1.3);
+    if (s <= 0) continue;
+    let cx = x + k.c * cell + cell / 2, cy = y + k.r * cell + cell / 2;
+    if (scatter) { const a = k.d * 40 + k.r; cx += Math.cos(a) * scatter * (200 + k.d * 900); cy += Math.sin(a) * scatter * (200 + k.d * 700) - scatter * 200; }
+    const sz = cell * s * (1 - scatter * .5) + .6;
+    ctx.fillStyle = k.edge ? edge : fill; ctx.fillRect(cx - sz / 2, cy - sz / 2, sz, sz);
+  }
+  ctx.restore();
+}
+
+/* ---------- type helpers ---------- */
+function setFont(w, size, fam, style = "") { ctx.font = `${style} ${w} ${size}px ${fam}`.trim(); }
+/* Letters rise out of a mask, staggered. */
+function riseText(str, x, y, size, t0, t, opt = {}) {
+  const st = opt.stagger ?? .035, d = opt.dur ?? .6;
+  setFont(opt.w ?? 600, size, opt.fam ?? PF, opt.style ?? "");
+  ctx.textBaseline = "alphabetic";
+  const total = ctx.measureText(str).width;
+  let ox = opt.align === "center" ? x - total / 2 : opt.align === "right" ? x - total : x;
+  ctx.save(); ctx.beginPath(); ctx.rect(ox - size, y - size * 1.15, total + size * 2, size * 1.45); ctx.clip();
+  for (let i = 0; i < str.length; i++) {
+    const pre = ctx.measureText(str.slice(0, i)).width;
+    const p = eOutExpo(prog(t, t0 + i * st, t0 + i * st + d));
+    if (p <= 0) continue;
+    ctx.fillStyle = opt.color ?? C.ink;
+    ctx.globalAlpha = opt.alpha ?? 1;
+    ctx.fillText(str[i], ox + pre, y + (1 - p) * size * 1.2);
+  }
+  ctx.restore();
+  return total;
+}
+function text(str, x, y, size, color, w = 500, fam = IN, align = "left", ls = 0, style = "") {
+  setFont(w, size, fam, style); ctx.fillStyle = color; ctx.textAlign = align; ctx.letterSpacing = ls + "px"; ctx.textBaseline = "alphabetic";
+  ctx.fillText(str, x, y); ctx.letterSpacing = "0px"; ctx.textAlign = "left";
+}
+function chip(str, x, y, bg, fg, size = 22, alpha = 1) {
+  setFont(600, size, IN); const w = ctx.measureText(str).width + size * 1.4, h = size * 1.9;
+  ctx.save(); ctx.globalAlpha *= alpha; rr(x, y, w, h, h / 2); ctx.fillStyle = bg; ctx.fill();
+  ctx.fillStyle = fg; ctx.textBaseline = "middle"; ctx.fillText(str, x + size * .7, y + h / 2 + 1); ctx.restore(); ctx.textBaseline = "alphabetic";
+  return w;
+}
+
+/* ---------- global texture ---------- */
+const grain = document.createElement("canvas"); grain.width = 512; grain.height = 512;
+{ const g = grain.getContext("2d"), d = g.createImageData(512, 512), r = rng(42); for (let i = 0; i < d.data.length; i += 4) { const v = r() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } g.putImageData(d, 0, 0); }
+function drawGrain(f, a = .045) {
+  const r = rng(f * 13 + 5); ctx.save(); ctx.globalAlpha = a; ctx.globalCompositeOperation = "overlay";
+  const ox = -Math.floor(r() * 512), oy = -Math.floor(r() * 512);
+  for (let x = ox; x < W; x += 512) for (let y = oy; y < H; y += 512) ctx.drawImage(grain, x, y);
+  ctx.restore();
+}
+function paper(col = C.bg, dots = true, drift = 0) {
+  ctx.fillStyle = col; ctx.fillRect(0, 0, W, H);
+  if (dots) { ctx.fillStyle = "rgba(172,81,105,.10)"; const g = 48, o = (drift % g + g) % g; for (let x = -g + o; x < W + g; x += g) for (let y = 24; y < H; y += g) { ctx.fillRect(x, y, 3, 3); } }
+}
+function vignette(a = .35, col = "0,0,0") {
+  const g = ctx.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, H * 1.05);
+  g.addColorStop(0, `rgba(${col},0)`); g.addColorStop(1, `rgba(${col},${a})`); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+}
+/* Diagonal 8-bit pixel wipe. p 0..1 covers the frame with `col`. */
+function pixelWipe(p, col, cell = 80, seed = 3, dir = 1) {
+  if (p <= 0) return; const r = rng(seed); ctx.fillStyle = col;
+  const cols = Math.ceil(W / cell), rows = Math.ceil(H / cell);
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+    const diag = dir > 0 ? (i / cols * .75 + j / rows * .25) : (1 - i / cols) * .75 + (1 - j / rows) * .25;
+    const th = diag * .7 + r() * .3; const s = clamp((p - th * .8) / .2);
+    if (s <= 0) continue; const sz = cell * eOutCubic(s) + 1;
+    ctx.fillRect(i * cell + (cell - sz) / 2, j * cell + (cell - sz) / 2, sz, sz);
+  }
+}
+
+/* ---------- HUD ---------- */
+function hud(t, dark, chapter, label) {
+  const col = dark ? "rgba(255,255,255,.72)" : "rgba(43,34,48,.62)";
+  text("ARSHITA MISRA", 64, 70, 17, col, 500, MONO, "left", 3);
+  text("SHOWREEL ’26", 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 3);
+  if (chapter) { text(chapter, W - 64, 70, 17, col, 500, MONO, "right", 3); text(label, W - 64, 96, 17, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "right", 3); }
+  // timecode + progress
+  const tc = `00:${String(Math.floor(t)).padStart(2, "0")}:${String(Math.floor((t % 1) * 60)).padStart(2, "0")}`;
+  text(tc, 64, H - 52, 16, dark ? "rgba(255,255,255,.4)" : "rgba(43,34,48,.35)", 500, MONO, "left", 2);
+  ctx.fillStyle = dark ? "rgba(255,255,255,.12)" : "rgba(43,34,48,.1)"; ctx.fillRect(220, H - 58, W - 284, 2);
+  ctx.fillStyle = dark ? "#fff" : C.accentStrong; ctx.fillRect(220, H - 58, (W - 284) * t / DUR, 2);
+}
+
+/* ======================================================================
+   SCENES
+   ====================================================================== */
+
+/* S1 — 0.0 → 2.3  Name reveal on pink paper with building pixel clouds */
+function s1(t) {
+  paper(C.bg, true, -t * 20);
+  const cl = [
+    ["wisp", "sky", 150, 170, 14, .0, 10], ["cumulus", "pink", 1420, 150, 22, .12, -16], ["puff", "lav", 1600, 690, 18, .3, 12],
+    ["cumulus", "sky", 210, 740, 16, .22, -10], ["puff", "pink", 820, 110, 12, .4, 14], ["wisp", "lav", 1180, 860, 13, .35, -12],
+  ];
+  const sc = eInExpo(prog(t, 1.75, 2.25));
+  for (const [s, v, x, y, cell, d, sp] of cl) cloud(s, v, x + t * sp, y + Math.sin(t * 2 + x) * 6, cell, prog(t, d, d + .9), 1, sc);
+
+  const zoom = 1 + eInExpo(prog(t, 1.8, 2.3)) * .15;
+  ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(zoom, zoom); ctx.translate(-W / 2, -H / 2);
+  const fade = 1 - prog(t, 1.95, 2.25);
+  ctx.globalAlpha = fade;
+  // eyebrow
+  const ep = eOutExpo(prog(t, .85, 1.5));
+  if (ep > 0) text("PRODUCT DESIGNER  ·  DESIGN ENGINEER", W / 2, 408, 24, C.accentStrong, 600, IN, "center", lerp(18, 7, ep));
+  // name
+  riseText("Arshita Misra", W / 2, 610, 210, .25, t, { align: "center", stagger: .045, dur: .75 });
+  // underline
+  const up = eInOutExpo(prog(t, 1.0, 1.55));
+  setFont(600, 210, PF); const nw = ctx.measureText("Arshita Misra").width;
+  ctx.fillStyle = C.accent; ctx.fillRect(W / 2 - nw / 2, 668, nw * up, 8);
+  // tag line
+  const tp = eOutExpo(prog(t, 1.2, 1.8));
+  ctx.globalAlpha = fade * tp;
+  text("A showreel, in fifteen seconds.", W / 2, 750 + (1 - tp) * 20, 34, C.muted, 400, PF, "center", 0, "italic");
+  ctx.restore();
+  hud(t, false, "00", "INTRO");
+  pixelWipe(prog(t, 1.9, 2.3), C.ink, 90, 11);
+}
+
+/* S2 — 2.3 → 4.9  Manifesto + four-beat "I own the whole stack" */
+const BEATS = [
+  { w: "Research.", c: C.accentSoft, src: () => img(P + "founding-design/research/competitive-analysis.png"), fit: "cover", url: "figjam — competitive analysis" },
+  { w: "Interface.", c: C.lavFill, src: () => img(P + "founding-design/onboarding/05-dimensions.png"), dark: true, url: "coros.ai/onboarding" },
+  { w: "Prompts.", c: C.skyFill, src: lt => vid("pg", lt + 1), dark: true, url: "localhost:8501 — prompt playground" },
+  { w: "Code.", c: "#cfe9d8", src: lt => vid("board", lt + .5), url: "job-tracker.vercel.app" },
+];
+function s2(t) {
+  const lt = t - 2.3;
+  paper(C.ink, false);
+  // faint grid
+  ctx.strokeStyle = "rgba(255,255,255,.04)"; ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 120) { ctx.beginPath(); ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 120) { ctx.beginPath(); ctx.moveTo(0, y + .5); ctx.lineTo(W, y + .5); ctx.stroke(); }
+
+  // Part A: manifesto (0 → 0.95)
+  if (lt < 1.05) {
+    const out = eInExpo(prog(lt, .8, 1.02));
+    ctx.save(); ctx.translate(0, -out * 140); ctx.globalAlpha = 1 - out;
+    riseText("A product designer", W / 2, 470, 96, .05, lt, { align: "center", color: "#fff", w: 500, stagger: .018, dur: .5 });
+    riseText("who engineers.", W / 2, 640, 170, .22, lt, { align: "center", color: C.accentSoft, style: "italic", w: 600, stagger: .03, dur: .55 });
+    ctx.restore();
+  }
+  // Part B: beats (1.0 → 2.6), each .4s
+  const b0 = 1.0, bl = .4;
+  if (lt >= b0 - .05) {
+    const bi = clamp(Math.floor((lt - b0) / bl), 0, 3); const bt = lt - b0 - bi * bl;
+    const B = BEATS[bi];
+    // kicker
+    text("I OWN THE WHOLE LOOP", 150, 330, 22, "rgba(255,255,255,.55)", 600, IN, "left", 6);
+    for (let k = 0; k < 4; k++) { ctx.fillStyle = k === bi ? B.c : "rgba(255,255,255,.18)"; ctx.fillRect(150 + k * 58, 360, 46, 5); }
+    text(`0${bi + 1}`, 150, 470, 30, B.c, 500, MONO, "left", 2);
+    // big word — slides in each beat
+    const ip = eOutExpo(clamp(bt / .28));
+    ctx.save(); ctx.beginPath(); ctx.rect(100, 480, 900, 260); ctx.clip();
+    setFont(700, 168, PF); ctx.fillStyle = B.c; ctx.fillText(B.w, 144, 670 + (1 - ip) * 220);
+    if (bi > 0 && bt < .28) { ctx.fillStyle = BEATS[bi - 1].c; ctx.fillText(BEATS[bi - 1].w, 144, 670 - ip * 220); }
+    ctx.restore();
+    // media card
+    const cx = 1010, cy = 250, cw = 780, ch = 560;
+    const pop = spring(bt / .5, 3, 7);
+    const s = lerp(.86, 1, pop), rot = lerp(bi % 2 ? .05 : -.05, bi % 2 ? .012 : -.012, pop);
+    ctx.save(); ctx.translate(cx + cw / 2, cy + ch / 2); ctx.rotate(rot); ctx.scale(s, s); ctx.translate(-(cx + cw / 2), -(cy + ch / 2));
+    // ghost stack behind
+    for (let k = 2; k >= 1; k--) { ctx.save(); ctx.translate(k * 26, k * 22); ctx.globalAlpha = .18 / k; rr(cx, cy, cw, ch, 20); ctx.fillStyle = B.c; ctx.fill(); ctx.restore(); }
+    windowCard(B.src(lt), cx, cy, cw, ch, { dark: B.dark, url: B.url, shadow: "rgba(0,0,0,.5)", ay: bi === 0 ? .5 : 0 });
+    ctx.restore();
+    // flash on cut
+    const fl = 1 - clamp(bt / .12); if (fl > 0 && lt > b0 + .02) { ctx.fillStyle = `rgba(255,255,255,${fl * .25})`; ctx.fillRect(0, 0, W, H); }
+  }
+  hud(t, true, "01", "PRACTICE");
+  // radial COROS-blue wipe out
+  const rp = eInOutCubic(prog(lt, 2.2, 2.6));
+  if (rp > 0) {
+    const R = rp * 1300; const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(R, 1));
+    g.addColorStop(0, C.navy); g.addColorStop(.86, C.navy); g.addColorStop(.94, "#2233ff"); g.addColorStop(1, "#8fa0ff");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(W / 2, H / 2, R, 0, 7); ctx.fill();
+  }
+}
+
+/* S3 — 4.9 → 8.7  COROS AI founding design */
+const WALL = [
+  [{ v: "owd" }, { i: "founding-design/onboarding/07-personality.png" }, { i: "founding-design/brand-guide/page-02.png" }, { i: "founding-design/research/logo-iterations.png" }, { v: "pers" }],
+  [{ ph: "cml" }, { i: "founding-design/investment-pitch-deck/cover.png" }, { ph: "oml" }, { i: "founding-design/onboarding/06-influences.png" }],
+  [{ v: "cwd" }, { i: "design-system/figma/tokens-semantic-colors.png" }, { v: "mem" }, { i: "founding-design/brand-guide/page-04.png" }, { i: "founding-design/onboarding/05-dimensions.png" }],
+  [{ i: "founding-design/research/final-logos.png" }, { ph: "cml", off: 1.5 }, { i: "founding-design/onboarding/01-welcome-signup.png" }, { v: "tbd" }],
+  [{ i: "founding-design/brand-guide/page-03.png" }, { v: "bw" }, { i: "founding-design/onboarding/03-name.png" }, { i: "design-system/figma/tokens-typography.png" }, { v: "owd", off: 2 }],
+];
+function tile(it, lt, x, y, w) {
+  if (it.ph) { return phoneTile(vid(it.ph, lt + (it.off || 0)), x, y, w); }
+  const h = w * .64; const im = it.v ? vid(it.v, lt + (it.off || 0)) : img(P + it.i);
+  card(im, x, y, w, h, 14, { shadow: "rgba(0,0,0,.55)", blur: 40, oy: 18, bgc: "#0b0c16" }); return h;
+}
+function phoneTile(im, x, y, w) { const pw = w * .5; phone(im, x + w * .25, y, pw, { shadow: "rgba(0,0,0,.6)" }); return pw * 2.1; }
+function s3(t) {
+  const lt = t - 4.9;
+  paper(C.navy, false);
+  // glow
+  const g = ctx.createRadialGradient(W * .72, H * .45, 10, W * .72, H * .45, 900);
+  g.addColorStop(0, "rgba(45,60,255,.35)"); g.addColorStop(1, "rgba(45,60,255,0)"); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  // isometric scrolling wall, fades/zooms in
+  const wallIn = eOutExpo(prog(lt, .35, 1.4));
+  const zoomOut = eInExpo(prog(lt, 3.25, 3.8));
+  if (wallIn > 0) {
+    ctx.save();
+    ctx.globalAlpha = wallIn;
+    ctx.translate(W * .64 + (1 - wallIn) * 300, H * .5);
+    const zs = lerp(.92, 1, wallIn) * (1 + zoomOut * 2.2);
+    ctx.scale(zs, zs);
+    ctx.transform(1, -.28, .62, .9, 0, 0); // tilted plane
+    ctx.rotate(-.06);
+    const colW = 400, gap = 36;
+    WALL.forEach((col, ci) => {
+      const dir = ci % 2 ? 1 : -1; const speed = 120 + ci * 18;
+      let y = -1500 + dir * lt * speed + (ci % 2 ? -400 : 0);
+      const x = (ci - 2.5) * (colW + gap);
+      for (let rep = 0; rep < 3; rep++) for (const it of col) { const h = tile(it, lt, x, y, colW); y += h + gap; }
+    });
+    ctx.restore();
+  }
+  // darken left for legibility
+  const lg = ctx.createLinearGradient(0, 0, W * .72, 0);
+  lg.addColorStop(0, "rgba(5,6,15,.97)"); lg.addColorStop(.7, "rgba(5,6,15,.9)"); lg.addColorStop(1, "rgba(5,6,15,0)");
+  ctx.fillStyle = lg; ctx.fillRect(0, 0, W, H);
+
+  ctx.save(); ctx.globalAlpha = 1 - zoomOut;
+  // Logo
+  const lp = eOutExpo(prog(lt, .05, .7));
+  const logo = img(P + "logos/coros-ai.png");
+  if (logo) { ctx.save(); ctx.globalAlpha *= lp; ctx.filter = "brightness(3.2) saturate(1.1) drop-shadow(0 0 24px rgba(80,100,255,.8))"; const lw = 420 * lerp(.9, 1, lp); ctx.drawImage(logo, 150, 250 - (1 - lp) * 30, lw, lw * logo.height / logo.width); ctx.restore(); }
+  text("FOUNDING PRODUCT DESIGNER  ·  2025–26", 150, 400, 22, `rgba(160,172,255,${eOutExpo(prog(lt, .25, .8))})`, 600, IN, "left", 5);
+  riseText("Built it from zero:", 150, 490, 64, .35, lt, { color: "#fff", w: 500, stagger: .015, dur: .5 });
+  riseText("brand, product, and the AI.", 150, 570, 64, .5, lt, { color: "#aab4ff", w: 500, style: "italic", stagger: .015, dur: .5 });
+  // stat counters
+  const stats = [
+    { n: 55, suf: "%", l: "next-day return after", l2: "onboarding redesign", at: 1.15 },
+    { n: 40, suf: "%", l: "weekly active users", l2: "", at: 1.45 },
+    { n: 54, suf: "+", l: "semantic tokens —", l2: "design → review: days to hours", at: 1.75 },
+  ];
+  stats.forEach((s, i) => {
+    const p = eOutExpo(prog(lt, s.at, s.at + .7)); if (p <= 0) return;
+    const x = 150 + i * 330, y = 760;
+    ctx.save(); ctx.globalAlpha *= clamp(p * 2);
+    ctx.fillStyle = "rgba(170,180,255,.25)"; ctx.fillRect(x, y - 118, 290 * p, 2);
+    text(Math.round(s.n * p) + s.suf, x, y + (1 - p) * 30, 104, "#fff", 600, PF);
+    text(s.l, x, y + 48, 21, "rgba(255,255,255,.62)", 500, IN); if (s.l2) text(s.l2, x, y + 76, 21, "rgba(255,255,255,.62)", 500, IN);
+    ctx.restore();
+  });
+  // investment callout
+  const ip = eOutExpo(prog(lt, 2.2, 2.8));
+  if (ip > 0) { ctx.save(); ctx.globalAlpha *= ip; const w = chip("◆  Brand + pitch deck that helped land the first round", 150, 890 + (1 - ip) * 20, "rgba(45,60,255,.28)", "#dfe3ff", 22); ctx.restore(); }
+  ctx.restore();
+  hud(t, true, "02", "COROS AI · FOUNDING DESIGN");
+  // flash out into paper
+  const fo = prog(lt, 3.55, 3.8); if (fo > 0) { ctx.fillStyle = `rgba(253,248,247,${eInCubic(fo)})`; ctx.fillRect(0, 0, W, H); }
+}
+
+/* S4 — 8.7 → 11.9  Case-study card deal */
+const PROJ = [
+  { t: "Gmail Job Tracker", sub: "Designed it, then directed a network of AI coding sessions to ship it.", stat: "Shipped in 1 day", tags: [["Design Engineering", C.skyFill, C.skyDeep], ["Agent Orchestration", C.skyFill, C.skyDeep]], v: "drag", url: "job-tracker.app", tone: C.skyFill, deep: C.skyDeep },
+  { t: "Moritz intake", sub: "Redesigned an AI law firm's front door — as working TypeScript.", stat: "Designed + built in 3 days", tags: [["UX/UI", C.peachSoft, C.peachDeep], ["UX Writing", C.peachSoft, C.peachDeep]], v: "steps", url: "moritz.law/new-case", tone: C.peachSoft, deep: C.peachDeep },
+  { t: "An AI that remembers you", sub: "IA, widgets, and the LLM prompts behind every card.", stat: "Prompts → pixels", tags: [["Prompt Engineering", C.lavFill, C.lavDeep], ["UX/UI", C.lavFill, C.lavDeep]], v: "bw", url: "coros.ai/my-world", tone: C.lavFill, deep: C.lavDeep, fit: "contain" },
+];
+function s4(t) {
+  const lt = t - 8.7, per = 1.05;
+  const cur = clamp(Math.floor(lt / per), 0, 2), pt = lt - cur * per;
+  // background tints toward project tone
+  paper(C.bg, true, -lt * 30);
+  const tone = PROJ[cur].tone;
+  ctx.save(); ctx.globalAlpha = .55 * eOutCubic(clamp(pt / .4)); ctx.fillStyle = tone;
+  ctx.beginPath(); ctx.arc(1320, 540, 620 * eOutExpo(clamp(pt / .6)), 0, 7); ctx.fill(); ctx.restore();
+  if (cur > 0 && pt < .4) { ctx.save(); ctx.globalAlpha = .55 * (1 - pt / .4); ctx.fillStyle = PROJ[cur - 1].tone; ctx.beginPath(); ctx.arc(1320, 540, 620, 0, 7); ctx.fill(); ctx.restore(); }
+  // clouds
+  cloud("puff", "pink", 90 + lt * 30, 860, 12, 1, .8); cloud("wisp", "sky", 1500 - lt * 25, 70, 10, 1, .8);
+
+  // cards: each lands then gets pushed back into a stack
+  for (let i = 0; i <= cur; i++) {
+    const ent = eOutQuint(prog(lt, i * per, i * per + .55));
+    const back = cur - i + (i === cur ? 0 : 0) - (i < cur ? (1 - eOutExpo(clamp(pt / .5))) : 0); // depth in stack
+    const depth = Math.max(0, back);
+    const P_ = PROJ[i];
+    const cw = 1000, ch = 640, bx = 820, by = 230;
+    const x = lerp(W + 200, bx, ent) - depth * 70, y = lerp(700, by, ent) - depth * 48;
+    const rot = lerp(.28, -.02 * (i % 2 ? -1 : 1), ent) - depth * .03;
+    const s = 1 - depth * .08;
+    ctx.save(); ctx.translate(x + cw / 2, y + ch / 2); ctx.rotate(rot); ctx.scale(s, s); ctx.translate(-cw / 2, -ch / 2);
+    ctx.globalAlpha = 1 - depth * .25;
+    windowCard(vid(P_.v, lt - i * per + .2), 0, 0, cw, ch, { url: P_.url, fit: P_.fit, bgc: "#fff", ay: 0 });
+    ctx.restore();
+  }
+  // left copy
+  const P_ = PROJ[cur];
+  const cp = eOutExpo(clamp(pt / .45)); const out = cur < 2 ? eInExpo(prog(pt, per - .2, per)) : 0;
+  ctx.save(); ctx.globalAlpha = 1 - out;
+  text(`CASE STUDY 0${cur + 1}`, 120, 330, 20, C.accentStrong, 600, IN, "left", 5);
+  ctx.save(); ctx.beginPath(); ctx.rect(100, 340, 720, 250); ctx.clip();
+  const words = P_.t.split(" "); let lines = []; setFont(600, 78, PF); let ln = "";
+  for (const w of words) { if (ctx.measureText(ln + w).width > 640 && ln) { lines.push(ln.trim()); ln = ""; } ln += w + " "; } lines.push(ln.trim());
+  lines.forEach((l, k) => { const lp = eOutExpo(clamp((pt - k * .06) / .45)); text(l, 120, 430 + k * 88 + (1 - lp) * 120, 78, C.ink, 600, PF); });
+  ctx.restore();
+  const yb = 430 + lines.length * 88;
+  ctx.globalAlpha = (1 - out) * cp;
+  setFont(400, 26, IN); ctx.fillStyle = C.muted;
+  const sub = P_.sub; const sw = sub.split(" "); let l2 = "", yy = yb + 4;
+  for (const w of sw) { if (ctx.measureText(l2 + w).width > 600 && l2) { ctx.fillText(l2, 120, yy); yy += 38; l2 = ""; } l2 += w + " "; } ctx.fillText(l2, 120, yy);
+  let cx = 120; for (const [tg, bg, fg] of P_.tags) cx += chip(tg, cx, yy + 34, bg, fg, 19) + 12;
+  // stat stamp
+  const sp = spring(prog(pt, .3, 1.0) * 1.2, 3, 6);
+  ctx.save(); ctx.translate(1700, 870); ctx.rotate(-.06); ctx.scale(sp, sp);
+  setFont(700, 30, IN); const tw = ctx.measureText(P_.stat).width + 56;
+  shadowed(() => { rr(-tw / 2, -34, tw, 68, 34); ctx.fillStyle = C.accentStrong; ctx.fill(); }, 30, 12, "rgba(172,81,105,.4)");
+  ctx.fillStyle = C.onAccent; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(P_.stat, 0, 2); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  ctx.restore();
+  ctx.restore();
+  hud(t, false, "03", "SELECTED WORK");
+  // mint slab wipe into S5
+  const wp = eInOutExpo(prog(lt, 2.9, 3.2));
+  if (wp > 0) { ctx.save(); ctx.fillStyle = C.mintSoft; ctx.beginPath(); ctx.moveTo(W + 400 - wp * (W + 1200), 0); ctx.lineTo(W + 400, 0); ctx.lineTo(W + 400, H); ctx.lineTo(W + 800 - wp * (W + 1200), H); ctx.fill(); ctx.restore(); }
+}
+
+/* S5 — 11.9 → 13.4  Switcharoo */
+function s5(t) {
+  const lt = t - 11.9;
+  paper(C.mintSoft, false);
+  ctx.fillStyle = "rgba(47,107,76,.08)"; for (let x = 24; x < W; x += 48) for (let y = 24; y < H; y += 48) ctx.fillRect(x, y, 3, 3);
+  cloud("cumulus", "white", 1500 + lt * 40, 120, 14, prog(lt, 0, .6), .9); cloud("puff", "white", 120 - lt * 20, 820, 14, prog(lt, .1, .7), .9);
+  // giant "2nd"
+  const gp = spring(prog(lt, 0, .8) * 1.3, 2.5, 6);
+  ctx.save(); ctx.translate(380, 560); ctx.scale(gp, gp); ctx.rotate(-.04 * (1 - clamp(gp)));
+  text("2nd", 0, 90, 300, C.mintDeep, 700, PF, "center"); ctx.restore();
+  const tp = eOutExpo(prog(lt, .2, .75));
+  ctx.save(); ctx.globalAlpha = tp;
+  text("of 100+ teams worldwide", 380, 720 + (1 - tp) * 20, 34, C.mintDeep, 600, IN, "center");
+  text("RESNA Student Design Challenge", 380, 768 + (1 - tp) * 20, 24, "rgba(47,107,76,.7)", 500, IN, "center");
+  ctx.restore();
+  text("SWITCHAROO", 380, 330, 20, C.mintDeep, 600, IN, "center", 6);
+  // tablets
+  const tabs = [["pop", 820, 250, 330, -.06, 0], ["cross", 1130, 330, 560, .03, .1], ["stack", 1540, 200, 300, .07, .2]];
+  for (const [v, x, y, w, r, d] of tabs) {
+    const p = eOutBack(prog(lt, d, d + .55), 1.4); if (p <= 0) continue;
+    const im = vid(v, lt + 1); const h = im ? w * im.height / im.width : w;
+    ctx.save(); ctx.translate(x + w / 2, y + h / 2 + (1 - p) * 700); ctx.rotate(r + (1 - p) * .3);
+    shadowed(() => { rr(-w / 2 - 14, -h / 2 - 14, w + 28, h + 28, 28); ctx.fillStyle = "#1f2a24"; ctx.fill(); }, 50, 24, "rgba(47,107,76,.35)");
+    ctx.save(); rr(-w / 2, -h / 2, w, h, 16); ctx.clip(); if (im) ctx.drawImage(im, -w / 2, -h / 2, w, h); ctx.restore();
+    ctx.restore();
+  }
+  const cp = eOutExpo(prog(lt, .55, 1.0));
+  ctx.save(); ctx.globalAlpha = cp; chip("Switch-accessible games for kids with motor & cognitive disabilities", 820, 900 + (1 - cp) * 20, "#fff", C.mintDeep, 22); ctx.restore();
+  hud(t, false, "04", "ACCESSIBILITY");
+}
+
+/* S6 — 13.4 → 15.0  Mosaic → lockup */
+const MOS = [
+  { v: "cwd" }, { i: "switcharoo/selected-game-crossy-roads.png" }, { v: "board" }, { i: "founding-design/brand-guide/page-02.png" }, { v: "steps" }, { i: "my-world/hero/hero-breakthrough.jpg" },
+  { i: "founding-design/onboarding/05-dimensions.png" }, { v: "pg" }, { i: "founding-design/research/final-logos.png" }, { v: "mem" }, { i: "foryou-playmat/final-mat.jpg" }, { v: "owd" },
+  { v: "journey" }, { i: "design-system/figma/tokens-semantic-colors.png" }, { v: "tbd" }, { i: "founding-design/investment-pitch-deck/cover.png" }, { v: "pers" }, { i: "founding-design/research/brand-moodboard.png" },
+  { i: "founding-design/research/logo-iterations.png" }, { v: "drag" }, { i: "switcharoo/library-single.png" }, { v: "bw" }, { i: "my-world/hero/hero-provocation.png" }, { v: "cross" },
+];
+function s6(t) {
+  const lt = t - 13.4;
+  if (lt < .4) { ctx.save(); s5(t); ctx.restore(); ctx.fillStyle = `rgba(253,248,247,${eOutCubic(lt / .4)})`; ctx.fillRect(0, 0, W, H); } else paper(C.bg, true);
+  const cols = 6, rows = 4, gap = 14;
+  const tw = (W + 240 - gap * (cols - 1)) / cols, th = (H + 160 - gap * (rows - 1)) / rows;
+  const collapse = eInOutExpo(prog(lt, .6, 1.05));
+  const zoom = lerp(1.08, .9, eOutCubic(prog(lt, 0, .7)));
+  const r = rng(77);
+  if (collapse < 1) {
+    ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(zoom, zoom); ctx.translate(-W / 2, -H / 2);
+    MOS.forEach((m, k) => {
+      const i = k % cols, j = Math.floor(k / cols);
+      const d = r() * .3; const p = eOutBack(prog(lt, d, d + .3));
+      const cd = r() * .2; const cp = eInExpo(prog(collapse, cd, cd + .8));
+      if (p <= 0 || cp >= 1) return;
+      let x = -120 + i * (tw + gap), y = -80 + j * (th + gap);
+      const s = p * (1 - cp);
+      const cx = x + tw / 2, cy = y + th / 2, tx = lerp(cx, W / 2, cp), ty = lerp(cy, H / 2 - 60, cp);
+      ctx.save(); ctx.translate(tx, ty); ctx.scale(s, s); ctx.rotate(cp * (r() - .5));
+      const im = m.v ? vid(m.v, lt + k * .3) : img(P + m.i);
+      ctx.save(); rr(-tw / 2, -th / 2, tw, th, 12); ctx.clip(); ctx.fillStyle = C.surface; ctx.fillRect(-tw / 2, -th / 2, tw, th); cover(im, -tw / 2, -th / 2, tw, th, .5, .3); ctx.restore();
+      ctx.restore();
+    });
+    ctx.restore();
+  }
+  // lockup
+  const L = prog(lt, .85, 1.6);
+  if (L > 0) {
+    const lt2 = lt - .85;
+    const clouds = [["cumulus", "pink", 700, 250, 16, 0], ["puff", "lav", 1160, 215, 13, .1], ["wisp", "sky", 1330, 760, 11, .2], ["puff", "pink", 470, 720, 11, .25]];
+    for (const [s, v, x, y, c, d] of clouds) cloud(s, v, x + lt2 * 14, y, c, prog(lt2, d, d + .6));
+    riseText("Arshita Misra", W / 2, 560, 170, .02, lt2, { align: "center", stagger: .03, dur: .55 });
+    const tp = eOutExpo(prog(lt2, .25, .7));
+    ctx.save(); ctx.globalAlpha = tp;
+    text("Product designer who engineers.", W / 2, 650 + (1 - tp) * 16, 44, C.muted, 400, PF, "center", 0, "italic");
+    ctx.restore();
+    const bp = spring(prog(lt2, .38, .9) * 1.3, 2.5, 6);
+    ctx.save(); ctx.translate(W / 2, 760); ctx.scale(bp, bp);
+    setFont(600, 30, IN); const bw = ctx.measureText("arshita.co  →").width + 72;
+    shadowed(() => { rr(-bw / 2, -36, bw, 72, 36); ctx.fillStyle = C.accentStrong; ctx.fill(); }, 30, 12, "rgba(172,81,105,.35)");
+    ctx.fillStyle = C.onAccent; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("arshita.co  →", 0, 2); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    ctx.restore();
+  }
+  hud(t, false, "", "");
+}
+
+/* ---------- frame ---------- */
+function draw(f) {
+  const t = f / FPS;
+  ctx.save();
+  if (t < 2.3) s1(t);
+  else if (t < 4.9) s2(t);
+  else if (t < 8.7) s3(t);
+  else if (t < 11.9) s4(t);
+  else if (t < 13.4) s5(t);
+  else s6(t);
+  ctx.restore();
+  vignette(t >= 2.3 && t < 8.7 ? .45 : .12, t >= 2.3 && t < 8.7 ? "0,0,0" : "120,60,80");
+  drawGrain(f, t >= 2.3 && t < 8.7 ? .06 : .04);
+}
+window.renderFrame = async (f) => {
+  collecting = true; wanted.clear(); try { draw(f); } catch (e) { } collecting = false;
+  await ensure();
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.clearRect(0, 0, W, H);
+  draw(f);
+};
+window.frameJPEG = () => cv.toDataURL("image/jpeg", .94);
+window.TOTAL = FPS * DUR;
+window.ready = document.fonts.ready.then(() => Promise.all([
+  document.fonts.load(`600 100px ${PF}`), document.fonts.load(`italic 600 100px ${PF}`), document.fonts.load(`500 20px ${IN}`), document.fonts.load(`500 20px JB`)
+]));
+// preview mode: ?t=seconds
+const q = new URLSearchParams(location.search);
+if (q.has("t")) window.ready.then(() => renderFrame(Math.round(parseFloat(q.get("t")) * FPS)));
+</script>
+</body>
+</html>
