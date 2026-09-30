@@ -37,4 +37,5 @@ sleep 2
 node times.mjs         # writes events.json (real-time cue points) for the score
 node render.mjs full   # or: node render.mjs preview 1.5 6 10  → stills in ./prev
 python3 score.py score.wav   # original soundtrack (numpy + scipy), synced to the edit
-"$FF" -loglevel error -y -i out.mp4 -i score.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart "$V/showreel/arshita-showreel.mp4"
+"$FF" -loglevel error -y -i out.mp4 -i score.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest out_av.mp4
+"$FF" -loglevel error -y -i out_av.mp4 -c:v libx264 -preset slow -crf 21 -pix_fmt yuv420p -c:a copy -movflags +faststart "$V/showreel/arshita-showreel.mp4"
