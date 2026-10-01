@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/`, priority: 1 },
     { url: `${BASE}/about`, priority: 0.8 },
     { url: `${BASE}/projects`, priority: 0.9 },
+    { url: `${BASE}/projects/accessibility-auditor`, priority: 0.8 },
     { url: `${BASE}/projects/gmail-job-tracker`, priority: 0.8 },
     { url: `${BASE}/projects/my-world`, priority: 0.8 },
     { url: `${BASE}/projects/design-system`, priority: 0.8 },

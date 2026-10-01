@@ -30,6 +30,16 @@ const COROS: CaseStudy["company"] = { name: "COROS AI", href: COROS_HUB_HREF };
 
 export const ALL_CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "accessibility-auditor",
+    href: "/projects/accessibility-auditor",
+    title: "An accessibility auditor that writes the fix",
+    shortTitle: "Accessibility auditor",
+    brief:
+      "Paste a URL and get every WCAG violation explained in plain language, with the corrected HTML to paste back. I planned it, designed it and shipped it in a day with Claude Code, then built an eval harness to check the fixes actually work.",
+    tags: ["Design Engineering", "AI Product", "Accessibility", "Full-stack"],
+    tone: "butter",
+  },
+  {
     slug: "gmail-job-tracker",
     href: "/projects/gmail-job-tracker",
     title: "Gmail Job Tracker",

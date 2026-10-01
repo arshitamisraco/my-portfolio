@@ -100,6 +100,53 @@ export const COROS_MIX_CLIPS: Clip[] = [
  * Keyed by CorosCaseStudy.slug.
  */
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
+  "accessibility-auditor": [
+    {
+      src: "/videos/accessibility-auditor/scan.mp4",
+      poster: "/images/accessibility-auditor/posters/scan.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Scanning a page: queued, running, then the results land",
+      tone: "butter",
+    },
+    {
+      poster: "/images/accessibility-auditor/issue.png",
+      width: 1440, // TODO(dims)
+      height: 900, // TODO(dims)
+      alt: "One issue with Claude's explanation, a fix summary and the corrected HTML",
+      tone: "sky",
+    },
+    {
+      src: "/videos/accessibility-auditor/fix.mp4",
+      poster: "/images/accessibility-auditor/posters/fix.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Copying the corrected HTML for an issue",
+      tone: "mint",
+    },
+    {
+      poster: "/images/accessibility-auditor/home.png",
+      width: 1440, // TODO(dims)
+      height: 900, // TODO(dims)
+      alt: "The home page: a doodle hero and the scan form",
+      tone: "lavender",
+    },
+    {
+      src: "/videos/accessibility-auditor/compare.mp4",
+      poster: "/images/accessibility-auditor/posters/compare.jpg",
+      width: 1440,
+      height: 900,
+      alt: "Comparing two scans: fixed, new and persisting issues",
+      tone: "peach",
+    },
+    {
+      poster: "/images/accessibility-auditor/badges.png",
+      width: 1440, // TODO(dims)
+      height: 900, // TODO(dims)
+      alt: "Summary stats and impact badges for a scan",
+      tone: "pink",
+    },
+  ],
   "gmail-job-tracker": [
     {
       src: "/videos/gmail-job-tracker/board.mp4",
