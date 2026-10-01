@@ -34,3 +34,6 @@ next-env.d.ts
 
 # Moritz intake redesign source (its own git repo; kept local as reference material, like /content/)
 /casei-design-engineer-case/
+
+# npm download cache (npm ci --cache .npm-cache)
+.npm-cache/
