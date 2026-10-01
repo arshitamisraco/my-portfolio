@@ -3,35 +3,34 @@ import Link from "next/link";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { BUILDS_HREF, DESIGN_CASE_STUDIES } from "@/lib/projects";
+import { PROJECTS_HREF, BUILD_CASE_STUDIES } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Design projects",
+  title: "Full-stack builds",
   description:
-    "End-to-end design case studies from Arshita Misra's work in product design, UX, prompt engineering, design systems, and research.",
+    "Products Arshita Misra designed and built end to end: a Gmail-powered job tracker shipped in a day with AI coding agents, and a switch-accessible React Native game library for kids with disabilities.",
 };
 
-export default function Projects() {
+export default function Builds() {
   return (
     <section className="py-section">
       <div className="container-site">
         <Reveal>
-          <SectionLabel cloud>Design projects</SectionLabel>
+          <SectionLabel cloud>Full-stack builds</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            End-to-end design case studies, from founding AI product design to a law firm's front door.
+            Products I designed and built end to end, from a Gmail-powered job tracker to a switch-accessible game library.
           </h1>
           <p className="mt-4 text-body text-ink-muted">
-            Looking for the things I shipped end to end?{" "}
-            <Link href={BUILDS_HREF} className="text-accent-deep hover:underline">
-              See the full-stack builds →
+            Looking for the design case studies?{" "}
+            <Link href={PROJECTS_HREF} className="text-accent-deep hover:underline">
+              See the design projects →
             </Link>
           </p>
         </Reveal>
 
-        {/* Narrowed, centered card column — the same layout as the home page's
-            Selected Work, which shows only the COROS AI subset of the design projects. */}
+        {/* Narrowed, centered card column — the same layout as /projects. */}
         <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
-          {DESIGN_CASE_STUDIES.map((study, i) => (
+          {BUILD_CASE_STUDIES.map((study, i) => (
             <Reveal key={study.slug} delay={i * 0.08}>
               <CaseStudyCard study={study} />
             </Reveal>

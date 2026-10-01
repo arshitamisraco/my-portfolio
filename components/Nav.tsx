@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { PROJECTS_HREF } from "@/lib/projects";
+import { BUILDS_HREF, BUILD_CASE_STUDIES, PROJECTS_HREF } from "@/lib/projects";
 import PixelCloud from "@/components/PixelCloud";
 
 const LINKS = [
   { label: "For fun", href: "/for-fun" },
   { label: "Projects", href: PROJECTS_HREF },
+  { label: "Builds", href: BUILDS_HREF },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/resume" },
 ];
@@ -24,8 +25,14 @@ export default function Nav() {
     setOpen(false);
   }, [pathname]);
 
-  const isActive = (href: string) =>
-    href !== "#" && !href.startsWith("http") && pathname.startsWith(href);
+  // Build case studies live under /projects/<slug>, so they belong to Builds, not Projects.
+  const isBuildStudy = BUILD_CASE_STUDIES.some((s) => pathname.startsWith(s.href));
+
+  const isActive = (href: string) => {
+    if (href === BUILDS_HREF) return isBuildStudy || pathname.startsWith(href);
+    if (href === PROJECTS_HREF) return !isBuildStudy && pathname.startsWith(href);
+    return href !== "#" && !href.startsWith("http") && pathname.startsWith(href);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">

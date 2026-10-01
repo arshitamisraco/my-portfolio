@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PROJECTS_HREF } from "@/lib/projects";
+import { BUILDS_HREF, PROJECTS_HREF } from "@/lib/projects";
 import PixelCloud from "./PixelCloud";
 
 export default function Footer() {
@@ -20,6 +20,11 @@ export default function Footer() {
               <li>
                 <Link href={PROJECTS_HREF} className="text-body text-ink-muted hover:text-accent-deep">
                   Projects
+                </Link>
+              </li>
+              <li>
+                <Link href={BUILDS_HREF} className="text-body text-ink-muted hover:text-accent-deep">
+                  Builds
                 </Link>
               </li>
               <li>

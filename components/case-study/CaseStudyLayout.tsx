@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import PixelCloud from "@/components/PixelCloud";
 import TagChip from "@/components/TagChip";
-import { getCaseStudy, getPrevNext, PROJECTS_HREF } from "@/lib/projects";
+import { getCaseStudy, getListingHref, getPrevNext } from "@/lib/projects";
 
 interface MetaItem {
   label: string;
@@ -43,6 +43,7 @@ export default function CaseStudyLayout({
 }: CaseStudyLayoutProps) {
   const study = getCaseStudy(slug);
   const { prev, next } = getPrevNext(slug);
+  const isBuild = study.category === "build";
 
   return (
     <article>
@@ -59,8 +60,8 @@ export default function CaseStudyLayout({
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2 text-caption text-ink-muted">
               <li>
-                <Link href={PROJECTS_HREF} className="hover:text-accent-deep">
-                  Projects
+                <Link href={getListingHref(study)} className="hover:text-accent-deep">
+                  {isBuild ? "Builds" : "Projects"}
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
@@ -126,7 +127,7 @@ export default function CaseStudyLayout({
       </div>
 
       {/* ================= Prev / Next ================= */}
-      <nav aria-label="More COROS AI case studies" className="border-t border-line bg-surface">
+      <nav aria-label={isBuild ? "More builds" : "More design projects"} className="border-t border-line bg-surface">
         <div className="container-site grid gap-4 py-12 md:grid-cols-2">
           <Link
             href={prev.href}

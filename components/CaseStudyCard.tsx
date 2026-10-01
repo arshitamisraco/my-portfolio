@@ -5,8 +5,8 @@ import { CASE_STUDY_CLIPS } from "@/lib/carousel";
 import type { CaseStudy } from "@/lib/projects";
 
 /**
- * Full-width, stacked case-study card — the shared listing unit for the COROS
- * case studies. Used by both the home page and /projects so the two lists stay
+ * Full-width, stacked case-study card — the shared listing unit for the
+ * case studies. Used by the home page, /projects and /builds so the lists stay
  * identical. The whole card is one link; the cover carousel is aria-hidden so
  * the card keeps a single accessible name.
  */
