@@ -111,8 +111,8 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
     },
     {
       poster: "/images/accessibility-auditor/issue.png",
-      width: 1440, // TODO(dims)
-      height: 900, // TODO(dims)
+      width: 2264,
+      height: 1324,
       alt: "One issue with Claude's explanation, a fix summary and the corrected HTML",
       tone: "sky",
     },
@@ -125,10 +125,10 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "mint",
     },
     {
-      poster: "/images/accessibility-auditor/home.png",
-      width: 1440, // TODO(dims)
-      height: 900, // TODO(dims)
-      alt: "The home page: a doodle hero and the scan form",
+      poster: "/images/accessibility-auditor/hero.png",
+      width: 992,
+      height: 702,
+      alt: "The hero illustration: four people drawn in flat colour with bold outlines",
       tone: "lavender",
     },
     {
@@ -141,8 +141,8 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
     },
     {
       poster: "/images/accessibility-auditor/badges.png",
-      width: 1440, // TODO(dims)
-      height: 900, // TODO(dims)
+      width: 2272,
+      height: 660,
       alt: "Summary stats and impact badges for a scan",
       tone: "pink",
     },

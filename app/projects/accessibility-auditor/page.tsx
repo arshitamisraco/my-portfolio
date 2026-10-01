@@ -35,12 +35,11 @@ const MEDIA = {
     width: 1440,
     height: 900,
   },
-  home: { src: "/images/accessibility-auditor/home.png", width: 1440, height: 900 }, // TODO(dims)
-  issue: { src: "/images/accessibility-auditor/issue.png", width: 1440, height: 900 }, // TODO(dims)
-  compareShot: { src: "/images/accessibility-auditor/compare.png", width: 1440, height: 900 }, // TODO(dims)
-  history: { src: "/images/accessibility-auditor/history.png", width: 1440, height: 900 }, // TODO(dims)
-  badges: { src: "/images/accessibility-auditor/badges.png", width: 1440, height: 900 }, // TODO(dims)
-  hero: { src: "/images/accessibility-auditor/hero.png", width: 1440, height: 900 }, // TODO(dims)
+  home: { src: "/images/accessibility-auditor/home.png", width: 2880, height: 3282 },
+  issue: { src: "/images/accessibility-auditor/issue.png", width: 2264, height: 1324 },
+  history: { src: "/images/accessibility-auditor/history.png", width: 2272, height: 618 },
+  badges: { src: "/images/accessibility-auditor/badges.png", width: 2272, height: 660 },
+  hero: { src: "/images/accessibility-auditor/hero.png", width: 992, height: 702 },
 } as const;
 
 export default function AccessibilityAuditor() {
@@ -198,26 +197,14 @@ export default function AccessibilityAuditor() {
           caption="Fixed, new, persisting."
           tone="mint"
         />
-        <div className="my-8 grid items-start gap-4 sm:grid-cols-2">
-          <ImageFrame
-            src={MEDIA.history.src}
-            width={MEDIA.history.width}
-            height={MEDIA.history.height}
-            alt="A site's scan history: each scan with its status, violation count and date"
-            caption="History."
-            flush
-            tone="lavender"
-          />
-          <ImageFrame
-            src={MEDIA.compareShot.src}
-            width={MEDIA.compareShot.width}
-            height={MEDIA.compareShot.height}
-            alt="The compare page: counts for fixed, new and persisting, then each group's issues"
-            caption="Compare."
-            flush
-            tone="butter"
-          />
-        </div>
+        <ImageFrame
+          src={MEDIA.history.src}
+          width={MEDIA.history.width}
+          height={MEDIA.history.height}
+          alt="A site's scan history: each scan with its status, violation count and impact badges, and a Compare with previous link"
+          caption="Every site keeps its history."
+          tone="lavender"
+        />
       </CaseSection>
 
       <CaseSection
@@ -296,6 +283,10 @@ export default function AccessibilityAuditor() {
           Hand-drawn doodles on cream paper, hard offset shadows instead of blur, and every text
           colour checked against WCAG AA before it went in. Status is never colour alone.
         </p>
+        <StatCallout>
+          I ran the auditor on its own pages. Zero violations on every one, with a couple of
+          items left for a human to check.
+        </StatCallout>
         <ImageFrame
           src={MEDIA.home.src}
           width={MEDIA.home.width}
