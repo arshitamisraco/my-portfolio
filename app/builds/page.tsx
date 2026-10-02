@@ -18,7 +18,7 @@ export default function Builds() {
         <Reveal>
           <SectionLabel cloud>Full-stack builds</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            Products I designed and built end to end, from a WCAG auditor that writes the fix to a Gmail-powered job tracker.
+            Products that I built end to end.
           </h1>
           <p className="mt-4 text-body text-ink-muted">
             Looking for the design case studies?{" "}
