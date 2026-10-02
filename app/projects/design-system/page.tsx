@@ -177,7 +177,6 @@ export default function DesignSystem() {
           title="Onboarding, web dark"
           description="The six-screen onboarding."
           size="lg"
-          mode="click"
           caption="The greeting rotates through nine languages."
         />
         <div className="my-8">
@@ -190,7 +189,6 @@ export default function DesignSystem() {
               title="Onboarding, mobile"
               description="The mobile welcome."
               size="mobile"
-              mode="click"
               flush
             />
             <ImageFrame
@@ -229,7 +227,6 @@ export default function DesignSystem() {
           title="Chat, web dark"
           description="A coaching exchange with message actions."
           size="lg"
-          mode="click"
           caption="Chat on web, dark theme."
         />
         <div className="my-8">
