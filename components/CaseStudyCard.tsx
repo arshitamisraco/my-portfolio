@@ -69,10 +69,10 @@ export default function CaseStudyCard({ study, size = "full" }: CaseStudyCardPro
             ))}
           </div>
           {study.stat && (
-            <div className="text-right">
-              <p className="font-display text-h4 font-semibold text-ink">{study.stat.value}</p>
-              <p className="text-caption text-ink-muted">{study.stat.label}</p>
-            </div>
+            <p className="flex items-baseline gap-2 whitespace-nowrap">
+              <span className="font-display text-h4 font-semibold text-ink">{study.stat.value}</span>
+              <span className="text-caption text-ink-muted">{study.stat.label}</span>
+            </p>
           )}
         </div>
       </div>

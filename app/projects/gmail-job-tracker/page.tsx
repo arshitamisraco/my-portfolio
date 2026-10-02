@@ -5,7 +5,6 @@ import ClassifierFlow from "@/components/case-study/ClassifierFlow";
 import HeroStills from "@/components/case-study/HeroStills";
 import LabeledTiles from "@/components/case-study/LabeledTiles";
 import SessionNetwork from "@/components/case-study/SessionNetwork";
-import StatCallout from "@/components/case-study/StatCallout";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 
@@ -145,9 +144,8 @@ export default function GmailJobTracker() {
           caption="Sundial arrives, then Halcyon moves to Interviewing."
           tone="mint"
         />
-        <StatCallout value="2 min" label="poll interval, enough for one user" />
         <p>
-          Gmail is checked on that interval or on Sync now. A new confirmation becomes a card.
+          Gmail is polled every 2 minutes, or on Sync now. A new confirmation becomes a card.
         </p>
       </CaseSection>
 

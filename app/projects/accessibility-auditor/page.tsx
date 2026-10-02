@@ -5,7 +5,6 @@ import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroStills from "@/components/case-study/HeroStills";
 import LabeledTiles from "@/components/case-study/LabeledTiles";
 import ScanPipeline from "@/components/case-study/ScanPipeline";
-import StatCallout from "@/components/case-study/StatCallout";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 
@@ -191,7 +190,6 @@ export default function AccessibilityAuditor() {
       </CaseSection>
 
       <CaseSection id="system" eyebrow="The design system" title="A palette that passes its own audit">
-        <StatCallout value="0" label="violations when I ran the auditor on itself" />
         <ImageFrame
           src={MEDIA.home.src}
           width={MEDIA.home.width}

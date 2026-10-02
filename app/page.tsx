@@ -38,9 +38,9 @@ const DRIFT_MARGIN_VW = 16;
 
 const HERO_CLOUDS = [
   // Three clouds spread across the width: one left, one center-right, one far right.
-  { shape: "wisp", variant: "lavender", size: 120, top: "82%", left: 6, opacity: 0.4, drift: "cloud-drift-fast", delay: "-19s" },
+  { shape: "wisp", variant: "lavender", size: 120, top: "58%", left: 6, opacity: 0.4, drift: "cloud-drift-fast", delay: "-19s" },
   { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 52, opacity: 0.45, drift: "cloud-drift-slow", delay: "-103s" },
-  { shape: "wisp", variant: "pink", size: 140, top: "38%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
+  { shape: "wisp", variant: "pink", size: 140, top: "30%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
 ] as const;
 
 const PROOF_STATS = [
@@ -107,7 +107,7 @@ export default function Home() {
           <HeroIntro>
             <p className="inline-flex items-center gap-2 rounded-pill border border-line bg-surface-raised px-3 py-1 text-caption font-medium text-ink">
               <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-mint-deep" />
-              Open to founding and product design roles
+              Open to work
             </p>
 
             <h1 className="mt-6 max-w-5xl font-display text-display font-semibold text-ink">
@@ -133,8 +133,8 @@ export default function Home() {
 
             <div className="mt-5 max-w-2xl">
               <p className="text-body-lg text-ink-muted">
-                Founding designer at COROS AI, 2025&ndash;2026: took an AI coaching product from
-                research to production React on web, iOS and Android.
+                From user research to production React on web, iOS and Android, I owned the
+                whole product surface at an AI startup.
               </p>
               <Link
                 href={COROS_HUB_HREF}

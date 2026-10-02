@@ -4,7 +4,6 @@ import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import HeroStills from "@/components/case-study/HeroStills";
 import LabeledTiles from "@/components/case-study/LabeledTiles";
 import ResearchTimeline from "@/components/case-study/ResearchTimeline";
-import StatCallout from "@/components/case-study/StatCallout";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
 
@@ -242,8 +241,7 @@ export default function Switcharoo() {
       </CaseSection>
 
       <CaseSection id="result" eyebrow="Result" title="Second place at RESNA">
-        <StatCallout value="2nd" label="of 100+ teams, RESNA" size="lg" />
-        <p>Next: multiplayer, difficulty levels, richer sound and haptics.</p>
+        <p>Second of 100+ teams. Next: multiplayer, difficulty levels, richer sound and haptics.</p>
       </CaseSection>
     </CaseStudyLayout>
   );

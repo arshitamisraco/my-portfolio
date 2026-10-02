@@ -224,7 +224,7 @@ export default function CorosCarousel({
       /* Fixed height, not an aspect ratio: the band's height is a design
          constant, so narrowing the card just crops the shelf horizontally
          (fewer clips in frame at once) instead of shrinking the clips. */
-      className={`relative overflow-hidden bg-surface ${HEIGHTS[height]}`}
+      className={`contain-inline-size relative w-full overflow-hidden bg-surface ${HEIGHTS[height]}`}
     >
       {/* Native horizontal scroller — auto-drifts, and grab / wheel / swipe all work. */}
       <div
