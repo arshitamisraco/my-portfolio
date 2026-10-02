@@ -18,7 +18,7 @@ export default function Projects() {
         <Reveal>
           <SectionLabel cloud>Design projects</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            End-to-end design case studies, from founding AI product design to accessible play.
+            End to end design case studies.
           </h1>
           <p className="mt-4 text-body text-ink-muted">
             Looking for the things I shipped end to end?{" "}
