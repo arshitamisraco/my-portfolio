@@ -7,62 +7,43 @@ import ProductIntro from "@/components/case-study/ProductIntro";
 import StateInventory from "@/components/case-study/StateInventory";
 import ToneComparison from "@/components/case-study/ToneComparison";
 import ImageFrame from "@/components/ImageFrame";
-import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
   title: "COROS AI Redesign: MUI → shadcn",
   description:
-    "Rebuilding the entire COROS AI product UI and its design system: 54+ semantic tokens in light and dark, every core surface redesigned, live on web, iOS, and Android.",
+    "The COROS AI product UI and design system, live on web, iOS, and Android.",
 };
-
-const STATS = [
-  {
-    value: "54+",
-    label: "semantic tokens, light and dark",
-    bg: "bg-lavender-soft",
-  },
-  {
-    value: "Days → hours",
-    label: "design-to-review cycles",
-    bg: "bg-sky-soft",
-  },
-  {
-    value: "4",
-    label: "platforms: web, tablet, iOS, Android",
-    bg: "bg-mint-soft",
-  },
-];
 
 const CHAT_STATES = [
   {
     state: "Empty state",
-    trigger: "A new conversation with no messages yet.",
-    sees: "The greeting and the composer, with nothing above it.",
+    trigger: "A new conversation.",
+    sees: "The greeting and the composer.",
   },
   {
     state: "Typing indicator",
-    trigger: "The message has been sent and the model has not begun responding.",
-    sees: "An indicator in place of the response, so the wait is accounted for.",
+    trigger: "Sent, awaiting the model.",
+    sees: "An indicator for the wait.",
   },
   {
     state: "Streaming text",
-    trigger: "The response has started arriving.",
-    sees: "Text building in the response bubble, distinct from the typing state.",
+    trigger: "The response arrives.",
+    sees: "Text building in the bubble.",
   },
   {
     state: "Message-level actions",
-    trigger: "A COROS response has completed.",
-    sees: "Read-aloud and flag actions beneath the message.",
+    trigger: "A response completes.",
+    sees: "Read-aloud and flag actions.",
   },
   {
     state: "Error and retry",
     trigger: "The response fails.",
-    sees: "The failure surfaced in place, with a retry available.",
+    sees: "The failure in place, with retry.",
   },
   {
     state: "Scrolled away mid-response",
-    trigger: "The user scrolls up while a response is arriving.",
-    sees: "A return-to-chat affordance rather than a forced scroll jump.",
+    trigger: "The user scrolls up mid-response.",
+    sees: "A return-to-chat button.",
   },
 ];
 
@@ -72,18 +53,16 @@ export default function DesignSystem() {
       slug="design-system"
       eyebrow="COROS AI · Case Study"
       title="COROS AI Redesign: MUI → shadcn"
-      summary="AI life coaching app. I rebuilt the entire product UI and its design system, live on web, iOS, and Android."
-      highlight={{ stat: "Live in production on web, iOS, and Android" }}
+      summary="Testers said v1 strained their eyes. As engineering moved to shadcn, I rebuilt the COROS AI product UI and its design system, live on web, iOS, and Android."
+      stats={[
+        { value: "3", label: "platforms live in production" },
+        { value: "54+", label: "semantic tokens" },
+        { value: "0", label: "redesign requests on handoff specs" },
+      ]}
       meta={[
-        {
-          label: "Role",
-          value: "Product Designer",
-        },
-        {
-          label: "Ownership",
-          value: "Design system owner",
-        },
-        { label: "Platforms", value: "4 platforms: web, tablet, iOS, Android" },
+        { label: "Role", value: "Product Designer" },
+        { label: "Ownership", value: "Design system owner" },
+        { label: "Platforms", value: "Designed for 4: web, tablet, iOS, Android" },
         {
           label: "Links",
           value: (
@@ -112,37 +91,31 @@ export default function DesignSystem() {
       productIntro={<ProductIntro />}
       hero={
         <HeroMontage
-          label="The live product, in light and dark"
+          label="The live product"
           portrait={[
             {
               src: "/videos/design-system/onboarding-mobile-light.mp4",
               poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
               width: 640,
               height: 1392,
-              tone: "pink",
-              title: "Onboarding on mobile, light theme",
-              description:
-                "The redesigned onboarding flow on mobile in light mode, from the rotating multilingual welcome onward.",
+              title: "Mobile onboarding",
+              description: "Onboarding on mobile.",
             },
             {
               src: "/videos/design-system/chat-mobile-light.mp4",
               poster: "/images/design-system/posters/chat-mobile-light.jpg",
               width: 640,
               height: 1392,
-              tone: "sky",
-              title: "Chat on mobile, light theme",
-              description:
-                "Composing and sending a message in the mobile chat, with COROS thinking and replying.",
+              title: "Mobile chat",
+              description: "Sending a chat message.",
             },
             {
               src: "/videos/design-system/influences-mobile-light.mp4",
               poster: "/images/design-system/posters/influences-mobile-light.jpg",
               width: 640,
               height: 1392,
-              tone: "lavender",
-              title: "Choosing influences on mobile, light theme",
-              description:
-                "Searching influences on mobile with live results and selected chips filling the field.",
+              title: "Mobile influences",
+              description: "Searching influences.",
             },
           ]}
           landscape={[
@@ -151,58 +124,22 @@ export default function DesignSystem() {
               poster: "/images/design-system/posters/landing-web-light.jpg",
               width: 1440,
               height: 936,
-              tone: "mint",
-              title: "First open on web, light theme",
-              description:
-                "The personalized COROS greeting streaming into the empty chat on web in light mode.",
+              title: "First open on web",
+              description: "The greeting streaming in.",
             },
             {
               src: "/videos/design-system/dictation-web-light.mp4",
               poster: "/images/design-system/posters/dictation-web-light.jpg",
               width: 1440,
               height: 936,
-              tone: "butter",
-              title: "Dictation on web, light theme",
-              description:
-                "Dictating a message in the web chat, the live waveform running in the input bar.",
+              title: "Dictation on web",
+              description: "Dictating a message.",
             },
           ]}
         />
       }
     >
-      {/* Scope at a glance — a numeric read after the visual hero. */}
-      <section aria-label="At a glance" className="mb-14">
-        <p className="text-style-eyebrow text-ink-muted">At a glance</p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-3 sm:gap-4">
-          {STATS.map((stat) => (
-            <div
-              key={stat.label}
-              className={`rounded-frame border border-line p-5 ${stat.bg}`}
-            >
-              <p className="font-display text-h3 font-semibold leading-tight text-ink">
-                {stat.value}
-              </p>
-              <p className="mt-3 text-caption text-ink-muted">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <CaseSection id="problem" eyebrow="Context" title="The problem">
-        <p>
-          Testers said the v1 product strained their eyes. Engineering was moving to
-          shadcn, and I owned the design side of the migration.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="tokens" eyebrow="Foundation" title="Design system">
-        <p>
-          One rule: components never touch raw colors. Everything resolves through
-          primitives → brand layer → semantic tokens, mirroring the code exactly.
-        </p>
-        <PullQuote>
-          Raw primitives → Brand layer → Semantic tokens → Components
-        </PullQuote>
+      <CaseSection id="tokens" eyebrow="Foundation" title="Tokens that mirror the code">
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-2 sm:items-center sm:gap-4">
             <ImageFrame
@@ -211,7 +148,6 @@ export default function DesignSystem() {
               height={1890}
               alt="Figma variables editor showing the semantic colors collection with a shadcn (light) column and a shadcn-dark column, each token resolving to a brand-neutrals, brand-shades, coros-green, or coros-red reference."
               size="full"
-              tone="lavender"
               flush
             />
             <ImageFrame
@@ -220,56 +156,30 @@ export default function DesignSystem() {
               height={1890}
               alt="Figma variables editor showing the typography collection: font definitions for sans, serif, headings, body, and monospace, plus heading scales with weight, size, line-height, and letter-spacing tokens."
               size="full"
-              tone="mint"
               flush
             />
           </div>
-          <p className="mt-3 text-caption text-ink-muted">
-            The system in Figma: semantic colors holding a value per token for both light
-            and dark modes, and typography resolving through shared font definitions.
-          </p>
         </div>
         <ul>
-          <li>
-            Custom 11-stop scales for COROS blue, orange, and blue-tinted neutrals.
-          </li>
-          <li>
-            54+ tokens across light and dark via Figma variable modes: design once, toggle
-            themes with one click.
-          </li>
-          <li>
-            Published as a shared library; the whole team builds on it without detaching.
-          </li>
+          <li>Colors resolve through primitives, brand layer, then semantic tokens.</li>
+          <li>Custom 11-stop scales for COROS blue, orange, and neutrals.</li>
+          <li>54+ tokens in light and dark, published as a shared library.</li>
+          <li>Variants only when structure changes: the chat input handles 4 states.</li>
         </ul>
       </CaseSection>
 
-      <CaseSection id="components" eyebrow="Architecture" title="Components">
-        <p>
-          Variants only when structure changes. Everything else is a property. The chat
-          input handles 4 states × all breakpoints without a variant explosion.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="onboarding" eyebrow="Screens" title="Onboarding">
-        <p>
-          8 dark-only screens → 6 themed screens, name moved up front so the flow addresses
-          you personally.
-        </p>
+      <CaseSection id="onboarding" eyebrow="Screens" title="Eight onboarding screens became six">
         <CaseVideo
           src="/videos/design-system/onboarding-web-dark.mp4"
           poster="/images/design-system/posters/onboarding-web-dark.jpg"
           width={1440}
           height={936}
-          title="The six-screen onboarding on web, dark theme"
-          description="The full onboarding on web in dark mode: the rotating multilingual welcome, name, dimensions, influences, tone selection with its animated orbs, and the loading hand-off into chat."
+          title="Onboarding, web dark"
+          description="The six-screen onboarding."
           size="lg"
-          tone="lavender"
-          caption="Welcome through Loading on web (dark theme), including the greeting that rotates through nine languages and the tone selection."
+          mode="click"
+          caption="The greeting rotates through nine languages."
         />
-        <p>
-          The tone screen teaches by interaction: pick Supportive or Provocative and the
-          orb, card, and background respond.
-        </p>
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
             <CaseVideo
@@ -277,10 +187,10 @@ export default function DesignSystem() {
               poster="/images/design-system/posters/onboarding-mobile-light.jpg"
               width={640}
               height={1392}
-              title="Onboarding on mobile, light theme"
-              description="The onboarding welcome on mobile in light mode, greeting rotating through languages."
+              title="Onboarding, mobile"
+              description="The mobile welcome."
               size="mobile"
-              tone="pink"
+              mode="click"
               flush
             />
             <ImageFrame
@@ -289,7 +199,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile tone selection with Supportive and Provocative cards, each carrying an animated orb."
               size="mobile"
-              tone="sky"
               flush
             />
             <ImageFrame
@@ -298,34 +207,30 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile dimensions selection with seven pill options, several selected."
               size="mobile"
-              tone="lavender"
               flush
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The same flow on mobile (light theme): the multilingual welcome, the tone cards
-            with their orbs, and the dimension pills. Every screen was designed for web,
-            tablet, iOS, and Android at once.
+            Mobile, light theme.
           </p>
         </div>
+        <p>
+          8 dark-only screens became 6 themed ones, with the name moved up front. On the
+          tone screen, the orb and card respond.
+        </p>
       </CaseSection>
 
-      <CaseSection id="chat" eyebrow="Screens" title="Chat">
-        <p>
-          Designed the full state inventory: empty, streaming, errors, message actions,
-          return-to-chat. Prototyped 3 user-bubble options in working HTML to settle the
-          debate.
-        </p>
+      <CaseSection id="chat" eyebrow="Screens" title="Chat, designed state by state">
         <CaseVideo
           src="/videos/design-system/chat-web-dark.mp4"
           poster="/images/design-system/posters/chat-web-dark.jpg"
           width={1440}
           height={936}
-          title="The chat surface on web, dark theme"
-          description="A coaching exchange on web in dark mode: the COROS greeting, a user message, a streamed response, and the read-aloud and flag actions revealed beneath it."
+          title="Chat, web dark"
+          description="A coaching exchange with message actions."
           size="lg"
-          tone="sky"
-          caption="Chat on web (dark theme): the greeting, a streamed reply, and the message actions beneath each COROS response."
+          mode="click"
+          caption="Chat on web, dark theme."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -335,7 +240,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile chat in light mode showing date dividers and read-aloud and flag actions beneath a COROS message."
               size="mobile"
-              tone="pink"
               flush
             />
             <ImageFrame
@@ -344,7 +248,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile chat with an inline tone quick-switch popover offering Supportive, Provocative, and More Personalization."
               size="mobile"
-              tone="lavender"
               flush
             />
             <CaseVideo
@@ -352,54 +255,41 @@ export default function DesignSystem() {
               poster="/images/design-system/posters/chat-mobile-light.jpg"
               width={640}
               height={1392}
-              title="Composing a message on mobile, light theme"
-              description="Typing and sending a message in the mobile chat in light mode."
+              title="Chat, mobile"
+              description="Sending a message."
               size="mobile"
-              tone="sky"
               flush
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The same surface on mobile (light theme): date-grouped history with message
-            actions, the inline tone quick-switch, and composing a message. One component
-            system, both themes.
+            Message actions, tone quick-switch, composing.
           </p>
         </div>
+        <p>I prototyped 3 user-bubble options in working HTML to settle a debate.</p>
         <h3>Every state a conversation can be in</h3>
-        <p>
-          Chat is the product, so the states got inventoried before any screen was drawn.
-          Most of them are waiting or failure states, not the happy path: empty, streaming,
-          errors, message actions, return-to-chat.
-        </p>
         <StateInventory rows={CHAT_STATES} />
       </CaseSection>
 
-      <CaseSection id="settings" eyebrow="Screens" title="Settings">
-        <p>
-          Modal shell with persistent nav. Appearance toggle moved into the sidebar so
-          switching themes never requires navigating.
-        </p>
+      <CaseSection id="settings" eyebrow="Screens" title="Settings in one modal shell">
         <CaseVideo
           src="/videos/design-system/settings-web-light.mp4"
           poster="/images/design-system/posters/settings-web-light.jpg"
           width={1440}
           height={936}
-          title="Account and Data control settings on web, light theme"
-          description="The settings modal on web in light mode, navigating between Account and Data control with its persistent left nav."
+          title="Settings, web"
+          description="Moving between Account and Data control."
           size="lg"
-          tone="mint"
-          caption="The settings modal shell on web (light theme): a persistent left nav that never jumps between tabs."
+          caption="Persistent nav; the Appearance toggle sits in the sidebar."
         />
         <CaseVideo
           src="/videos/design-system/personalization-web-light.mp4"
           poster="/images/design-system/posters/personalization-web-light.jpg"
           width={1440}
           height={936}
-          title="Personalization settings on web, light theme"
-          description="The Personalization tab on web in light mode: tone, dimensions, and influences, with the tone orbs animating."
+          title="Personalization, web"
+          description="Tone, dimensions, and influences."
           size="lg"
-          tone="butter"
-          caption="Personalization on web (light theme): tone, dimensions, and influences share the same modal shell."
+          caption="Same modal shell."
         />
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -409,7 +299,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile sidebar flyout with search chats, send feedback, and the user profile pinned at the bottom."
               size="mobile"
-              tone="pink"
               flush
             />
             <ImageFrame
@@ -418,7 +307,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile settings modal showing the profile header and the Account group."
               size="mobile"
-              tone="mint"
               flush
             />
             <ImageFrame
@@ -427,14 +315,11 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile settings with Connected accounts expanded inline, listing Google, LinkedIn, Microsoft, and Apple."
               size="mobile"
-              tone="sky"
               flush
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            The settings shell on mobile: the sidebar flyout, the profile and Account
-            group, and Connected accounts expanding inline rather than pushing to a new
-            screen.
+            Sidebar flyout, Account, inline Connected accounts.
           </p>
         </div>
         <div className="my-8">
@@ -445,7 +330,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile influences search with a live results dropdown of historical and cultural figures."
               size="mobile"
-              tone="lavender"
               flush
             />
             <ImageFrame
@@ -454,7 +338,6 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile influences with selected chips: Martin Heidegger, Barbie Doll, and Brené Brown."
               size="mobile"
-              tone="sky"
               flush
             />
             <ImageFrame
@@ -463,32 +346,27 @@ export default function DesignSystem() {
               height={2622}
               alt="Mobile delete-account confirmation dialog requiring the user to type delete, its confirm button on the destructive token."
               size="mobile"
-              tone="peach"
               flush
             />
           </div>
           <p className="mt-3 text-caption text-ink-muted">
-            States, not just screens: searching influences, the selected chips, and the
-            type-to-confirm delete dialog on its own destructive token.
+            Influences search, chips, type-to-confirm delete.
           </p>
         </div>
-      </CaseSection>
+              </CaseSection>
 
-      <CaseSection
-        id="retrieved-context"
-        eyebrow="Feature"
-        title="Retrieved Context panel (team-only)"
-      >
+      <CaseSection id="retrieved-context" eyebrow="Feature" title="A team-only Retrieved Context panel">
+        <ImageFrame
+          src="/images/design-system/my-memories-settings-web-light.png"
+          width={3024}
+          height={1964}
+          alt="The team-only My Memories tab in settings, showing Biographical memory and Session History rows in the same modal shell as every user-facing tab."
+          size="lg"
+          caption="My Memories, in the settings shell."
+        />
         <p>
-          My favorite piece. Debugging the AI meant engineers digging through logs. I
-          designed an in-product panel that shows exactly what the model saw for any
-          response:
-        </p>
-        <p>
-          When a response lands wrong, the first thing to establish is whether the system
-          knew which conversation it was in. The new-topic-versus-continuation field
-          answers that directly. A correct answer to the wrong topic still reads to the
-          user as a broken conversation.
+          Debugging the AI meant digging through logs. For my own prompt QA, I
+          designed a panel showing what the model saw:
         </p>
         <ul>
           <li>Retrieved sessions with semantic and recency scores.</li>
@@ -496,46 +374,34 @@ export default function DesignSystem() {
           <li>Chunk results.</li>
           <li>Memory.</li>
         </ul>
-        <p>
-          I did prompt QA myself, so I designed it as my own user. Every field answers a
-          question I actually had.
-        </p>
-        <ImageFrame
-          src="/images/design-system/my-memories-settings-web-light.png"
-          width={3024}
-          height={1964}
-          alt="The team-only My Memories tab in settings, showing Biographical memory and Session History rows in the same modal shell as every user-facing tab."
-          size="lg"
-          tone="lavender"
-          caption="My Memories (team-only): biographical memory and session history, in the same settings shell as every user-facing tab."
-        />
-        <h3>One system, two voices</h3>
+      </CaseSection>
+
+      <CaseSection id="tone" eyebrow="Tone" title="One system, two voices">
         <ToneComparison
           userMessage="I feel like I'm working overtime every single day, but my team just keeps giving me grunt work and I'm so pissed off."
           supportive="I hear you. How are you doing as you bring this up? What's happening at work?"
           provocative="Are you going to do it or not?"
         />
         <p>
-          Tone selection swaps the whole response architecture, not a word bank, which is
-          why one response asks for more context and the other asks for a decision. The
-          inline tone quick-switch shown above lets a user change it mid-conversation.
+          Tone swaps the response architecture: one reply asks for context, the other for a
+          decision.
         </p>
       </CaseSection>
 
       <CaseSection id="results" eyebrow="Impact" title="Results">
         <ul>
           <li>
-            <strong>Live in production on 4 platforms</strong> at{" "}
+            <strong>Live in production on web, iOS, and Android</strong> at{" "}
             <a href="https://app.coros.ai" target="_blank" rel="noopener noreferrer">
               app.coros.ai
             </a>
             .
           </li>
           <li>
-            <strong>Zero redesign requests</strong> on documented handoff specs.
+            <strong>Days to hours</strong> for design-to-review cycles.
           </li>
           <li>
-            <strong>A library the whole team ships from</strong>.
+            <strong>Zero redesign requests</strong> on documented handoff specs.
           </li>
         </ul>
       </CaseSection>
