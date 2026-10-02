@@ -8,7 +8,7 @@ import { PROJECTS_HREF, BUILD_CASE_STUDIES } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Full-stack builds",
   description:
-    "Products Arshita Misra designed and built end to end: a Gmail-powered job tracker shipped in a day with AI coding agents, and a switch-accessible React Native game library for kids with disabilities.",
+    "Products Arshita Misra designed and built end to end with AI coding agents: a WCAG accessibility auditor that writes the fix, and a Gmail-powered job tracker, each shipped in a day.",
 };
 
 export default function Builds() {
@@ -18,7 +18,7 @@ export default function Builds() {
         <Reveal>
           <SectionLabel cloud>Full-stack builds</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            Products I designed and built end to end, from a Gmail-powered job tracker to a switch-accessible game library.
+            Products I designed and built end to end, from a WCAG auditor that writes the fix to a Gmail-powered job tracker.
           </h1>
           <p className="mt-4 text-body text-ink-muted">
             Looking for the design case studies?{" "}

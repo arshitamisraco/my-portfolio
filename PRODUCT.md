@@ -43,7 +43,7 @@ The second, narrower claim: **founding designer at an AI company**, doing human-
 
 **Accessibility floor is non-negotiable.** WCAG AA contrast throughout, and `prefers-reduced-motion` fallbacks on every animation (cloud drift, marquee, scroll cue, reveal). Documented rule in `globals.css`: `--color-accent` (pink-400) is a decorative tint that fails contrast and must never be used for link or body text — use `--color-accent-strong` / `--color-accent-deep`. Skip-to-content link, visible focus rings, semantic landmarks, and labelled sections are already in place and must survive any redesign.
 
-**Domain and URL contract.** Canonical domain `arshita.co` (`metadataBase`). Legacy `/work/coros-ai` and `/work/coros-ai/:slug` URLs permanently redirect to `/coros-ai` and `/projects/:slug`; those redirects must keep working. Case-study URLs stay under `/projects/:slug` regardless of listing: `/projects` lists the design case studies and `/builds` lists the full-stack builds (Gmail Job Tracker, Switcharoo).
+**Domain and URL contract.** Canonical domain `arshita.co` (`metadataBase`). Legacy `/work/coros-ai` and `/work/coros-ai/:slug` URLs permanently redirect to `/coros-ai` and `/projects/:slug`; those redirects must keep working. Case-study URLs stay under `/projects/:slug` regardless of listing: `/projects` lists the design case studies and `/builds` lists the full-stack builds (Accessibility Auditor, Gmail Job Tracker).
 
 **Résumé pipeline.** `/resume-print` is a print-targeted route rendered to `public/documents/Arshita-Misra-Resume.pdf` by `npm run resume:pdf` (headless Chrome, own dev server on :3199). The hosted "View PDF" link is a Google Drive share URL in `lib/resume.ts`. This flow must keep working end to end.
 

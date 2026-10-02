@@ -8,7 +8,7 @@ import { BUILDS_HREF, DESIGN_CASE_STUDIES } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Design projects",
   description:
-    "End-to-end design case studies from Arshita Misra's work in product design, UX, prompt engineering, design systems, and research.",
+    "End-to-end design case studies from Arshita Misra's work in product design, UX, prompt engineering, design systems, research, and accessible play.",
 };
 
 export default function Projects() {
@@ -18,7 +18,7 @@ export default function Projects() {
         <Reveal>
           <SectionLabel cloud>Design projects</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            End-to-end design case studies, from founding AI product design to a law firm's front door.
+            End-to-end design case studies, from founding AI product design to accessible play.
           </h1>
           <p className="mt-4 text-body text-ink-muted">
             Looking for the things I shipped end to end?{" "}
