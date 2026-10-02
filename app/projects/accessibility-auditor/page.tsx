@@ -12,7 +12,7 @@ import ImageFrame from "@/components/ImageFrame";
 export const metadata: Metadata = {
   title: "AI Accessibility Auditor",
   description:
-    "Paste a URL and get every WCAG violation explained in plain language, with the corrected HTML to paste back. I planned it, designed it and shipped it in a day with Claude Code, then built an eval harness to check the fixes actually work.",
+    "Paste a URL and get every WCAG violation explained, with corrected HTML. Planned, designed and shipped in a day with Claude Code.",
 };
 
 /** Every media path and its intrinsic size, in one place. */
@@ -48,10 +48,12 @@ export default function AccessibilityAuditor() {
       slug="accessibility-auditor"
       eyebrow="AI Accessibility Auditor · Case study"
       title="An accessibility auditor that writes the fix"
-      summary="Paste a URL. The app runs axe-core in headless Chromium, keeps every WCAG violation, and asks Claude to explain each one and hand back corrected HTML. Scan again later and it tells you what got fixed."
-      highlight={{
-        stat: "From URL to corrected HTML in one pipeline, built and deployed in a day",
-      }}
+      summary="Paste a URL. axe-core finds every WCAG violation and Claude explains each one with corrected HTML."
+      stats={[
+        { value: "1 day", label: "from brief to deployed" },
+        { value: "5", label: "pipeline steps" },
+        { value: "0", label: "violations on its own pages" },
+      ]}
       meta={[
         { label: "Role", value: "Product design · Full-stack build · Agent orchestration" },
         { label: "Type", value: "Full stack product" },
@@ -74,7 +76,7 @@ export default function AccessibilityAuditor() {
                 height: MEDIA.scan.height,
                 title: "Scanning a page",
                 description:
-                  "A URL is submitted from the scan form. The results page shows Queued, then Running, then the completed summary and the list of issues.",
+                  "A URL is submitted. The results page shows Queued, Running, then the issue list.",
                 tone: "butter",
               },
               [
@@ -98,102 +100,52 @@ export default function AccessibilityAuditor() {
         />
       }
     >
-      <CaseSection
-        id="problem"
-        eyebrow="The problem"
-        title="Audit reports say what's broken. Not how to fix it."
-      >
+      <CaseSection id="problem" eyebrow="The problem" title="Audit reports that write the fix">
         <p>
-          axe finds the violation and points at a selector. A developer who is new to
-          accessibility still has to work out who it hurts and what to type.
+          axe points at a selector. Developers still have to work out who it hurts and what to type.
         </p>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "image-alt",
-              detail: "Images must have alternative text. It doesn't say what to write.",
-            },
-            {
-              label: "color-contrast",
-              detail: "The ratio is too low. It doesn't say which colour to pick.",
-            },
-            {
-              label: "label",
-              detail: "Form fields need a label. It doesn't show the markup.",
-            },
-          ]}
-        />
       </CaseSection>
 
-      <CaseSection id="scan" eyebrow="Scan" title="Paste a URL. Watch it run.">
-        <p>
-          The scan is queued, Chromium loads the page, axe runs, and the page updates itself until
-          the results land.
-        </p>
+      <CaseSection id="scan" eyebrow="Scan" title="Paste a URL and watch it run">
         <CaseVideo
           src={MEDIA.scan.src}
           poster={MEDIA.scan.poster}
           width={MEDIA.scan.width}
           height={MEDIA.scan.height}
           title="Running a scan"
-          description="A URL is typed into the scan form. The results page shows Queued, then Running, then the completed summary and the list of issues."
-          caption="Queued, running, done. The page polls until the results arrive."
+          description="A URL is typed in. The results page shows Queued, Running, then the issue list."
+          caption="Queued, running, done."
           tone="butter"
         />
       </CaseSection>
 
-      <CaseSection
-        id="fix"
-        eyebrow="The fix"
-        title="Every issue explained, with the HTML to paste."
-      >
-        <p>
-          Claude gets one violation at a time: the rule, the failing element and axe&rsquo;s
-          failure summary. It has to answer in a fixed shape.
-        </p>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "explanation",
-              detail: "Two to four plain sentences: what's wrong and who it affects.",
-            },
-            { label: "fixSummary", detail: "One sentence." },
-            {
-              label: "fixCode",
-              detail: "The corrected element only. Valid HTML, no fences, no commentary.",
-            },
-          ]}
-        />
+      <CaseSection id="fix" eyebrow="The fix" title="Every issue explained, with HTML to paste">
         <CaseVideo
           src={MEDIA.fix.src}
           poster={MEDIA.fix.poster}
           width={MEDIA.fix.width}
           height={MEDIA.fix.height}
           title="Copying a fix"
-          description="The results page scrolls to an issue. Claude's explanation, a fix summary and the corrected HTML are shown, and the Copy button is pressed."
-          caption="Why it matters, the fix in a sentence, and the element to paste."
+          description="An issue shows Claude's explanation, a fix summary and corrected HTML, and Copy is pressed."
+          caption="Why it matters, the fix, the element to paste."
           tone="sky"
         />
-        <StatCallout>
-          Most severe first, capped per scan. Without an API key the scan still completes and the
-          issue is marked skipped.
-        </StatCallout>
+        <p>
+          Claude gets one violation at a time and answers in a Zod-checked shape.
+        </p>
+        <p>
+          Most severe issues come first, capped per scan. Without an API key the scan still completes.
+        </p>
       </CaseSection>
 
-      <CaseSection id="compare" eyebrow="Over time" title="Scan it again. See what changed.">
-        <p>
-          Each site keeps its history. Compare two scans and every issue sorts into fixed, new or
-          persisting, keyed by rule and selector.
-        </p>
+      <CaseSection id="compare" eyebrow="Over time" title="Scan again and see what changed">
         <CaseVideo
           src={MEDIA.compare.src}
           poster={MEDIA.compare.poster}
           width={MEDIA.compare.width}
           height={MEDIA.compare.height}
           title="Comparing two scans"
-          description="From a site's history, two scans are compared. Issues are grouped under Fixed, New and Persisting."
+          description="Two scans are compared, with issues grouped under Fixed, New and Persisting."
           caption="Fixed, new, persisting."
           tone="mint"
         />
@@ -201,92 +153,45 @@ export default function AccessibilityAuditor() {
           src={MEDIA.history.src}
           width={MEDIA.history.width}
           height={MEDIA.history.height}
-          alt="A site's scan history: each scan with its status, violation count and impact badges, and a Compare with previous link"
+          alt="A site's scan history with status, violation count, impact badges and a Compare link"
           caption="Every site keeps its history."
           tone="lavender"
         />
-      </CaseSection>
+              </CaseSection>
 
-      <CaseSection
-        id="pipeline"
-        eyebrow="Under the hood"
-        title="One request, five steps, nothing blocking the browser."
-      >
-        <p>
-          The route only queues an event. An Inngest function does the work in retryable steps, so
-          a slow page or a flaky model call never times out the request.
-        </p>
+      <CaseSection id="pipeline" eyebrow="Under the hood" title="Five steps behind one request">
         <ScanPipeline />
+        <p>
+          The route queues an event. An Inngest function runs retryable steps, so slow pages cannot time out the request.
+        </p>
         <LabeledTiles
-          columns={3}
           tiles={[
             {
-              label: "playwright-core + a serverless Chromium",
+              label: "playwright-core + serverless Chromium",
               detail: "Full Playwright blows Vercel's 250 MB limit.",
             },
             { label: "Drizzle on Neon Postgres", detail: "Sites, scans, issues." },
-            {
-              label: "Structured output via Zod",
-              detail: "The model's answer is parsed, never regexed.",
-            },
-            {
-              label: "Private URLs rejected",
-              detail: "Localhost and private ranges never get scanned in production.",
-            },
-            {
-              label: "Duplicate guard",
-              detail: "Submit a site that is already queued or running and you get that scan back.",
-            },
-            {
-              label: "PostHog, hostnames only",
-              detail: "Never full URLs or issue HTML.",
-            },
+            { label: "Private URLs rejected", detail: "Blocked in production." },
+            { label: "Duplicate guard", detail: "A queued site returns that scan." },
           ]}
         />
       </CaseSection>
 
-      <CaseSection
-        id="eval"
-        eyebrow="Does the fix work?"
-        title="I didn't want to take the model's word for it."
-      >
+      <CaseSection id="eval" eyebrow="Does the fix work?" title="I tested whether the fixes actually work">
         <p>
-          An eval harness scans fixture pages, applies every suggested fix to the HTML, and scans
-          again. Two numbers come out, and I read them as a floor and a ceiling.
+          An eval harness scans fixture pages, applies every fix, and scans again. Each run appends a row to a tracked CSV.
         </p>
         <LabeledTiles
-          columns={3}
           tiles={[
             { label: "Strict", detail: "Rule plus selector gone from the re-scan." },
-            {
-              label: "Lenient",
-              detail: "Fewer hits per rule, so a rewritten element still counts.",
-            },
-            {
-              label: "Introduced",
-              detail: "New keys after the fix. An upper bound on regressions.",
-            },
+            { label: "Lenient", detail: "Fewer hits per rule, so rewritten elements count." },
+            { label: "Introduced", detail: "New keys after the fix, an upper bound on regressions." },
           ]}
         />
-        <StatCallout>
-          Each real run appends one row to a tracked CSV, so prompt and model changes show up as a
-          trend in git.
-        </StatCallout>
       </CaseSection>
 
-      <CaseSection
-        id="system"
-        eyebrow="The design system"
-        title="Bold outlines, flat fills, and a palette that passes its own audit."
-      >
-        <p>
-          Hand-drawn doodles on cream paper, hard offset shadows instead of blur, and every text
-          colour checked against WCAG AA before it went in. Status is never colour alone.
-        </p>
-        <StatCallout>
-          I ran the auditor on its own pages. Zero violations on every one, with a couple of
-          items left for a human to check.
-        </StatCallout>
+      <CaseSection id="system" eyebrow="The design system" title="A palette that passes its own audit">
+        <StatCallout value="0" label="violations when I ran the auditor on itself" />
         <ImageFrame
           src={MEDIA.home.src}
           width={MEDIA.home.width}
@@ -311,74 +216,27 @@ export default function AccessibilityAuditor() {
             width={MEDIA.badges.width}
             height={MEDIA.badges.height}
             alt="Summary stats and impact badges; each badge pairs a label with a small shape"
-            caption="Badges carry a shape, not just a colour."
+            caption="Each badge pairs a shape with its colour."
             size="sm"
             flush
             tone="sky"
           />
         </div>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            { label: "Fredoka and Nunito" },
-            { label: "2px ink outline, everywhere" },
-            { label: "Offset shadow, no blur" },
-            { label: "AA ratio listed per token" },
-            { label: "Badge = label + glyph" },
-            { label: "Reduced motion in MotionConfig and CSS" },
-          ]}
-        />
-      </CaseSection>
-
-      <CaseSection
-        id="build"
-        eyebrow="How I built it"
-        title="A plan, four phases, and a design spec before a redesign."
-      >
         <p>
-          I wrote the build plan and made the calls that mattered: the browser that fits on
-          Vercel, the database, the queue, no auth for v1. Claude Code built each phase while I
-          reviewed, fixed the deploy, and wrote the design spec the redesign was built from.
+          Doodles on cream paper, 2px ink outlines, hard offset shadows, every text colour checked against WCAG AA.
         </p>
-        <LabeledTiles
-          columns={2}
-          tiles={[
-            {
-              label: "Phase 1",
-              detail: "URL scan pipeline: axe-core, Inngest, Claude explanations.",
-            },
-            { label: "Phase 2", detail: "Scan history, re-scan, and comparison." },
-            { label: "Phase 3 and 4", detail: "Eval harness, analytics, deploy." },
-            {
-              label: "Redesign",
-              detail: "Tokens and a spec first, then primitives, then every page.",
-            },
-          ]}
-        />
       </CaseSection>
 
-      <CaseSection id="next" eyebrow="What I'd do next" title="Three things, in order.">
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "Show the model the page",
-              detail:
-                "It only sees the failing element, so heading order and landmark rules score low.",
-            },
-            {
-              label: "Run the eval in CI",
-              detail: "The harness exists. It should block a prompt change that makes fixes worse.",
-            },
-            {
-              label: "Fix the whole file",
-              detail: "The applier already rewrites HTML in the harness. Put it in the product.",
-            },
-          ]}
-        />
+      <CaseSection id="build" eyebrow="How I built it" title="A plan, four phases, a design spec">
+        <p>
+          I wrote the build plan and made the calls: the browser that fits on Vercel, the database, the queue, no auth for v1. Claude Code built each phase while I reviewed.
+        </p>
+        <p>
+          Phases: scan pipeline, history, eval harness, analytics and deploy. I wrote the design spec for the redesign.
+        </p>
       </CaseSection>
 
-      <CaseSection id="links" eyebrow="See it" title="It's live.">
+      <CaseSection id="links" eyebrow="See it" title="It's live">
         <div className="my-6 flex flex-wrap gap-3">
           <Button href="https://wcag-liard.vercel.app" external>
             Open the app

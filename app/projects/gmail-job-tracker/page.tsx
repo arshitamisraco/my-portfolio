@@ -12,7 +12,7 @@ import ImageFrame from "@/components/ImageFrame";
 export const metadata: Metadata = {
   title: "Gmail Job Tracker",
   description:
-    "A kanban board that reads my Gmail and sorts every job application into Applied, Interviewing, Offer or Rejected. I designed the product and the build process, then directed a network of AI coding sessions to ship it in a day.",
+    "A kanban board that reads Gmail and sorts every job application by stage. Built in a day by five AI sessions I directed.",
 };
 
 /** Every media path and its intrinsic size, in one place. */
@@ -61,10 +61,12 @@ export default function GmailJobTracker() {
       slug="gmail-job-tracker"
       eyebrow="Gmail Job Tracker · Case study"
       title="Gmail Job Tracker"
-      summary="Job hunting turns your inbox into a filing problem. This app signs into Gmail, finds every application email, works out the company, role and stage, and puts each one on a board. You drag a card when it's wrong, and it never overrides you again."
-      highlight={{
-        stat: "Brief to working app in one day, built by a five-session agent network I designed",
-      }}
+      summary="Reads your Gmail, finds every application email, and puts each company on a board by stage."
+      stats={[
+        { value: "1 day", label: "from brief to working app" },
+        { value: "5", label: "agent sessions I directed" },
+        { value: "4", label: "status columns" },
+      ]}
       meta={[
         { label: "Role", value: "Product design · Design engineering · Agent orchestration" },
         { label: "Type", value: "Full stack product" },
@@ -84,7 +86,7 @@ export default function GmailJobTracker() {
                 height: MEDIA.board.height,
                 title: "The board",
                 description:
-                  "The populated board: application cards in Applied, Interviewing, Offer and Rejected columns on a pale blue canvas. The cursor drifts over Orbital and Parallax.",
+                  "The populated board with application cards in four status columns.",
                 tone: "sky",
               },
               [
@@ -92,7 +94,7 @@ export default function GmailJobTracker() {
                   src: MEDIA.column.src,
                   width: MEDIA.column.width,
                   height: MEDIA.column.height,
-                  alt: "The Interviewing column: three frosted-glass cards for Parallax, Bluepeak Analytics and Acme Corp under a yellow status dot and a count.",
+                  alt: "The Interviewing column with three frosted-glass cards.",
                   tone: "lavender",
                 },
                 {
@@ -111,113 +113,64 @@ export default function GmailJobTracker() {
       <CaseSection
         id="problem"
         eyebrow="The problem"
-        title="Every application ends up as six emails from four senders."
+        title="One application, six emails, four senders"
       >
         <p>
-          Confirmations come from Greenhouse. Interview invites come from a recruiter. Rejections
-          come from no-reply. Nothing in the inbox says which company or which stage.
+          Confirmations come from Greenhouse, invites from a recruiter, rejections from no-reply. Nothing says which company or stage.
         </p>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "“Thank you for applying to Acme Corp!”",
-              detail: "From no-reply@greenhouse.io. Read as Applied · Acme Corp · Design Technologist.",
-            },
-            {
-              label: "“Let's schedule an interview - Acme Corp”",
-              detail: "From a recruiter. Read as Interviewing · Acme Corp. Same card, moved over.",
-            },
-            {
-              label: "“Regarding your Design Technologist application at Brightwater”",
-              detail: "From a person. Read as Rejected · Brightwater. The subject never says so.",
-            },
-          ]}
-        />
       </CaseSection>
 
-      <CaseSection
-        id="board"
-        eyebrow="The board"
-        title="One card per company. Four columns. Nothing to file."
-      >
-        <p>
-          Cards sort themselves by the latest email. The count on each column is the only number
-          on the page.
-        </p>
+      <CaseSection id="board" eyebrow="The board" title="One card per company, four columns">
         <CaseVideo
           src={MEDIA.board.src}
           poster={MEDIA.board.poster}
           width={MEDIA.board.width}
           height={MEDIA.board.height}
           title="The board loads"
-          description="The populated board with cards in Applied, Interviewing, Offer and Rejected, each column showing a count. The cursor drifts and hovers Orbital and Parallax, which lift slightly."
-          caption="Cards lift on hover. Colour appears only on the status dot and pill."
+          description="The board with a count on each column. Hovered cards lift slightly."
+          caption="Cards lift on hover."
           tone="sky"
         />
+        <p>Cards sort by the latest email.</p>
       </CaseSection>
 
-      <CaseSection
-        id="sync"
-        eyebrow="Keeping up"
-        title="New mail lands on the board by itself."
-      >
-        <p>
-          The app checks Gmail every two minutes, or when you press Sync now. A new confirmation
-          becomes a new card. An interview invite moves a card over.
-        </p>
+      <CaseSection id="sync" eyebrow="Keeping up" title="New mail lands on the board">
         <CaseVideo
           src={MEDIA.sync.src}
           poster={MEDIA.sync.poster}
           width={MEDIA.sync.width}
           height={MEDIA.sync.height}
           title="Sync now"
-          description={'Pressing Sync now shows a "1 new" toast and Sundial lands at the top of Applied. A second Sync now shows "1 updated" and Halcyon moves from Applied to Interviewing.'}
-          caption="Sync now: Sundial arrives, then Halcyon moves to Interviewing."
+          description={'A "1 new" toast and Sundial lands in Applied. Then "1 updated" and Halcyon moves to Interviewing.'}
+          caption="Sundial arrives, then Halcyon moves to Interviewing."
           tone="mint"
         />
-        <StatCallout>
-          Polling, not push. A two-minute poll was the honest choice for a single user. Gmail push
-          needs a public endpoint and a Pub/Sub topic.
-        </StatCallout>
+        <StatCallout value="2 min" label="poll interval, enough for one user" />
+        <p>
+          Gmail is checked on that interval or on Sync now. A new confirmation becomes a card.
+        </p>
       </CaseSection>
 
       <CaseSection
         id="classifier"
         eyebrow="Reading the email"
-        title="A small model reads each email once and fills in a form."
+        title="A small model reads each email once"
       >
-        <p>
-          Claude Haiku gets the subject, sender, snippet and the first 2,000 characters of the
-          body. It must answer through one tool call with a fixed schema. The prompt&rsquo;s
-          hardest rule: the sender is usually an applicant-tracking system, so the company is the
-          one named in the email, never the domain.
-        </p>
         <ClassifierFlow />
+        <p>
+          Claude Haiku reads the subject, sender, snippet and first 2,000 characters, then answers through one fixed-schema tool call. A keyword heuristic takes over if the model is down.
+        </p>
         <LabeledTiles
-          columns={2}
           tiles={[
-            { label: "Applied", detail: "Confirms an application was submitted or received." },
-            { label: "Interviewing", detail: "Invites you to schedule or confirms an interview, phone screen or call." },
+            { label: "Applied", detail: "Confirms an application was received." },
+            { label: "Interviewing", detail: "Invites or confirms an interview or call." },
             { label: "Offer", detail: "Extends a job offer." },
-            { label: "Rejected", detail: "Says you weren't selected, or the company is moving forward with others." },
+            { label: "Rejected", detail: "Says the company is moving on." },
           ]}
         />
-        <StatCallout>
-          If the model is down or there&rsquo;s no key, a keyword heuristic takes over. The board
-          never depends on the API.
-        </StatCallout>
       </CaseSection>
 
-      <CaseSection
-        id="correct"
-        eyebrow="Correcting it"
-        title="Drag it. Edit it. It stays."
-      >
-        <p>
-          The model gets things wrong. So every card is editable, and once you touch one, sync
-          never overwrites your version.
-        </p>
+      <CaseSection id="correct" eyebrow="Correcting it" title="Drag it, edit it, it stays">
         <div className="my-8 grid gap-4 sm:grid-cols-2">
           <CaseVideo
             src={MEDIA.drag.src}
@@ -225,7 +178,7 @@ export default function GmailJobTracker() {
             width={MEDIA.drag.width}
             height={MEDIA.drag.height}
             title="Drag between columns"
-            description="The Orbital card is dragged from Applied to Interviewing. The target column shows a yellow ring, and both counts change to four."
+            description="Orbital is dragged from Applied to Interviewing and both counts change."
             caption="Drag between columns."
             flush
             tone="lavender"
@@ -236,7 +189,7 @@ export default function GmailJobTracker() {
             width={MEDIA.detail.width}
             height={MEDIA.detail.height}
             title="Edit a card"
-            description="The Halcyon card opens in a side panel. The role is retyped to Design Technologist and saved, and the card then shows the new role and an edited pill."
+            description="The Halcyon card opens in a side panel. The role is retyped and saved."
             caption="Open a card, fix the role, see it save."
             flush
             tone="butter"
@@ -248,73 +201,47 @@ export default function GmailJobTracker() {
           width={MEDIA.ignore.width}
           height={MEDIA.ignore.height}
           title="Mark not job-related"
-          description="Nimbus Data is opened and marked not job-related, and its card leaves the board. Turning on Show ignored brings it back, dimmed, in an Ignored column."
-          caption="Not job-related? One click hides it. The email is remembered, so it never comes back."
+          description="Nimbus Data is marked not job-related and leaves the board. Show ignored brings it back, dimmed."
+          caption="One click hides a non-job email for good."
           tone="sky"
         />
+        <p>
+          Once you edit a card, sync never overwrites your version.
+        </p>
       </CaseSection>
 
-      <CaseSection
-        id="privacy"
-        eyebrow="What's stored"
-        title="The board never keeps your email."
-      >
-        <p>The database holds enough to draw a card and link back to Gmail.</p>
-        <p className="text-style-eyebrow mt-8 mb-0 text-ink-muted">Stored</p>
-        <LabeledTiles
-          columns={2}
-          tiles={[
-            { label: "Subject and sender" },
-            { label: "Received date" },
-            { label: "Gmail's own snippet, 200 characters" },
-            { label: "What the classifier decided" },
-            { label: "A link to the message in Gmail" },
-          ]}
-        />
-        <p className="text-style-eyebrow mt-8 mb-0 text-ink-muted">Never stored</p>
-        <LabeledTiles
-          columns={2}
-          tiles={[
-            {
-              label: "Email bodies",
-              detail: "Read once, in memory, for classification.",
-            },
-          ]}
-        />
+      <CaseSection id="privacy" eyebrow="What's stored" title="Only card data is stored">
         <ImageFrame
           src={MEDIA.contract.src}
           width={MEDIA.contract.width}
           height={MEDIA.contract.height}
-          alt="The data-model contract from PROJECT.md, rendered as a frosted card: the SQL that defines the tables."
+          alt="The data-model contract from PROJECT.md: the SQL that defines the tables."
           caption="The data-model contract from PROJECT.md."
           tone="butter"
         />
+        <p>
+          The database holds subject, sender, date, a 200-character snippet, the classifier&rsquo;s decision and a Gmail link. Bodies are read once, in memory.
+        </p>
       </CaseSection>
 
       <CaseSection
         id="system"
         eyebrow="The design system"
-        title="Calm glass, and colour only where it means something."
+        title="Calm glass, with colour for status"
       >
-        <p>
-          The canvas is a pale blue with blurred orbs. Cards and panels are frosted glass. The
-          only real colour is status: yellow for interviewing, green for offer, red for rejected.
-          It lives on the column dot and the pills, never on the card. Cards keep their identity
-          as they move between columns. Every animation respects reduced motion.
-        </p>
         <ImageFrame
           src={MEDIA.boardFull.src}
           width={MEDIA.boardFull.width}
           height={MEDIA.boardFull.height}
-          alt="The full board: a pale blue canvas with soft blurred orbs, four frosted-glass columns of application cards, and a glass header bar."
-          caption="Canvas, orbs, glass. Status colour only on the dots and pills."
+          alt="The full board: pale blue canvas, blurred orbs, four frosted-glass columns, a glass header."
+          caption="Canvas, orbs, glass."
           tone="sky"
         />
         <ImageFrame
           src={MEDIA.header.src}
           width={MEDIA.header.width}
           height={MEDIA.header.height}
-          alt="The header bar: an Up to date toast, Synced now, a Show ignored toggle, and the Sync now and Sign out buttons."
+          alt="The header bar with a sync toast, Show ignored toggle, Sync now and Sign out buttons."
           caption="The header."
           tone="butter"
         />
@@ -323,7 +250,7 @@ export default function GmailJobTracker() {
             src={MEDIA.column.src}
             width={MEDIA.column.width}
             height={MEDIA.column.height}
-            alt="The Interviewing column with a yellow status dot and three cards: Parallax, Bluepeak Analytics and Acme Corp."
+            alt="The Interviewing column with a yellow status dot and three cards."
             caption="A column."
             size="sm"
             flush
@@ -333,75 +260,29 @@ export default function GmailJobTracker() {
             src={MEDIA.detailPanel.src}
             width={MEDIA.detailPanel.width}
             height={MEDIA.detailPanel.height}
-            alt="The side sheet for Acme Corp: editable company, role, status and notes, and two emails with Open in Gmail links."
+            alt="The Acme Corp side sheet: editable company, role, status, notes and two emails."
             caption="The detail sheet."
             size="sm"
             flush
             tone="lavender"
           />
         </div>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            { label: "Canvas and orbs" },
-            { label: "Glass: fill, hairline, top highlight" },
-            { label: "Status tones: neutral, yellow, green, red" },
-            { label: "Radii: 10 · 14 · 20 · 28 · pill" },
-            { label: "Springs: calm and soft, from one file" },
-            { label: "Reduced motion, in CSS and in code" },
-          ]}
-        />
+        <p>
+          Pale blue canvas, frosted-glass cards. Status carries the only colour: yellow interviewing, green offer, red rejected.
+        </p>
+        <p>
+          Radii run 10, 14, 20, 28 and pill. Springs come from one file.
+        </p>
       </CaseSection>
 
-      <CaseSection
-        id="build"
-        eyebrow="How I built it"
-        title="I designed the process, then ran it as a network of sessions."
-      >
-        <p>
-          I wrote the brief and the constraints. A planner turned them into a contract: stack,
-          data model, API, and which files each coder owns. Two coders built the backend and the
-          frontend in parallel, without seeing each other&rsquo;s code. An integration session ran
-          both halves together and fixed the seams with Playwright. A reviewer did a security
-          pass.
-        </p>
-        <p>
-          The redesign used the same shape: a design doc, one session for primitives, two for
-          screens, a screenshot review. Everything shipped the same day.
-        </p>
+      <CaseSection id="build" eyebrow="How I built it" title="I ran the build as five sessions">
         <SessionNetwork />
-        <p className="text-style-eyebrow mt-8 mb-0 text-ink-muted">Two contracts</p>
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            { label: "Stack decided up front" },
-            { label: "Data model as SQL, frozen" },
-            { label: "API routes and shapes" },
-            { label: "File ownership per session" },
-            { label: "Tokens once, in one file" },
-            { label: "Component props as a table" },
-          ]}
-        />
-      </CaseSection>
-
-      <CaseSection id="next" eyebrow="What I'd do next" title="Three things, in order.">
-        <LabeledTiles
-          columns={3}
-          tiles={[
-            {
-              label: "Show the model's confidence",
-              detail: "The classifier already returns it. Low-confidence cards should ask for a check.",
-            },
-            {
-              label: "Gmail push",
-              detail: "Replace the two-minute poll with a Pub/Sub subscription once it's more than one user.",
-            },
-            {
-              label: "Watch someone else use it",
-              detail: "It's built around my inbox. Other people's mail will break assumptions I can't see.",
-            },
-          ]}
-        />
+        <ul>
+          <li>I wrote the brief; a planner froze stack, data model and API.</li>
+          <li>Two coders built backend and frontend in parallel, each owning set files.</li>
+          <li>An integration session ran both halves and fixed the seams with Playwright.</li>
+          <li>A reviewer did a security pass, and the redesign reused the shape.</li>
+        </ul>
       </CaseSection>
     </CaseStudyLayout>
   );
