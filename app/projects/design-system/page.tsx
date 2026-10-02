@@ -94,7 +94,7 @@ export default function DesignSystem() {
           label="The live product"
           portrait={[
             {
-              src: "/videos/design-system/onboarding-mobile-light.mp4",
+              src: "/videos/design-system/onboarding-mobile-light-8s.mp4",
               poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
               width: 640,
               height: 1392,
@@ -170,7 +170,7 @@ export default function DesignSystem() {
 
       <CaseSection id="onboarding" eyebrow="Screens" title="Eight onboarding screens became six">
         <CaseVideo
-          src="/videos/design-system/onboarding-web-dark.mp4"
+          src="/videos/design-system/onboarding-web-dark-8s.mp4"
           poster="/images/design-system/posters/onboarding-web-dark.jpg"
           width={1440}
           height={936}
@@ -182,7 +182,7 @@ export default function DesignSystem() {
         <div className="my-8">
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
             <CaseVideo
-              src="/videos/design-system/onboarding-mobile-light.mp4"
+              src="/videos/design-system/onboarding-mobile-light-8s.mp4"
               poster="/images/design-system/posters/onboarding-mobile-light.jpg"
               width={640}
               height={1392}
