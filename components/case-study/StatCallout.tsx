@@ -1,21 +1,30 @@
 import type { ReactNode } from "react";
+import CountUp from "@/components/CountUp";
 
 interface StatCalloutProps {
-  children: ReactNode;
+  /** The headline number or short phrase. Strings with a leading number count up on first view. */
+  value?: ReactNode;
+  /** One line under the value. */
+  label?: ReactNode;
+  /** Fallback for pages not yet migrated: children render as the value, with no label. */
+  children?: ReactNode;
   /** Larger display size for a section's headline number (e.g. a final result). */
   size?: "md" | "lg";
 }
 
-/** A highlighted finding or number — the same visual language as the page header's
-    Impact aside, reused inline within a section. */
-export default function StatCallout({ children, size = "md" }: StatCalloutProps) {
+/** A headline number with a one-line label. No card, no bar. */
+export default function StatCallout({ value, label, children, size = "md" }: StatCalloutProps) {
+  const shown = value ?? children;
+  const valueClass = `font-display font-semibold leading-none text-ink ${
+    size === "lg" ? "text-display" : "text-h1"
+  }`;
+
   return (
-    <aside
-      className={`my-6 rounded-frame border border-line border-l-4 border-l-accent bg-surface-raised p-5 md:p-6 font-display font-semibold text-ink ${
-        size === "lg" ? "text-h3" : "text-h4"
-      }`}
-    >
-      {children}
-    </aside>
+    <div className="my-8">
+      <p className={valueClass}>
+        {typeof shown === "string" ? <CountUp value={shown} /> : shown}
+      </p>
+      {label && <p className="mt-3 max-w-md text-body text-ink-muted">{label}</p>}
+    </div>
   );
 }

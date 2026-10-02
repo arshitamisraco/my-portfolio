@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import PixelCloud from "@/components/PixelCloud";
+import CountUp from "@/components/CountUp";
 import TagChip from "@/components/TagChip";
 import { getCaseStudy, getListingHref, getPrevNext } from "@/lib/projects";
 
@@ -9,8 +9,13 @@ interface MetaItem {
   value: ReactNode;
 }
 
+interface Stat {
+  value: string;
+  label: string;
+}
+
+/** Deprecated: replaced by `stats`. Rendered as a single label-less stat until pages migrate. */
 interface Highlight {
-  /** The headline metric, quantitative ("55% next-day return") or qualitative. */
   stat: ReactNode;
 }
 
@@ -20,7 +25,9 @@ interface CaseStudyLayoutProps {
   title: string;
   eyebrow: string;
   summary: string;
-  /** Headline impact metric shown at the top of the header for skimming recruiters. */
+  /** Up to 3 headline numbers shown under the summary for skimming recruiters. */
+  stats?: Stat[];
+  /** @deprecated Use `stats`. */
   highlight?: Highlight;
   meta: MetaItem[];
   /** Optional "The product" primer, rendered above the visual preview/hero. */
@@ -35,6 +42,7 @@ export default function CaseStudyLayout({
   title,
   eyebrow,
   summary,
+  stats,
   highlight,
   meta,
   productIntro,
@@ -44,24 +52,22 @@ export default function CaseStudyLayout({
   const study = getCaseStudy(slug);
   const { prev, next } = getPrevNext(slug);
   const isBuild = study.category === "build";
+  const shownStats: { value: ReactNode; label?: string }[] = stats?.length
+    ? stats.slice(0, 3)
+    : highlight
+      ? [{ value: highlight.stat }]
+      : [];
 
   return (
     <article>
       {/* ================= Header ================= */}
       <header className="relative overflow-hidden border-b border-line bg-surface">
-        <PixelCloud
-          shape="wisp"
-          variant="lavender"
-          size={150}
-          className="absolute right-[6%] top-8 opacity-40"
-          aria-hidden
-        />
         <div className="container-site relative py-14 md:py-20">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2 text-caption text-ink-muted">
               <li>
                 <Link href={getListingHref(study)} className="hover:text-accent-deep">
-                  {isBuild ? "Builds" : "Projects"}
+                  {isBuild ? "Builds" : "Work"}
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
@@ -87,20 +93,23 @@ export default function CaseStudyLayout({
           </h1>
           <p className="mt-4 max-w-4xl text-body-lg text-ink-muted">{summary}</p>
 
-          {highlight && (
-            <aside
-              aria-label="Impact highlight"
-              className="mt-8 max-w-2xl rounded-frame border border-line border-l-4 border-l-accent bg-surface-raised p-5 md:p-6"
-            >
-              <p className="text-style-eyebrow text-accent-deep">Impact</p>
-              <p className="mt-2 font-display text-h3 font-semibold text-ink">
-                {highlight.stat}
-              </p>
-            </aside>
+          {shownStats.length > 0 && (
+            <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
+              {shownStats.map((stat, i) => (
+                <div key={i}>
+                  <p className="font-display text-h1 font-semibold leading-none text-ink">
+                    {typeof stat.value === "string" ? <CountUp value={stat.value} /> : stat.value}
+                  </p>
+                  {stat.label && (
+                    <p className="mt-2 text-caption text-ink-muted">{stat.label}</p>
+                  )}
+                </div>
+              ))}
+            </div>
           )}
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {study.tags.map((tag) => (
+            {study.tags.slice(0, 3).map((tag) => (
               <TagChip key={tag} tone={study.tone}>
                 {tag}
               </TagChip>

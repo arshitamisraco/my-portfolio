@@ -16,24 +16,22 @@ export default function Projects() {
     <section className="py-section">
       <div className="container-site">
         <Reveal>
-          <SectionLabel cloud>Design projects</SectionLabel>
+          <SectionLabel>Work</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            End to end design case studies.
+            Design case studies.
           </h1>
-          <p className="mt-4 text-body text-ink-muted">
-            Looking for the things I shipped end to end?{" "}
-            <Link href={BUILDS_HREF} className="text-accent-deep hover:underline">
-              See the full-stack builds →
-            </Link>
-          </p>
+          <Link
+            href={BUILDS_HREF}
+            className="mt-3 inline-block text-body font-medium text-accent-deep underline-offset-4 hover:underline"
+          >
+            Builds →
+          </Link>
         </Reveal>
 
-        {/* Narrowed, centered card column — the same layout as the home page's
-            Selected Work, which shows only the COROS AI subset of the design projects. */}
-        <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
           {DESIGN_CASE_STUDIES.map((study, i) => (
             <Reveal key={study.slug} delay={i * 0.08}>
-              <CaseStudyCard study={study} />
+              <CaseStudyCard study={study} size="half" />
             </Reveal>
           ))}
         </div>

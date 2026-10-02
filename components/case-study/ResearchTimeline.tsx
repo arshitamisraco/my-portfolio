@@ -13,7 +13,7 @@ interface ResearchTimelineProps {
 }
 
 /** A vertical research timeline: one cloud-marked node per method, each ending in its
-    own highlighted finding. Replaces prose paragraphs with a scannable sequence. */
+    own finding. Replaces prose paragraphs with a scannable sequence. */
 export default function ResearchTimeline({ steps }: ResearchTimelineProps) {
   return (
     <ol className="relative my-8 flex flex-col gap-10">
@@ -30,9 +30,12 @@ export default function ResearchTimeline({ steps }: ResearchTimelineProps) {
           </span>
           <p className="text-style-eyebrow text-accent-deep">{step.method}</p>
           <p className="mt-1 text-body text-ink-muted">{step.detail}</p>
-          <div className="rounded-frame border border-line border-l-4 border-l-accent bg-surface-raised p-4 mt-3 text-body font-medium text-ink">
+          <p className="mt-3 text-body font-medium text-ink">
+            <span aria-hidden="true" className="text-accent-strong">
+              →{" "}
+            </span>
             {step.finding}
-          </div>
+          </p>
         </li>
       ))}
     </ol>

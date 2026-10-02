@@ -22,7 +22,8 @@ export interface Clip {
  * of the COROS AI work, framed like the case studies and set adrift. Portrait
  * phone clips and landscape web clips both belong here — each sits in its own
  * frame at its own aspect. Trimmed/downscaled clips live under /coros-carousel/;
- * the rest reference their existing public paths. Tones alternate for rhythm.
+ * the rest reference their existing public paths. Tones are no longer rendered
+ * (every frame is neutral); the `tone` field is kept only so the data typechecks.
  */
 export const COROS_MIX_CLIPS: Clip[] = [
   {
@@ -102,7 +103,7 @@ export const COROS_MIX_CLIPS: Clip[] = [
 export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
   "accessibility-auditor": [
     {
-      src: "/videos/accessibility-auditor/scan.mp4",
+      src: "/videos/cards/accessibility-auditor/scan.mp4",
       poster: "/images/accessibility-auditor/posters/scan.jpg",
       width: 1440,
       height: 900,
@@ -117,7 +118,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "sky",
     },
     {
-      src: "/videos/accessibility-auditor/fix.mp4",
+      src: "/videos/cards/accessibility-auditor/fix.mp4",
       poster: "/images/accessibility-auditor/posters/fix.jpg",
       width: 1440,
       height: 900,
@@ -132,7 +133,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "lavender",
     },
     {
-      src: "/videos/accessibility-auditor/compare.mp4",
+      src: "/videos/cards/accessibility-auditor/compare.mp4",
       poster: "/images/accessibility-auditor/posters/compare.jpg",
       width: 1440,
       height: 900,
@@ -187,7 +188,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "peach",
     },
     {
-      src: "/videos/gmail-job-tracker/detail.mp4",
+      src: "/videos/cards/gmail-job-tracker/detail.mp4",
       poster: "/images/gmail-job-tracker/posters/detail.jpg",
       width: 1440,
       height: 900,
@@ -245,7 +246,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
   ],
   "my-world": [
     {
-      src: "/videos/my-world/breakthrough-widget.mp4",
+      src: "/videos/cards/my-world/breakthrough-widget.mp4",
       poster: "/images/my-world/posters/breakthrough-widget.jpg",
       width: 1322,
       height: 528,
@@ -280,7 +281,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "pink",
     },
     {
-      src: "/videos/design-system/chat-mobile-light.mp4",
+      src: "/videos/cards/design-system/chat-mobile-light.mp4",
       poster: "/images/design-system/posters/chat-mobile-light.jpg",
       width: 640,
       height: 1392,
@@ -288,7 +289,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "lavender",
     },
     {
-      src: "/videos/design-system/chat-web-dark.mp4",
+      src: "/videos/cards/design-system/chat-web-dark.mp4",
       poster: "/images/design-system/posters/chat-web-dark.jpg",
       width: 1440,
       height: 936,
@@ -296,7 +297,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "sky",
     },
     {
-      src: "/videos/design-system/onboarding-mobile-light.mp4",
+      src: "/videos/cards/design-system/onboarding-mobile-light.mp4",
       poster: "/images/design-system/posters/onboarding-mobile-light.jpg",
       width: 640,
       height: 1392,
@@ -304,7 +305,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "mint",
     },
     {
-      src: "/videos/design-system/onboarding-web-dark.mp4",
+      src: "/videos/cards/design-system/onboarding-web-dark.mp4",
       poster: "/images/design-system/posters/onboarding-web-dark.jpg",
       width: 1440,
       height: 936,
@@ -320,7 +321,7 @@ export const CASE_STUDY_CLIPS: Record<string, Clip[]> = {
       tone: "peach",
     },
     {
-      src: "/videos/design-system/personalization-web-light.mp4",
+      src: "/videos/cards/design-system/personalization-web-light.mp4",
       poster: "/images/design-system/posters/personalization-web-light.jpg",
       width: 1440,
       height: 936,

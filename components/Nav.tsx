@@ -7,11 +7,11 @@ import { BUILDS_HREF, BUILD_CASE_STUDIES, PROJECTS_HREF } from "@/lib/projects";
 import PixelCloud from "@/components/PixelCloud";
 
 const LINKS = [
-  { label: "For fun", href: "/for-fun" },
-  { label: "Projects", href: PROJECTS_HREF },
+  { label: "Work", href: PROJECTS_HREF },
   { label: "Builds", href: BUILDS_HREF },
   { label: "About", href: "/about" },
-  { label: "Resume", href: "/resume" },
+  { label: "Résumé", href: "/resume" },
+  { label: "For fun", href: "/for-fun" },
 ];
 
 const CONTACT_LINK = { label: "Contact me", href: "/contact" };

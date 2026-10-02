@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudyCard from "@/components/CaseStudyCard";
+import CountUp from "@/components/CountUp";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
@@ -8,10 +9,16 @@ import { CASE_STUDIES, PROJECTS_HREF } from "@/lib/projects";
 
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
 
+const STATS = [
+  { value: "55%", label: "next-day return" },
+  { value: "40%", label: "weekly active users" },
+  { value: "3", label: "platforms shipped" },
+];
+
 export const metadata: Metadata = {
   title: "COROS AI: an AI Coaching Platform",
   description:
-    "Arshita Misra is the founding AI designer at COROS AI, an ontological coaching platform, spanning product design, UX, prompt engineering, research, and brand.",
+    "Arshita Misra was the founding designer at COROS AI from 2025 to 2026, covering product design, UX, prompt engineering, research, and brand.",
 };
 
 export default function CorosHub() {
@@ -31,7 +38,7 @@ export default function CorosHub() {
             <ol className="flex items-center gap-2 text-caption text-ink-muted">
               <li>
                 <Link href={PROJECTS_HREF} className="hover:text-accent-deep">
-                  Projects
+                  Work
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
@@ -44,10 +51,10 @@ export default function CorosHub() {
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-10">
             <div>
               <p className="text-style-eyebrow mt-10 text-accent-deep">
-                Founding AI Designer · June 2025 – Present
+                Founding Product Designer · Jul 2025 – Aug 2026
               </p>
               <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-                COROS AI: an AI coach that transforms people in conversation.
+                COROS AI: an AI coach for professionals.
               </h1>
             </div>
 
@@ -67,29 +74,19 @@ export default function CorosHub() {
             </a>
           </div>
 
-          <div className="case-prose mt-8">
-            <p>
-              COROS AI is an AI coach based on linguistic ontology that helps professionals
-              navigate moods, repair relationships, and take action when they&rsquo;re
-              stuck. It helps you build skills that AI can&rsquo;t replace: capacity to
-              listen, to trust, to coordinate promises, to handle breakdowns in language.
-            </p>
-            <p>COROS helps users:</p>
-            <ul>
-              <li>Track and shift moods before breakdowns spiral into bigger messes.</li>
-              <li>Reflect on key relationships and how people show up in conversations.</li>
-              <li>Coordinate promises and recover from breakdowns with agility.</li>
-              <li>Create different futures by shifting moods.</li>
-            </ul>
-            <p>
-              I joined as the founding designer, and since June 2025 my work has spanned{" "}
-              <strong>
-                product design, UX, prompt engineering, user research, and brand
-              </strong>
-              , with onboarding and interaction redesigns that got{" "}
-              <strong>55%</strong> of early signups returning the next day and{" "}
-              <strong>40%</strong> of registered users active weekly.
-            </p>
+          <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
+            I led product design, UX, prompt engineering, research and brand from day one.
+          </p>
+
+          <div className="mt-10 grid max-w-3xl grid-cols-3 gap-4 border-t border-line pt-8 sm:gap-6">
+            {STATS.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-h2 font-semibold leading-none text-ink sm:text-h1">
+                  <CountUp value={stat.value} />
+                </p>
+                <p className="mt-2 text-caption text-ink-muted">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -98,9 +95,9 @@ export default function CorosHub() {
       <section className="py-section">
         <div className="container-site">
           <Reveal>
-            <SectionLabel cloud>Explore the work</SectionLabel>
+            <SectionLabel>Explore the work</SectionLabel>
             <h2 className="mt-4 max-w-2xl font-display text-h2 font-semibold text-ink">
-              Three end-to-end case studies, one product.
+              Three case studies, one product.
             </h2>
           </Reveal>
 

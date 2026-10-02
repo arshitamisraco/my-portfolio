@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { BUILDS_HREF, PROJECTS_HREF } from "@/lib/projects";
 import PixelCloud from "./PixelCloud";
 
@@ -10,7 +11,7 @@ export default function Footer() {
           <div className="max-w-sm md:max-w-none">
             <p className="font-display text-h3 font-semibold text-ink">Arshita Misra</p>
             <p className="mt-2 text-body text-ink-muted md:whitespace-nowrap">
-              Product designer crafting technology that evolves humans.
+              Product designer who ships the code.
             </p>
             <PixelCloud shape="puff" variant="pink" size={40} className="mt-6" />
           </div>
@@ -19,7 +20,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link href={PROJECTS_HREF} className="text-body text-ink-muted hover:text-accent-deep">
-                  Projects
+                  Work
                 </Link>
               </li>
               <li>
@@ -34,7 +35,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/resume" className="text-body text-ink-muted hover:text-accent-deep">
-                  Resume
+                  Résumé
+                </Link>
+              </li>
+              <li>
+                <Link href="/for-fun" className="text-body text-ink-muted hover:text-accent-deep">
+                  For fun
                 </Link>
               </li>
               <li>
@@ -51,6 +57,14 @@ export default function Footer() {
                 <Link href="/contact" className="text-body text-ink-muted hover:text-accent-deep">
                   Contact
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-body text-ink-muted hover:text-accent-deep"
+                >
+                  {CONTACT_EMAIL}
+                </a>
               </li>
             </ul>
           </nav>

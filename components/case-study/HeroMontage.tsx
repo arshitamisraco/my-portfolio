@@ -7,12 +7,12 @@ import PixelCloud from "@/components/PixelCloud";
 type FrameTone = "pink" | "lavender" | "sky" | "mint" | "butter" | "peach";
 
 const TONES: Record<FrameTone, string> = {
-  pink: "bg-surface",
-  lavender: "bg-lavender-soft",
-  sky: "bg-sky-soft",
-  mint: "bg-mint-soft",
-  butter: "bg-butter-soft",
-  peach: "bg-peach-soft",
+  pink: "bg-surface-raised",
+  lavender: "bg-surface-raised",
+  sky: "bg-surface-raised",
+  mint: "bg-surface-raised",
+  butter: "bg-surface-raised",
+  peach: "bg-surface-raised",
 };
 
 const CLOUD: Record<FrameTone, "pink" | "lavender" | "sky"> = {

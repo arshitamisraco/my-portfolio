@@ -5,39 +5,27 @@ export interface Tile {
   detail?: ReactNode;
 }
 
-const TONES = [
-  "bg-surface",
-  "bg-lavender-soft",
-  "bg-sky-soft",
-  "bg-mint-soft",
-  "bg-butter-soft",
-  "bg-peach-soft",
-];
-
 interface LabeledTilesProps {
   tiles: Tile[];
-  /** Fewer, wider columns for content-heavy tiles like the expert-review pair. */
+  /** Accepted for compatibility with existing pages; the list has no columns. */
   columns?: 2 | 3;
 }
 
-/** A responsive grid of small bordered tiles — replaces a bulleted list when the
-    items are short, parallel labels (surfaces, reviewer takeaways). */
-export default function LabeledTiles({ tiles, columns = 3 }: LabeledTilesProps) {
+/** A compact plain list of short labels, each with an optional one-line detail. */
+export default function LabeledTiles({ tiles }: LabeledTilesProps) {
   return (
-    <div
-      className={`my-6 grid gap-3 sm:grid-cols-2 ${
-        columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"
-      }`}
-    >
-      {tiles.map((tile, i) => (
-        <div
-          key={tile.label}
-          className={`rounded-frame border border-line p-4 ${TONES[i % TONES.length]}`}
-        >
-          <p className="font-display text-h4 font-semibold text-ink">{tile.label}</p>
-          {tile.detail && <p className="mt-2 text-body text-ink-muted">{tile.detail}</p>}
-        </div>
+    <ul className="my-6 flex flex-col gap-2">
+      {tiles.map((tile) => (
+        <li key={tile.label} className="text-body">
+          <span className="font-medium text-ink">{tile.label}</span>
+          {tile.detail && (
+            <>
+              {" · "}
+              <span className="text-ink-muted">{tile.detail}</span>
+            </>
+          )}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

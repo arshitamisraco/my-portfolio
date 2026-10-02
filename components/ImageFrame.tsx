@@ -38,12 +38,12 @@ const SIZES = {
 };
 
 const TONES = {
-  pink: "bg-surface",
-  lavender: "bg-lavender-soft",
-  sky: "bg-sky-soft",
-  mint: "bg-mint-soft",
-  butter: "bg-butter-soft",
-  peach: "bg-peach-soft",
+  pink: "bg-surface-raised",
+  lavender: "bg-surface-raised",
+  sky: "bg-surface-raised",
+  mint: "bg-surface-raised",
+  butter: "bg-surface-raised",
+  peach: "bg-surface-raised",
 };
 
 /**

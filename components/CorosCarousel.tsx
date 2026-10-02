@@ -2,26 +2,16 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { type Clip, COROS_MIX_CLIPS, type Tone } from "@/lib/carousel";
-import PixelCloud from "./PixelCloud";
+import { type Clip, COROS_MIX_CLIPS } from "@/lib/carousel";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 /** After a manual scroll / drag / wheel, wait this long before auto-drift resumes. */
 const RESUME_AFTER_INPUT_MS = 2200;
 
-const TONES: Record<Tone, string> = {
-  pink: "bg-surface",
-  lavender: "bg-lavender-soft",
-  sky: "bg-sky-soft",
-  mint: "bg-mint-soft",
-  butter: "bg-butter-soft",
-  peach: "bg-peach-soft",
-};
-
 /**
  * Decorative preview marquee of framed clips: a continuous row that auto-drifts
- * left over the on-brand gradient, and that the viewer can also grab and scroll
+ * left over a flat surface, and that the viewer can also grab and scroll
  * horizontally by hand (drag, wheel, or trackpad). It reads at a glance as the
  * breadth of the work — many surfaces at once, always in motion, independent of
  * any single clip's length.
@@ -39,9 +29,21 @@ const TONES: Record<Tone, string> = {
  * stills — used by projects that predate any recorded video.
  *
  * Defaults to the mixed COROS set (the featured landing-page card); pass `clips`
- * for a per-project shelf.
+ * for a per-project shelf. `height` picks the band size: "md" for full-width
+ * bands, "sm" for cards in a 2-column grid.
  */
-export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Clip[] }) {
+const HEIGHTS = {
+  md: "h-[220px] sm:h-[280px] md:h-[340px]",
+  sm: "h-[180px] sm:h-[220px] md:h-[260px]",
+} as const;
+
+export default function CorosCarousel({
+  clips = COROS_MIX_CLIPS,
+  height = "md",
+}: {
+  clips?: Clip[];
+  height?: "sm" | "md";
+}) {
   /** Render the set 3× so there's a full copy of slack on each side to wrap into. */
   const COPIES = 3;
   const marquee: Clip[] = Array.from({ length: COPIES }, () => clips).flat();
@@ -222,23 +224,8 @@ export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Cli
       /* Fixed height, not an aspect ratio: the band's height is a design
          constant, so narrowing the card just crops the shelf horizontally
          (fewer clips in frame at once) instead of shrinking the clips. */
-      className="relative h-[220px] overflow-hidden bg-gradient-to-br from-accent-soft via-surface to-sky-soft sm:h-[280px] md:h-[340px]"
+      className={`relative overflow-hidden bg-surface ${HEIGHTS[height]}`}
     >
-      {/* On-brand clouds behind the shelf, echoing the hero. Outside the
-          scroller so they hold still while the clips glide past. */}
-      <PixelCloud
-        shape="cumulus"
-        variant="pink"
-        size={120}
-        className="pointer-events-none absolute left-[4%] top-[10%] z-0 opacity-50"
-      />
-      <PixelCloud
-        shape="wisp"
-        variant="lavender"
-        size={150}
-        className="pointer-events-none absolute bottom-[8%] right-[10%] z-0 opacity-40"
-      />
-
       {/* Native horizontal scroller — auto-drifts, and grab / wheel / swipe all work. */}
       <div
         ref={boxRef}
@@ -247,9 +234,7 @@ export default function CorosCarousel({ clips = COROS_MIX_CLIPS }: { clips?: Cli
         <div className="relative flex h-[90%] w-max shrink-0 select-none items-center will-change-scroll">
           {marquee.map((clip, i) => (
             <div key={i} className="h-full shrink-0 pr-3 sm:pr-4">
-              <div
-                className={`inline-flex h-full rounded-frame border border-line p-1.5 shadow-sm sm:p-2 ${TONES[clip.tone]}`}
-              >
+              <div className="inline-flex h-full rounded-frame border border-line bg-surface-raised p-1.5 shadow-sm sm:p-2">
                 <div
                   className="relative h-full overflow-hidden rounded-[8px] bg-surface"
                   style={{

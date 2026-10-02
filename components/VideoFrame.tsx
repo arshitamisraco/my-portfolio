@@ -4,9 +4,9 @@ import PixelCloud from "./PixelCloud";
 type FrameTone = "pink" | "lavender" | "sky";
 
 const TONE_CLASSES: Record<FrameTone, string> = {
-  pink: "from-surface to-accent-soft",
-  lavender: "from-surface to-lavender-soft",
-  sky: "from-surface to-sky-soft",
+  pink: "bg-surface-raised",
+  lavender: "bg-surface-raised",
+  sky: "bg-surface-raised",
 };
 
 const TONE_CLOUD: Record<FrameTone, CloudVariant> = {
@@ -45,7 +45,7 @@ export default function VideoFrame({
       <div
         role="img"
         aria-label={`Video placeholder — ${title}. ${description}`}
-        className={`relative flex flex-col items-center justify-center gap-4 rounded-frame border border-line bg-gradient-to-br px-6 py-6 text-center ${TONE_CLASSES[tone]} ${
+        className={`relative flex flex-col items-center justify-center gap-4 rounded-frame border border-line px-6 py-6 text-center ${TONE_CLASSES[tone]} ${
           aspect === "video" ? "aspect-video" : "aspect-[4/5] max-w-md mx-auto"
         }`}
       >

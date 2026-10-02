@@ -8,7 +8,7 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Arshita Misra, founding product designer at COROS AI. Send a message or email directly.",
+    "Get in touch with Arshita Misra, product designer and design engineer. Send a message or email directly.",
 };
 
 export default function Contact() {
@@ -22,14 +22,12 @@ export default function Contact() {
         aria-hidden
       />
       <div className="container-site relative">
-        <SectionLabel cloud>Contact</SectionLabel>
+        <SectionLabel>Contact</SectionLabel>
         <h1 className="mt-6 max-w-3xl font-display text-display font-semibold text-ink">
           Let&rsquo;s talk
         </h1>
         <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
-          Whether it&rsquo;s about design, AI, a role, or something we could build together,
-          I&rsquo;d love to hear from you. Fill out the form below and it lands straight in my
-          inbox.
+          For roles, collaborations, or a quick hello.
         </p>
 
         <div className="mt-12 max-w-2xl">

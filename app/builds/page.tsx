@@ -16,23 +16,22 @@ export default function Builds() {
     <section className="py-section">
       <div className="container-site">
         <Reveal>
-          <SectionLabel cloud>Full-stack builds</SectionLabel>
+          <SectionLabel>Builds</SectionLabel>
           <h1 className="mt-4 max-w-3xl font-display text-h1 font-semibold text-ink">
-            Products that I built end to end.
+            Products I designed, built and shipped.
           </h1>
-          <p className="mt-4 text-body text-ink-muted">
-            Looking for the design case studies?{" "}
-            <Link href={PROJECTS_HREF} className="text-accent-deep hover:underline">
-              See the design projects →
-            </Link>
-          </p>
+          <Link
+            href={PROJECTS_HREF}
+            className="mt-3 inline-block text-body font-medium text-accent-deep underline-offset-4 hover:underline"
+          >
+            Design work →
+          </Link>
         </Reveal>
 
-        {/* Narrowed, centered card column — the same layout as /projects. */}
-        <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
           {BUILD_CASE_STUDIES.map((study, i) => (
             <Reveal key={study.slug} delay={i * 0.08}>
-              <CaseStudyCard study={study} />
+              <CaseStudyCard study={study} size="half" />
             </Reveal>
           ))}
         </div>
