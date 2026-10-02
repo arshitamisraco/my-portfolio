@@ -7,12 +7,11 @@ import ResearchTimeline from "@/components/case-study/ResearchTimeline";
 import StatCallout from "@/components/case-study/StatCallout";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
-import PullQuote from "@/components/PullQuote";
 
 export const metadata: Metadata = {
   title: "One Switch, Infinite Possibilities",
   description:
-    "A switch-accessible tablet game library for pre-K and kindergarten children with motor and cognitive disabilities. 2nd place out of 100+ teams at the RESNA Student Design Challenge.",
+    "A switch-accessible game library for children with disabilities.",
 };
 
 export default function Switcharoo() {
@@ -21,8 +20,12 @@ export default function Switcharoo() {
       slug="switcharoo"
       eyebrow="Accessibility · Case Study"
       title="One switch, infinite possibilities"
-      summary="A switch-accessible tablet app with a library of games for pre-K and kindergarten children with motor and cognitive disabilities. Built to run on the iPad and switch a classroom already owns."
-      highlight={{ stat: "2nd of 100+ teams · RESNA Student Design Challenge" }}
+      summary="A switch-accessible game library for pre-K children with disabilities, built for hardware classrooms already own."
+      stats={[
+        { value: "2nd", label: "of 100+ teams, RESNA" },
+        { value: "40", label: "weeks, Sept 2024 to June 2025" },
+        { value: "6", label: "games on one switch" },
+      ]}
       meta={[
         { label: "Role", value: "UX research and design lead" },
         { label: "Team", value: "Student team" },
@@ -39,69 +42,57 @@ export default function Switcharoo() {
                 src: "/images/switcharoo/library-single.png",
                 width: 2388,
                 height: 1668,
-                alt: "The Switcharoo game library: six games in a shelf, each with a star to favorite it.",
-                tone: "sky",
+                alt: "The game library.",
               },
               {
                 src: "/images/switcharoo/favorites.png",
                 width: 2388,
                 height: 1668,
-                alt: "The Favorites screen, showing three starred games.",
-                tone: "peach",
+                alt: "The Favorites screen.",
               },
               {
                 src: "/images/switcharoo/settings.png",
                 width: 2388,
                 height: 1668,
-                alt: "Settings: high-contrast mode, sound, haptics, and switch pairing.",
-                tone: "butter",
+                alt: "The Settings screen.",
               },
               {
                 src: "/images/switcharoo/selected-game-pop-the-balloon.png",
                 width: 2388,
                 height: 1668,
-                alt: "The Pop the Balloon game card: press the switch to pop balloons.",
-                tone: "mint",
+                alt: "The Pop the Balloon game card.",
               },
               {
                 src: "/images/switcharoo/selected-game-sorting-game.png",
                 width: 2388,
                 height: 1668,
-                alt: "The Sorting Game card: sort objects into the correct categories.",
-                tone: "lavender",
+                alt: "The Sorting Game card.",
               },
               {
                 src: "/images/switcharoo/selected-game-crossy-roads.png",
                 width: 2388,
                 height: 1668,
-                alt: "The Crossy Roads game card: press the switch to cross the road and avoid obstacles.",
-                tone: "pink",
+                alt: "The Crossy Roads game card.",
               },
             ],
           ]}
         />
       }
     >
-      <CaseSection id="problem" eyebrow="The problem" title="Play, minus the on-ramp">
-        <p>Users: pre-K to kindergarten children with motor and cognitive disabilities.</p>
+      <CaseSection id="problem" eyebrow="The problem" title="One switch stands in for every tap">
         <p>
-          They play with a single switch: one button standing in for every tap, drag, and
-          swipe a tablet expects.
+          Children with motor and cognitive disabilities play with one switch. They get 9% fewer
+          play opportunities.
         </p>
-        <StatCallout>
-          9% fewer play opportunities for children with disabilities, and play is where
-          motor and cognitive development happen.
-        </StatCallout>
       </CaseSection>
 
-      <CaseSection id="research" eyebrow="Research" title="Grounded in real classrooms">
+      <CaseSection id="research" eyebrow="Research" title="Four methods, one direction">
         <ResearchTimeline
           steps={[
             {
-              cloud: { shape: "puff", variant: "pink" },
+              cloud: { shape: "puff", variant: "sky" },
               method: "Interviews",
-              detail:
-                "Educators and therapists on classroom routines, learning goals, and where play falls apart.",
+              detail: "Educators and therapists.",
               finding: (
                 <>
                   &ldquo;It would be incredible to have a variety of games, because no two
@@ -115,150 +106,95 @@ export default function Switcharoo() {
             {
               cloud: { shape: "cumulus", variant: "sky" },
               method: "Field observations",
-              detail: "Watched children use tablets during playtime.",
-              finding: "Children disengage immediately when a tool is cluttered or hard to press.",
+              detail: "Children using tablets at playtime.",
+              finding: "Children disengage when a tool is cluttered.",
             },
             {
-              cloud: { shape: "wisp", variant: "lavender" },
+              cloud: { shape: "wisp", variant: "sky" },
               method: "Literature review",
-              detail: "Studies on play, disability, and development.",
-              finding: "Children with disabilities get 9% fewer play opportunities.",
+              detail: "Play, disability, and development.",
+              finding: "Play drives motor and cognitive development.",
             },
             {
               cloud: { shape: "puff", variant: "sky" },
               method: "Market analysis",
-              detail:
-                "Compared Papunet, OneSwitch, and Sensory App House on age range, price, and organization.",
-              finding: "The existing apps are too expensive, too limited, or not iPad compatible.",
+              detail: "Papunet, OneSwitch, and Sensory App House.",
+              finding: "Existing apps are costly, limited, or not iPad compatible.",
             },
           ]}
         />
       </CaseSection>
 
-      <CaseSection id="approach" eyebrow="The approach" title="What we built">
-        <p>
-          The four methods pointed the same way: switch games exist, but they&rsquo;re
-          scattered, costly, and each one teaches a single narrow skill.
-        </p>
-        <PullQuote>A library, not a game.</PullQuote>
-        <StatCallout>
-          If a child can&rsquo;t operate it with one switch, it doesn&rsquo;t belong on
-          their screen.
-        </StatCallout>
-
-        <h3>Library</h3>
+      <CaseSection id="approach" eyebrow="The approach" title="One library of switch games">
         <ImageFrame
           src="/images/switcharoo/library-single.png"
           width={2388}
           height={1668}
-          alt="The Switcharoo game library: six games in a shelf, each with a star to favorite it."
-          tone="sky"
+          alt="The game library: six games, each with a favorite star."
+          caption="The library."
         />
-
-        <h3>Favorites</h3>
         <ImageFrame
           src="/images/switcharoo/favorites.png"
           width={2388}
           height={1668}
-          alt="The Favorites screen, showing three starred games."
-          tone="peach"
+          alt="The Favorites screen with three starred games."
+          caption="Favorites."
         />
-
-        <h3>Settings</h3>
-        <p>
-          Settings sit behind Guided Access: the adult configures, the child plays.
-        </p>
         <ImageFrame
           src="/images/switcharoo/settings.png"
           width={2388}
           height={1668}
-          alt="Settings: high-contrast mode, sound, haptics, and switch pairing."
-          tone="butter"
+          alt="Settings: high contrast, sound, haptics, switch pairing."
+          caption="Settings sit behind Guided Access."
         />
-
-        <h3>Game models</h3>
         <div className="my-8 grid gap-4 sm:grid-cols-3">
           <ImageFrame
             src="/images/switcharoo/selected-game-pop-the-balloon.png"
             width={2388}
             height={1668}
-            alt="The Pop the Balloon game card: press the switch to pop balloons."
+            alt="The Pop the Balloon game card."
             flush
-            tone="mint"
           />
           <ImageFrame
             src="/images/switcharoo/selected-game-sorting-game.png"
             width={2388}
             height={1668}
-            alt="The Sorting Game card: sort objects into the correct categories."
+            alt="The Sorting Game card."
             flush
-            tone="lavender"
           />
           <ImageFrame
             src="/images/switcharoo/selected-game-stacking-blocks.png"
             width={2388}
             height={1668}
-            alt="The Stacking Blocks game card: time your press to stack blocks as tall as possible."
+            alt="The Stacking Blocks game card."
             flush
-            tone="butter"
           />
           <ImageFrame
             src="/images/switcharoo/selected-game-crossy-roads.png"
             width={2388}
             height={1668}
-            alt="The Crossy Roads game card: press the switch to cross the road and avoid obstacles."
+            alt="The Crossy Roads game card."
             flush
-            tone="sky"
           />
           <ImageFrame
             src="/images/switcharoo/selected-game-treasure-hunt.png"
             width={2388}
             height={1668}
-            alt="The Treasure Hunt game card: uncover hidden treasures on the map."
+            alt="The Treasure Hunt game card."
             flush
-            tone="peach"
           />
           <ImageFrame
             src="/images/switcharoo/selected-game-music-play.png"
             width={2388}
             height={1668}
-            alt="The Music Play game card: trigger sounds and experiment with combinations."
+            alt="The Music Play game card."
             flush
-            tone="pink"
           />
         </div>
+        <p>Existing switch games are scattered and each teaches one skill.</p>
       </CaseSection>
 
       <CaseSection id="games" eyebrow="The games" title="Six games, one press">
-        <div className="case-table overflow-x-auto">
-          <table className="w-full text-left text-body">
-            <thead>
-              <tr className="text-style-eyebrow text-ink">
-                <th className="py-2 pr-4 font-medium">Game</th>
-                <th className="py-2 font-medium">Theme</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["Pop the Balloon!", "Cause & effect"],
-                ["Sorting Game", "Classification"],
-                ["Stacking Blocks", "Timing"],
-                ["Crossy Roads", "Timing & motor planning"],
-                ["Treasure Hunt", "Exploration"],
-                ["Music Play", "Creativity"],
-              ].map(([game, theme]) => (
-                <tr key={game} className="border-b border-line last:border-0">
-                  <td className="py-2 pr-4 font-medium text-ink">{game}</td>
-                  <td className="py-2 text-ink-muted">{theme}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Every game runs on one press. The complexity is in what the press does, never in
-          what the child has to do.
-        </p>
         <div className="my-8 grid gap-4 sm:grid-cols-3">
           <CaseVideo
             src="/videos/switcharoo/pop-the-balloon.mp4"
@@ -266,8 +202,7 @@ export default function Switcharoo() {
             width={500}
             height={714}
             title="Pop the Balloon, played"
-            description="A single-switch press pops balloons drifting up the screen, one at a time."
-            tone="mint"
+            description="One switch press pops each balloon drifting up the screen."
             flush
           />
           <CaseVideo
@@ -276,8 +211,7 @@ export default function Switcharoo() {
             width={504}
             height={696}
             title="Stacking Blocks, played"
-            description="Timing a switch press to stack blocks as tall as possible."
-            tone="lavender"
+            description="Timing a switch press to stack blocks."
             flush
           />
           <CaseVideo
@@ -286,47 +220,30 @@ export default function Switcharoo() {
             width={956}
             height={714}
             title="Crossy Roads, played"
-            description="Pressing the switch to time a crossing between lanes of moving cars."
-            tone="butter"
+            description="Timing a switch press to cross lanes of moving cars."
             flush
           />
         </div>
       </CaseSection>
 
-      <CaseSection id="build" eyebrow="Build" title="Runs on what the classroom already has">
-        <p>
-          React Native (Expo). Wired, Bluetooth, and touchscreen switches. Runs on hardware
-          the classroom already owns, which is the point: no purchase required.
-        </p>
-      </CaseSection>
-
-      <CaseSection id="testing" eyebrow="Expert testing" title="Two reviews, two blind spots covered">
+      <CaseSection id="testing" eyebrow="Expert testing" title="Two expert reviews shaped it">
         <LabeledTiles
-          columns={2}
           tiles={[
             {
               label: "Mobility tech researcher",
-              detail:
-                "Market context: high contrast, accessible text, an appealing and accessible UI, press duration as a real setting rather than a buried one.",
+              detail: "High contrast, accessible text, press duration as a setting.",
             },
             {
               label: "Occupational therapist",
-              detail:
-                "The children: keep games simple, make sound and corrective feedback immediate, hide settings behind Guided Access so a child can't wander out mid-play.",
+              detail: "Simple games, immediate feedback, locked settings.",
             },
           ]}
         />
       </CaseSection>
 
-      <CaseSection id="result" eyebrow="Result" title="Where it landed">
-        <StatCallout size="lg">
-          2nd place, 100+ teams at the RESNA Student Design Challenge, judged by the
-          rehabilitation engineering and assistive technology community.
-        </StatCallout>
-        <p>
-          Next: high-contrast mode, more games, multiplayer, difficulty levels, sorting the
-          library by switch type, richer sound and haptics.
-        </p>
+      <CaseSection id="result" eyebrow="Result" title="Second place at RESNA">
+        <StatCallout value="2nd" label="of 100+ teams, RESNA" size="lg" />
+        <p>Next: multiplayer, difficulty levels, richer sound and haptics.</p>
       </CaseSection>
     </CaseStudyLayout>
   );
