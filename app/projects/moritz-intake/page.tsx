@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CaseSection from "@/components/case-study/CaseSection";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
+import HeroStills from "@/components/case-study/HeroStills";
 import QuoteCard from "@/components/case-study/QuoteCard";
 import CaseVideo from "@/components/CaseVideo";
 import ImageFrame from "@/components/ImageFrame";
@@ -36,6 +37,45 @@ export default function MoritzIntake() {
         { label: "Timeline", value: "3 days · September 2026" },
         { label: "Delivered", value: "A working TypeScript prototype behind a design switch" },
       ]}
+      hero={
+        <HeroStills
+          ariaLabel="A first look at the Moritz intake prototype"
+          rows={[
+            [
+              {
+                kind: "video",
+                src: "/videos/moritz-intake/journey.mp4",
+                poster: "/images/moritz-intake/posters/journey.jpg",
+                width: 1920,
+                height: 1200,
+                title: "The case journey",
+                description: "On a first visit, three beats play under the greeting: talk to Moritz, receive a quote and pay, lawyers take on your case.",
+                tone: "peach",
+              },
+              {
+                kind: "video",
+                src: "/videos/moritz-intake/steps.mp4",
+                poster: "/images/moritz-intake/posters/steps.jpg",
+                width: 1920,
+                height: 1200,
+                title: "Step receipts",
+                description: "The client answers a question. A receipt with a green check appears, the brief's count goes up, and Moritz asks the next question.",
+                tone: "lavender",
+              },
+              {
+                kind: "video",
+                src: "/videos/moritz-intake/submit.mp4",
+                poster: "/images/moritz-intake/posters/submit.jpg",
+                width: 1920,
+                height: 1200,
+                title: "Submitting a case",
+                description: "The review card is submitted. A card appears with a green check, the case number, and a four-step track ending in three lawyer photos.",
+                tone: "sky",
+              },
+            ],
+          ]}
+        />
+      }
     >
       <CaseSection id="customer" eyebrow="The customer" title="Moritz is an AI-native law firm">
         <ImageFrame

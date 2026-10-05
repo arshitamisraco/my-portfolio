@@ -16,7 +16,12 @@ import {
   PROJECTS_HREF,
 } from "@/lib/projects";
 
+const MORITZ_CASE_STUDY = CASE_STUDIES.find((s) => s.slug === "moritz-intake");
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
+// Moritz leads, followed by the COROS AI case studies.
+const SELECTED_CASE_STUDIES = MORITZ_CASE_STUDY
+  ? [MORITZ_CASE_STUDY, ...COROS_CASE_STUDIES]
+  : COROS_CASE_STUDIES;
 
 /*
  * Hero sky: each cloud gets a resting position (its `left`/`top`) — the
@@ -173,12 +178,12 @@ export default function Home() {
           <Reveal>
             <SectionLabel>Selected work</SectionLabel>
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
-              Three case studies from COROS AI.
+              Selected case studies.
             </h2>
           </Reveal>
 
           <div className="mx-auto mt-10 flex max-w-4xl flex-col gap-10">
-            {COROS_CASE_STUDIES.map((study, i) => (
+            {SELECTED_CASE_STUDIES.map((study, i) => (
               <Reveal key={study.slug} delay={i * 0.08}>
                 <CaseStudyCard study={study} />
               </Reveal>
