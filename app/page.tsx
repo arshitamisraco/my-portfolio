@@ -133,7 +133,7 @@ export default function Home() {
                 href={COROS_HUB_HREF}
                 className="mt-3 inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-body text-accent-strong underline-offset-4 hover:underline"
               >
-                <span className="whitespace-nowrap">Founding Product Designer @</span>
+                <span className="whitespace-nowrap">Previously Founding Product Designer @</span>
                 <Image
                   src="/images/logos/coros-ai.png"
                   alt="COROS AI"
