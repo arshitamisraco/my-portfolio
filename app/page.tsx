@@ -161,8 +161,7 @@ export default function Home() {
       </section>
 
       {/* ================= Selected Work ================= */}
-      {/* Moritz leads, then the three COROS AI case studies, stacked. The COROS
-          context is stated once in the preamble instead of on every card. */}
+      {/* Moritz leads, then the three COROS AI case studies, stacked. */}
       <section id="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
           {/* The intro runs the full site container; only the card stack below is
@@ -172,11 +171,6 @@ export default function Home() {
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
               Selected work examples
             </h2>
-            <p className="mt-5 max-w-2xl text-body-lg text-ink-muted">
-              COROS AI is an AI coach that helps professionals shift moods, repair
-              relationships, and take action when they&rsquo;re stuck. Since June 2025
-              I&rsquo;ve led its product design, UX, prompt engineering, research, and brand.
-            </p>
             <Link
               href={PROJECTS_HREF}
               className="group mt-6 inline-flex items-center gap-2 rounded-frame border border-line px-4 py-2 text-caption font-medium text-accent-deep transition-all duration-300 hover:border-accent hover:bg-surface-raised"
