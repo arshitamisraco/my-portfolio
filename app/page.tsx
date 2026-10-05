@@ -8,6 +8,11 @@ import SectionLabel from "@/components/SectionLabel";
 import { CASE_STUDIES, COROS_HUB_HREF } from "@/lib/projects";
 
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
+const MORITZ_CASE_STUDY = CASE_STUDIES.find((s) => s.slug === "moritz-intake");
+// Moritz leads, followed by the COROS AI case studies.
+const SELECTED_CASE_STUDIES = MORITZ_CASE_STUDY
+  ? [MORITZ_CASE_STUDY, ...COROS_CASE_STUDIES]
+  : COROS_CASE_STUDIES;
 
 /*
  * Hero sky: each cloud gets a resting position (its `left`/`top`) — the
@@ -156,9 +161,8 @@ export default function Home() {
       </section>
 
       {/* ================= Selected Work ================= */}
-      {/* All three case studies live here, stacked, with one short shared
-          preamble: they're all the same role at the same company, so the
-          context is stated once instead of repeated on every card. */}
+      {/* Moritz leads, then the three COROS AI case studies, stacked. The COROS
+          context is stated once in the preamble instead of on every card. */}
       <section id="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
           {/* The intro runs the full site container; only the card stack below is
@@ -166,7 +170,8 @@ export default function Home() {
           <Reveal>
             <SectionLabel cloud>Selected Work</SectionLabel>
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
-              Three end-to-end case studies, all from my work as founding designer at COROS AI.
+              Four end-to-end case studies: my latest work for Moritz, then three from my
+              time as founding designer at COROS AI.
             </h2>
             <p className="mt-5 max-w-2xl text-body-lg text-ink-muted">
               COROS AI is an AI coach that helps professionals shift moods, repair
@@ -190,7 +195,7 @@ export default function Home() {
           </Reveal>
 
           <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
-            {COROS_CASE_STUDIES.map((study, i) => (
+            {SELECTED_CASE_STUDIES.map((study, i) => (
               <Reveal key={study.slug} delay={i * 0.08}>
                 <CaseStudyCard study={study} />
               </Reveal>
