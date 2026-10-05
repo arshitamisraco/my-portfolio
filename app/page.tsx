@@ -5,7 +5,7 @@ import CaseStudyCard from "@/components/CaseStudyCard";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { CASE_STUDIES, COROS_HUB_HREF } from "@/lib/projects";
+import { CASE_STUDIES, COROS_HUB_HREF, PROJECTS_HREF } from "@/lib/projects";
 
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
 const MORITZ_CASE_STUDY = CASE_STUDIES.find((s) => s.slug === "moritz-intake");
@@ -170,28 +170,25 @@ export default function Home() {
           <Reveal>
             <SectionLabel cloud>Selected Work</SectionLabel>
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
-              Four end-to-end case studies: my latest work for Moritz, then three from my
-              time as founding designer at COROS AI.
+              Selected work examples
             </h2>
             <p className="mt-5 max-w-2xl text-body-lg text-ink-muted">
               COROS AI is an AI coach that helps professionals shift moods, repair
               relationships, and take action when they&rsquo;re stuck. Since June 2025
               I&rsquo;ve led its product design, UX, prompt engineering, research, and brand.
             </p>
-            <a
-              href="https://app.coros.ai"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={PROJECTS_HREF}
               className="group mt-6 inline-flex items-center gap-2 rounded-frame border border-line px-4 py-2 text-caption font-medium text-accent-deep transition-all duration-300 hover:border-accent hover:bg-surface-raised"
             >
-              Try what I built
+              View all
               <span
                 aria-hidden="true"
                 className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
               >
                 →
               </span>
-            </a>
+            </Link>
           </Reveal>
 
           <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
