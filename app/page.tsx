@@ -2,26 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import CaseStudyCard from "@/components/CaseStudyCard";
-import CorosCarousel from "@/components/CorosCarousel";
-import HeroIntro from "@/components/HeroIntro";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
-import { CONTACT_EMAIL } from "@/lib/contact";
-import {
-  BUILD_CASE_STUDIES,
-  BUILDS_HREF,
-  CASE_STUDIES,
-  COROS_HUB_HREF,
-  PROJECTS_HREF,
-} from "@/lib/projects";
+import { CASE_STUDIES, COROS_HUB_HREF } from "@/lib/projects";
 
-const MORITZ_CASE_STUDY = CASE_STUDIES.find((s) => s.slug === "moritz-intake");
 const COROS_CASE_STUDIES = CASE_STUDIES.filter((s) => s.company?.name === "COROS AI");
-// Moritz leads, followed by the COROS AI case studies.
-const SELECTED_CASE_STUDIES = MORITZ_CASE_STUDY
-  ? [MORITZ_CASE_STUDY, ...COROS_CASE_STUDIES]
-  : COROS_CASE_STUDIES;
 
 /*
  * Hero sky: each cloud gets a resting position (its `left`/`top`) — the
@@ -41,13 +27,16 @@ const SELECTED_CASE_STUDIES = MORITZ_CASE_STUDY
 const DRIFT_MARGIN_VW = 16;
 
 const HERO_CLOUDS = [
-  // Three clouds spread across the width: one left, one center-right, one far right.
-  { shape: "wisp", variant: "lavender", size: 120, top: "58%", left: 6, opacity: 0.4, drift: "cloud-drift-fast", delay: "-19s" },
-  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 52, opacity: 0.45, drift: "cloud-drift-slow", delay: "-103s" },
-  { shape: "wisp", variant: "pink", size: 140, top: "30%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
+  // Two light clouds anchor the left in its empty pockets (above the eyebrow,
+  // below the buttons) so the sky isn't lopsided; the fuller cluster sits right.
+  { shape: "puff", variant: "pink", size: 96, top: "6%", left: 3, opacity: 0.28, drift: "cloud-drift-slow", delay: "-29s" },
+  { shape: "wisp", variant: "lavender", size: 120, top: "82%", left: 6, opacity: 0.4, drift: "cloud-drift-fast", delay: "-19s" },
+  { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 52, opacity: 0.5, drift: "cloud-drift-slow", delay: "-103s" },
+  { shape: "cumulus", variant: "pink", size: 125, top: "22%", left: 74, opacity: 0.6, drift: "cloud-drift-mid", delay: "-106s" },
+  { shape: "puff", variant: "lavender", size: 88, top: "50%", left: 68, opacity: 0.6, drift: "cloud-drift-fast", delay: "-73s" },
+  { shape: "cumulus", variant: "sky", size: 108, top: "68%", left: 84, opacity: 0.5, drift: "cloud-drift-slow", delay: "-152s" },
+  { shape: "wisp", variant: "pink", size: 140, top: "38%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
 ] as const;
-
-const LINKEDIN_HREF = "https://www.linkedin.com/in/arshita-misra/";
 
 function CloudI({ variant }: { variant: "lavender" | "sky" }) {
   /*
@@ -78,9 +67,8 @@ function CloudI({ variant }: { variant: "lavender" | "sky" }) {
 export default function Home() {
   return (
     <>
-      {/* ================= Hero ================= */}
+      {/* ================= Hero — "Arshita Misra, as an offer" ================= */}
       <section className="relative overflow-hidden">
-        {/* Sky sits behind the hero text only; the carousel band below stays clear. */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {HERO_CLOUDS.map((cloud, i) => (
             <PixelCloud
@@ -101,44 +89,36 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="container-site relative z-10 pb-10 pt-12 md:pb-12 md:pt-16">
-          <HeroIntro>
-            <p className="inline-flex items-center gap-2 rounded-pill border border-line bg-surface-raised px-3 py-1 text-caption font-medium text-ink">
-              <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-mint-deep" />
-              Open to work
-            </p>
-
-            <h1 className="mt-6 max-w-5xl font-display text-display font-semibold text-ink">
-              <span className="group/name relative inline-block">
-                <span className="sr-only">Arshita Misra</span>
-                <span aria-hidden="true">
-                  {/* Each name is nowrap so it never splits mid-word; the space
-                      between them is the only break point, keeping "Arshita" and
-                      "Misra" whole on tight aspect ratios (e.g. iPhone SE). */}
-                  <span className="whitespace-nowrap">
-                    Arsh<CloudI variant="lavender" />ta
-                  </span>{" "}
-                  <span className="whitespace-nowrap">
-                    M<CloudI variant="sky" />sra
-                  </span>
+        <div className="container-site relative z-10 flex min-h-[78vh] flex-col justify-center py-section">
+          <p className="text-style-eyebrow text-accent-deep">Hey, I&rsquo;m</p>
+          <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.5rem,9vw+1rem,7rem)] font-semibold leading-[1.05] text-ink">
+            <span className="group/name relative inline-block">
+              <span className="sr-only">Arshita Misra</span>
+              <span aria-hidden="true">
+                {/* Each name is nowrap so it never splits mid-word; the space
+                    between them is the only break point, keeping "Arshita" and
+                    "Misra" whole on tight aspect ratios (e.g. iPhone SE). */}
+                <span className="whitespace-nowrap">
+                  Arsh<CloudI variant="lavender" />ta
+                </span>{" "}
+                <span className="whitespace-nowrap">
+                  M<CloudI variant="sky" />sra
                 </span>
               </span>
-            </h1>
-
-            <p className="mt-4 max-w-4xl text-balance font-display text-h1 font-medium text-ink">
-              Product designer who <span className="text-accent-deep">ships the code</span>.
-            </p>
-
-            <div className="mt-5 max-w-2xl">
-              <p className="text-body-lg text-ink-muted">
-                From user research to production React on web, iOS and Android, I owned the
-                whole product surface at an AI startup.
-              </p>
+            </span>
+          </h1>
+          <p className="mt-6 max-w-5xl text-balance font-display text-h1 font-medium text-ink">
+            A <span className="text-accent-deep">Product designer who engineers</span>,{" "}
+            crafting technology that evolves humans.
+          </p>
+          <div className="mt-8 flex max-w-3xl flex-col gap-y-1 text-body-lg text-ink-muted">
+            <p>
+              Previously{" "}
               <Link
                 href={COROS_HUB_HREF}
-                className="mt-3 inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-body text-accent-strong underline-offset-4 hover:underline"
+                className="inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-accent-strong underline-offset-4 hover:underline"
               >
-                <span className="whitespace-nowrap">Previously Founding Product Designer @</span>
+                <span className="whitespace-nowrap">Founding Product Designer @</span>
                 <Image
                   src="/images/logos/coros-ai.png"
                   alt="COROS AI"
@@ -147,82 +127,74 @@ export default function Home() {
                   className="inline-block"
                 />
               </Link>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href="#selected-work" variant="secondary">
-                See the work ↓
-              </Button>
-              <Button href="/resume" variant="secondary">
-                Résumé
-              </Button>
-              <Button href={`mailto:${CONTACT_EMAIL}`} variant="secondary">
-                Email me
-              </Button>
-            </div>
-          </HeroIntro>
+            </p>
+          </div>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Button href="#selected-work">See my work ↓</Button>
+            <Button href="/about" variant="secondary">
+              About me
+            </Button>
+            <Button href="/contact" variant="secondary">
+              Contact me
+            </Button>
+          </div>
         </div>
+
+        {/* Cloud-themed scroll cue, floating at the base of the hero */}
+        <Link
+          href="#selected-work"
+          aria-label="Scroll to selected work"
+          className="group absolute bottom-0 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center opacity-80 transition-opacity duration-300 hover:opacity-100"
+        >
+          <span className="scroll-hint relative flex flex-col items-center">
+            <PixelCloud shape="puff" variant="sky" size={40} />
+            <span aria-hidden="true" className="-mt-1 text-accent-deep">
+              ↓
+            </span>
+          </span>
+        </Link>
       </section>
 
-      {/* Full-bleed band of COROS AI screens, decorative. */}
-      <div className="overflow-hidden">
-        <div className="full-bleed" aria-hidden="true">
-          <CorosCarousel />
-        </div>
-        <p className="sr-only">Screens from COROS AI</p>
-      </div>
-
       {/* ================= Selected Work ================= */}
+      {/* All three case studies live here, stacked, with one short shared
+          preamble: they're all the same role at the same company, so the
+          context is stated once instead of repeated on every card. */}
       <section id="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
+          {/* The intro runs the full site container; only the card stack below is
+              narrowed and centered so it reads as a focused list. */}
           <Reveal>
-            <SectionLabel>Selected work</SectionLabel>
+            <SectionLabel cloud>Selected Work</SectionLabel>
             <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
-              Selected case studies.
+              Three end-to-end case studies, all from my work as founding designer at COROS AI.
             </h2>
+            <p className="mt-5 max-w-2xl text-body-lg text-ink-muted">
+              COROS AI is an AI coach that helps professionals shift moods, repair
+              relationships, and take action when they&rsquo;re stuck. Since June 2025
+              I&rsquo;ve led its product design, UX, prompt engineering, research, and brand.
+            </p>
+            <a
+              href="https://app.coros.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-6 inline-flex items-center gap-2 rounded-frame border border-line px-4 py-2 text-caption font-medium text-accent-deep transition-all duration-300 hover:border-accent hover:bg-surface-raised"
+            >
+              Try what I built
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0"
+              >
+                →
+              </span>
+            </a>
           </Reveal>
 
-          <div className="mx-auto mt-10 flex max-w-4xl flex-col gap-10">
-            {SELECTED_CASE_STUDIES.map((study, i) => (
+          <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-14">
+            {COROS_CASE_STUDIES.map((study, i) => (
               <Reveal key={study.slug} delay={i * 0.08}>
                 <CaseStudyCard study={study} />
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= Builds ================= */}
-      <section className="pb-section">
-        <div className="container-site">
-          <Reveal>
-            <SectionLabel>Built end to end</SectionLabel>
-            <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold text-ink">
-              Two products designed, built and shipped solo, each in a day.
-            </h2>
-          </Reveal>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {BUILD_CASE_STUDIES.map((study, i) => (
-              <Reveal key={study.slug} delay={i * 0.08}>
-                <CaseStudyCard study={study} size="half" />
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-            <Link
-              href={PROJECTS_HREF}
-              className="text-body font-medium text-accent-deep underline-offset-4 hover:underline"
-            >
-              All design work →
-            </Link>
-            <Link
-              href={BUILDS_HREF}
-              className="text-body font-medium text-accent-deep underline-offset-4 hover:underline"
-            >
-              All builds →
-            </Link>
           </div>
         </div>
       </section>
@@ -234,25 +206,24 @@ export default function Home() {
             <div className="flex items-start gap-5">
               <PixelCloud shape="cumulus" variant="pink" size={72} className="mt-1 shrink-0" />
               <p className="max-w-xl font-display text-h2 font-medium text-ink">
-                Hiring a designer who can ship the whole thing?
+                Currently designing the future of AI coaching at COROS AI.
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="flex flex-wrap gap-4 md:flex-nowrap">
-              <Button href={`mailto:${CONTACT_EMAIL}`} variant="secondary">
-                Email me
-              </Button>
-              <Button href="/resume" variant="secondary" className="shrink-0 whitespace-nowrap">
-                Résumé
-              </Button>
               <Button
-                href={LINKEDIN_HREF}
+                href="https://www.linkedin.com/in/arshita-misra/"
                 external
-                variant="secondary"
                 className="shrink-0 whitespace-nowrap"
               >
-                LinkedIn
+                Say hi on LinkedIn
+              </Button>
+              <Button href="/about" variant="secondary" className="shrink-0 whitespace-nowrap">
+                More about me
+              </Button>
+              <Button href="/contact" variant="secondary" className="shrink-0 whitespace-nowrap">
+                Get in touch
               </Button>
             </div>
           </Reveal>
