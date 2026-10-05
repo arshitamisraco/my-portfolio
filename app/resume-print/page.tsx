@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 const CONTACT: { label: string; href?: string }[] = [
   { label: "arshita.co", href: "https://arshita.co" },
   { label: "Seattle, WA" },
-  { label: "arshitamisraco@gmail.com", href: "mailto:arshitamisraco@gmail.com" },
+  {
+    label: "arshitamisraco@gmail.com",
+    href: "mailto:arshitamisraco@gmail.com",
+  },
   { label: "+1 (206) 777-5333" },
   {
     label: "linkedin.com/in/arshita-misra",
@@ -36,54 +39,52 @@ interface PrintRole {
 const EXPERIENCE: PrintRole[] = [
   {
     title: "Founding Product Designer",
-    org: "COROS AI (AI coaching startup)",
-    date: "Jul 2025 – Present",
+    org: "COROS AI (B2C SaaS AI coaching startup)",
+    date: "Jul 2025 – Aug 2026",
     location: "Seattle, WA",
     points: [
       <>
-        Designed and shipped an AI coaching product 0 to 1 across web, iOS, and Android,
-        from IA to high-fidelity responsive UI, taking it from concept to launch in{" "}
-        <strong>2 months</strong>.
+        Executed end-to-end design of an AI coaching product{" "}
+        <strong>0 to 1</strong> across web, iOS, and Android, from ideation to
+        high-fidelity responsive UI and front-end, taking it from concept to
+        launch in <strong>2 months</strong>.
       </>,
       <>
-        Shipped widgets in production code (TypeScript + React on Next.js using Claude
-        Code), delivering working builds to engineers instead of static handoffs.
+        Redesigned onboarding and core app experiences from 1:1 customer
+        interviews, lifting new-signup next-day return to <strong>55%</strong>{" "}
+        and weekly active users to <strong>40%</strong>, measured by Mixpanel.
       </>,
       <>
-        Redesigned onboarding and the app experience post-launch; <strong>55%</strong> of
-        early signups returned the next day and <strong>40%</strong> of registered users
-        are weekly actives.
+        Led migration from MUI to a token-driven shadcn/Tailwind design system
+        (54+ semantic tokens, light/dark, published Figma libraries), cutting
+        design-to-review cycles from <strong>days to hours</strong>.
       </>,
       <>
-        Wrote and versioned the LLM prompts generating every on-screen element and
-        designed the memory/RAG retrieval logic behind the session history system.
+        Authored the LLM prompts generating every on-screen element,
+        prompt-engineered the memory/RAG retrieval logic behind session history,
+        and built a Streamlit QA harness to validate model outputs.
       </>,
       <>
-        Built a Streamlit QA harness that validates model outputs field-by-field against
-        schema rules, cutting prompt-iteration cycles from <strong>days to minutes</strong>.
-      </>,
-      <>
-        Led migration from Material UI to a token-driven shadcn/Tailwind system (54+
-        semantic tokens, light/dark, published Figma library), cutting design-to-review
-        cycles from <strong>days to hours</strong>.
+        Established brand identity and an investment pitch deck that led to the
+        first round of investment.
       </>,
     ],
   },
   {
-    title: "UX Design Intern",
-    org: "Nitecapp (Hospitality training startup)",
-    date: "Mar – Dec 2024",
+    title: "UI/UX Design Intern",
+    org: "Nitecapp (B2B hospitality and beverage startup)",
+    date: "Jun – Sep 2024",
     location: "Seattle, WA",
     points: [
       <>
-        Increased average tip size <strong>15%</strong> at a pilot bar venue by designing
-        a gamified system (badges, streaks, progress bars) that turned backend metrics
-        into real-time, actionable feedback.
+        Increased average tip size <strong>15%</strong> at a pilot bar venue by
+        designing a gamified system (badges, streaks, progress bars) that turned
+        backend analytics into real-time, actionable feedback.
       </>,
       <>
-        Designed <strong>30+ screens</strong> across 5 core flows handling real-time
-        updates, offline sync, and delayed-data states, cutting core workflows to{" "}
-        <strong>under 4 taps</strong>.
+        Designed <strong>30+ screens</strong> across 5 core flows, handling
+        real-time updates, offline sync, and delayed-data states, cutting core
+        workflows to <strong>under 4 taps</strong>.
       </>,
     ],
   },
@@ -91,26 +92,48 @@ const EXPERIENCE: PrintRole[] = [
 
 const PROJECTS: PrintRole[] = [
   {
+    title: "Gmail Job Tracker",
+    org: "Full-stack Product Builder",
+    date: "Sep 2026",
+    points: [
+      <>
+        Built with Claude Code (Next.js, SQLite); an LLM classifier auto-sorts{" "}
+        <strong>200+</strong> emails with <strong>96%</strong> needing no
+        correction.
+      </>,
+    ],
+  },
+  {
+    title: "WCAG Accessibility Auditor",
+    org: "Full-stack Product Builder",
+    date: "Sep 2026",
+    points: [
+      <>
+        Built with Claude Code (Playwright, axe-core, Postgres), flagging{" "}
+        <strong>900+</strong> WCAG issues across <strong>25</strong> sites.
+      </>,
+    ],
+  },
+  {
     title: "Switcharoo",
-    org: "Product Designer, RESNA Student Accessibility Design Challenge",
+    org: "UX Designer and User Researcher",
     date: "Sep 2024 – Jun 2025",
     points: [
       <>
-        Won <strong>2nd of 100 teams worldwide</strong> with a WCAG-compliant,
-        switch-accessible tablet app that reduced adult mediation during peer play for 13
-        children with motor and cognitive disabilities.
+        Won <strong>2nd of 100 teams worldwide</strong> (RESNA Accessibility
+        Design Challenge) with a switch-accessible game library.
       </>,
     ],
   },
   {
     title: "Edmonds Historical Museum",
-    org: "UX Designer, Senior Capstone",
+    org: "UI/UX Designer, Senior Capstone",
     date: "Jan – Jun 2025",
     points: [
       <>
-        Increased exhibit publishing capacity from <strong>250 to 30,000+ items</strong>{" "}
-        and helped secure a <strong>$20,000 grant</strong> by designing a modular
-        publishing platform and design system.
+        Grew exhibit capacity from <strong>250 to 30,000+ items</strong> and
+        helped secure a <strong>$20,000 grant</strong> with a modular publishing
+        app.
       </>,
     ],
   },
@@ -121,18 +144,21 @@ const SKILLS: { group: string; items: string[] }[] = [
     group: "AI & emerging tech",
     items: [
       "Prompt engineering",
+      "Context engineering",
       "RAG",
       "Agentic AI",
       "LLM prompt QA",
       "Claude Code",
       "Figma Make",
       "UX Pilot",
+      "Cursor",
     ],
   },
   {
     group: "Design",
     items: [
       "Figma",
+      "Adobe XD",
       "Adobe CC",
       "Design systems & tokens",
       "Prototyping",
@@ -142,13 +168,21 @@ const SKILLS: { group: string; items: string[] }[] = [
   },
   {
     group: "Engineering",
-    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Python", "SQL"],
+    items: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Three.js",
+      "Tailwind CSS",
+      "JavaScript",
+      "Python",
+    ],
   },
   {
     group: "Research",
     items: [
       "Usability testing",
-      "Interviews",
+      "Qualitative & quantitative research",
       "Journey mapping",
       "Personas",
       "Competitive analysis",
@@ -162,12 +196,21 @@ function SectionHeading({ children }: { children: string }) {
       <h2 className="text-[13px] font-semibold uppercase leading-none tracking-[0.14em] text-accent-deep">
         {children}
       </h2>
-      <div aria-hidden="true" className="mb-[9px] mt-[3px] border-t border-line" />
+      <div
+        aria-hidden="true"
+        className="mb-[9px] mt-[3px] border-t border-line"
+      />
     </div>
   );
 }
 
-function Entry({ role, compact = false }: { role: PrintRole; compact?: boolean }) {
+function Entry({
+  role,
+  compact = false,
+}: {
+  role: PrintRole;
+  compact?: boolean;
+}) {
   return (
     <div className={compact ? "mb-[8px]" : "mb-[11px]"}>
       <div className="flex items-baseline justify-between gap-3">
@@ -180,7 +223,9 @@ function Entry({ role, compact = false }: { role: PrintRole; compact?: boolean }
             </span>
           )}
         </h3>
-        <p className="shrink-0 text-[12px] font-medium text-ink-muted">{role.date}</p>
+        <p className="shrink-0 text-[12px] font-medium text-ink-muted">
+          {role.date}
+        </p>
       </div>
       {role.location && (
         <div className="flex items-baseline justify-between gap-3">
@@ -247,7 +292,10 @@ export default function ResumePrint() {
                 <span key={c.label}>
                   {i > 0 && "   ·   "}
                   {c.href ? (
-                    <a href={c.href} className="text-ink-muted underline underline-offset-2">
+                    <a
+                      href={c.href}
+                      className="text-ink-muted underline underline-offset-2"
+                    >
                       {c.label}
                     </a>
                   ) : (
@@ -257,8 +305,9 @@ export default function ResumePrint() {
               ))}
             </p>
             <p className="mt-[4px] text-center text-[12px] leading-[1.4] text-ink-muted">
-              Product designer and design engineer at the intersection of UX, AI systems, and design systems, shipping end-to-end from
-research and IA to high-fidelity UI, LLM prompts, and production frontend.
+              Product designer and design engineer at the intersection of UX, AI
+              systems, and design systems, shipping end-to-end from research and
+              IA to high-fidelity UI, LLM prompts, and production frontend.
             </p>
           </header>
 
@@ -278,7 +327,9 @@ research and IA to high-fidelity UI, LLM prompts, and production frontend.
             <div className="mb-[10px] space-y-[2px]">
               {SKILLS.map((s) => (
                 <p key={s.group} className="text-[12px] leading-[1.5] text-ink">
-                  <strong className="font-semibold text-ink">{s.group}: </strong>
+                  <strong className="font-semibold text-ink">
+                    {s.group}:{" "}
+                  </strong>
                   {s.items.join(", ")}
                 </p>
               ))}
@@ -290,7 +341,9 @@ research and IA to high-fidelity UI, LLM prompts, and production frontend.
                 <h3 className="font-display text-[16px] font-semibold text-ink">
                   University of Washington
                 </h3>
-                <p className="shrink-0 text-[12px] text-ink-muted">Seattle, WA</p>
+                <p className="shrink-0 text-[12px] text-ink-muted">
+                  Seattle, WA
+                </p>
               </div>
               <div className="mt-[1px] flex items-baseline justify-between gap-3">
                 <p className="text-[12px] leading-[1.5] text-ink">
@@ -302,12 +355,7 @@ research and IA to high-fidelity UI, LLM prompts, and production frontend.
                 </p>
               </div>
               <p className="mt-[3px] text-[12px] font-medium text-ink">
-                Dean&rsquo;s List · GPA 3.8 / 4.0
-              </p>
-              <p className="mt-[2px] text-[12px] leading-[1.5] text-ink-muted">
-                Coursework: Designing for AI, Human-Computer Interaction, Data &amp;
-                Information Visualization, Accessible Design, Design Systems and
-                Libraries, Service Design, Intro to Machine Learning
+                Dean&rsquo;s List · Major GPA 3.93 / 4.0
               </p>
             </div>
           </div>

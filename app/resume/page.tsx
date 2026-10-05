@@ -29,98 +29,137 @@ const ROLES: Role[] = [
     company: "COROS AI",
     points: [
       <>
-        Designed an AI coaching product <strong className="text-ink">0 to 1</strong> across
-        web, iOS, and Android, covering ideation, wireframes, and user flows through
-        high-fidelity responsive UI and front-end, taking it from concept to launch in{" "}
+        Executed end-to-end design of an AI coaching product{" "}
+        <strong className="text-ink">0 to 1</strong> across web, iOS, and
+        Android, from ideation, mockups, and user flows to high-fidelity
+        responsive UI and front-end, taking it from concept to launch in{" "}
         <strong className="text-ink">2 months</strong>.
       </>,
       <>
-        Shipped prototypes and interactive widgets as production code (TypeScript, React,
-        Next.js with Claude Code), replacing static handoffs with working builds.
+        Created prototypes and interactive widgets demonstrating
+        micro-interactions, then shipped them as production code (TypeScript,
+        React, Next.js using Claude Code), replacing static handoffs with
+        working builds.
       </>,
       <>
-        Redesigned onboarding and core experiences like chat and settings from 1:1 customer
-        interviews, lifting new-signup next-day return to{" "}
+        Redesigned onboarding and core app experiences from 1:1 customer
+        interviews and usability findings, lifting new-signup next-day return to{" "}
         <strong className="text-ink">55%</strong> and weekly active users to{" "}
-        <strong className="text-ink">40%</strong>.
+        <strong className="text-ink">40%</strong>, measured by Mixpanel.
       </>,
       <>
-        Led migration from MUI to a token-driven shadcn/Tailwind design system (54+ semantic
-        tokens, reusable components, light/dark, published Figma library), cutting
-        design-to-review cycles from <strong className="text-ink">days to hours</strong>.
+        Led migration from MUI to a token-driven shadcn/Tailwind design system
+        (54+ semantic tokens, design patterns, light/dark, published Figma
+        component libraries), cutting design-to-review cycles from{" "}
+        <strong className="text-ink">days to hours</strong>.
       </>,
       <>
-        Authored the LLM prompts generating every on-screen element, prompt-engineered the
-        memory/RAG retrieval behind session history, and built a Streamlit QA harness to
-        validate model outputs.
+        Authored the LLM prompts generating every on-screen element,
+        prompt-engineered the memory/RAG retrieval logic behind session history,
+        and built a Streamlit QA harness to validate model outputs.
       </>,
       <>
-        Established brand identity (logo, typography, marketing posts, short-form video,
-        and an investment pitch deck) that helped land the first round of investment.
+        Invented design narratives to communicate decisions to diverse
+        stakeholders and created an internal tool that let founders, PMs, and
+        engineers evaluate AI responses and collaborate in an agile environment.
+      </>,
+      <>
+        Established brand identity, logo, and typography in Adobe Creative
+        Cloud, and designed marketing visuals (posts, short-form video, and an
+        investment pitch deck) that led to the first round of investment.
       </>,
     ],
-    tags: ["Product design", "Design systems", "AI prototyping", "Prompt engineering"],
+    tags: [
+      "Product design",
+      "Design systems",
+      "AI prototyping",
+      "Prompt engineering",
+    ],
   },
   {
-    date: "Mar — Dec 2024",
+    date: "Jun — Sep 2024",
     title: "UI/UX Design Intern",
     company: "Nitecapp",
     points: [
       <>
-        Increased average tip size <strong className="text-ink">15%</strong> at a pilot bar
-        venue with a gamified system (badges, streaks, progress bars) that turned backend
-        metrics into real-time, actionable feedback.
+        Increased average tip size <strong className="text-ink">15%</strong> at
+        a pilot bar venue by designing a gamified system (badges, streaks,
+        progress bars) that turned backend analytics into real-time, actionable
+        feedback.
       </>,
       <>
-        Designed <strong className="text-ink">30+ screens</strong> across 5 core flows
-        handling real-time updates, offline sync, and delayed-data states, cutting core
-        workflows to <strong className="text-ink">under 4 taps</strong>.
+        Designed <strong className="text-ink">30+ screens</strong> across 5 core
+        flows and wrote documentation, handling real-time updates, offline sync,
+        and delayed-data states, cutting core workflows to{" "}
+        <strong className="text-ink">under 4 taps</strong>.
       </>,
     ],
     tags: ["UX design", "Gamification", "Field research"],
   },
+];
+
+/* ---------- Projects ---------- */
+const PROJECTS: Role[] = [
   {
-    date: "Jul — Sep 2023",
-    title: "UI/UX Design Intern",
-    company: "Droisys",
+    date: "Sep 2026",
+    title: "Gmail Job Tracker",
+    company: "Full-stack Product Builder",
     points: [
       <>
-        Lifted retention and session duration in a spiritual wellness app by redesigning
-        its mobile interface in Adobe XD, restructuring information architecture and user
-        flows against user research findings.
+        Built a full-stack Gmail job tracker end to end with Claude Code
+        (TypeScript, React, Next.js, SQLite), using an LLM classifier to
+        auto-sort <strong className="text-ink">200+</strong> application emails
+        into pipeline stages with <strong className="text-ink">96%</strong>{" "}
+        needing no manual correction.
       </>,
     ],
-    tags: ["Mobile design", "Information architecture"],
+    tags: ["Next.js", "LLM classifier", "SQLite"],
+  },
+  {
+    date: "Sep 2026",
+    title: "WCAG Accessibility Auditor",
+    company: "Full-stack Product Builder",
+    points: [
+      <>
+        Built an AI accessibility auditor with Claude Code that queues scans
+        (Inngest), tests pages (Playwright, axe-core), stores history
+        (Postgres), and tracks usage (PostHog), flagging{" "}
+        <strong className="text-ink">900+</strong> WCAG issues across{" "}
+        <strong className="text-ink">25</strong> sites.
+      </>,
+    ],
+    tags: ["Playwright", "axe-core", "Postgres"],
   },
   {
     date: "Sep 2024 — Jun 2025",
-    title: "UI/UX Designer & User Researcher",
-    company: "Switcharoo, RESNA Accessibility Challenge",
+    title: "Switcharoo",
+    company: "UX Designer & User Researcher",
     points: [
       <>
-        Won <strong className="text-ink">2nd of 100 teams worldwide</strong> in the RESNA
-        Accessibility Design Challenge with a WCAG-compliant, switch-accessible tablet app
-        that reduced adult mediation during play for children with motor and cognitive
-        disabilities.
-      </>,
-      <>
-        Ran 1:1 interviews with teachers, classroom field observations, and scripted
-        usability tests with <strong className="text-ink">25 children</strong> to shape the
-        interface and app experience.
+        Won <strong className="text-ink">2nd of 100 teams worldwide</strong> in
+        the RESNA Accessibility Design Challenge with a WCAG-compliant,
+        switch-accessible game library that cut caretaker support from{" "}
+        <strong className="text-ink">
+          1 per child to 1 per classroom of 20
+        </strong>
+        , scoped through teacher interviews and usability tests with 25
+        children.
       </>,
     ],
     tags: ["Accessibility", "User research"],
   },
   {
     date: "Jan — Jun 2025",
-    title: "UX Designer, Senior Capstone",
-    company: "Edmonds Historical Museum",
+    title: "Edmonds Historical Museum",
+    company: "UI/UX Designer, Senior Capstone",
     points: [
       <>
-        Scaled exhibit publishing capacity from{" "}
-        <strong className="text-ink">250 to 30,000+ items</strong> and secured a{" "}
-        <strong className="text-ink">$20K grant</strong> with a modular platform, design
-        system, and expansion roadmap.
+        Increased exhibit publishing capacity from{" "}
+        <strong className="text-ink">250 to 30,000+ items</strong> and helped
+        negotiate and secure a{" "}
+        <strong className="text-ink">$20,000 grant</strong> by designing a
+        user-friendly modular publishing web application and reliable design
+        system.
       </>,
     ],
     tags: ["Design systems", "Strategy"],
@@ -140,9 +179,10 @@ const SKILLS: { group: string; tone: ChipTone; items: string[] }[] = [
       "LLM prompt QA",
       "AI-assisted prototyping",
       "Claude Code",
-      "Cursor",
       "Figma Make",
       "UX Pilot",
+      "Cursor",
+      "Dynamic meta prompting",
     ],
   },
   {
@@ -150,6 +190,7 @@ const SKILLS: { group: string; tone: ChipTone; items: string[] }[] = [
     tone: "lavender",
     items: [
       "Figma",
+      "Adobe XD",
       "Adobe CC",
       "Design systems & tokens",
       "Wireframing & prototyping",
@@ -165,11 +206,11 @@ const SKILLS: { group: string; tone: ChipTone; items: string[] }[] = [
       "TypeScript",
       "React",
       "Next.js",
+      "Three.js",
       "Tailwind CSS",
       "HTML/CSS",
       "JavaScript",
       "Python",
-      "Git",
     ],
   },
   {
@@ -184,6 +225,50 @@ const SKILLS: { group: string; tone: ChipTone; items: string[] }[] = [
     ],
   },
 ];
+
+function EntryList({ items }: { items: Role[] }) {
+  return (
+    <div className="mt-10 space-y-0">
+      {items.map((role, i) => (
+        <Reveal key={role.title} delay={i * 0.05}>
+          <div className="grid gap-4 border-t border-line py-16 first:border-t-0 first:pt-0 md:grid-cols-[1fr_2fr] md:gap-12">
+            {/* Left: meta */}
+            <div>
+              <p className="text-style-eyebrow text-accent-deep">{role.date}</p>
+              <h2 className="mt-3 font-display text-h3 font-semibold text-ink">
+                {role.title}
+              </h2>
+              <p className="mt-1 text-body text-ink-muted">{role.company}</p>
+            </div>
+
+            {/* Right: metric-led points + tags */}
+            <div>
+              <ul className="space-y-3">
+                {role.points.map((p, j) => (
+                  <li
+                    key={j}
+                    className="relative pl-6 text-body-lg text-ink-muted"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-2.5 h-2 w-2 bg-accent"
+                    />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {role.tags.map((t) => (
+                  <TagChip key={t}>{t}</TagChip>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
 
 export default function Resume() {
   return (
@@ -206,9 +291,10 @@ export default function Resume() {
             Product Designer &amp; Design Engineer
           </p>
           <p className="mt-6 max-w-2xl text-body-lg text-ink-muted">
-            Working across UX, AI, systems thinking, and design systems, and shipping
-            end-to-end: research, information architecture, and visual design through to
-            high-fidelity UI, LLM prompts, and production front-end.
+            Working at the intersection of UX, AI, systems thinking, and design
+            systems, and shipping end-to-end: research, information
+            architecture, and visual design through to high-fidelity UI, LLM
+            prompts, and production front-end.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             {/* Opens the hosted résumé in Google Drive's viewer (new tab). */}
@@ -236,51 +322,23 @@ export default function Resume() {
             Experience
           </SectionLabel>
 
-          <div className="mt-10 space-y-0">
-            {ROLES.map((role, i) => (
-              <Reveal key={role.company} delay={i * 0.05}>
-                <div className="grid gap-4 border-t border-line py-16 first:border-t-0 first:pt-0 md:grid-cols-[1fr_2fr] md:gap-12">
-                  {/* Left: meta */}
-                  <div>
-                    <p className="text-style-eyebrow text-accent-deep">{role.date}</p>
-                    <h2 className="mt-3 font-display text-h3 font-semibold text-ink">
-                      {role.title}
-                    </h2>
-                    <p className="mt-1 text-body text-ink-muted">{role.company}</p>
-                  </div>
-
-                  {/* Right: metric-led points + tags */}
-                  <div>
-                    <ul className="space-y-3">
-                      {role.points.map((p, j) => (
-                        <li
-                          key={j}
-                          className="relative pl-6 text-body-lg text-ink-muted"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="absolute left-0 top-2.5 h-2 w-2 bg-accent"
-                          />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {role.tags.map((t) => (
-                        <TagChip key={t}>{t}</TagChip>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <EntryList items={ROLES} />
         </div>
       </section>
 
-      {/* ================= Education + Leadership ================= */}
+      {/* ================= Projects ================= */}
+      <section className="border-t border-line py-section">
+        <div className="container-site">
+          <SectionLabel cloud cloudVariant="pink">
+            Projects
+          </SectionLabel>
+          <EntryList items={PROJECTS} />
+        </div>
+      </section>
+
+      {/* ================= Education ================= */}
       <section className="border-t border-line bg-surface py-section">
-        <div className="container-site space-y-14">
+        <div className="container-site">
           {/* Education */}
           <Reveal>
             <div>
@@ -305,41 +363,13 @@ export default function Resume() {
                 {/* Right: details */}
                 <div>
                   <p className="text-body-lg text-ink-muted">
-                    Dean&rsquo;s List · GPA 3.93 / 4.0
+                    Dean&rsquo;s List · Major GPA 3.93 / 4.0
                   </p>
                   <p className="mt-3 text-body-lg text-ink-muted">
-                    Coursework: Designing for AI, Human-Computer Interaction, Data
-                    Visualization, Accessible Design, Design Systems &amp; Libraries,
-                    Visual Communication Design, UI Design, UX Design
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Leadership */}
-          <Reveal delay={0.05}>
-            <div>
-              <SectionLabel cloud cloudVariant="sky">
-                Leadership
-              </SectionLabel>
-              <div className="mt-10 grid gap-4 md:grid-cols-[1fr_2fr] md:gap-12">
-                {/* Left: meta */}
-                <div>
-                  <p className="text-style-eyebrow text-accent-deep">Sep – Dec 2023</p>
-                  <h2 className="mt-3 font-display text-h3 font-semibold text-ink">
-                    Engineering Peer Educator
-                  </h2>
-                  <p className="mt-1 text-body text-ink-muted">
-                    UW College of Engineering
-                  </p>
-                </div>
-
-                {/* Right: details */}
-                <div>
-                  <p className="text-body-lg text-ink-muted">
-                    Earned a 92% excellent-and-friendly rating across weekly mentorship
-                    sessions on communication and collaboration skills.
+                    Relevant coursework: Designing for AI, Human-Computer
+                    Interaction (HCI), Data Visualization, Accessible Design,
+                    Design Systems &amp; Libraries, Visual Communication Design,
+                    User Interface Design (UI), User Experience Design (UX)
                   </p>
                 </div>
               </div>
@@ -358,7 +388,9 @@ export default function Resume() {
             <div className="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-2">
               {SKILLS.map((s) => (
                 <div key={s.group}>
-                  <p className="text-caption font-semibold text-ink">{s.group}</p>
+                  <p className="text-caption font-semibold text-ink">
+                    {s.group}
+                  </p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {s.items.map((item) => (
                       <TagChip key={item} tone={s.tone}>
@@ -378,7 +410,12 @@ export default function Resume() {
         <div className="container-site flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <Reveal>
             <div className="flex items-start gap-5">
-              <PixelCloud shape="puff" variant="lavender" size={56} className="mt-1 shrink-0" />
+              <PixelCloud
+                shape="puff"
+                variant="lavender"
+                size={56}
+                className="mt-1 shrink-0"
+              />
               <p className="max-w-xl font-display text-h2 font-medium text-ink">
                 Want the full story behind these numbers?
               </p>
