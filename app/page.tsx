@@ -3,7 +3,6 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import CorosCarousel from "@/components/CorosCarousel";
-import CountUp from "@/components/CountUp";
 import HeroIntro from "@/components/HeroIntro";
 import PixelCloud from "@/components/PixelCloud";
 import Reveal from "@/components/Reveal";
@@ -42,12 +41,6 @@ const HERO_CLOUDS = [
   { shape: "wisp", variant: "sky", size: 170, top: "12%", left: 52, opacity: 0.45, drift: "cloud-drift-slow", delay: "-103s" },
   { shape: "wisp", variant: "pink", size: 140, top: "30%", left: 90, opacity: 0.45, drift: "cloud-drift-mid", delay: "-124s" },
 ] as const;
-
-const PROOF_STATS = [
-  { value: "55%", label: "next-day return after the onboarding redesign" },
-  { value: "3", label: "platforms shipped on one design system" },
-  { value: "1 day", label: "to design, build and ship a full-stack product" },
-];
 
 const LINKEDIN_HREF = "https://www.linkedin.com/in/arshita-misra/";
 
@@ -152,27 +145,15 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href="#selected-work">See the work ↓</Button>
+              <Button href="#selected-work" variant="secondary">
+                See the work ↓
+              </Button>
               <Button href="/resume" variant="secondary">
                 Résumé
               </Button>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-body font-medium text-accent-deep underline-offset-4 hover:underline"
-              >
+              <Button href={`mailto:${CONTACT_EMAIL}`} variant="secondary">
                 Email me
-              </a>
-            </div>
-
-            <div className="mt-10 grid max-w-3xl grid-cols-3 gap-4 border-t border-line pt-8 sm:gap-6">
-              {PROOF_STATS.map((stat) => (
-                <div key={stat.value}>
-                  <p className="font-display text-h2 font-semibold leading-none text-ink sm:text-h1">
-                    <CountUp value={stat.value} />
-                  </p>
-                  <p className="mt-2 text-caption text-ink-muted">{stat.label}</p>
-                </div>
-              ))}
+              </Button>
             </div>
           </HeroIntro>
         </div>
@@ -254,12 +235,9 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="flex flex-wrap gap-4 md:flex-nowrap">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-pill border border-accent-strong bg-accent-strong px-6 py-3 text-body font-medium text-on-accent transition-colors duration-200 hover:border-accent-deep hover:bg-accent-deep"
-              >
+              <Button href={`mailto:${CONTACT_EMAIL}`} variant="secondary">
                 Email me
-              </a>
+              </Button>
               <Button href="/resume" variant="secondary" className="shrink-0 whitespace-nowrap">
                 Résumé
               </Button>
