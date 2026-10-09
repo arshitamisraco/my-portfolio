@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import Button from "@/components/Button";
+import DecisionLog from "@/components/case-study/DecisionLog";
+import JourneyMap from "@/components/case-study/JourneyMap";
+import JourneyMarker from "@/components/case-study/JourneyMarker";
+import ScreenStory from "@/components/case-study/ScreenStory";
 import ImageFrame from "@/components/ImageFrame";
 import PixelCloud, { type CloudShape, type CloudVariant } from "@/components/PixelCloud";
 import PullQuote from "@/components/PullQuote";
@@ -38,7 +42,11 @@ const SEMANTIC = [
 ];
 
 const PASTEL_PAIRS = [
-  { name: "lavender", soft: "bg-lavender-soft", deepText: "text-lavender-deep" },
+  {
+    name: "lavender",
+    soft: "bg-lavender-soft",
+    deepText: "text-lavender-deep",
+  },
   { name: "sky", soft: "bg-sky-soft", deepText: "text-sky-deep" },
   { name: "mint", soft: "bg-mint-soft", deepText: "text-mint-deep" },
   { name: "butter", soft: "bg-butter-soft", deepText: "text-butter-deep" },
@@ -46,7 +54,10 @@ const PASTEL_PAIRS = [
 ];
 
 const TYPE_SCALE = [
-  { name: "display / Playfair Display", cls: "font-display text-display font-semibold" },
+  {
+    name: "display / Playfair Display",
+    cls: "font-display text-display font-semibold",
+  },
   { name: "h1 / Playfair Display", cls: "font-display text-h1 font-semibold" },
   { name: "h2 / Playfair Display", cls: "font-display text-h2 font-semibold" },
   { name: "h3 / Inter", cls: "text-h3 font-semibold" },
@@ -81,8 +92,8 @@ export default function Styleguide() {
       <SectionLabel cloud>Internal QA</SectionLabel>
       <h1 className="mt-4 font-display text-h1 font-semibold text-ink">Styleguide</h1>
       <p className="mt-3 max-w-lg text-body-lg text-ink-muted">
-        Every token, type style, and component state in one place. Unlinked from the
-        site nav — for design QA only.
+        Every token, type style, and component state in one place. Unlinked from the site nav — for
+        design QA only.
       </p>
 
       <div className="mt-12">
@@ -112,14 +123,9 @@ export default function Styleguide() {
         <Section title="Supporting pastels: soft surface + AA text pair">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {PASTEL_PAIRS.map((p) => (
-              <div
-                key={p.name}
-                className={`rounded-card border border-line p-4 ${p.soft}`}
-              >
+              <div key={p.name} className={`rounded-card border border-line p-4 ${p.soft}`}>
                 <p className={`text-body font-semibold ${p.deepText}`}>{p.name}</p>
-                <p className={`text-caption ${p.deepText}`}>
-                  Deep-on-soft text passes AA.
-                </p>
+                <p className={`text-caption ${p.deepText}`}>Deep-on-soft text passes AA.</p>
               </div>
             ))}
           </div>
@@ -190,8 +196,7 @@ export default function Styleguide() {
             </Button>
           </div>
           <p className="mt-4 text-caption text-ink-muted">
-            Hover: background/border shift. Focus: 2px pink ring, 3px offset (tab to
-            verify).
+            Hover: background/border shift. Focus: 2px pink ring, 3px offset (tab to verify).
           </p>
         </Section>
 
@@ -233,6 +238,113 @@ export default function Styleguide() {
             plannedSrc="/images/example/sample-photo.jpg"
             caption="Caption text sits below the frame in muted ink."
             tone="sky"
+          />
+        </Section>
+
+        <Section title="Decision log (case-study block)">
+          <DecisionLog
+            title="The journey animation"
+            hypothesis="If a new client sees the whole path once before typing, the four complaints disappear without four separate features."
+            tried={[
+              {
+                label: "A static three-step stepper above the composer",
+                detail: "Read as a form. Nobody looked at it.",
+                rejected: true,
+              },
+              {
+                label: "A paragraph of explanation",
+                detail: "Too long for a first visit.",
+                rejected: true,
+              },
+              {
+                label: "A six-second story that plays once",
+                detail: "Ends on three real faces, then the composer slides in.",
+              },
+            ]}
+            saw="Placeholder: what the founder said at the demo."
+            decided="Play it once, never repeat it, end in people."
+          />
+        </Section>
+
+        <Section title="Journey map (case-study block)">
+          <JourneyMap
+            stages={[
+              {
+                id: "first-visit",
+                label: "First visit",
+                detail: "See the whole process before you start",
+                tag: "02 04",
+              },
+              {
+                id: "start",
+                label: "Start a case",
+                detail: "One message opens a case",
+                tag: "01",
+              },
+              {
+                id: "answers",
+                label: "Answer questions",
+                detail: "A receipt after every answer",
+                tag: "02",
+              },
+              {
+                id: "documents",
+                label: "Add documents",
+                detail: "Upload from anywhere, at any step",
+                tag: "03",
+              },
+              {
+                id: "submit",
+                label: "Submit",
+                detail: "A case number and a track",
+                tag: "01",
+              },
+              {
+                id: "wait",
+                label: "Wait",
+                detail: "Moritz says what it is doing",
+                tag: "01",
+              },
+              {
+                id: "return",
+                label: "Come back",
+                detail: "Every case shows its stage and its lawyer",
+                tag: "02 04",
+              },
+            ]}
+          />
+          <JourneyMarker step={3} of={7} label="Answer questions" />
+        </Section>
+
+        <Section title="Screen story (case-study block)">
+          <ScreenStory
+            where={{
+              src: "/images/my-world/hero/hero-page.jpg",
+              width: 1600,
+              height: 998,
+              alt: "Full page screenshot",
+              region: { x: 10, y: 20, w: 80, h: 25 },
+              label: "Home, under the greeting",
+            }}
+            before={{
+              src: "/images/moritz-intake/composer.png",
+              width: 1570,
+              height: 380,
+              alt: "The old composer",
+            }}
+            problem={<>A case didn&rsquo;t exist until it was submitted, so &ldquo;did I submit?&rdquo; had no answer.</>}
+            approach="Make the first message the start of the case."
+            fix="Sending a message from home creates a draft tile right away."
+            result="A draft or a case number is always on screen."
+            media={
+              <ImageFrame
+                flush
+                src="/images/moritz-intake/composer.png"
+                width={1570}
+                height={380}
+                alt="The composer"
+              />
+            }
           />
         </Section>
 
