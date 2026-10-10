@@ -25,7 +25,7 @@ export default function CorosHub() {
   return (
     <>
       {/* ================= Overview ================= */}
-      <section className="relative overflow-hidden border-b border-line bg-surface">
+      <section data-section="overview" className="relative overflow-hidden border-b border-line bg-surface">
         <PixelCloud
           shape="cumulus"
           variant="sky"
@@ -92,7 +92,7 @@ export default function CorosHub() {
       </section>
 
       {/* ================= Explore the work ================= */}
-      <section className="py-section">
+      <section data-section="case-studies" className="py-section">
         <div className="container-site">
           <Reveal>
             <SectionLabel>Explore the work</SectionLabel>

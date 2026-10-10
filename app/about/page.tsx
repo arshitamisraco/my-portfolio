@@ -36,7 +36,7 @@ export default function About() {
   return (
     <>
       {/* ================= Intro ================= */}
-      <section className="relative overflow-hidden py-section">
+      <section data-section="intro" className="relative overflow-hidden py-section">
         <PixelCloud
           shape="wisp"
           variant="sky"
@@ -76,7 +76,7 @@ export default function About() {
           single column below lg, where source order gives the required mobile
           stack: timeline → hobbies → media. Both columns scroll
           normally — nothing is sticky. */}
-      <section className="pb-section">
+      <section data-section="story" className="pb-section">
         <div className="container-site grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-36">
           {/* ---------- LEFT: timeline ---------- */}
           <div>
@@ -290,7 +290,7 @@ export default function About() {
       </section>
 
       {/* ================= Closing CTA ================= */}
-      <section className="border-t border-line bg-surface py-section">
+      <section data-section="closing" className="border-t border-line bg-surface py-section">
         <div className="container-site flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <Reveal>
             <div className="flex items-start gap-5">

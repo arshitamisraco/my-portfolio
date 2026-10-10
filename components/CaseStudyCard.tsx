@@ -22,6 +22,7 @@ export default function CaseStudyCard({ study, size = "full" }: CaseStudyCardPro
   return (
     <Link
       href={study.href}
+      data-section={`card-${study.slug}`}
       className="group block h-full overflow-hidden rounded-frame border border-line bg-surface-raised transition-all duration-300 hover:-translate-y-1 hover:border-accent motion-reduce:hover:translate-y-0"
     >
       {/* Cover: the project's own horizontally-drifting carousel. */}

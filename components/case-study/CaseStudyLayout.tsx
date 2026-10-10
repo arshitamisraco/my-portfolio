@@ -61,7 +61,7 @@ export default function CaseStudyLayout({
   return (
     <article>
       {/* ================= Header ================= */}
-      <header className="relative overflow-hidden border-b border-line bg-surface">
+      <header data-section="header" className="relative overflow-hidden border-b border-line bg-surface">
         <div className="container-site relative py-14 md:py-20">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2 text-caption text-ink-muted">
@@ -129,14 +129,14 @@ export default function CaseStudyLayout({
 
       {/* ================= Body ================= */}
       <div className="container-site py-14 md:py-20">
-        {productIntro}
-        {hero}
+        {productIntro && <div data-section="product-intro">{productIntro}</div>}
+        {hero && <div data-section="hero">{hero}</div>}
 
         <div className="min-w-0">{children}</div>
       </div>
 
       {/* ================= Prev / Next ================= */}
-      <nav aria-label={isBuild ? "More builds" : "More design projects"} className="border-t border-line bg-surface">
+      <nav data-section="prev-next" aria-label={isBuild ? "More builds" : "More design projects"} className="border-t border-line bg-surface">
         <div className="container-site grid gap-4 py-12 md:grid-cols-2">
           <Link
             href={prev.href}

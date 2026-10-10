@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import PostHogProvider from "@/components/analytics/PostHogProvider";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -43,11 +44,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Nav />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <PostHogProvider>
+          <Nav />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </PostHogProvider>
       </body>
     </html>
   );
