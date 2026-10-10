@@ -97,7 +97,7 @@ const REELS: Reel[] = [
 
 export default function ForFun() {
   return (
-    <section className="py-section">
+    <section data-section="for-fun" className="py-section">
       <div className="container-site">
         <Reveal>
           <SectionLabel cloud>For fun</SectionLabel>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <section className="relative overflow-hidden py-section">
+    <section data-section="contact" className="relative overflow-hidden py-section">
       <PixelCloud
         shape="wisp"
         variant="lavender"

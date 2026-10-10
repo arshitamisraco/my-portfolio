@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Projects() {
   return (
-    <section className="py-section">
+    <section data-section="listing" className="py-section">
       <div className="container-site">
         <Reveal>
           <SectionLabel>Work</SectionLabel>

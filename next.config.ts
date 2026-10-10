@@ -8,6 +8,17 @@ const nextConfig: NextConfig = {
   // is used so Vercel's Next.js builder finds the output as expected.
   distDir: process.env.NODE_ENV === "development" ? ".next.nosync" : ".next",
 
+  // Reverse-proxy PostHog through our own domain so ad-blockers don't drop events.
+  async rewrites() {
+    return [
+      { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/array/:path*", destination: "https://us-assets.i.posthog.com/array/:path*" },
+      { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
+    ];
+  },
+  // Required so PostHog's trailing-slash API paths aren't redirected.
+  skipTrailingSlashRedirect: true,
+
   // The COROS work used to live under /work/coros-ai. The case studies now live
   // at /projects/<slug> and the COROS overview moved to /coros-ai, so keep the
   // old URLs working for anyone with a bookmark or an external link.

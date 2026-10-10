@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <>
       {/* ================= Hero — "Arshita Misra, as an offer" ================= */}
-      <section className="relative overflow-hidden">
+      <section data-section="hero" className="relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {HERO_CLOUDS.map((cloud, i) => (
             <PixelCloud
@@ -162,7 +162,7 @@ export default function Home() {
 
       {/* ================= Selected Work ================= */}
       {/* Moritz leads, then the three COROS AI case studies, stacked. */}
-      <section id="selected-work" className="scroll-mt-16 py-section">
+      <section id="selected-work" data-section="selected-work" className="scroll-mt-16 py-section">
         <div className="container-site">
           {/* The intro runs the full site container; only the card stack below is
               narrowed and centered so it reads as a focused list. */}
@@ -196,7 +196,7 @@ export default function Home() {
       </section>
 
       {/* ================= Closing band ================= */}
-      <section className="border-t border-line bg-surface py-section">
+      <section data-section="closing" className="border-t border-line bg-surface py-section">
         <div className="container-site flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <Reveal>
             <div className="flex items-start gap-5">

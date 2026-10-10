@@ -274,7 +274,7 @@ export default function Resume() {
   return (
     <>
       {/* ================= Header ================= */}
-      <section className="relative overflow-hidden py-section">
+      <section data-section="hero" className="relative overflow-hidden py-section">
         <PixelCloud
           shape="wisp"
           variant="sky"
@@ -316,7 +316,7 @@ export default function Resume() {
       </section>
 
       {/* ================= Experience ================= */}
-      <section className="border-t border-line py-section">
+      <section data-section="experience" className="border-t border-line py-section">
         <div className="container-site">
           <SectionLabel cloud cloudVariant="lavender">
             Experience
@@ -327,7 +327,7 @@ export default function Resume() {
       </section>
 
       {/* ================= Projects ================= */}
-      <section className="border-t border-line py-section">
+      <section data-section="projects" className="border-t border-line py-section">
         <div className="container-site">
           <SectionLabel cloud cloudVariant="pink">
             Projects
@@ -337,7 +337,7 @@ export default function Resume() {
       </section>
 
       {/* ================= Education ================= */}
-      <section className="border-t border-line bg-surface py-section">
+      <section data-section="education" className="border-t border-line bg-surface py-section">
         <div className="container-site">
           {/* Education */}
           <Reveal>
@@ -379,7 +379,7 @@ export default function Resume() {
       </section>
 
       {/* ================= Skills ================= */}
-      <section className="border-t border-line py-section">
+      <section data-section="skills" className="border-t border-line py-section">
         <div className="container-site">
           <Reveal>
             <SectionLabel cloud cloudVariant="pink">
@@ -406,7 +406,7 @@ export default function Resume() {
       </section>
 
       {/* ================= Closing CTA ================= */}
-      <section className="py-section">
+      <section data-section="closing" className="py-section">
         <div className="container-site flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <Reveal>
             <div className="flex items-start gap-5">

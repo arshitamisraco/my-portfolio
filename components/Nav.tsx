@@ -35,7 +35,7 @@ export default function Nav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
+    <header data-context="nav" className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
       <nav aria-label="Main" className="container-site flex h-16 items-center justify-between">
         <Link
           href="/"

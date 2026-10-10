@@ -10,7 +10,7 @@ import {
 type Status = "idle" | "submitting" | "success" | "error";
 
 const FIELD_CLASSES =
-  "w-full rounded-card border border-line bg-surface-raised px-4 py-3 text-body text-ink placeholder:text-ink-muted transition-colors focus:border-accent";
+  "ph-no-capture w-full rounded-card border border-line bg-surface-raised px-4 py-3 text-body text-ink placeholder:text-ink-muted transition-colors focus:border-accent";
 
 const LABEL_CLASSES = "block text-caption font-semibold text-ink";
 
