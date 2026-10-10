@@ -10,6 +10,8 @@ const DEBUG = process.env.NEXT_PUBLIC_POSTHOG_DEBUG === "1";
 
 function shouldInit(): boolean {
   if (!KEY) return false;
+  // Never track the /admin dashboard or its heatmap preview iframe.
+  if (window.top !== window || window.location.pathname.startsWith("/admin")) return false;
   if (DEBUG) return true;
   if (process.env.NODE_ENV !== "production") return false;
   return !["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
