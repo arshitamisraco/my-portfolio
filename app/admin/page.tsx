@@ -1,7 +1,7 @@
 import Link from "next/link";
 import redesigns from "@/lib/redesigns.json";
 import { CASE_STUDIES } from "@/lib/projects";
-import { getHeatmap, getSummary, type HeatPoint, type Range, type SectionRow, type Summary } from "@/lib/posthog-query";
+import { getDailyVisitors, getHeatmap, getSummary, getVisitorCount, type DayCount, type HeatPoint, type Range, type SectionRow, type Summary } from "@/lib/posthog-query";
 import Heatmap from "./Heatmap";
 
 export const dynamic = "force-dynamic";
@@ -72,12 +72,17 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   let now: Summary | null = null;
   let then: Summary | null = null;
   let heat: HeatPoint[] = [];
+  let daily: DayCount[] = [];
+  let total = 0;
   let error: string | null = null;
   try {
-    [now, then, heat] = await Promise.all([
+    const monthAgo = new Date(Date.now() - 29 * 864e5).toISOString().slice(0, 10);
+    [now, then, heat, daily, total] = await Promise.all([
       getSummary(after, n),
       before ? getSummary(before, n) : Promise.resolve(null),
       getHeatmap(after, page, device, type),
+      getDailyVisitors({ from: monthAgo, to: tomorrow }),
+      getVisitorCount(after),
     ]);
   } catch (e) {
     error = e instanceof Error ? e.message : String(e);
@@ -151,6 +156,9 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           Couldn&rsquo;t reach PostHog: {error}
         </p>
       )}
+
+      {/* Visitors per day */}
+      {!error && <DailyVisitors daily={daily} total={total} rangeLabel={rangeLabel} />}
 
       {/* Headline */}
       <section>
@@ -359,5 +367,45 @@ function Empty({ title, children }: { title: string; children: React.ReactNode }
       <p className="font-display text-h3 text-ink">{title}</p>
       <p className="mt-2 max-w-prose text-body text-ink-muted">{children}</p>
     </div>
+  );
+}
+
+function DailyVisitors({ daily, total, rangeLabel }: { daily: DayCount[]; total: number; rangeLabel: string }) {
+  const max = Math.max(1, ...daily.map((d) => d.visitors));
+  const today = daily.at(-1)?.visitors ?? 0;
+  const short = (d: string) =>
+    new Date(`${d}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return (
+    <section className="grid gap-8 md:grid-cols-[auto_1fr] md:items-end">
+      <div className="flex gap-10">
+        <div>
+          <p className="text-style-eyebrow text-accent-deep">Visitors {rangeLabel}</p>
+          <p className="mt-2 font-display text-[clamp(3rem,7vw,5rem)] font-semibold leading-none text-ink">{total}</p>
+        </div>
+        <div>
+          <p className="text-style-eyebrow text-accent-deep">Today</p>
+          <p className="mt-2 font-display text-[clamp(3rem,7vw,5rem)] font-semibold leading-none text-accent-strong">
+            {today}
+          </p>
+        </div>
+      </div>
+      <figure>
+        <div className="flex h-28 items-end gap-[3px]" role="img" aria-label="Visitors per day, last 30 days">
+          {daily.map((d, i) => (
+            <div
+              key={d.day}
+              title={`${short(d.day)}: ${d.visitors} visitor${d.visitors === 1 ? "" : "s"}`}
+              className={`flex-1 rounded-t-[3px] ${i === daily.length - 1 ? "bg-accent-strong" : "bg-accent-soft hover:bg-accent"}`}
+              style={{ height: d.visitors ? `${Math.max(6, (100 * d.visitors) / max)}%` : "2px" }}
+            />
+          ))}
+        </div>
+        <figcaption className="mt-2 flex justify-between text-caption text-ink-muted">
+          <span>{daily[0] && short(daily[0].day)}</span>
+          <span>Visitors per day · last 30 days · peak {max === 1 && !daily.some((d) => d.visitors) ? 0 : max}</span>
+          <span>Today</span>
+        </figcaption>
+      </figure>
+    </section>
   );
 }

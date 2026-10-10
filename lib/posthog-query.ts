@@ -115,3 +115,31 @@ export async function getHeatmap(
      group by 1, 2, 3 limit 20000`,
   );
 }
+
+export type DayCount = { day: string; visitors: number };
+
+/** Unique visitors (sessions) per day, oldest first, with empty days filled in as 0. */
+export async function getDailyVisitors(r: Range): Promise<DayCount[]> {
+  const rows = await hogql<[string, number]>(
+    `select toString(toDate(timestamp)), count(distinct $session_id)
+     from events where event = '$pageview' and ${inRange(r)}
+     group by 1 order by 1`,
+  );
+  const counts = new Map(rows.map(([d, c]) => [d, c]));
+  const out: DayCount[] = [];
+  const today = new Date().toISOString().slice(0, 10);
+  for (let d = new Date(`${r.from}T00:00:00Z`); ; d.setUTCDate(d.getUTCDate() + 1)) {
+    const day = d.toISOString().slice(0, 10);
+    if (day >= r.to || day > today) break;
+    out.push({ day, visitors: counts.get(day) ?? 0 });
+  }
+  return out;
+}
+
+/** Total unique visitors (sessions) in the range. */
+export async function getVisitorCount(r: Range): Promise<number> {
+  const [row] = await hogql<[number]>(
+    `select count(distinct $session_id) from events where event = '$pageview' and ${inRange(r)}`,
+  );
+  return row?.[0] ?? 0;
+}
