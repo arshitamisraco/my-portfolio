@@ -26,9 +26,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/work/coros-ai", destination: "/coros-ai", permanent: true },
       { source: "/work/coros-ai/:slug", destination: "/projects/:slug", permanent: true },
-      // Short, shareable link to the résumé PDF. Temporary (not permanent) so
-      // browsers don't cache it if the PDF's filename ever changes.
-      { source: "/resume.pdf", destination: "/documents/Arshita-Misra-Resume.pdf", permanent: false },
+      // Short, shareable link to the résumé (same Drive file as lib/resume.ts). Temporary so
+      // browsers do not cache it if the Drive link changes.
+      { source: "/resume.pdf", destination: "https://drive.google.com/file/d/1xOlDdcbitDaSvbhvcOaKmkb8pXuq1k9V/view?usp=sharing", permanent: false },
     ];
   },
 };
