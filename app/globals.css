@@ -36,7 +36,7 @@
   --color-peach-deep: #92492a;
 
   /* ---- Semantic tokens (components use these) ---- */
-  --color-bg: #f9f6f1;
+  --color-bg: var(--color-pink-50);
   --color-surface: var(--color-pink-100);
   --color-surface-raised: #fefcfb;
   --color-ink: var(--color-ink-raw);
